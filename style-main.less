@@ -1,0 +1,800 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+
+
+/* Patterns */
+@lined-pattern: url('imgs/lined_pattern.png');
+@dotted-pattern: url('imgs/dotted_pattern.png');
+
+/* Colors */
+@dkbrown: #423c2e;
+@medbrown: #716854;
+@beige: #f9f6ef;
+@offwhite: #f7f1e5;
+@dkbeige: #a59e8f;
+@orange: #ce691f;
+@blue:#086098;
+@green:#4c7f0f;
+@purple:#8d3b92;
+
+/* Styles */
+.sub-nav-shadow{
+	-moz-box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.1);	
+	box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.1);
+}
+
+.open-badges-callout-shadow{
+	-moz-box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header-lock{
+		
+		display:block;
+		width: 100%;
+		position: absolute;
+		left: 0px;
+		right: 0px;
+
+}
+
+.serif {
+
+
+	font-family: Georgia, Serif;
+
+}
+
+.small-badges{
+
+	height: 64px;
+	width: 23%;
+	margin: 0;
+	//padding: 0 10px;
+	display: inline-block;
+
+
+}
+
+.button {
+	margin: 3px;
+	padding: 4px 8px;
+	background: #8daa92;
+	display: inline-block;
+}
+
+.activities-styles{
+	width: 100%;
+	display: block;
+	text-align: center;
+	h5{
+		font-family: helvetica, sans-serif;
+		margin: 20px 0 0;
+		background: transparent;
+
+	}
+
+	div.bounding{
+
+		border-top: 1px solid @dkbrown;
+		border-right: 1px solid @dkbrown;
+		border-left: 1px solid @dkbrown;
+		height: 8px;
+
+	}
+
+	section{
+
+		width: 100%;
+
+		div{
+			width: 16%;
+			margin: 0;
+			padding: 0;
+			height: 32px;
+			display: inline-block;
+		}
+
+		div.water{
+			background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
+		}
+
+		div.fish{
+			background: url('imgs/activities_tiny_orange.png') no-repeat center;
+		}
+
+		div.plants{
+			background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
+		}
+
+		div.design{
+			background: url('imgs/activities_tiny_purple.png') no-repeat center;
+		}
+
+
+	}
+
+}
+
+.header-ul{
+		ul {
+
+			padding: 0;
+			margin: 0;
+			display: inline;
+
+			li{
+
+				display: inline-block;
+				padding: 0 15px 0 0;
+
+			}
+
+		}
+}
+
+.hr{
+
+		border: 0;
+		height: 1px;
+		color: @medbrown;
+		background-color: @medbrown;
+
+}
+
+
+body{
+	border: 0;
+	margin: 0;
+	padding: 0;
+	background-color: pink;
+
+}
+
+a, a:visited{
+	
+	color: @dkbeige;
+	text-decoration: none;
+	font-family:  Helvetica ,Sans-serif;
+
+}
+
+a:hover{
+
+	//font-weight: bold;
+};
+
+
+header{
+	
+	background-color: @beige;
+	#main-nav{
+		//.header-lock;
+		height:46px;
+		background-color: @dkbrown;
+		top: 0;
+
+		h1#branding{ display: inline;  margin: 0 0 0 20px;}
+
+
+		.header-ul;
+
+		ul#navigation{
+
+			margin: 0 0 0 24px;
+
+		}
+
+		ul#profile{
+			float: right;
+			margin: 15px 30px 0 0;
+
+		}
+
+
+
+	}
+	#sub-nav{
+		height:34px;
+		background-color: @beige;
+		top: 46px;
+
+		.sub-nav-shadow;
+		//.header-lock;
+		.header-ul;
+
+		#crumb-nav{
+
+				font-size: .8em;
+				padding: 20px;
+				li {
+
+					margin: 10px 0 0 0;
+				}
+
+		}
+
+	}
+
+	#secondary-nav{
+		height:117px;
+		margin-top: 80px;
+		padding: 0 1.5%;
+
+		
+		section { 
+				background-color: @beige;
+				display: inline-block; 
+				margin: 40px 0 0 2%;
+				vertical-align: bottom;
+				p, h2{
+					display: inline-block; 
+					margin: 0;
+					padding: 0;
+				}
+
+				h2 a{
+
+					color: @dkbrown;
+				}
+
+				hr{ .hr	}
+
+				ul li a, p a {
+
+					.serif;
+
+				}
+		}
+
+		section:first-child{ margin: 40px 0 0 ;}
+
+		#page-search{
+
+			width: 28%; /*280/960*/
+			form{  display: inline; margin: 0 0 0 1%;}
+			padding: 0 0 18px 0;
+
+			input[type="text"]{  border: 0; 
+								  background: @beige; 
+								  outline: none;		
+								  width: 77%;
+								}
+			input[type="submit"]{ width: 12px; 
+								  height: 12px; 
+								  text-indent: -999px; 
+								  overflow: hidden;
+								  padding: 0;
+								  margin: 0;
+								  border: 0;
+								  background-color:transparent;
+								  background-image: url('imgs/search_icon.png'); 
+								  background-repeat: no-repeat; }
+
+			p{ color: @dkbeige; font-style: italic;}
+		}
+
+		#main-links{
+
+			.header-ul;
+			width: 34%; /* 330/960*/
+			display: inline-table;
+
+		}
+		#content-filter, #content-sort{
+
+			width: 15%;
+
+		}
+	}
+}
+
+header.badges{
+
+	#main-links{ width: 68% !important; }
+	#content-filter, #content-sort{ width: 0 !important; display: none !important; overflow: none !important; }
+	
+}
+
+section#main{
+
+		width: 100%;
+		min-height: 500px; 
+		
+}
+
+
+section#main.forum{
+	background: @lined-pattern;
+
+	#overview{
+
+		header{ width: 100%; height: 4px; display: block; background-color:@dkbrown;}
+		footer{ width: 140px; height: 28px; background-color: @medbrown; float: right; margin: 0 20px 0 0;
+				p { font-family:helvetica, sans-serif; margin: 4px 0 0 0; padding: 0; text-align: center; color: @beige; font-size: .9em;}
+				}
+	}
+
+	#page-content{
+
+		width: 100%;
+		display: block;
+		margin: 0 0 0 20px;
+
+		article.question{
+
+			width: 97%;
+			max-width: 900px;
+			min-height: 64px;
+			display: block;
+			margin: 10px 0 0 0;
+			padding: 5px 0;
+
+			.qleft {
+
+				width: 120px;
+				display: inline-block;
+				height: inherit;
+				/*max-height: 90px;*/
+				overflow: hidden;
+				vertical-align: middle;
+				margin: 0 0 15px 0;
+
+
+				p{ 	color: @dkbrown; font-size: 1.75em; 
+					font-family:helvetica, sans-serif;
+					text-align: center; margin: 0; display: inline-block; 
+					vertical-align: top;
+
+					em{ font-size: .4em; display: block;  }
+				}
+
+				p:last-child{
+
+					margin: -45px 0 0 70px;
+
+				};
+				hr{ .hr;
+					display: inline-block; 
+
+					width: 80px; 
+
+					transform: rotate(300deg);
+					-ms-transform: rotate(300deg); /* IE 9 */
+					-webkit-transform: rotate(300deg); /* Safari and Chrome */
+					-o-transform: rotate(300deg); /* Opera */
+					-moz-transform: rotate(300deg); /* Firefox */
+					margin: 0 0 0 -15px;
+				}
+			}
+			.qright{
+
+				display: inline-block;
+				width: 80%;
+				background-color: @beige;
+				div{ width: 12px; min-height: 64px; margin: 0; padding: 0; float:left; margin: 0 10px 0 0;}
+
+				div.water{ background-color: @blue;}
+				div.plants{ background-color: @green;}
+				div.design{ background-color: @purple;}
+				div.fish{ background-color:@orange;}
+
+				h3{ margin: 10px 0 0; padding: 0; font-size: 1.2em; font-family: georgia, serif;}
+				p{ margin: 0; padding: 2px 0 0; font-size: .8em; font-family: helvetica, sans-serif; 
+
+						a.water, a.water:visited{ color: @blue;}
+						a.plants, a.plants:visited{ color: @green;}
+						a.design, a.design:visited{ color: @purple;}
+						a.fish, a.fish:visited{ color:@orange;}
+				}
+			}
+
+		}
+
+		article.question:first-child{
+				margin: 30px 0 0 0;
+		}
+
+
+
+
+	}
+
+}//section#main.forum
+
+
+section#main.badges{
+
+	background: @dotted-pattern;
+
+	h2{
+
+		margin: 0;
+		padding: 20px 0 0 20px;
+		font-family: helvetica, sans-serif;
+		text-transform: uppercase;
+		float: left;
+	}
+
+
+	.aquapons-badges{
+
+		width: 100%;
+		display: block;
+		height: 134px;
+		margin: 0;
+		padding: 10px 0;
+		background: url('imgs/practioner_badge.png') no-repeat center;
+
+	}
+
+	.badges-display{
+
+		width: 100%;
+		display: block;
+
+		.water,.fish,.plants,.design{
+
+			display: inline-block;
+			width: 21.75%;
+			margin: 0;
+			padding: 20px 1.5% 0;
+		}
+
+		.water{
+			.content-badges{
+			background: url('imgs/water_badge.png') no-repeat center;
+			height: 118px;
+			
+			}
+			
+			.skills-badges{ 
+
+				.one{ 
+					background: url('imgs/skill_small_dkblue.png') no-repeat center;
+					.small-badges
+
+				}
+				.two{
+					background: url('imgs/skill_small_ltblue.png') no-repeat center;
+					.small-badges
+
+				}
+				.three{
+					background: url('imgs/skill_small_dkpurple.png') no-repeat center;
+					.small-badges
+
+				}
+				.four{
+					background: url('imgs/skill_small_dkblue.png') no-repeat center;
+					.small-badges
+
+				}
+			}//.skills-badges
+			.activities{
+
+				.activities-styles;
+			}//.activites
+		}
+
+		.fish{
+			.content-badges{
+			background: url('imgs/fish_badge.png') no-repeat center;
+			height: 118px;
+			}
+			.skills-badges{  
+				.one{ 
+					background: url('imgs/skill_small_orange.png') no-repeat center;
+					.small-badges
+				}
+				.two{
+					background: url('imgs/skill_small_yellow.png') no-repeat center;
+					.small-badges
+
+				}
+				.three{
+					background: url('imgs/skill_small_red.png') no-repeat center;
+					.small-badges
+
+				}
+				.four{
+					background: url('imgs/skill_small_orange.png') no-repeat center;
+					.small-badges
+
+				}
+			}//.skills-badges
+			.activities{
+
+				.activities-styles;
+			}
+
+		}
+
+		.plants{
+			.content-badges{
+			background: url('imgs/plants_badge.png') no-repeat center;
+			height: 118px;
+			}
+			.skills-badges{  
+
+				.one{ 
+						background: url('imgs/skill_small_dkgreen.png') no-repeat center;
+						.small-badges
+				}
+				.two{
+					background: url('imgs/skill_small_ltgreen.png') no-repeat center;
+					.small-badges
+
+				}
+				.three{
+					background: url('imgs/skill_small_aquagreen.png') no-repeat center;
+					.small-badges
+
+				}
+				.four{
+					background: url('imgs/skill_small_dkgreen.png') no-repeat center;
+					.small-badges
+
+				}
+			}//.skills-badges
+			.activities{
+
+				.activities-styles;
+			}
+
+		}
+		.design{
+			.content-badges{
+			background: url('imgs/design_badge.png') no-repeat center;
+			height: 118px;
+			}
+		    .skills-badges{ 
+
+				.one{ 
+					background: url('imgs/skill_small_purple.png') no-repeat center;
+					.small-badges
+				}
+				.two{
+					background: url('imgs/skill_small_pink.png') no-repeat center;
+					.small-badges
+
+				}
+				.three{
+					background: url('imgs/skill_small_gray.png') no-repeat center;
+					.small-badges
+
+				}
+				.four{
+					background: url('imgs/skill_small_purple.png') no-repeat center;
+					.small-badges
+				}
+			}//.skills-badges
+			.activities{
+
+				.activities-styles;
+			}
+		}
+
+	}
+
+
+
+	.skills-badges{
+
+		width: 100%;
+		display: block;
+
+
+	}
+
+
+	section.badges-desc{
+
+		width: 100%;
+		margin: 0;
+		padding: 40px 20px 80px 20px;
+
+
+		section.badges-desc-content{
+
+			width: 74%;
+			display: inline-block;
+			vertical-align: top;
+
+			p{color: @dkbrown;}
+
+			p.main-copy{
+				font-family: helvetica, sans-serif;
+				font-weight: 200;
+				font-size: 1.5em;
+				margin: 0 0 20px 0;
+			}
+			p.body-copy{
+
+				width: 45%;
+				margin: 0;
+				display: inline-block;
+				font-weight: bold;
+
+			}
+
+			p.body-copy:nth-child(even){
+
+				margin: 0 5% 0 0;
+
+			}
+
+		}
+
+		section.open-badges-callout{
+
+			width: 20%;
+			height: 295px;
+			padding: 10px 20px 10px 20px;
+			background: @offwhite;
+			display: inline-block;
+			vertical-align: top;
+			.open-badges-callout-shadow;
+
+			div{
+				width: 100%;
+				height: 95px;
+				background: url('imgs/mozilla_foundation.png') no-repeat center;
+				padding: 10px 0;
+			}
+
+			p{
+
+				font-family: helvetica, sans-serif;
+			}
+
+			p.link{
+
+				background: @dkbrown;
+				border-bottom-left-radius: 5px;
+				border-top-left-radius: 5px;
+				color: @beige;
+				width:100px;
+				padding: 10px;
+				margin: 10px 0 0 0;
+				font-size: .8em;
+				text-transform: uppercase;
+				position: relative;
+
+			}
+			p.link:after{
+				content: ' ';
+				height: 0;
+				position: absolute;
+				width: 0;
+				top:0;
+				left: 120px;
+				border: 17px solid transparent;
+				border-left-color:@dkbrown;
+			}
+
+		}
+
+	}
+}//section#main.badges
+
+
+footer.main{
+	width: 100%;
+	display: block;
+	//min-height: 275px;
+	background: @dkbrown; /* Old browsers */
+	background: -moz-linear-gradient(top, #423c2e 0%, #221f17 92%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#423c2e), color-stop(92%,#221f17)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #423c2e 0%,#221f17 92%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #423c2e 0%,#221f17 92%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #423c2e 0%,#221f17 92%); /* IE10+ */
+	background: linear-gradient(to bottom, #423c2e 0%,#221f17 92%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#423c2e', endColorstr='#221f17',GradientType=0 ); /* IE6-9 */
+
+	header#pagination{
+
+		width: 100%;
+		display: block;
+		padding: 10px 0 0;
+		height: 60px;
+		.header-ul;
+
+		p{display: inline-block; font-family: helvetica, sans-serif; vertical-align: middle;}
+		p.left{ }
+		p.right{ }
+		text-align: center;
+		ul{ display: inline-block; width: 87%; vertical-align: middle; 
+
+			li{ font-family: helvetica, sans-serif; 
+				font-size: 1.35em;
+			}
+		}
+
+
+	}
+	footer{
+
+		min-height: 275px;
+		width: 100%;
+		display:block;
+		padding: 20px 0 0;
+
+		.header-ul;
+
+		ul {
+
+			width: 100%;
+		
+
+			li{
+
+				width: 21.75%;
+				margin: 0;
+				padding: 20px 2% 0;
+				//height: 100%;
+				vertical-align: top;
+				//background-color: @beige;
+				//border: 1px solid red;
+
+				h4{
+
+					font-family: helvetica,sans-serif;
+					margin:0;
+					padding: 0;
+					color: @beige;
+					font-weight: 200;
+				}
+
+				p{
+
+					font-family: helvetica,sans-serif;
+					color:@dkbeige;
+					font-size: 1em;
+					font-weight: 200;
+					line-height: 1.2em;
+
+				}
+
+				hr{ .hr
+
+				}
+
+				hr.fish{background-color: @orange; color: @orange;}
+				hr.water{background-color: @blue; color: @orange;}
+				hr.plants{background-color:@green; color: @orange;}
+				hr.design{background-color:@purple; color: @orange;}
+
+			}
+
+
+			#site-desc{
+				margin: -30px 0 0;
+				padding: 0 ;
+				width: 18.5%;
+				background-color:@dkbeige;
+
+				h4{
+
+					text-indent: -999px;
+					overflow: hidden;
+					background: url('imgs/swf_logo.png');
+					background-repeat: no-repeat;
+					background-position: center;
+					width: 183px;
+					height: 68px;
+					margin: 20px 25px;
+
+				}
+
+				p{ color: @dkbrown; padding: 0px 5px 10px 10px; font-size: .8em;}
+			}
+		}
+
+		#copyright{ float: right; clear: both; margin: 55px 30px 0 0; vertical-align: bottom; color:@dkbeige; font-size: .7em;}
+
+	}
+}
