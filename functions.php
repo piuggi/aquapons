@@ -58,5 +58,31 @@ function breadcrumb($curr_post) {
     echo $delimiter . $before . get_the_title($curr_post->ID) . $after; 
 }
 
+/*
+**
+*/
+
+class themeCheck {
+	
+	public $theme = false;
+	public $themeUrl;
+	
+	function __construct(){
+		if(isset($_GET["theme"])){
+			
+			$this->theme=true;
+			$this->themeUrl = "?theme={$_GET['theme']}";
+			
+		}
+		
+	}
+	
+	function url(){
+		 if($this->theme) echo $this->themeUrl;
+	}
+	
+}
+	
+
 
 ?>
