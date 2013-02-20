@@ -25,6 +25,12 @@ var theme_url = "<?php echo get_template_directory_uri() ?>";
 <?php wp_head(); ?>
 </head>
 
+<?php 
+	
+	$theme = new themeCheck();
+	
+?>
+
 <body <?php body_class(); ?>>
 <div id="container">
 
@@ -33,17 +39,17 @@ var theme_url = "<?php echo get_template_directory_uri() ?>";
 	
 	<header>
 		<div id="main-nav">
-				<h1 id="branding"><a href="/">Aquapons</a></h1>
+				<h1 id="branding"><a href="/<?php $theme->url(); ?>">Aquapons</a></h1>
 				<ul id="navigation">
-					<li><a class="resources" href="http://aquapons.info/resources/">Resources</a></li>
-					<li><a class="badges" href="http://aquapons.info/badges-overview/">Badges</a></li>
-					<li><a class="community" href="http://aquapons.info/community/">Community</a></li>
-					<li><a class="about" href="http://aquapons.info/about/">About</a></li>
+					<li><a class="resources" href="http://aquapons.info/resources/<?php $theme->url(); ?>">Resources</a></li>
+					<li><a class="badges" href="http://aquapons.info/badges-overview/<?php $theme->url(); ?>">Badges</a></li>
+					<li><a class="community" href="http://aquapons.info/community/<?php $theme->url(); ?>">Community</a></li>
+					<li><a class="about" href="http://aquapons.info/about/<?php $theme->url(); ?>">About</a></li>
 				</ul>
 				<ul id="profile">
 					<li></li>
-					<li><a href="">My Profile</a></li>
-					<li><a href="">Log Out</a></li>
+					<li><a href="<?php $theme->url(); ?>">My Profile</a></li>
+					<li><a href="<?php $theme->url(); ?>">Log Out</a></li>
 					<!-- 		OR 
 					<li><a href="">Sign In</a></li> 
 					<li>or</li>
