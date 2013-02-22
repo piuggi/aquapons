@@ -15,7 +15,8 @@ jQuery(document).ready(function($) {
 				badge_denied: true,
 				submission_id: badge_div.attr('submission_id'),
 				reviewer_id: badge_div.attr('reviewer_id'),
-				reviewer_comment: $('.approval_comments').val()
+				reviewer_comment: $('.approval_comments').val(),
+				theme: theme_branch
 			},
 			success: function(data, textStatus, XMLHttpRequest){
 				if(window.console) console.debug(data);
@@ -36,7 +37,7 @@ jQuery(document).ready(function($) {
 	$('.approve_badge').click(function() {
 		var badge_div = $(this);
 		var assertion_url;
-		
+		if(window.console) console.debug('.approve_badge');
 		jQuery.ajax({
 			type: 'POST',
 			url: 'http://aquapons.info/wp-admin/admin-ajax.php',
@@ -58,7 +59,8 @@ jQuery(document).ready(function($) {
 				criteria: badge_div.attr('criteria'),
 				expires: badge_div.attr('expires'),
 				reviewer_id: badge_div.attr('reviewer_id'),
-				reviewer_comment: $('.approval_comments').val()
+				reviewer_comment: $('.approval_comments').val(),
+				theme: theme_branch
 			},
 			success: function(data, textStatus, XMLHttpRequest){
 				console.debug(data);

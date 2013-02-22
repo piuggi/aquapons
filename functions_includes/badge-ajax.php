@@ -1,5 +1,6 @@
 <?php
 
+if($_POST['user_token']) $user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE user_token_id = '".$_POST['user_token']."'");
 
 function submittedToOBI() {
 	$wpdb->update( 
@@ -29,7 +30,7 @@ function reviewBadgeAjax() {
 					GO THROUGH OPENBADGES PROCESS
 */
 
-	global $wpdb;
+	global $wpdb, $user_info;
 	
 	if($_POST['badge_denied']) {
 		$wpdb->update( 
@@ -42,12 +43,10 @@ function reviewBadgeAjax() {
 			), 
 			array( 'id' => $_POST['submission_id'] )
 		);
-		//echo("UPDATE `aq_badge_submissions` SET `current_status` = 'denied', `reviewer_id` = '".$_POST['reviewer_id']."', `reviewer_comment` = '".$_POST['reviewer_comment']."', `review_timestamp` = 'NOW()' WHERE `id` = '".$_POST['submission_id']."';");
-		// alert user of update?
 	}
 
 	if($_POST['badge_approved']) {
-		
+		'badge approved';
 		
 		$wpdb->update( 
 			'aq_badge_submissions', 
@@ -59,28 +58,7 @@ function reviewBadgeAjax() {
 			), 
 			array( 'id' => $_POST['submission_id'] )
 		);
-		//echo("UPDATE `aq_badge_submissions` SET `current_status` = 'approved', `reviewer_id` = '".$_POST['reviewer_id']."', `reviewer_comment` = '".$_POST['reviewer_comment']."', `review_timestamp` = 'NOW()' WHERE `id` = '".$_POST['submission_id']."';");	
-	
-	
-
 		
-	
-	
-/*
-		badge_id: $(this).attr('badge_id'),
-		activity_id: $(this).attr('activity_id'),
-		recipient: $(this).attr('user_id'),
-		salt: $(this).attr(''),
-		evidence: $(this).attr('evidence'),
-		version: $(this).attr('version'),
-		name: $(this).attr('badgename'),
-		image: $(this).attr('badgeimage'),
-		description: $(this).attr('description'),
-		criteria: $(this).attr('criteria'),
-		expires: $(this).attr('expires')
-*/
-	
-	
 		$badgeId             = $_POST['badge_id'];
 		$badgeRecipientEmail = $_POST['recipient'];
 		$badgeExperienceURL  = $_POST['evidence'];
@@ -103,18 +81,32 @@ function reviewBadgeAjax() {
 		
 		// if skills badge, check all related activities
 		// if all activities are complete, grant badge
+		$percentage_complete = 0;
+		$indiv_percent = 100/sizeof($siblings);
 		if($parent_badge_type == "skill") {
 			$grantBadge = true;
+			
 			foreach($siblings as $sibling) {
 				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = 2 AND activity_id = ".$_POST['activity_id']);
 				if($activity_info->current_status != "approved") $grantBadge = false;
+				else $percentage_complete += $indiv_percent;
 			}
+			echo "percent complete: ".ceil($percentage_complete);
 		}
-		// else check all child badges
+		// else check all sibling badges
 		else {
 			
 			
 		}
+		
+		$wpdb->update( 
+			'aq_badge_status', 
+			array( 
+				'status' => ceil($percentage_complete)
+			), 
+			array( 'user_id' => $user_info->wp_user_id, 'badge_id' => $_POST['badge_id'] )
+		);
+		
 		
 
 		
@@ -181,8 +173,6 @@ function reviewBadgeAjax() {
 			//Writes JSON file		
 			if (fwrite($handle, json_encode($fileData)) === FALSE) {
 			    echo $err = '<div class="badge-error">Cannot write to file.</div>';
-			} else { 
-				echo "http://aquapons.info/wp-content/json/".$filename." ";
 			}
 		}
 		
@@ -194,8 +184,8 @@ function reviewBadgeAjax() {
 	if($_POST['get_assertion_url']) {
 		// check to see that status of badge is set to 100;
 		
-		$user_info = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$_POST['user_id']." AND badge_id = ".$_POST['badge_id']);
-		if($user_info->status == 100) {
+		$badge_status = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$_POST['user_id']." AND badge_id = ".$_POST['badge_id']);
+		if($badge_status->status == 100) {
 			// if so, get user token and return assertion url
 			$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE wp_user_id = ".$_POST['user_id']);
 			echo "http://aquapons.info/wp-content/json/assertion-".$_POST['badge_id']."-".$user_info->user_token_id.".json";
