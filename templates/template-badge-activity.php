@@ -55,10 +55,11 @@ $wpdb->insert(
 	<?php } else { // if($activity_info) ?>
 	
 	<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
-
-		<?php if(get_post_meta($post->ID, 'activity_response_type', true) == "text") { ?>
+		<?php if(get_field('activity_response_type') == 'text') { //get_post_meta($post->ID, 'activity_response_type', true) == "text") { ?>
 			<input type="text" name="activity_submission">
-		<?php } else if(get_post_meta($post->ID, 'activity_response_type', true) == "image") { ?>
+		<?php } else if(get_field('activity_response_type') == 'textarea') { //get_post_meta($post->ID, 'activity_response_type', true) == "text") { ?>
+			<textarea name="activity_submission"></textarea>
+		<?php } else if(get_field('activity_response_type') == "image") { ?>
 			<input type="file" name="activity_submission">
 		<?php } ?>
 		

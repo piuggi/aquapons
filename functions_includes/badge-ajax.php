@@ -78,7 +78,6 @@ function reviewBadgeAjax() {
 		$my_wp_query = new WP_Query();
 		$all_wp_badges = $my_wp_query->query(array('post_type' => 'badge'));
 		$siblings = get_page_children($badgeId, $all_wp_badges);
-		
 		// if skills badge, check all related activities
 		// if all activities are complete, grant badge
 		$percentage_complete = 0;
@@ -87,11 +86,11 @@ function reviewBadgeAjax() {
 			$grantBadge = true;
 			
 			foreach($siblings as $sibling) {
-				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = 2 AND activity_id = ".$_POST['activity_id']);
-				if($activity_info->current_status != "approved") $grantBadge = false;
-				else $percentage_complete += $indiv_percent;
+				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = 2 AND activity_id = ".$sibling->ID);
+				//echo " activity status: ".$activity_info->current_status;
+				if($activity_info->current_status == "approved") $percentage_complete += $indiv_percent;
 			}
-			echo "percent complete: ".ceil($percentage_complete);
+			echo "percent complete: ".round($percentage_complete);
 		}
 		// else check all sibling badges
 		else {
@@ -102,7 +101,7 @@ function reviewBadgeAjax() {
 		$wpdb->update( 
 			'aq_badge_status', 
 			array( 
-				'status' => ceil($percentage_complete)
+				'status' => round($percentage_complete)
 			), 
 			array( 'user_id' => $user_info->wp_user_id, 'badge_id' => $_POST['badge_id'] )
 		);
@@ -111,7 +110,7 @@ function reviewBadgeAjax() {
 
 		
 		// if badge requirements are set, grant badge
-		if($grantBadge) {
+		if($percentage_complete == 100) {
 		
 			
 			//salt email	

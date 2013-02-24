@@ -120,6 +120,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+body {
+  font-family: "jubilat", serif;
+}
 .sub-nav-shadow {
   -moz-box-shadow: 0 4px 8px 1px rgba(0,0,0,0.1);
   -webkit-box-shadow: 0 4px 8px 1px rgba(0,0,0,0.1);
@@ -138,7 +141,7 @@ table {
   right: 0px;
 }
 .serif {
-  font-family: Georgia, Serif;
+  font-family: "jubilat", Georgia, Serif;
 }
 .small-badges {
   height: 64px;
@@ -149,8 +152,13 @@ table {
 .button {
   margin: 3px;
   padding: 4px 8px;
-  background: #8daa92;
+  background: #ab8e8e;
   display: inline-block;
+  cursor: pointer;
+}
+.button:hover {
+  background: #c58383;
+  color: #ddd;
 }
 .activities-styles {
   width: 100%;
@@ -297,7 +305,7 @@ header #secondary-nav section hr {
 }
 header #secondary-nav section ul li a,
 header #secondary-nav section p a {
-  font-family: Georgia, Serif;
+  font-family: "jubilat", Georgia, Serif;
 }
 header #secondary-nav section:first-child {
   margin: 40px 0 0;
