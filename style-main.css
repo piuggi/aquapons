@@ -120,9 +120,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-body {
-  font-family: "jubilat", serif;
-}
 .sub-nav-shadow {
   -moz-box-shadow: 0 4px 8px 1px rgba(0,0,0,0.1);
   -webkit-box-shadow: 0 4px 8px 1px rgba(0,0,0,0.1);
@@ -140,8 +137,11 @@ body {
   left: 0px;
   right: 0px;
 }
+.sans-serif {
+  font-family: "proxima-nova", Verdana, sans-serif;
+}
 .serif {
-  font-family: "jubilat", Georgia, Serif;
+  font-family: "jubilant", Georgia, Serif;
 }
 .small-badges {
   height: 64px;
@@ -149,16 +149,113 @@ body {
   margin: 0;
   display: inline-block;
 }
+.question article.question {
+  width: 97%;
+  max-width: 900px;
+  min-height: 64px;
+  display: block;
+  margin: 10px 0 0 0;
+  padding: 5px 0;
+}
+.question article.question .qleft {
+  width: 120px;
+  display: inline-block;
+  height: inherit;
+  overflow: hidden;
+  vertical-align: middle;
+  margin: 0 0 15px 0;
+}
+.question article.question .qleft p {
+  color: #423c2e;
+  font-size: 1.75em;
+  font-family: "proxima-nova", Verdana, sans-serif;
+  text-align: center;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+.question article.question .qleft p em {
+  font-size: .4em;
+  display: block;
+}
+.question article.question .qleft p:last-child {
+  margin: -38px 0 0 70px;
+}
+.question article.question .qleft hr {
+  border: 0;
+  height: 1px;
+  color: #716854;
+  background-color: #716854;
+  display: inline-block;
+  width: 80px;
+  transform: rotate(300deg);
+  -ms-transform: rotate(300deg);
+  -webkit-transform: rotate(300deg);
+  -o-transform: rotate(300deg);
+  -moz-transform: rotate(300deg);
+  margin: 0 0 0 -15px;
+}
+.question article.question .qright {
+  display: inline-block;
+  width: 80%;
+  background-color: #f9f6ef;
+}
+.question article.question .qright div {
+  width: 12px;
+  min-height: 64px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  margin: 0 10px 0 0;
+}
+.question article.question .qright div.water {
+  background-color: #086098;
+}
+.question article.question .qright div.plants {
+  background-color: #4c7f0f;
+}
+.question article.question .qright div.design {
+  background-color: #8d3b92;
+}
+.question article.question .qright div.fish {
+  background-color: #ce691f;
+}
+.question article.question .qright h3 {
+  margin: 10px 0 0;
+  padding: 0;
+  font-size: 1.2em;
+  font-family: georgia, serif;
+}
+.question article.question .qright p {
+  margin: 0;
+  padding: 2px 0 0;
+  font-size: .8em;
+  font-family: "proxima-nova", Verdana, sans-serif;
+}
+.question article.question .qright p a.water,
+.question article.question .qright p a.water:visited {
+  color: #086098;
+}
+.question article.question .qright p a.plants,
+.question article.question .qright p a.plants:visited {
+  color: #4c7f0f;
+}
+.question article.question .qright p a.design,
+.question article.question .qright p a.design:visited {
+  color: #8d3b92;
+}
+.question article.question .qright p a.fish,
+.question article.question .qright p a.fish:visited {
+  color: #ce691f;
+}
+.question article.question:first-child {
+  margin: 30px 0 0 0;
+}
 .button {
   margin: 3px;
   padding: 4px 8px;
-  background: #ab8e8e;
+  background: #8daa92;
   display: inline-block;
-  cursor: pointer;
-}
-.button:hover {
-  background: #c58383;
-  color: #ddd;
 }
 .activities-styles {
   width: 100%;
@@ -166,7 +263,7 @@ body {
   text-align: center;
 }
 .activities-styles h5 {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   margin: 20px 0 0;
   background: transparent;
 }
@@ -217,25 +314,34 @@ body {
   border: 0;
   margin: 0;
   padding: 0;
-  background-color: pink;
+  background-color: #f9f6ef;
 }
 a,
 a:visited {
   color: #a59e8f;
   text-decoration: none;
-  font-family: Helvetica, Sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
 }
 header {
   background-color: #f9f6ef;
 }
 header #main-nav {
-  height: 46px;
+  height: 36px;
   background-color: #423c2e;
   top: 0;
+  padding: 20px 0 0;
 }
 header #main-nav h1#branding {
   display: inline;
   margin: 0 0 0 20px;
+  font-weight: bold;
+  vertical-align: center;
+  letter-spacing: .25em;
+}
+header #main-nav h1#branding a {
+  color: #f9f6ef;
+  text-transform: uppercase;
+  font-size: 1.25em;
 }
 header #main-nav ul {
   padding: 0;
@@ -248,10 +354,11 @@ header #main-nav ul li {
 }
 header #main-nav ul#navigation {
   margin: 0 0 0 24px;
+  vertical-align: center;
 }
 header #main-nav ul#profile {
   float: right;
-  margin: 15px 30px 0 0;
+  vertical-align: center;
 }
 header #sub-nav {
   height: 34px;
@@ -305,7 +412,7 @@ header #secondary-nav section hr {
 }
 header #secondary-nav section ul li a,
 header #secondary-nav section p a {
-  font-family: "jubilat", Georgia, Serif;
+  font-family: "jubilant", Georgia, Serif;
 }
 header #secondary-nav section:first-child {
   margin: 40px 0 0;
@@ -368,7 +475,357 @@ header.badges #content-sort {
 }
 section#main {
   width: 100%;
-  min-height: 500px;
+  min-height: 500px !important;
+}
+section#main.home #mantle {
+  width: 100%;
+  text-align: center;
+}
+section#main.home #mantle ul {
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+section#main.home #mantle ul li {
+  display: inline-block;
+  padding: 0 15px 0 0;
+}
+section#main.home #mantle #showcase figcaption {
+  width: 400px;
+  position: absolute;
+  top: 200px;
+  left: 60%;
+  display: run-in;
+  color: #f9f6ef;
+  text-align: right;
+}
+section#main.home #mantle #showcase figcaption h4 {
+  display: block;
+  font-family: "jubilant", Georgia, Serif;
+  font-size: 3em;
+  text-transform: capitalize;
+  text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;
+}
+section#main.home #mantle #showcase figcaption p {
+  display: block;
+  text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;
+}
+section#main.home #mantle #showcase figcaption p.institution {
+  font-family: "proxima-nova", Verdana, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.6em;
+}
+section#main.home #mantle #showcase figcaption p.location {
+  font-family: "proxima-nova", Verdana, sans-serif;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+section#main.home #mantle #showcase img {
+  width: 100% !important;
+  height: auto;
+}
+section#main.home #mantle ul {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 auto;
+  position: relative;
+  top: -73px;
+}
+section#main.home #mantle ul li {
+  margin: 0 1%;
+  padding: 0 1%;
+  width: 15%;
+  font-family: "proxima-nova", Verdana, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: .7em;
+  background: #d6cebe;
+  height: 70px;
+  color: #423c2e;
+  transition: background-color 3s;
+  -webkit-transition: background-color 3s;
+  -moz-transition: background-color 3s;
+  -o-transition: background-color 3s;
+}
+section#main.home #mantle ul li h3 {
+  vertical-align: bottom;
+}
+section#main.home #mantle ul li figure {
+  margin: 10px 0;
+  height: 35px;
+  width: auto;
+}
+section#main.home #mantle ul li figure img {
+  vertical-align: center;
+  max-width: 90%;
+  transition: opacity 2s;
+  -webkit-transition: opacity 2s;
+  -moz-transition: opacity 2s;
+  -o-transition: opacity 2s;
+}
+section#main.home #mantle ul li:hover {
+  background: #f9f6ef;
+}
+section#main.home #mantle ul li:hover img {
+  opacity: 0.5;
+}
+section#main.home #mantle #stripes {
+  width: 100%;
+  height: 10px;
+  background: url('imgs/pagestripes.png') repeat-x;
+  position: relative;
+  top: -73px;
+}
+section#main.home #callout {
+  width: 100%;
+  position: relative;
+  max-height: 250px;
+  overflow: hidden;
+  top: -40px;
+  font-family: "proxima-nova", Verdana, sans-serif;
+  padding: 0 2%;
+}
+section#main.home #callout h2 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  margin: 0 0 20px 0;
+  color: #423c2e;
+  text-align: left;
+}
+section#main.home #callout figure {
+  display: inline-table;
+  margin: 10px;
+  padding: 0 2%;
+}
+section#main.home #callout figure img {
+  width: 160px;
+  height: 160px;
+  overflow: hidden;
+}
+section#main.home #callout figure figcaption {
+  text-align: center;
+}
+section#main.home #callout figure figcaption h3 {
+  font-weight: bold;
+  color: #078c78;
+}
+section#main.home #callout figure.first {
+  padding: 0;
+  margin-left: 0;
+}
+section#main.home #additional-content {
+  background: url('imgs/dot_dark.png');
+  min-height: 600px;
+  padding: 0 2%;
+}
+section#main.home #additional-content h2 {
+  font-family: "proxima-nova", Verdana, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  margin: 0 0 20px 0;
+  color: #423c2e;
+  text-align: left;
+}
+section#main.home #additional-content h2 a {
+  color: #078c78;
+  font-size: .5em;
+}
+section#main.home #additional-content #recent-discussions {
+  position: relative;
+  top: 20px;
+  margin: 20px 0;
+}
+section#main.home #additional-content #discussions {
+  display: inline-table;
+  width: 75%;
+}
+section#main.home #additional-content #discussions article.question {
+  width: 97%;
+  max-width: 900px;
+  min-height: 64px;
+  display: block;
+  margin: 10px 0 0 0;
+  padding: 5px 0;
+}
+section#main.home #additional-content #discussions article.question .qleft {
+  width: 120px;
+  display: inline-block;
+  height: inherit;
+  overflow: hidden;
+  vertical-align: middle;
+  margin: 0 0 15px 0;
+}
+section#main.home #additional-content #discussions article.question .qleft p {
+  color: #423c2e;
+  font-size: 1.75em;
+  font-family: "proxima-nova", Verdana, sans-serif;
+  text-align: center;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+section#main.home #additional-content #discussions article.question .qleft p em {
+  font-size: .4em;
+  display: block;
+}
+section#main.home #additional-content #discussions article.question .qleft p:last-child {
+  margin: -38px 0 0 70px;
+}
+section#main.home #additional-content #discussions article.question .qleft hr {
+  border: 0;
+  height: 1px;
+  color: #716854;
+  background-color: #716854;
+  display: inline-block;
+  width: 80px;
+  transform: rotate(300deg);
+  -ms-transform: rotate(300deg);
+  -webkit-transform: rotate(300deg);
+  -o-transform: rotate(300deg);
+  -moz-transform: rotate(300deg);
+  margin: 0 0 0 -15px;
+}
+section#main.home #additional-content #discussions article.question .qright {
+  display: inline-block;
+  width: 80%;
+  background-color: #f9f6ef;
+}
+section#main.home #additional-content #discussions article.question .qright div {
+  width: 12px;
+  min-height: 64px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  margin: 0 10px 0 0;
+}
+section#main.home #additional-content #discussions article.question .qright div.water {
+  background-color: #086098;
+}
+section#main.home #additional-content #discussions article.question .qright div.plants {
+  background-color: #4c7f0f;
+}
+section#main.home #additional-content #discussions article.question .qright div.design {
+  background-color: #8d3b92;
+}
+section#main.home #additional-content #discussions article.question .qright div.fish {
+  background-color: #ce691f;
+}
+section#main.home #additional-content #discussions article.question .qright h3 {
+  margin: 10px 0 0;
+  padding: 0;
+  font-size: 1.2em;
+  font-family: georgia, serif;
+}
+section#main.home #additional-content #discussions article.question .qright p {
+  margin: 0;
+  padding: 2px 0 0;
+  font-size: .8em;
+  font-family: "proxima-nova", Verdana, sans-serif;
+}
+section#main.home #additional-content #discussions article.question .qright p a.water,
+section#main.home #additional-content #discussions article.question .qright p a.water:visited {
+  color: #086098;
+}
+section#main.home #additional-content #discussions article.question .qright p a.plants,
+section#main.home #additional-content #discussions article.question .qright p a.plants:visited {
+  color: #4c7f0f;
+}
+section#main.home #additional-content #discussions article.question .qright p a.design,
+section#main.home #additional-content #discussions article.question .qright p a.design:visited {
+  color: #8d3b92;
+}
+section#main.home #additional-content #discussions article.question .qright p a.fish,
+section#main.home #additional-content #discussions article.question .qright p a.fish:visited {
+  color: #ce691f;
+}
+section#main.home #additional-content #discussions article.question:first-child {
+  margin: 30px 0 0 0;
+}
+section#main.home #additional-content #resources {
+  position: relative;
+  display: inline-table;
+  width: 20%;
+  clear: left;
+}
+section#main.home #additional-content #resources h4 {
+  display: inline;
+  font-family: "proxima-nova", Verdana, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #423c2e;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+section#main.home #additional-content #resources .recent_resource {
+  width: 100%;
+  padding: 5px 0 5px;
+}
+section#main.home #additional-content #resources .recent_resource hr {
+  border: 0;
+  height: 1px;
+  color: #716854;
+  background-color: #716854;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+section#main.home #additional-content #resources p {
+  width: 100%;
+  font-family: "jubilant", Georgia, Serif;
+  color: #423c2e;
+  margin: 12px 0;
+  font-size: .9em;
+}
+section#main.home #additional-content #resources p a {
+  color: #078c78;
+  font-family: "jubilant", Georgia, Serif;
+  text-decoration: underline;
+}
+section#main.home #new-institutions {
+  padding: 20px 0 60px 0;
+  overflow: hidden;
+  max-height: 260px;
+}
+section#main.home #new-institutions .institution {
+  width: 216px;
+  display: inline-table;
+  background: #f9f6ef;
+  border: 1px solid #a59e8f;
+  margin: 0 2%;
+  text-align: center;
+  vertical-align: top;
+}
+section#main.home #new-institutions .institution figure {
+  height: 78px;
+  padding-bottom: 18px;
+}
+section#main.home #new-institutions .institution img {
+  padding: 20px 0 5px;
+}
+section#main.home #new-institutions .institution h4 {
+  font-family: "proxima-nova", Verdana, sans-serif;
+  font-weight: 100;
+  font-size: .9em;
+  white-space: pre-line;
+  width: 80%;
+  margin: 0 auto;
+  color: #423c2e;
+}
+section#main.home #new-institutions .institution p {
+  font-family: "jubilant", Georgia, Serif;
+  font-size: .75em;
+  font-style: italic;
+  vertical-align: baseline;
+  background: #ebe5d9;
+  padding: 10px 0;
+  position: relative;
+  color: #423c2e;
+}
+section#main.home #new-institutions .institution.first {
+  margin: 0 2% 0 0;
 }
 section#main.forum {
   background: url('imgs/lined_pattern.png');
@@ -387,7 +844,7 @@ section#main.forum #overview footer {
   margin: 0 20px 0 0;
 }
 section#main.forum #overview footer p {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   margin: 4px 0 0 0;
   padding: 0;
   text-align: center;
@@ -418,7 +875,7 @@ section#main.forum #page-content article.question .qleft {
 section#main.forum #page-content article.question .qleft p {
   color: #423c2e;
   font-size: 1.75em;
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   text-align: center;
   margin: 0;
   display: inline-block;
@@ -429,7 +886,7 @@ section#main.forum #page-content article.question .qleft p em {
   display: block;
 }
 section#main.forum #page-content article.question .qleft p:last-child {
-  margin: -45px 0 0 70px;
+  margin: -38px 0 0 70px;
 }
 section#main.forum #page-content article.question .qleft hr {
   border: 0;
@@ -480,7 +937,7 @@ section#main.forum #page-content article.question .qright p {
   margin: 0;
   padding: 2px 0 0;
   font-size: .8em;
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
 }
 section#main.forum #page-content article.question .qright p a.water,
 section#main.forum #page-content article.question .qright p a.water:visited {
@@ -502,12 +959,12 @@ section#main.forum #page-content article.question:first-child {
   margin: 30px 0 0 0;
 }
 section#main.badges {
-  background: url('imgs/dotted_pattern.png');
+  background: url('imgs/dot_dark.png');
 }
 section#main.badges h2 {
   margin: 0;
   padding: 20px 0 0 20px;
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   text-transform: uppercase;
   float: left;
 }
@@ -570,7 +1027,7 @@ section#main.badges .badges-display .water .activities {
   text-align: center;
 }
 section#main.badges .badges-display .water .activities h5 {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   margin: 20px 0 0;
   background: transparent;
 }
@@ -640,7 +1097,7 @@ section#main.badges .badges-display .fish .activities {
   text-align: center;
 }
 section#main.badges .badges-display .fish .activities h5 {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   margin: 20px 0 0;
   background: transparent;
 }
@@ -710,7 +1167,7 @@ section#main.badges .badges-display .plants .activities {
   text-align: center;
 }
 section#main.badges .badges-display .plants .activities h5 {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   margin: 20px 0 0;
   background: transparent;
 }
@@ -780,7 +1237,7 @@ section#main.badges .badges-display .design .activities {
   text-align: center;
 }
 section#main.badges .badges-display .design .activities h5 {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   margin: 20px 0 0;
   background: transparent;
 }
@@ -830,7 +1287,7 @@ section#main.badges section.badges-desc section.badges-desc-content p {
   color: #423c2e;
 }
 section#main.badges section.badges-desc section.badges-desc-content p.main-copy {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   font-weight: 200;
   font-size: 1.5em;
   margin: 0 0 20px 0;
@@ -839,7 +1296,8 @@ section#main.badges section.badges-desc section.badges-desc-content p.body-copy 
   width: 45%;
   margin: 0;
   display: inline-block;
-  font-weight: bold;
+  font-weight: 400;
+  font-family: "jubilant", Georgia, Serif;
 }
 section#main.badges section.badges-desc section.badges-desc-content p.body-copy:nth-child(even) {
   margin: 0 5% 0 0;
@@ -862,7 +1320,7 @@ section#main.badges section.badges-desc section.open-badges-callout div {
   padding: 10px 0;
 }
 section#main.badges section.badges-desc section.open-badges-callout p {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
 }
 section#main.badges section.badges-desc section.open-badges-callout p.link {
   background: #423c2e;
@@ -916,7 +1374,7 @@ footer.main header#pagination ul li {
 }
 footer.main header#pagination p {
   display: inline-block;
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   vertical-align: middle;
 }
 footer.main header#pagination ul {
@@ -925,7 +1383,7 @@ footer.main header#pagination ul {
   vertical-align: middle;
 }
 footer.main header#pagination ul li {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   font-size: 1.35em;
 }
 footer.main footer {
@@ -953,14 +1411,14 @@ footer.main footer ul li {
   vertical-align: top;
 }
 footer.main footer ul li h4 {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   margin: 0;
   padding: 0;
   color: #f9f6ef;
   font-weight: 200;
 }
 footer.main footer ul li p {
-  font-family: helvetica, sans-serif;
+  font-family: "proxima-nova", Verdana, sans-serif;
   color: #a59e8f;
   font-size: 1em;
   font-weight: 200;
