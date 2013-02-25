@@ -1,7 +1,5 @@
 <?php
 
-if($_POST['user_token']) $user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE user_token_id = '".$_POST['user_token']."'");
-
 function submittedToOBI() {
 	$wpdb->update( 
 			'aq_badge_submissions', 
@@ -46,7 +44,7 @@ function reviewBadgeAjax() {
 	}
 
 	if($_POST['badge_approved']) {
-		'badge approved';
+		$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE user_token_id = '".$_POST['user_token']."'");
 		
 		$wpdb->update( 
 			'aq_badge_submissions', 
@@ -73,6 +71,12 @@ function reviewBadgeAjax() {
 		$msg = '';
 		
 		
+		
+		
+		// updateBadgeStatus($user_info->wp_user_id, $badgeId);
+		
+		
+		
 		// check requirements for badge
 		$parent_badge_type = get_post_meta($badgeId, 'badge_type', true);
 		$my_wp_query = new WP_Query();
@@ -86,7 +90,7 @@ function reviewBadgeAjax() {
 			$grantBadge = true;
 			
 			foreach($siblings as $sibling) {
-				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = 2 AND activity_id = ".$sibling->ID);
+				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = ".$user_info->wp_user_id." AND activity_id = ".$sibling->ID);
 				//echo " activity status: ".$activity_info->current_status;
 				if($activity_info->current_status == "approved") $percentage_complete += $indiv_percent;
 			}
@@ -94,17 +98,40 @@ function reviewBadgeAjax() {
 		}
 		// else check all sibling badges
 		else {
-			
+			foreach($siblings as $sibling) {
+				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_info->wp_user_id." AND badge_id = ".$sibling->ID);
+				//echo " activity status: ".$activity_info->current_status;
+				if($activity_info->status == 100) $percentage_complete += $indiv_percent;
+			}
+			echo "percent complete: ".round($percentage_complete);
 			
 		}
 		
-		$wpdb->update( 
-			'aq_badge_status', 
-			array( 
-				'status' => round($percentage_complete)
-			), 
-			array( 'user_id' => $user_info->wp_user_id, 'badge_id' => $_POST['badge_id'] )
-		);
+		
+		// IF BADGE IS COMPLETE, CHECK TO SEE IF IT COMPLETES PARENT BADGES
+		
+		
+		
+		$badge_status = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_info->wp_user_id." AND badge_id = ".$_POST['badge_id']);
+		print_r($badge_status);
+		if($badge_status) {
+			$wpdb->update( 
+				'aq_badge_status', 
+				array( 
+					'status' => round($percentage_complete)
+				), 
+				array( 'user_id' => $user_info->wp_user_id, 'badge_id' => $_POST['badge_id'] )
+			);
+		} else {
+			$wpdb->insert( 
+				'aq_badge_status', 
+				array( 
+					'user_id' => $user_info->wp_user_id,
+					'badge_id' => $_POST['badge_id'],
+					'status' => round($percentage_complete)
+				)
+			);
+		}
 		
 		
 
@@ -182,8 +209,6 @@ function reviewBadgeAjax() {
 	
 	if($_POST['get_assertion_url']) {
 		// check to see that status of badge is set to 100;
-		
-		$badge_status = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$_POST['user_id']." AND badge_id = ".$_POST['badge_id']);
 		if($badge_status->status == 100) {
 			// if so, get user token and return assertion url
 			$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE wp_user_id = ".$_POST['user_id']);
@@ -200,4 +225,147 @@ function reviewBadgeAjax() {
 
 }	
 add_action('wp_ajax_reviewBadgeAjax', 'reviewBadgeAjax');
+
+
+
+
+
+
+function updateBadgeStatus($user_id, $parent_badge_id) {
+	
+	
+	
+	
+	// check requirements for badge
+	$parent_badge_type = get_post_meta($badgeId, 'badge_type', true);
+	$my_wp_query = new WP_Query();
+	$all_wp_badges = $my_wp_query->query(array('post_type' => 'badge'));
+	$siblings = get_page_children($badgeId, $all_wp_badges);
+	// if skills badge, check all related activities
+	// if all activities are complete, grant badge
+	$percentage_complete = 0;
+	$indiv_percent = 100/sizeof($siblings);
+	if($parent_badge_type == "skill") {
+		$grantBadge = true;
+		
+		foreach($siblings as $sibling) {
+			$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = ".$user_info->wp_user_id." AND activity_id = ".$sibling->ID);
+			//echo " activity status: ".$activity_info->current_status;
+			if($activity_info->current_status == "approved") $percentage_complete += $indiv_percent;
+		}
+		echo "percent complete: ".round($percentage_complete);
+	}
+	// else check all sibling badges
+	else {
+		foreach($siblings as $sibling) {
+			$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_info->wp_user_id." AND badge_id = ".$sibling->ID);
+			//echo " activity status: ".$activity_info->current_status;
+			if($activity_info->status == 100) $percentage_complete += $indiv_percent;
+		}
+		echo "percent complete: ".round($percentage_complete);
+		
+	}
+	
+	// UPDATE BADGE STATUS IN DB
+	$badge_status = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_info->wp_user_id." AND badge_id = ".$_POST['badge_id']);
+	print_r($badge_status);
+	if($badge_status) {
+		$wpdb->update( 
+			'aq_badge_status', 
+			array( 
+				'status' => round($percentage_complete)
+			), 
+			array( 'user_id' => $user_info->wp_user_id, 'badge_id' => $_POST['badge_id'] )
+		);
+	} else {
+		$wpdb->insert( 
+			'aq_badge_status', 
+			array( 
+				'user_id' => $user_info->wp_user_id,
+				'badge_id' => $_POST['badge_id'],
+				'status' => round($percentage_complete)
+			)
+		);
+	}
+	
+	
+	
+	// IF BADGE IS COMPLETE, CHECK TO SEE IF IT COMPLETES PARENT BADGES
+	if($percentage_complete == 100) {
+		writeBadgeJSON($badge_id);
+		$ancestors = get_ancestors($badge_id);
+		if($ancestors[0]) updateBadgeStatus($ancestors[0]);	
+	} 
+
+	
+	
+	
+	
+}
+
+
+
+function writeBadgeJSON($badge_id) {
+	
+	//salt email 
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $salt = '';
+    for ($i = 0; $i < 20; $i++) {
+        $salt .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    $hashed_email = hash('sha256', $badgeRecipientEmail  . $salt);
+
+	$jsonFilePath = get_theme_root()."/../json/";
+	$filename = "assertion-".$badgeId.'-'.$_POST['user_token'].'.json';
+
+	$json_file = $jsonFilePath . $filename;
+	$handle = fopen($json_file, 'w');
+	$fileData = array( 
+		'uid' => $badgeId.'-'.$_POST['user_token'],
+		'recipient' => array(
+			'type' => 'email',
+			'hashed' => true,
+			'salt' => $salt,
+			'id' => "sha256$".$hashed_email
+			),
+		//'image' => $userImage,
+		'evidence' => $badgeExperienceURL,
+		'issuedOn' => time(),
+		'badge' => $badgeCriteria."?json=true",
+		'verify' => array(
+			'type' => 'hosted',
+			'url' => 'http://aquapons.info/wp-content/json/'.$filename
+			)
+		);
+/*
+	$fileData = array(
+		'recipient' => "sha256$".$hashed_email,
+		'salt' => $salt,
+		'evidence' => $badgeExperienceURL,
+		'issued_on'=> $date,
+		'badge' => array(
+			'version' => $badgeVersion,
+			'name' => $badgeName,
+			'image' => $badgeImage,
+			'description' => $badgeDescription,
+			'criteria' => $badgeCriteria,
+			'expires' => $badgeExpires,
+			'issuer' => array(
+				'origin' => 'http://aquapons.info',
+				'name' => 'AQUAPONS',
+				'org' => 'Sweet Water Foundation',
+				'contact' => 'info@sweetwaterfoundation.com',
+			)
+		)
+	);
+*/
+	
+	//Writes JSON file		
+	if (fwrite($handle, json_encode($fileData)) === FALSE) {
+	    echo $err = '<div class="badge-error">Cannot write to file.</div>';
+	}
+}
+
+
+
 ?>

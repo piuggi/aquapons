@@ -1,17 +1,11 @@
 <?php $section = 'badges'; ?>
 <?php get_header(); ?>
 
-	
-	<?php include(get_template_directory() . "/includes/badges_header.php"); ?>
 
 	<section class="main">
 
 		<?php 
 		$cats = array('Water', 'Fish', 'Plant', 'Design + Build');
-		
-		$args = array(
-			'post_type' => 'badge',
-			);
 			
 		$args = array(
 			'post_type' => 'badge',

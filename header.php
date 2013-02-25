@@ -28,17 +28,12 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 <?php wp_head(); ?>
 </head>
 
-<<<<<<< HEAD
 
-<?php $theme = new themeCheck(); ?>
-
-=======
 <?php 
 	
 	$theme = new themeCheck();
 	
 ?>
->>>>>>> f967a2a0bc79e5ae0aa6b61e219dbf7a31b2528f
 
 <body <?php body_class(); ?>>
 <div id="container">
