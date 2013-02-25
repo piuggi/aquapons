@@ -14,6 +14,8 @@
 <title><?php wp_title( '|', true, 'right' ); ?> <?php bloginfo('name'); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+<script type="text/javascript" src="//use.typekit.net/anb1nws.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <script type="text/javascript">
 var theme_dir = "<?php echo get_theme_root(); ?>";
 var theme_url = "<?php echo get_template_directory_uri() ?>";
@@ -33,10 +35,6 @@ var theme_url = "<?php echo get_template_directory_uri() ?>";
 
 <body <?php body_class(); ?>>
 <div id="container">
-
-	
-	
-	
 	<header>
 		<div id="main-nav">
 				<h1 id="branding"><a href="/<?php $theme->url(); ?>">Aquapons</a></h1>
