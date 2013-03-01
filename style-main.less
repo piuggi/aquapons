@@ -81,6 +81,16 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 					}
 	
 }
+.skill-badge-background(@color:@green){
+	
+				background: @color;
+				background: -webkit-linear-gradient(140deg, transparent 15px, @color 15px);
+				background: -o-linear-gradient(140deg, transparent 15px, @color 15px);
+				background: -moz-linear-gradient(140deg, transparent 15px, @color 15px);
+				background: linear-gradient(140deg, transparent 15px, @color 15px);
+
+	
+}
 .small-badges{
 
 	height: 64px;
@@ -115,8 +125,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 				.skill.badge{
 					
 					.skill-badge-post;
-					background: @blue;
-	
+					.skill-badge-background(@blue);
 						
 				}
 				.skill.badge:nth-last-child(odd){
@@ -124,10 +133,11 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 				}
 				.skill.badge:nth-child(3n-1){
 					
-					background: @blue-purple;
+					.skill-badge-background(@blue-purple);
 				}
 				.skill.badge:nth-child(4n-1){
-					background: @lt-blue;
+					
+					.skill-badge-background(@lt-blue);
 				}
 				.skill.badge.hide{
 					display: none;
@@ -171,17 +181,17 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 				.skill.badge{
 					
 					.skill-badge-post;
-					background: @red;
+					.skill-badge-background(@red);
 	
 						
 				}
 				.skill.badge:nth-child(3n-1){
 					
-					background: @yellow;
+					.skill-badge-background(@yellow);
 				}
 				.skill.badge:nth-child(4n-1){
-					background: @orange;
-				}
+					.skill-badge-background(@orange);				
+					}
 				.skill.badge.hide{
 					display: none;
 				}
@@ -224,19 +234,18 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 				.skill.badge{
 					
 					.skill-badge-post;
-					background: @green;
-	
-						
+					.skill-badge-background(@green);
+
 				}
 				.skill.badge.hide{
 					display: none;
 				}
 				.skill.badge:nth-child(3n-1){
 					
-					background: @teal;
+					.skill-badge-background(@teal);
 				}
 				.skill.badge:nth-child(4n-1){
-					background: @lt-green;
+					.skill-badge-background(@lt-green);
 				}
 			}
 			.skills-badges{  
@@ -274,16 +283,15 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 			}.skill.badge{
 				
 				.skill-badge-post;
-				background: @purple;
+				.skill-badge-background(@purple);
 
 					
 			}
 			.skill.badge:nth-child(3n){
-				
-				background: @fushia;
+				.skill-badge-background(@fushia);
 			}
 			.skill.badge:nth-child(4n){
-				background: @medbrown;
+				.skill-badge-background(@medbrown);
 			}
 			.skill.badge.hide{
 				display: none;
@@ -322,6 +330,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 			text-align: center;
 			
 		}
+		
+		
 		
 		.content{
 			text-align: center;
@@ -972,7 +982,7 @@ section#main.badges{
 
 
 	}
-
+	
 
 	section.badges-desc{
 

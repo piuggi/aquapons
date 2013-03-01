@@ -198,6 +198,10 @@ table {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #086098;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#086098 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#086098 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#086098 15px);
+  background: linear-gradient(140deg,transparent 15px,#086098 15px);
 }
 .badges-display .water .badge-container .skill.badge a {
   color: #f9f6ef;
@@ -210,9 +214,17 @@ table {
 }
 .badges-display .water .badge-container .skill.badge:nth-child(3n-1) {
   background: #3f268e;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#3f268e 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#3f268e 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#3f268e 15px);
+  background: linear-gradient(140deg,transparent 15px,#3f268e 15px);
 }
 .badges-display .water .badge-container .skill.badge:nth-child(4n-1) {
   background: #26a3c2;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
+  background: linear-gradient(140deg,transparent 15px,#26a3c2 15px);
 }
 .badges-display .water .badge-container .skill.badge.hide {
   display: none;
@@ -297,6 +309,10 @@ table {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #c93e1b;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
+  background: linear-gradient(140deg,transparent 15px,#c93e1b 15px);
 }
 .badges-display .fish .badge-container .skill.badge a {
   color: #f9f6ef;
@@ -309,9 +325,17 @@ table {
 }
 .badges-display .fish .badge-container .skill.badge:nth-child(3n-1) {
   background: #dbad22;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#dbad22 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#dbad22 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#dbad22 15px);
+  background: linear-gradient(140deg,transparent 15px,#dbad22 15px);
 }
 .badges-display .fish .badge-container .skill.badge:nth-child(4n-1) {
   background: #ce691f;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#ce691f 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#ce691f 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#ce691f 15px);
+  background: linear-gradient(140deg,transparent 15px,#ce691f 15px);
 }
 .badges-display .fish .badge-container .skill.badge.hide {
   display: none;
@@ -396,6 +420,10 @@ table {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #4c7f0f;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
+  background: linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
 }
 .badges-display .plant .badge-container .skill.badge a {
   color: #f9f6ef;
@@ -411,9 +439,17 @@ table {
 }
 .badges-display .plant .badge-container .skill.badge:nth-child(3n-1) {
   background: #078c78;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#078c78 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#078c78 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#078c78 15px);
+  background: linear-gradient(140deg,transparent 15px,#078c78 15px);
 }
 .badges-display .plant .badge-container .skill.badge:nth-child(4n-1) {
   background: #acb200;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#acb200 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#acb200 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#acb200 15px);
+  background: linear-gradient(140deg,transparent 15px,#acb200 15px);
 }
 .badges-display .plant .skills-badges .one {
   background: url('imgs/skill_small_dkgreen.png') no-repeat center;
@@ -495,6 +531,10 @@ table {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #8d3b92;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
+  background: linear-gradient(140deg,transparent 15px,#8d3b92 15px);
 }
 .badges-display .design-build .skill.badge a {
   color: #f9f6ef;
@@ -507,9 +547,17 @@ table {
 }
 .badges-display .design-build .skill.badge:nth-child(3n) {
   background: #e13955;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#e13955 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#e13955 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#e13955 15px);
+  background: linear-gradient(140deg,transparent 15px,#e13955 15px);
 }
 .badges-display .design-build .skill.badge:nth-child(4n) {
   background: #716854;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#716854 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#716854 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#716854 15px);
+  background: linear-gradient(140deg,transparent 15px,#716854 15px);
 }
 .badges-display .design-build .skill.badge.hide {
   display: none;
@@ -1454,6 +1502,10 @@ section#main.badges .water .badge-container .skill.badge {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #086098;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#086098 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#086098 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#086098 15px);
+  background: linear-gradient(140deg,transparent 15px,#086098 15px);
 }
 section#main.badges .water .badge-container .skill.badge a {
   color: #f9f6ef;
@@ -1466,9 +1518,17 @@ section#main.badges .water .badge-container .skill.badge hr {
 }
 section#main.badges .water .badge-container .skill.badge:nth-child(3n-1) {
   background: #3f268e;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#3f268e 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#3f268e 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#3f268e 15px);
+  background: linear-gradient(140deg,transparent 15px,#3f268e 15px);
 }
 section#main.badges .water .badge-container .skill.badge:nth-child(4n-1) {
   background: #26a3c2;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
+  background: linear-gradient(140deg,transparent 15px,#26a3c2 15px);
 }
 section#main.badges .water .badge-container .skill.badge.hide {
   display: none;
@@ -1553,6 +1613,10 @@ section#main.badges .fish .badge-container .skill.badge {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #c93e1b;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
+  background: linear-gradient(140deg,transparent 15px,#c93e1b 15px);
 }
 section#main.badges .fish .badge-container .skill.badge a {
   color: #f9f6ef;
@@ -1565,9 +1629,17 @@ section#main.badges .fish .badge-container .skill.badge hr {
 }
 section#main.badges .fish .badge-container .skill.badge:nth-child(3n-1) {
   background: #dbad22;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#dbad22 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#dbad22 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#dbad22 15px);
+  background: linear-gradient(140deg,transparent 15px,#dbad22 15px);
 }
 section#main.badges .fish .badge-container .skill.badge:nth-child(4n-1) {
   background: #ce691f;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#ce691f 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#ce691f 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#ce691f 15px);
+  background: linear-gradient(140deg,transparent 15px,#ce691f 15px);
 }
 section#main.badges .fish .badge-container .skill.badge.hide {
   display: none;
@@ -1652,6 +1724,10 @@ section#main.badges .plant .badge-container .skill.badge {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #4c7f0f;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
+  background: linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
 }
 section#main.badges .plant .badge-container .skill.badge a {
   color: #f9f6ef;
@@ -1667,9 +1743,17 @@ section#main.badges .plant .badge-container .skill.badge.hide {
 }
 section#main.badges .plant .badge-container .skill.badge:nth-child(3n-1) {
   background: #078c78;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#078c78 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#078c78 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#078c78 15px);
+  background: linear-gradient(140deg,transparent 15px,#078c78 15px);
 }
 section#main.badges .plant .badge-container .skill.badge:nth-child(4n-1) {
   background: #acb200;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#acb200 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#acb200 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#acb200 15px);
+  background: linear-gradient(140deg,transparent 15px,#acb200 15px);
 }
 section#main.badges .plant .skills-badges .one {
   background: url('imgs/skill_small_dkgreen.png') no-repeat center;
@@ -1751,6 +1835,10 @@ section#main.badges .design-build .skill.badge {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #8d3b92;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
+  background: linear-gradient(140deg,transparent 15px,#8d3b92 15px);
 }
 section#main.badges .design-build .skill.badge a {
   color: #f9f6ef;
@@ -1763,9 +1851,17 @@ section#main.badges .design-build .skill.badge hr {
 }
 section#main.badges .design-build .skill.badge:nth-child(3n) {
   background: #e13955;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#e13955 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#e13955 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#e13955 15px);
+  background: linear-gradient(140deg,transparent 15px,#e13955 15px);
 }
 section#main.badges .design-build .skill.badge:nth-child(4n) {
   background: #716854;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#716854 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#716854 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#716854 15px);
+  background: linear-gradient(140deg,transparent 15px,#716854 15px);
 }
 section#main.badges .design-build .skill.badge.hide {
   display: none;
@@ -2017,6 +2113,10 @@ section#main.badges.page.aquapons .water .badge-container .skill.badge {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #086098;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#086098 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#086098 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#086098 15px);
+  background: linear-gradient(140deg,transparent 15px,#086098 15px);
 }
 section#main.badges.page.aquapons .water .badge-container .skill.badge a {
   color: #f9f6ef;
@@ -2029,9 +2129,17 @@ section#main.badges.page.aquapons .water .badge-container .skill.badge hr {
 }
 section#main.badges.page.aquapons .water .badge-container .skill.badge:nth-child(3n-1) {
   background: #3f268e;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#3f268e 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#3f268e 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#3f268e 15px);
+  background: linear-gradient(140deg,transparent 15px,#3f268e 15px);
 }
 section#main.badges.page.aquapons .water .badge-container .skill.badge:nth-child(4n-1) {
   background: #26a3c2;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
+  background: linear-gradient(140deg,transparent 15px,#26a3c2 15px);
 }
 section#main.badges.page.aquapons .water .badge-container .skill.badge.hide {
   display: none;
@@ -2116,6 +2224,10 @@ section#main.badges.page.aquapons .fish .badge-container .skill.badge {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #c93e1b;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
+  background: linear-gradient(140deg,transparent 15px,#c93e1b 15px);
 }
 section#main.badges.page.aquapons .fish .badge-container .skill.badge a {
   color: #f9f6ef;
@@ -2128,9 +2240,17 @@ section#main.badges.page.aquapons .fish .badge-container .skill.badge hr {
 }
 section#main.badges.page.aquapons .fish .badge-container .skill.badge:nth-child(3n-1) {
   background: #dbad22;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#dbad22 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#dbad22 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#dbad22 15px);
+  background: linear-gradient(140deg,transparent 15px,#dbad22 15px);
 }
 section#main.badges.page.aquapons .fish .badge-container .skill.badge:nth-child(4n-1) {
   background: #ce691f;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#ce691f 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#ce691f 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#ce691f 15px);
+  background: linear-gradient(140deg,transparent 15px,#ce691f 15px);
 }
 section#main.badges.page.aquapons .fish .badge-container .skill.badge.hide {
   display: none;
@@ -2215,6 +2335,10 @@ section#main.badges.page.aquapons .plant .badge-container .skill.badge {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #4c7f0f;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
+  background: linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
 }
 section#main.badges.page.aquapons .plant .badge-container .skill.badge a {
   color: #f9f6ef;
@@ -2230,9 +2354,17 @@ section#main.badges.page.aquapons .plant .badge-container .skill.badge.hide {
 }
 section#main.badges.page.aquapons .plant .badge-container .skill.badge:nth-child(3n-1) {
   background: #078c78;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#078c78 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#078c78 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#078c78 15px);
+  background: linear-gradient(140deg,transparent 15px,#078c78 15px);
 }
 section#main.badges.page.aquapons .plant .badge-container .skill.badge:nth-child(4n-1) {
   background: #acb200;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#acb200 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#acb200 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#acb200 15px);
+  background: linear-gradient(140deg,transparent 15px,#acb200 15px);
 }
 section#main.badges.page.aquapons .plant .skills-badges .one {
   background: url('imgs/skill_small_dkgreen.png') no-repeat center;
@@ -2314,6 +2446,10 @@ section#main.badges.page.aquapons .design-build .skill.badge {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
   background: #8d3b92;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
+  background: linear-gradient(140deg,transparent 15px,#8d3b92 15px);
 }
 section#main.badges.page.aquapons .design-build .skill.badge a {
   color: #f9f6ef;
@@ -2326,9 +2462,17 @@ section#main.badges.page.aquapons .design-build .skill.badge hr {
 }
 section#main.badges.page.aquapons .design-build .skill.badge:nth-child(3n) {
   background: #e13955;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#e13955 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#e13955 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#e13955 15px);
+  background: linear-gradient(140deg,transparent 15px,#e13955 15px);
 }
 section#main.badges.page.aquapons .design-build .skill.badge:nth-child(4n) {
   background: #716854;
+  background: -webkit-linear-gradient(140deg,transparent 15px,#716854 15px);
+  background: -o-linear-gradient(140deg,transparent 15px,#716854 15px);
+  background: -moz-linear-gradient(140deg,transparent 15px,#716854 15px);
+  background: linear-gradient(140deg,transparent 15px,#716854 15px);
 }
 section#main.badges.page.aquapons .design-build .skill.badge.hide {
   display: none;
