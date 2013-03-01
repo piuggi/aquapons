@@ -71,8 +71,8 @@
 */
 							?>
 							<div class="aquapons badge <?php if($hide_div==true) echo 'hide';?>">
-							
-							<img src="<?php bloginfo('template_directory'); if(!$current_level){ echo '/imgs/practioner_secondary.png';}else{ echo '/imgs/practioner_focus.png';}?>">
+							<a href="<?php $theme->url();?>&aquapons=<?php echo $x; ?>">
+							<img src="<?php bloginfo('template_directory'); if(!$current_level){ echo '/imgs/practioner_secondary.png';}else{ echo '/imgs/practioner_focus.png';}?>"></a>
 							<a class="<?php if(!$current_level){ echo ' secondary '; }else{echo ' focus ';} echo sanitize_title(get_the_title()); ?>" href='<?php echo get_permalink($page->ID); $theme->url(); ?>'>
 								<?php $t = str_replace(" ", "<br/>", get_the_title() ); echo $t; ?>
 							</a>
@@ -88,9 +88,7 @@
 			
 					<?php 	
 						  $bFirstHide=true; 
-						  } 
-						  
-					
+						  } //if page forward
 					
 				}//if aquapons
 				
@@ -123,32 +121,36 @@
 				// show content badges
 				rewind_posts();
 				?>
-				<section class="<?php echo $cat; if(!$current_level) echo ' hide';?>">
+				<section class="badge-stack <?php echo " ".sanitize_title(strtolower($cat)); if(!$current_level) echo ' hide';?>">
 				<?php
 				
 				while ( $query->have_posts() ) {
 					$query->the_post();
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='content' && get_cat_name($wp_cats[0]) == $cat) { ?>
-						<div class="content badge <?php echo sanitize_title(get_the_title()); if(!$current_level) echo ' hide';?>">
+						<div class="content badge <?php echo sanitize_title(get_the_title());  if(!$current_level) echo ' hide';?>">
 							<a href='<?php echo get_permalink($page->ID) ?>'><?php the_title(); ?></a>
-							(l.<?php echo get_field('badge_level', $query->post->ID); ?>)
+							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
 						</div>
 					<?php }
 				}
-
+				?>
+				<section class="badge-container">
+				<?php
 				// show skill badges
 				rewind_posts(); 
 				while ( $query->have_posts() ) {
 					$query->the_post();
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='skill' && get_cat_name($wp_cats[0]) == $cat) { ?>
-						<div class="skill badge <?php echo sanitize_title(get_the_title()); ?> <?php if(!$current_level) echo ' hide';?>">
+						<div class="skill badge <?php echo sanitize_title(get_the_title()); if(!$current_level) echo ' hide';?>">
 							<a href='<?php echo get_permalink($page->ID) ?>'><?php the_title(); ?></a>
-							(l.<?php echo get_field('badge_level', $query->post->ID); ?>)
+							<hr>
+							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
 						</div>
 					<?php }
 				} ?>
+				</section><!-- .badge-container -->
 			</section><!-- .<?php echo $cat; ?> -->
 	<?php } // foreach($cats as $cat)
 

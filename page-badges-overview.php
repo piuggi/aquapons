@@ -55,7 +55,7 @@
 							</section><!--icons-->
 						</section><!--.activities-->
 					</section><!--.fish -->
-					<section class="plants">
+					<section class="plant">
 						<section class="content-badges"></section><!--.content-badges-->
 						<section class="skills-badges">
 							<article class="one"></article>
@@ -67,15 +67,15 @@
 							<h5>activities</h5>
 							<div class="bounding"></div>
 							<section class="icons">
-								<div class="plants"></div>
-								<div class="plants"></div>
-								<div class="plants"></div>
-								<div class="plants"></div>
-								<div class="plants"></div>
+								<div class="plant"></div>
+								<div class="plant"></div>
+								<div class="plant"></div>
+								<div class="plant"></div>
+								<div class="plant"></div>
 							</section><!--icons-->
 						</section><!--.activities-->
-					</section><!--.plants -->
-					<section class="design">
+					</section><!--.plant -->
+					<section class="design-build">
 						<section class="content-badges"></section><!--.content-badges-->
 						<section class="skills-badges">
 							<article class="one"></article>
@@ -87,14 +87,14 @@
 							<h5>activities</h5>
 							<div class="bounding"></div>
 							<section class="icons">
-								<div class="design"></div>
-								<div class="design"></div>
-								<div class="design"></div>
-								<div class="design"></div>
-								<div class="design"></div>
+								<div class="design-build"></div>
+								<div class="design-build"></div>
+								<div class="design-build"></div>
+								<div class="design-build"></div>
+								<div class="design-build"></div>
 							</section><!--icons-->
 						</section><!--.activities-->
-					</section><!--.design -->
+					</section><!--.design-build -->
 
 				</section><!--.badges-display-->
 				<section class="badges-desc">
