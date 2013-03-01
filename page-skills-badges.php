@@ -9,6 +9,7 @@
 			
 		$args = array(
 			'post_type' => 'badge',
+			'posts_per_page' => 10,
 			'meta_query' => array(
 				array(
 					'key' => 'badge_type',

@@ -14,6 +14,7 @@
 				'post_type' => 'badge',
 				'meta_key' => 'badge_level',
 				'meta_value' => $x,
+				'posts_per_page' => -1
 			);
 			$query = new WP_Query( $args );
 			
