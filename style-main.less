@@ -10,8 +10,12 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 /* Colors */
 @dkbrown: #423c2e;
 @medbrown: #716854;
+
+
 @beige: #f9f6ef;
 @offwhite: #f7f1e5;
+
+
 @medbeige: #d6cebe;
 @dkbeige: #a59e8f;
 @orange: #ce691f;
@@ -34,6 +38,11 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	-webkit-box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
 	box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.3);
 }
+
+.hide{
+		
+		display: none;
+	}
 
 .header-lock{
 		
@@ -58,7 +67,154 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 }
 
+	.badges-display{
 
+		width: 100%;
+		display: block;
+
+		.water,.fish,.plants,.design{
+
+			display: inline-block;
+			width: 21.75%;
+			margin: 0;
+			padding: 20px 1.5% 0;
+		}
+
+		.water{
+			.content-badges{
+			background: url('imgs/water_badge.png') no-repeat center;
+			height: 118px;
+			
+			}
+			
+			.skills-badges{ 
+
+				.one{ 
+					background: url('imgs/skill_small_dkblue.png') no-repeat center;
+					.small-badges
+
+				}
+				.two{
+					background: url('imgs/skill_small_ltblue.png') no-repeat center;
+					.small-badges
+
+				}
+				.three{
+					background: url('imgs/skill_small_dkpurple.png') no-repeat center;
+					.small-badges
+
+				}
+				.four{
+					background: url('imgs/skill_small_dkblue.png') no-repeat center;
+					.small-badges
+
+				}
+			}//.skills-badges
+			.activities{
+
+				.activities-styles;
+			}//.activites
+		}
+
+		.fish{
+			.content-badges{
+			background: url('imgs/fish_badge.png') no-repeat center;
+			height: 118px;
+			}
+			.skills-badges{  
+				.one{ 
+					background: url('imgs/skill_small_orange.png') no-repeat center;
+					.small-badges
+				}
+				.two{
+					background: url('imgs/skill_small_yellow.png') no-repeat center;
+					.small-badges
+
+				}
+				.three{
+					background: url('imgs/skill_small_red.png') no-repeat center;
+					.small-badges
+
+				}
+				.four{
+					background: url('imgs/skill_small_orange.png') no-repeat center;
+					.small-badges
+
+				}
+			}//.skills-badges
+			.activities{
+
+				.activities-styles;
+			}
+
+		}
+
+		.plants{
+			.content-badges{
+			background: url('imgs/plants_badge.png') no-repeat center;
+			height: 118px;
+			}
+			.skills-badges{  
+
+				.one{ 
+						background: url('imgs/skill_small_dkgreen.png') no-repeat center;
+						.small-badges
+				}
+				.two{
+					background: url('imgs/skill_small_ltgreen.png') no-repeat center;
+					.small-badges
+
+				}
+				.three{
+					background: url('imgs/skill_small_aquagreen.png') no-repeat center;
+					.small-badges
+
+				}
+				.four{
+					background: url('imgs/skill_small_dkgreen.png') no-repeat center;
+					.small-badges
+
+				}
+			}//.skills-badges
+			.activities{
+
+				.activities-styles;
+			}
+
+		}
+		.design{
+			.content-badges{
+			background: url('imgs/design_badge.png') no-repeat center;
+			height: 118px;
+			}
+		    .skills-badges{ 
+
+				.one{ 
+					background: url('imgs/skill_small_purple.png') no-repeat center;
+					.small-badges
+				}
+				.two{
+					background: url('imgs/skill_small_pink.png') no-repeat center;
+					.small-badges
+
+				}
+				.three{
+					background: url('imgs/skill_small_gray.png') no-repeat center;
+					.small-badges
+
+				}
+				.four{
+					background: url('imgs/skill_small_purple.png') no-repeat center;
+					.small-badges
+				}
+			}//.skills-badges
+			.activities{
+
+				.activities-styles;
+			}
+		}
+
+	}
 
 
 .question{
@@ -245,6 +401,7 @@ a:hover{
 header{
 	
 	background-color: @beige;
+	position: relative;
 	#main-nav{
 		//.header-lock;
 		height:36px;
@@ -303,10 +460,15 @@ header{
 		height:117px;
 		margin-top: 80px;
 		padding: 0 1.5%;
-
+		position:relative;
+		direction: block;
+		//background-color: @offwhite;
+		.sub-nav-shadow;
+		
 		
 		section { 
-				background-color: @beige;
+				position: relative;
+				background-color: @beige !important;
 				display: inline-block; 
 				margin: 40px 0 0 2%;
 				vertical-align: bottom;
@@ -314,6 +476,7 @@ header{
 					display: inline-block; 
 					margin: 0;
 					padding: 0;
+					background-color: @beige;
 				}
 
 				h2 a{
@@ -326,8 +489,11 @@ header{
 				ul li a, p a {
 
 					.serif;
+					background-color: @beige;
 
 				}
+				
+				a{ background: @beige;}
 		}
 
 		section:first-child{ margin: 40px 0 0 ;}
@@ -358,7 +524,8 @@ header{
 		}
 
 		#main-links{
-
+			
+			background-color: @offwhite;
 			.header-ul;
 			width: 34%; /* 330/960*/
 			display: inline-table;
@@ -367,17 +534,24 @@ header{
 		#content-filter, #content-sort{
 
 			width: 15%;
+			background: @offwhite;
 
 		}
 	}
 }
+
+//CUSTOM HEADERS
 
 header.badges{
 
 	#main-links{ width: 68% !important; }
 	#content-filter, #content-sort{ width: 0 !important; display: none !important; overflow: none !important; }
 	
+	
+	
 }
+
+//GENERAL STYLES
 
 section#main{
 
@@ -676,157 +850,7 @@ section#main.badges{
 		background: url('imgs/practioner_badge.png') no-repeat center;
 
 	}
-
-	.badges-display{
-
-		width: 100%;
-		display: block;
-
-		.water,.fish,.plants,.design{
-
-			display: inline-block;
-			width: 21.75%;
-			margin: 0;
-			padding: 20px 1.5% 0;
-		}
-
-		.water{
-			.content-badges{
-			background: url('imgs/water_badge.png') no-repeat center;
-			height: 118px;
-			
-			}
-			
-			.skills-badges{ 
-
-				.one{ 
-					background: url('imgs/skill_small_dkblue.png') no-repeat center;
-					.small-badges
-
-				}
-				.two{
-					background: url('imgs/skill_small_ltblue.png') no-repeat center;
-					.small-badges
-
-				}
-				.three{
-					background: url('imgs/skill_small_dkpurple.png') no-repeat center;
-					.small-badges
-
-				}
-				.four{
-					background: url('imgs/skill_small_dkblue.png') no-repeat center;
-					.small-badges
-
-				}
-			}//.skills-badges
-			.activities{
-
-				.activities-styles;
-			}//.activites
-		}
-
-		.fish{
-			.content-badges{
-			background: url('imgs/fish_badge.png') no-repeat center;
-			height: 118px;
-			}
-			.skills-badges{  
-				.one{ 
-					background: url('imgs/skill_small_orange.png') no-repeat center;
-					.small-badges
-				}
-				.two{
-					background: url('imgs/skill_small_yellow.png') no-repeat center;
-					.small-badges
-
-				}
-				.three{
-					background: url('imgs/skill_small_red.png') no-repeat center;
-					.small-badges
-
-				}
-				.four{
-					background: url('imgs/skill_small_orange.png') no-repeat center;
-					.small-badges
-
-				}
-			}//.skills-badges
-			.activities{
-
-				.activities-styles;
-			}
-
-		}
-
-		.plants{
-			.content-badges{
-			background: url('imgs/plants_badge.png') no-repeat center;
-			height: 118px;
-			}
-			.skills-badges{  
-
-				.one{ 
-						background: url('imgs/skill_small_dkgreen.png') no-repeat center;
-						.small-badges
-				}
-				.two{
-					background: url('imgs/skill_small_ltgreen.png') no-repeat center;
-					.small-badges
-
-				}
-				.three{
-					background: url('imgs/skill_small_aquagreen.png') no-repeat center;
-					.small-badges
-
-				}
-				.four{
-					background: url('imgs/skill_small_dkgreen.png') no-repeat center;
-					.small-badges
-
-				}
-			}//.skills-badges
-			.activities{
-
-				.activities-styles;
-			}
-
-		}
-		.design{
-			.content-badges{
-			background: url('imgs/design_badge.png') no-repeat center;
-			height: 118px;
-			}
-		    .skills-badges{ 
-
-				.one{ 
-					background: url('imgs/skill_small_purple.png') no-repeat center;
-					.small-badges
-				}
-				.two{
-					background: url('imgs/skill_small_pink.png') no-repeat center;
-					.small-badges
-
-				}
-				.three{
-					background: url('imgs/skill_small_gray.png') no-repeat center;
-					.small-badges
-
-				}
-				.four{
-					background: url('imgs/skill_small_purple.png') no-repeat center;
-					.small-badges
-				}
-			}//.skills-badges
-			.activities{
-
-				.activities-styles;
-			}
-		}
-
-	}
-
-
+	.badges-display;
 
 	.skills-badges{
 
@@ -927,6 +951,68 @@ section#main.badges{
 
 	}
 }//section#main.badges
+
+section#main.badges.page.aquapons{
+	
+
+	
+	//background: @teal;
+	#aquapons-navigation{
+		
+		padding: 15px 0;
+		max-height: 140px;
+		background: @offwhite;
+		overflow: hidden;
+		text-align: center;
+		vertical-align: middle;
+		width: 100%;
+	}
+	.page-back, .page-forward{ display: inline-block; width: 30px; height: 38px;position: relative;}
+	.page-back{//float: left;
+		background: url('imgs/badges-arrow-left.png') center no-repeat;
+	}
+	.page-forward{//float: right;
+		background: url('imgs/badges-arrow-right.png') center no-repeat;
+		//float: left;
+		
+		right: 20px;
+		
+	}
+	div.aquapons.badge{
+		
+		display: inline-block;
+		margin: 10px 10%;
+		text-align: center;
+		width: 134px;
+		height: 134px;
+		vertical-align: middle;
+		
+		a{ 	position: relative; 
+			display:inline; 
+			color: @dkbrown; 
+			text-transform: uppercase; 
+			font-weight: bold; 
+			font-size: .8em; 
+			vertical-align: center;
+			clear:both;
+			text-align: center;
+
+			}
+		a.focus.junior-apprentice,  a.focus.senior-apprentice{ top: -85px; }
+		a.focus{ top: -78px;}
+		a.secondary{ top: -65px; font-size: .75em; font-weight: 300; }
+		a.secondary.junior-apprentice, a.secondary.senior-apprentice{ top: -72px; }
+		img.focus{ position: relative; display: inline; width: 134px; height: 134px;}
+		img.secondary{ width:107px; height: 107px; }
+	}
+	div.aquapons.badge.hide{
+		
+		display: none;
+	}
+	
+	.badges-display;
+	
+}
 
 
 footer.main{

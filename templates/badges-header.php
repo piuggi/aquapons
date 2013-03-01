@@ -1,6 +1,6 @@
 <?php $theme = new themeCheck(); ?>
 
-<div id="sub-nav">
+<div id="sub-nav" style="display:none;">
 	<ul id="crumb-nav">
 		<li>‹ <a href="">Resources</a></li>
 		<li>‹ <a href="">Forum</a></li>

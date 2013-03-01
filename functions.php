@@ -16,7 +16,7 @@ if($_GET['user']) {
 
 include(get_stylesheet_directory() . '/php/less.inc.php');
 $less = new lessc;
-$less->checkedCompile(get_stylesheet_directory()."/style-main.less", get_stylesheet_directory()."/style-main.css");
+$less->compileFile(get_stylesheet_directory()."/style-main.less", get_stylesheet_directory()."/style-main.css");
 //print_r($less);
 
 function load_scripts_styles() {
