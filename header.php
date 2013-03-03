@@ -52,13 +52,14 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 				</ul>
 				<ul id="profile">
 					<li></li>
+					<?php if ( is_user_logged_in() ) { ?>
 					<li><a href="<?php $theme->url(); ?>">My Profile</a></li>
 					<li><a href="<?php $theme->url(); ?>">Log Out</a></li>
-					<!-- 		OR 
-					<li><a href="">Sign In</a></li> 
+					<?php } else { ?> 
+					<li><a href="/sign-in/">Sign In</a></li> 
 					<li>or</li>
-					<li><a href="">Sign Up</a></li>
-					-->
+					<li><a href="/sign-up/">Sign Up</a></li>
+					<?php } ?>
 				</ul>
 		</div><!--#main-nav-->
 		<?php 

@@ -10,6 +10,7 @@
 
 				// print post results
 				the_title();
+				the_content();
 
 			endwhile;
 			?>
