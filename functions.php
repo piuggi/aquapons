@@ -2,6 +2,11 @@
 
 session_start();
 
+if($_GET['logout']) {
+	wp_logout();
+	header("Refresh: 0; url=http://aquapons.info");
+}
+
 include('functions_includes/custom-post-types.php');
 
 include('functions_includes/badge-ajax.php');
@@ -35,7 +40,17 @@ add_action( 'wp_enqueue_scripts', 'load_scripts_styles' );
 
 
 
-
+function getBadgeStatus($badge_id, $dbresults = null) {
+	if(!$dbresults) {
+		global $current_user, $wpdb; 
+		get_currentuserinfo();
+		$dbresults = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."'"); 
+	}
+	foreach($dbresults as $badge_status) {
+		if($badge_status->badge_id == $badge_id) return $badge_status->status;
+	}
+	return false;
+}
 
 
 

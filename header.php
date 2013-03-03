@@ -49,12 +49,12 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 				<ul id="profile">
 					<li></li>
 					<?php if ( is_user_logged_in() ) { ?>
-					<li><a href="<?php $theme->url(); ?>">My Profile</a></li>
-					<li><a href="<?php $theme->url(); ?>">Log Out</a></li>
+					<li><a href="/profile/<?php $theme->url(); ?>">My Profile</a></li>
+					<li><a href="<?php echo wp_logout_url( home_url() ); ?>">Log Out</a></li>
 					<?php } else { ?> 
-					<li><a href="/sign-in/">Sign In</a></li> 
+					<li><a href="/sign-in/<?php $theme->url(); ?>">Sign In</a></li> 
 					<li>or</li>
-					<li><a href="/sign-up/">Sign Up</a></li>
+					<li><a href="/sign-up/<?php $theme->url(); ?>">Sign Up</a></li>
 					<?php } ?>
 				</ul>
 		</div><!--#main-nav-->
