@@ -6,8 +6,6 @@
 </div><!--#sub-nav-->
 <div id="secondary-nav">
 	<section id="main-links">
-	
-		<?php global $current_user; get_currentuserinfo(); ?>
 
 		<h3><?php 
 		$user_role = $current_user->roles; 

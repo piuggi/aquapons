@@ -29,6 +29,7 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 </head>
 
 
+<?php global $current_user; get_currentuserinfo(); ?>
 <?php 
 	
 	$theme = new themeCheck();
