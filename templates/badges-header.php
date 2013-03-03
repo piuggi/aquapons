@@ -1,4 +1,6 @@
-<div id="sub-nav">
+<?php $theme = new themeCheck(); ?>
+
+<div id="sub-nav" style="display:none;">
 	<ul id="crumb-nav">
 		<li>‹ <a href="">Resources</a></li>
 		<li>‹ <a href="">Forum</a></li>
@@ -9,9 +11,9 @@
 	<h2 id="page-title"><a href="">Badges</a></h2>
 	<hr>
 	<ul>
-		<li><a href="">Aquapons</a></li>
-		<li><a href="">Skills</a></li>
-		<li><a href="">Mine</a></li>
+		<li><a href="http://aquapons.info/badges/aquapons-badges/<?php $theme->url();?>">Aquapons</a></li>
+		<li><a href="http://aquapons.info/badges/skills-badges<?php $theme->url();?>">Skills</a></li>
+		<li><a href="http://aquapons.info/badges/my-badges<?php $theme->url();?>">Mine</a></li>
 	</ul>
 </section><!--#main-links-->
 <section id="content-filter">

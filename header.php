@@ -37,10 +37,6 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 
 <body <?php body_class(); ?>>
 <div id="container">
-
-	
-	
-	
 	<header>
 		<div id="main-nav">
 				<h1 id="branding"><a href="/<?php $theme->url(); ?>">Aquapons</a></h1>
