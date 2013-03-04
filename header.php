@@ -40,22 +40,22 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 <div id="container">
 	<header>
 		<div id="main-nav">
-				<h1 id="branding"><a href="/<?php $theme->url(); ?>">Aquapons</a></h1>
+				<h1 id="branding"><a href="/">Aquapons</a></h1>
 				<ul id="navigation">
-					<li><a class="resources" href="http://aquapons.info/resources/<?php $theme->url(); ?>">Resources</a></li>
-					<li><a class="badges" href="http://aquapons.info/badges-overview/<?php $theme->url(); ?>">Badges</a></li>
-					<li><a class="community" href="http://aquapons.info/community/<?php $theme->url(); ?>">Community</a></li>
-					<li><a class="about" href="http://aquapons.info/about/<?php $theme->url(); ?>">About</a></li>
+					<li><a class="resources" href="http://aquapons.info/resources/">Resources</a></li>
+					<li><a class="badges" href="http://aquapons.info/badges-overview/">Badges</a></li>
+					<li><a class="community" href="http://aquapons.info/community/">Community</a></li>
+					<li><a class="about" href="http://aquapons.info/about/">About</a></li>
 				</ul>
 				<ul id="profile">
 					<li></li>
 					<?php if ( is_user_logged_in() ) { ?>
-					<li><a href="/profile/<?php $theme->url(); ?>">My Profile</a></li>
+					<li><a href="/profile/">My Profile</a></li>
 					<li><a href="<?php echo wp_logout_url( home_url() ); ?>">Log Out</a></li>
 					<?php } else { ?> 
-					<li><a href="/sign-in/<?php $theme->url(); ?>">Sign In</a></li> 
+					<li><a href="/sign-in/">Sign In</a></li> 
 					<li>or</li>
-					<li><a href="/sign-up/<?php $theme->url(); ?>">Sign Up</a></li>
+					<li><a href="/sign-up/">Sign Up</a></li>
 					<?php } ?>
 				</ul>
 		</div><!--#main-nav-->

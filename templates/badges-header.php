@@ -11,9 +11,9 @@
 	<h2 id="page-title"><a href="">Badges</a></h2>
 	<hr>
 	<ul>
-		<li><a href="http://aquapons.info/badges/aquapons-badges/<?php $theme->url();?>">Aquapons</a></li>
-		<li><a href="http://aquapons.info/badges/skills-badges<?php $theme->url();?>">Skills</a></li>
-		<li><a href="http://aquapons.info/badges/my-badges<?php $theme->url();?>">Mine</a></li>
+		<li><a href="http://aquapons.info/badges/aquapons-badges/">Aquapons</a></li>
+		<li><a href="http://aquapons.info/badges/skills-badges">Skills</a></li>
+		<li><a href="http://aquapons.info/badges/my-badges">Mine</a></li>
 	</ul>
 </section><!--#main-links-->
 <section id="content-filter">

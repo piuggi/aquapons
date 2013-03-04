@@ -29,6 +29,7 @@ function load_scripts_styles() {
 
 	//wp_enqueue_script( 'load-script', get_template_directory_uri() . '/js/scripts.js', array(), '1.0', true );
 	
+	wp_enqueue_script( 'misc-script', get_template_directory_uri() . '/js/scripts.js', array('jquery'));
 	wp_enqueue_script( 'badge-review-script', get_template_directory_uri() . '/js/badges.js', array('jquery'));
 	wp_enqueue_style( 'wp-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'main-style', get_bloginfo('template_directory') . '/style-main.css' );
@@ -49,7 +50,7 @@ function getBadgeStatus($badge_id, $dbresults = null) {
 	foreach($dbresults as $badge_status) {
 		if($badge_status->badge_id == $badge_id) return $badge_status->status;
 	}
-	return false;
+	return 0;
 }
 
 

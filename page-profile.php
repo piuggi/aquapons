@@ -18,7 +18,7 @@
 				$badge = get_post($aquapons_badge);
 				?>
 			<div class="aquapons badge <?php if(getBadgeStatus($aquapons_badge, $badge_info) == 100) echo "complete"; ?>">
-				<a href='<?php echo get_permalink($badge->ID) . $theme->url(); ?>'>
+				<a href='<?php echo get_permalink($badge->ID) ?>'>
 					<?php echo $badge->post_title; ?>
 				</a>
 			</div>

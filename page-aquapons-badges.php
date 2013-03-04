@@ -34,7 +34,7 @@
 
 			if($bLess ==true){	?>
 			
-			<a class="page-back" href="<?php $theme->url();?>&aquapons=<?php echo $aquapons_level-1; ?>" >
+			<a class="page-back" href="?aquapons=<?php echo $aquapons_level-1; ?>" >
 			</a>
 		<?php
 			}
@@ -71,9 +71,9 @@
 */
 							?>
 							<div class="aquapons badge <?php if($hide_div==true) echo 'hide';?>">
-							<a href="<?php $theme->url();?>&aquapons=<?php echo $x; ?>">
+							<a href="?aquapons=<?php echo $x; ?>">
 							<img src="<?php bloginfo('template_directory'); if(!$current_level){ echo '/imgs/practioner_secondary.png';}else{ echo '/imgs/practioner_focus.png';}?>"></a>
-							<a class="<?php if(!$current_level){ echo ' secondary '; }else{echo ' focus ';} echo sanitize_title(get_the_title()); ?>" href='<?php echo get_permalink($page->ID); $theme->url(); ?>'>
+							<a class="<?php if(!$current_level){ echo ' secondary '; }else{echo ' focus ';} echo sanitize_title(get_the_title()); ?>" href='<?php echo get_permalink($page->ID); ?>'>
 								<?php $t = str_replace(" ", "<br/>", get_the_title() ); echo $t; ?>
 							</a>
 								
@@ -84,7 +84,7 @@
 			
 								?>
 				
-								<a class="page-forward" href="<?php $theme->url();?>&aquapons=<?php echo $aquapons_level+1; ?>" ></a>
+								<a class="page-forward" href="?aquapons=<?php echo $aquapons_level+1; ?>" ></a>
 			
 					<?php 	
 						  $bFirstHide=true; 
