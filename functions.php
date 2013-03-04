@@ -32,36 +32,6 @@ function load_scripts_styles() {
 add_action( 'wp_enqueue_scripts', 'load_scripts_styles' );
 
 
-
-
-
-
-
-
-
-function breadcrumb($curr_post) {
-	$link = "<a href='%s'>%s</a>";
-    $parent_id  = $curr_post->post_parent;  
-    $breadcrumbs = array();  
-    $delimiter = " > ";
-    
-    while($parent_id) {  
-        $page = get_page($parent_id);  
-        $breadcrumbs[] = sprintf($link, get_permalink($page->ID), get_the_title($page->ID));  
-        $parent_id  = $page->post_parent;  
-    }  
-    $breadcrumbs = array_reverse($breadcrumbs);  
-    for ($i = 0; $i < count($breadcrumbs); $i++) {  
-        echo $breadcrumbs[$i];  
-        if ($i != count($breadcrumbs)-1) echo $delimiter;  
-    }  
-    echo $delimiter . $before . get_the_title($curr_post->ID) . $after; 
-}
-
-/*
-**
-*/
-
 class themeCheck {
 	
 	public $theme = false;
@@ -76,12 +46,45 @@ class themeCheck {
 		}
 		
 	}
-	
+	function returnUrl(){
+		
+		if($this->theme) return $this->themeUrl;
+		else return "";
+		
+	}
 	function url(){
 		 if($this->theme) echo $this->themeUrl;
 	}
 	
 }
+
+
+function breadcrumb($curr_post,$theme) {
+	
+	$link = "<li> ‹ <a href='%s'>%s</a>";
+    $parent_id  = $curr_post->post_parent;  
+    $breadcrumbs = array();  
+    $delimiter = " </li> ";
+    
+    while($parent_id) {  
+        $page = get_page($parent_id);  
+        $url = get_permalink($page->ID).$theme->returnUrl();
+        $breadcrumbs[] = sprintf($link, $url, get_the_title($page->ID));  
+        $parent_id  = $page->post_parent;  
+    }  
+    $breadcrumbs = array_reverse($breadcrumbs);  
+    for ($i = 0; $i < count($breadcrumbs); $i++) {  
+        echo $breadcrumbs[$i];  
+        if ($i != count($breadcrumbs)-1) echo $delimiter;  
+    }  
+    $before = '<li> ‹ <a href="'.get_permalink($curr_post->ID).$theme->returnUrl().'" >';
+    $after = '</li></a>';
+    echo $delimiter . $before . get_the_title($curr_post->ID) . $after; 
+}
+
+/*
+**
+*/
 	
 
 

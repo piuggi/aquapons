@@ -1,4 +1,6 @@
-<?php $section = 'badges'; ?>
+<?php $section = 'badges'; 
+	  $view = 'aquapons';
+?>
 <?php get_header(); ?>
 <?php 
 	$theme = new ThemeCheck();
@@ -17,9 +19,6 @@
 			
 		}
 		?>
-
-	
-	<?php include(get_template_directory() . "/includes/badges_header.php"); ?>
 
 	<section id="main" class="badges page aquapons">
 		<section id="aquapons-navigation">
@@ -46,6 +45,7 @@
 				$args = array(
 					'post_type' => 'badge',
 					'meta_key' => 'badge_level',
+					'posts_per_page' => -1,
 					'meta_value' => $x,
 				);
 				$query = new WP_Query( $args );
@@ -108,6 +108,7 @@
 			$args = array(
 				'post_type' => 'badge',
 				'meta_key' => 'badge_level',
+				'posts_per_page' => -1,
 				'meta_value' => $x,
 			);
 			$query = new WP_Query( $args );
@@ -129,7 +130,7 @@
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='content' && get_cat_name($wp_cats[0]) == $cat) { ?>
 						<div class="content badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; if(!$current_level) echo ' hide';?>">
-							<a href='<?php echo get_permalink($page->ID) ?>'><?php the_title(); ?></a>
+							<a href='<?php echo get_permalink($page->ID); $theme->url(); ?>'><?php the_title(); ?></a>
 							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
 						</div>
 					<?php }
@@ -144,7 +145,7 @@
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='skill' && get_cat_name($wp_cats[0]) == $cat) { ?>
 						<div class="skill badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; if(!$current_level) echo ' hide';?>">
-							<a href='<?php echo get_permalink($page->ID) ?>'><?php the_title(); ?></a>
+							<a href='<?php echo get_permalink($page->ID); $theme->url(); ?>'><?php the_title(); ?></a>
 							<hr>
 							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
 						</div>

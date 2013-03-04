@@ -57,7 +57,11 @@ var theme_url = "<?php echo get_template_directory_uri() ?>";
 		</div><!--#main-nav-->
 		<?php 
 		global $section;
-		include(get_template_directory() . "/templates/".$section."-header.php");
+		global $view;
+		if($view!=null)$headerPath = "/templates/".$section."-".$view."-header.php"; 
+		else $headerPath="/templates/".$section."-header.php";
+//		echo $headerPath;
+		include(get_template_directory() . $headerPath);
 		?>
 	</header><!--header-->
 	
