@@ -1,9 +1,8 @@
 <?php $section = 'badges'; 
-	  $page = 'aquapons';
+	  $view = 'aquapons';
 ?>
 <?php get_header(); ?>
-<?php 
-	$theme = new ThemeCheck();
+<?php
 	if(!isset($_GET['aquapons'])){
 		//::TO-DO
 		//check for users level
@@ -130,7 +129,7 @@
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='content' && get_cat_name($wp_cats[0]) == $cat) { ?>
 						<div class="content badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; if(!$current_level) echo ' hide';?>">
-							<a href='<?php echo get_permalink($page->ID) ?>'><?php the_title(); ?></a>
+							<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
 							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
 						</div>
 					<?php }
@@ -145,7 +144,7 @@
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='skill' && get_cat_name($wp_cats[0]) == $cat) { ?>
 						<div class="skill badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; if(!$current_level) echo ' hide';?>">
-							<a href='<?php echo get_permalink($page->ID) ?>'><?php the_title(); ?></a>
+							<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
 							<hr>
 							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
 						</div>

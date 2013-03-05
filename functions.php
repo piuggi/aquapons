@@ -38,7 +38,31 @@ function load_scripts_styles() {
 add_action( 'wp_enqueue_scripts', 'load_scripts_styles' );
 
 
-
+class themeCheck {
+	
+	public $theme = false;
+	public $themeUrl;
+	
+	function __construct(){
+		if(isset($_GET["theme"])){
+			
+			$this->theme=true;
+			$this->themeUrl = "?theme={$_GET['theme']}";
+			
+		}
+		
+	}
+	function returnUrl(){
+		
+		if($this->theme) return $this->themeUrl;
+		else return "";
+		
+	}
+	function url(){
+		 if($this->theme) echo $this->themeUrl;
+	}
+	
+}
 
 
 function getBadgeStatus($badge_id, $dbresults = null) {
@@ -55,15 +79,18 @@ function getBadgeStatus($badge_id, $dbresults = null) {
 
 
 
+
 function breadcrumb($curr_post) {
-	$link = "<a href='%s'>%s</a>";
+	
+	$link = "<li> ‹ <a href='%s'>%s</a>";
     $parent_id  = $curr_post->post_parent;  
     $breadcrumbs = array();  
-    $delimiter = " > ";
+    $delimiter = " </li> ";
     
     while($parent_id) {  
         $page = get_page($parent_id);  
-        $breadcrumbs[] = sprintf($link, get_permalink($page->ID), get_the_title($page->ID));  
+        $url = get_permalink($page->ID);
+        $breadcrumbs[] = sprintf($link, $url, get_the_title($page->ID));  
         $parent_id  = $page->post_parent;  
     }  
     $breadcrumbs = array_reverse($breadcrumbs);  
@@ -71,33 +98,11 @@ function breadcrumb($curr_post) {
         echo $breadcrumbs[$i];  
         if ($i != count($breadcrumbs)-1) echo $delimiter;  
     }  
+    $before = '<li> ‹ <a href="'.get_permalink($curr_post->ID).'" >';
+    $after = '</li></a>';
     echo $delimiter . $before . get_the_title($curr_post->ID) . $after; 
 }
 
-/*
-**
-*/
-
-class themeCheck {
-	
-	public $theme = false;
-	public $themeUrl;
-	
-	function __construct(){
-		if(isset($_GET["theme"])){
-			
-			$this->theme=true;
-			$this->themeUrl = "?theme={$_GET['theme']}";
-			
-		}
-		
-	}
-	
-	function url(){
-		 if($this->theme) echo $this->themeUrl;
-	}
-	
-}
 	
 
 
