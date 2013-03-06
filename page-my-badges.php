@@ -22,7 +22,7 @@
 			$query->the_post();
 			$aquapons_levels[$x++] = $query->post->post_title; ?>
 			<div class="aquapons badge <?php if(getBadgeStatus($query->post->ID, $badge_info) == 100) echo "complete"; ?>">
-				<a href='<?php echo get_permalink($query->post->ID). "?theme=".$_GET['theme'];  ?>'>
+				<a href='<?php echo get_permalink($query->post->ID); ?>'>
 					<?php echo $query->post->post_title; ?>
 				</a>
 			</div>
@@ -45,7 +45,7 @@
 					?>
 					<?php if($has_badges == false) { $has_badges = true; ?><h4><?php echo $aquapons_levels[$x]; ?></h4><?php } ?>
 					<div class="aquapons badge <?php  echo "complete"; ?>">
-						<a href='<?php echo get_permalink($badge->ID) . "?theme=".$_GET['theme']; ?>'>
+						<a href='<?php echo get_permalink($badge->ID); ?>'>
 							<?php echo $badge->post_title; ?>
 						</a>
 					</div>
@@ -56,7 +56,7 @@
 
 		
 		
-		<h3>My Skills Badges - <a href="http://aquapons.info/badges/skills-badges?theme=<?php echo $_GET['theme'];?>">View all ></a></h3>
+		<h3>My Skills Badges - <a href="http://aquapons.info/badges/skills-badges">View all ></a></h3>
 		<h4>Recently Completed</h4>
 		<?php
 		$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."' AND `status` = 100 ORDER BY `updated` DESC LIMIT 3"); 
