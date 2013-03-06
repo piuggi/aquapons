@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
 
-	// add theme name to all URLs
+	// add theme name to all <a> tags
 	$('#container a').each(function() {
 		var url = $(this).attr('href');
 		if(url && theme_branch) {
