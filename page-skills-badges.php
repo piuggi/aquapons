@@ -22,20 +22,23 @@
 		<?php if ( $query->have_posts() ) : ?>
 		<?php foreach($cats as $cat) { ?>
 		<?php rewind_posts(); ?>
-		<section>
-			<h3><?php echo $cat; ?> Badges</h3>
+		<section class="<?php echo sanitize_title(strtolower($cat)); ?>">
+			<h3><?php echo $cat; ?> Badges <span class="show_category_descriptions">?</span></h3>
 			<?php
 			/* Start the Loop */
 			while ( $query->have_posts() ) : 
 			$query->the_post(); 
 			$wp_cats = wp_get_post_categories($query->post->ID);
-			if(get_cat_name($wp_cats[0]) == $cat) {?>
-
-				<div class="content badge">
-					<a href='<?php echo get_permalink($page->ID) ?>'><?php the_title(); ?></a>
-					(l.<?php echo get_post_meta($query->post->ID, 'badge_level', true); ?>)
-				</div>
+			if(get_cat_name($wp_cats[0]) == $cat) {
+				$cat_descriptions[$cat] = category_description($wp_cats[0]);
+			?>
 			
+				<div class="skill badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; ?>">
+					<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
+					<hr>
+					<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
+				</div>
+
 			<?php } ?>
 
 			<?php endwhile; ?>
@@ -48,6 +51,17 @@
 			No content found
 			
 		<?php endif; ?>
+		
+		<section class="category_descriptions">
+			<div class="close_category_descriptions">X</div>
+			<?php 
+			foreach($cats as $cat) { ?>
+				<section class="category_info">
+					<h3><?php echo $cat; ?></h3>
+					<p><?php echo $cat_descriptions[$cat]; ?></p>
+				</section>
+			<?php } ?>
+		</section>
 
 	</section><!-- #main -->
 

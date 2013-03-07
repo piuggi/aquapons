@@ -175,20 +175,28 @@ table {
   width: 100%;
   display: block;
 }
-.badges-display .water,
-.badges-display .fish,
-.badges-display .plant,
-.badges-display .design-build {
+.badges-display .badge-stack {
   display: inline-block;
   width: 21.75%;
+  vertical-align: top;
+  margin: 20px 0 0;
+  text-align: center;
+}
+.badges-display .content {
+  text-align: center;
+}
+.water,
+.fish,
+.plant,
+.design-build {
   margin: 0;
   padding: 20px 1.5% 0;
 }
-.badges-display .water .content-badges {
+.water .content-badges {
   background: url('imgs/water_badge.png') no-repeat center;
   height: 118px;
 }
-.badges-display .water .badge-container .skill.badge {
+.water .skill.badge {
   width: 80px;
   height: 116px;
   margin: 10px;
@@ -203,103 +211,103 @@ table {
   background: -moz-linear-gradient(140deg,transparent 15px,#086098 15px);
   background: linear-gradient(140deg,transparent 15px,#086098 15px);
 }
-.badges-display .water .badge-container .skill.badge a {
+.water .skill.badge a {
   color: #f9f6ef;
 }
-.badges-display .water .badge-container .skill.badge hr {
+.water .skill.badge hr {
   border: 0;
   height: 1px;
   color: #f9f6ef;
   background: #f9f6ef;
 }
-.badges-display .water .badge-container .skill.badge:nth-child(3n-1) {
+.water .skill.badge:nth-child(3n-1) {
   background: #3f268e;
   background: -webkit-linear-gradient(140deg,transparent 15px,#3f268e 15px);
   background: -o-linear-gradient(140deg,transparent 15px,#3f268e 15px);
   background: -moz-linear-gradient(140deg,transparent 15px,#3f268e 15px);
   background: linear-gradient(140deg,transparent 15px,#3f268e 15px);
 }
-.badges-display .water .badge-container .skill.badge:nth-child(4n-1) {
+.water .skill.badge:nth-child(4n-1) {
   background: #26a3c2;
   background: -webkit-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
   background: -o-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
   background: -moz-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
   background: linear-gradient(140deg,transparent 15px,#26a3c2 15px);
 }
-.badges-display .water .badge-container .skill.badge.hide {
+.water .skill.badge.hide {
   display: none;
 }
-.badges-display .water .skills-badges .one {
+.water .skills-badges .one {
   background: url('imgs/skill_small_dkblue.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .water .skills-badges .two {
+.water .skills-badges .two {
   background: url('imgs/skill_small_ltblue.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .water .skills-badges .three {
+.water .skills-badges .three {
   background: url('imgs/skill_small_dkpurple.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .water .skills-badges .four {
+.water .skills-badges .four {
   background: url('imgs/skill_small_dkblue.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .water .activities {
+.water .activities {
   width: 100%;
   display: block;
   text-align: center;
 }
-.badges-display .water .activities h5 {
+.water .activities h5 {
   font-family: "proxima-nova", Verdana, sans-serif;
   margin: 20px 0 0;
   background: transparent;
 }
-.badges-display .water .activities div.bounding {
+.water .activities div.bounding {
   border-top: 1px solid #423c2e;
   border-right: 1px solid #423c2e;
   border-left: 1px solid #423c2e;
   height: 8px;
 }
-.badges-display .water .activities section {
+.water .activities section {
   width: 100%;
 }
-.badges-display .water .activities section div {
+.water .activities section div {
   width: 16%;
   margin: 0;
   padding: 0;
   height: 32px;
   display: inline-block;
 }
-.badges-display .water .activities section div.water {
+.water .activities section div.water {
   background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
 }
-.badges-display .water .activities section div.fish {
+.water .activities section div.fish {
   background: url('imgs/activities_tiny_orange.png') no-repeat center;
 }
-.badges-display .water .activities section div.plant {
+.water .activities section div.plant {
   background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
 }
-.badges-display .water .activities section div.design-build {
+.water .activities section div.design-build {
   background: url('imgs/activities_tiny_purple.png') no-repeat center;
 }
-.badges-display .fish .content-badges {
+.fish .content-badges {
   background: url('imgs/fish_badge.png') no-repeat center;
   height: 118px;
 }
-.badges-display .fish .badge-container .skill.badge {
+.fish .skill.badge {
   width: 80px;
   height: 116px;
   margin: 10px;
@@ -314,103 +322,103 @@ table {
   background: -moz-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
   background: linear-gradient(140deg,transparent 15px,#c93e1b 15px);
 }
-.badges-display .fish .badge-container .skill.badge a {
+.fish .skill.badge a {
   color: #f9f6ef;
 }
-.badges-display .fish .badge-container .skill.badge hr {
+.fish .skill.badge hr {
   border: 0;
   height: 1px;
   color: #f9f6ef;
   background: #f9f6ef;
 }
-.badges-display .fish .badge-container .skill.badge:nth-child(3n-1) {
+.fish .skill.badge:nth-child(3n-1) {
   background: #dbad22;
   background: -webkit-linear-gradient(140deg,transparent 15px,#dbad22 15px);
   background: -o-linear-gradient(140deg,transparent 15px,#dbad22 15px);
   background: -moz-linear-gradient(140deg,transparent 15px,#dbad22 15px);
   background: linear-gradient(140deg,transparent 15px,#dbad22 15px);
 }
-.badges-display .fish .badge-container .skill.badge:nth-child(4n-1) {
+.fish .skill.badge:nth-child(4n-1) {
   background: #ce691f;
   background: -webkit-linear-gradient(140deg,transparent 15px,#ce691f 15px);
   background: -o-linear-gradient(140deg,transparent 15px,#ce691f 15px);
   background: -moz-linear-gradient(140deg,transparent 15px,#ce691f 15px);
   background: linear-gradient(140deg,transparent 15px,#ce691f 15px);
 }
-.badges-display .fish .badge-container .skill.badge.hide {
+.fish .skill.badge.hide {
   display: none;
 }
-.badges-display .fish .skills-badges .one {
+.fish .skills-badges .one {
   background: url('imgs/skill_small_orange.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .fish .skills-badges .two {
+.fish .skills-badges .two {
   background: url('imgs/skill_small_yellow.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .fish .skills-badges .three {
+.fish .skills-badges .three {
   background: url('imgs/skill_small_red.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .fish .skills-badges .four {
+.fish .skills-badges .four {
   background: url('imgs/skill_small_orange.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .fish .activities {
+.fish .activities {
   width: 100%;
   display: block;
   text-align: center;
 }
-.badges-display .fish .activities h5 {
+.fish .activities h5 {
   font-family: "proxima-nova", Verdana, sans-serif;
   margin: 20px 0 0;
   background: transparent;
 }
-.badges-display .fish .activities div.bounding {
+.fish .activities div.bounding {
   border-top: 1px solid #423c2e;
   border-right: 1px solid #423c2e;
   border-left: 1px solid #423c2e;
   height: 8px;
 }
-.badges-display .fish .activities section {
+.fish .activities section {
   width: 100%;
 }
-.badges-display .fish .activities section div {
+.fish .activities section div {
   width: 16%;
   margin: 0;
   padding: 0;
   height: 32px;
   display: inline-block;
 }
-.badges-display .fish .activities section div.water {
+.fish .activities section div.water {
   background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
 }
-.badges-display .fish .activities section div.fish {
+.fish .activities section div.fish {
   background: url('imgs/activities_tiny_orange.png') no-repeat center;
 }
-.badges-display .fish .activities section div.plant {
+.fish .activities section div.plant {
   background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
 }
-.badges-display .fish .activities section div.design-build {
+.fish .activities section div.design-build {
   background: url('imgs/activities_tiny_purple.png') no-repeat center;
 }
-.badges-display .plant .content-badges {
+.plant .content-badges {
   background: url('imgs/plants_badge.png') no-repeat center;
   height: 118px;
 }
-.badges-display .plant .badge-container .skill.badge {
+.plant .skill.badge {
   width: 80px;
   height: 116px;
   margin: 10px;
@@ -425,103 +433,103 @@ table {
   background: -moz-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
   background: linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
 }
-.badges-display .plant .badge-container .skill.badge a {
+.plant .skill.badge a {
   color: #f9f6ef;
 }
-.badges-display .plant .badge-container .skill.badge hr {
+.plant .skill.badge hr {
   border: 0;
   height: 1px;
   color: #f9f6ef;
   background: #f9f6ef;
 }
-.badges-display .plant .badge-container .skill.badge.hide {
+.plant .skill.badge.hide {
   display: none;
 }
-.badges-display .plant .badge-container .skill.badge:nth-child(3n-1) {
+.plant .skill.badge:nth-child(3n-1) {
   background: #078c78;
   background: -webkit-linear-gradient(140deg,transparent 15px,#078c78 15px);
   background: -o-linear-gradient(140deg,transparent 15px,#078c78 15px);
   background: -moz-linear-gradient(140deg,transparent 15px,#078c78 15px);
   background: linear-gradient(140deg,transparent 15px,#078c78 15px);
 }
-.badges-display .plant .badge-container .skill.badge:nth-child(4n-1) {
+.plant .skill.badge:nth-child(4n-1) {
   background: #acb200;
   background: -webkit-linear-gradient(140deg,transparent 15px,#acb200 15px);
   background: -o-linear-gradient(140deg,transparent 15px,#acb200 15px);
   background: -moz-linear-gradient(140deg,transparent 15px,#acb200 15px);
   background: linear-gradient(140deg,transparent 15px,#acb200 15px);
 }
-.badges-display .plant .skills-badges .one {
+.plant .skills-badges .one {
   background: url('imgs/skill_small_dkgreen.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .plant .skills-badges .two {
+.plant .skills-badges .two {
   background: url('imgs/skill_small_ltgreen.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .plant .skills-badges .three {
+.plant .skills-badges .three {
   background: url('imgs/skill_small_aquagreen.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .plant .skills-badges .four {
+.plant .skills-badges .four {
   background: url('imgs/skill_small_dkgreen.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .plant .activities {
+.plant .activities {
   width: 100%;
   display: block;
   text-align: center;
 }
-.badges-display .plant .activities h5 {
+.plant .activities h5 {
   font-family: "proxima-nova", Verdana, sans-serif;
   margin: 20px 0 0;
   background: transparent;
 }
-.badges-display .plant .activities div.bounding {
+.plant .activities div.bounding {
   border-top: 1px solid #423c2e;
   border-right: 1px solid #423c2e;
   border-left: 1px solid #423c2e;
   height: 8px;
 }
-.badges-display .plant .activities section {
+.plant .activities section {
   width: 100%;
 }
-.badges-display .plant .activities section div {
+.plant .activities section div {
   width: 16%;
   margin: 0;
   padding: 0;
   height: 32px;
   display: inline-block;
 }
-.badges-display .plant .activities section div.water {
+.plant .activities section div.water {
   background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
 }
-.badges-display .plant .activities section div.fish {
+.plant .activities section div.fish {
   background: url('imgs/activities_tiny_orange.png') no-repeat center;
 }
-.badges-display .plant .activities section div.plant {
+.plant .activities section div.plant {
   background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
 }
-.badges-display .plant .activities section div.design-build {
+.plant .activities section div.design-build {
   background: url('imgs/activities_tiny_purple.png') no-repeat center;
 }
-.badges-display .design-build .content-badges {
+.design-build .content-badges {
   background: url('imgs/design_badge.png') no-repeat center;
   height: 118px;
 }
-.badges-display .design-build .skill.badge {
+.design-build .skill.badge {
   width: 80px;
   height: 116px;
   margin: 10px;
@@ -536,105 +544,132 @@ table {
   background: -moz-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
   background: linear-gradient(140deg,transparent 15px,#8d3b92 15px);
 }
-.badges-display .design-build .skill.badge a {
+.design-build .skill.badge a {
   color: #f9f6ef;
 }
-.badges-display .design-build .skill.badge hr {
+.design-build .skill.badge hr {
   border: 0;
   height: 1px;
   color: #f9f6ef;
   background: #f9f6ef;
 }
-.badges-display .design-build .skill.badge:nth-child(3n) {
+.design-build .skill.badge:nth-child(3n) {
   background: #e13955;
   background: -webkit-linear-gradient(140deg,transparent 15px,#e13955 15px);
   background: -o-linear-gradient(140deg,transparent 15px,#e13955 15px);
   background: -moz-linear-gradient(140deg,transparent 15px,#e13955 15px);
   background: linear-gradient(140deg,transparent 15px,#e13955 15px);
 }
-.badges-display .design-build .skill.badge:nth-child(4n) {
+.design-build .skill.badge:nth-child(4n) {
   background: #716854;
   background: -webkit-linear-gradient(140deg,transparent 15px,#716854 15px);
   background: -o-linear-gradient(140deg,transparent 15px,#716854 15px);
   background: -moz-linear-gradient(140deg,transparent 15px,#716854 15px);
   background: linear-gradient(140deg,transparent 15px,#716854 15px);
 }
-.badges-display .design-build .skill.badge.hide {
+.design-build .skill.badge.hide {
   display: none;
 }
-.badges-display .design-build .skills-badges .one {
+.design-build .skills-badges .one {
   background: url('imgs/skill_small_purple.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .design-build .skills-badges .two {
+.design-build .skills-badges .two {
   background: url('imgs/skill_small_pink.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .design-build .skills-badges .three {
+.design-build .skills-badges .three {
   background: url('imgs/skill_small_gray.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .design-build .skills-badges .four {
+.design-build .skills-badges .four {
   background: url('imgs/skill_small_purple.png') no-repeat center;
   height: 64px;
   width: 23%;
   margin: 0;
   display: inline-block;
 }
-.badges-display .design-build .activities {
+.design-build .activities {
   width: 100%;
   display: block;
   text-align: center;
 }
-.badges-display .design-build .activities h5 {
+.design-build .activities h5 {
   font-family: "proxima-nova", Verdana, sans-serif;
   margin: 20px 0 0;
   background: transparent;
 }
-.badges-display .design-build .activities div.bounding {
+.design-build .activities div.bounding {
   border-top: 1px solid #423c2e;
   border-right: 1px solid #423c2e;
   border-left: 1px solid #423c2e;
   height: 8px;
 }
-.badges-display .design-build .activities section {
+.design-build .activities section {
   width: 100%;
 }
-.badges-display .design-build .activities section div {
+.design-build .activities section div {
   width: 16%;
   margin: 0;
   padding: 0;
   height: 32px;
   display: inline-block;
 }
-.badges-display .design-build .activities section div.water {
+.design-build .activities section div.water {
   background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
 }
-.badges-display .design-build .activities section div.fish {
+.design-build .activities section div.fish {
   background: url('imgs/activities_tiny_orange.png') no-repeat center;
 }
-.badges-display .design-build .activities section div.plant {
+.design-build .activities section div.plant {
   background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
 }
-.badges-display .design-build .activities section div.design-build {
+.design-build .activities section div.design-build {
   background: url('imgs/activities_tiny_purple.png') no-repeat center;
 }
-.badges-display .badge-stack {
-  vertical-align: top;
-  margin: 20px 0 0;
-  text-align: center;
+.vertical_align {
+  display: table-cell;
+  vertical-align: middle;
 }
-.badges-display .content {
+.badge.aquapons {
+  display: inline-block;
+  margin: 10px 8%;
+  width: 107px;
+  height: 107px;
+  background: url(imgs/practioner_secondary.png);
+}
+.badge.aquapons.current,
+.badge.aquapons.complete {
+  background: url(imgs/practioner_focus.png);
+  background-size: contain;
+}
+.badge.aquapons a,
+.badge.content a {
+  display: table;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  color: #423c2e;
   text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: .75em;
+}
+.badge.content {
+  height: 83px;
+  width: 118px;
+}
+.badge.content.water {
+  background: url('imgs/water_badge.png') no-repeat center;
 }
 .question article.question {
   width: 97%;
@@ -977,7 +1012,8 @@ header.badges #content-sort {
   display: none !important;
   overflow: none !important;
 }
-section#main {
+section.main {
+  position: relative;
   width: 100%;
   min-height: 500px !important;
 }
@@ -1464,8 +1500,6 @@ section#main.forum #page-content article.question:first-child {
 }
 section#main.badges {
   background: url('imgs/dot_dark.png');
-  width: 100%;
-  display: block;
 }
 section#main.badges h2 {
   margin: 0;
@@ -1482,470 +1516,22 @@ section#main.badges .aquapons-badges {
   padding: 10px 0;
   background: url('imgs/practioner_badge.png') no-repeat center;
 }
-section#main.badges .water,
-section#main.badges .fish,
-section#main.badges .plant,
-section#main.badges .design-build {
+section#main.badges .skills-badges {
+  width: 100%;
+  display: block;
+}
+section#main.badges .badges-display {
+  width: 100%;
+  display: block;
+}
+section#main.badges .badges-display .water,
+section#main.badges .badges-display .fish,
+section#main.badges .badges-display .plant,
+section#main.badges .badges-display .design-build {
   display: inline-block;
   width: 21.75%;
   margin: 0;
   padding: 20px 1.5% 0;
-}
-section#main.badges .water .content-badges {
-  background: url('imgs/water_badge.png') no-repeat center;
-  height: 118px;
-}
-section#main.badges .water .badge-container .skill.badge {
-  width: 80px;
-  height: 116px;
-  margin: 10px;
-  display: inline-table;
-  padding: 10px;
-  text-align: left;
-  color: #f9f6ef;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  background: #086098;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#086098 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#086098 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#086098 15px);
-  background: linear-gradient(140deg,transparent 15px,#086098 15px);
-}
-section#main.badges .water .badge-container .skill.badge a {
-  color: #f9f6ef;
-}
-section#main.badges .water .badge-container .skill.badge hr {
-  border: 0;
-  height: 1px;
-  color: #f9f6ef;
-  background: #f9f6ef;
-}
-section#main.badges .water .badge-container .skill.badge:nth-child(3n-1) {
-  background: #3f268e;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#3f268e 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#3f268e 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#3f268e 15px);
-  background: linear-gradient(140deg,transparent 15px,#3f268e 15px);
-}
-section#main.badges .water .badge-container .skill.badge:nth-child(4n-1) {
-  background: #26a3c2;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
-  background: linear-gradient(140deg,transparent 15px,#26a3c2 15px);
-}
-section#main.badges .water .badge-container .skill.badge.hide {
-  display: none;
-}
-section#main.badges .water .skills-badges .one {
-  background: url('imgs/skill_small_dkblue.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .water .skills-badges .two {
-  background: url('imgs/skill_small_ltblue.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .water .skills-badges .three {
-  background: url('imgs/skill_small_dkpurple.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .water .skills-badges .four {
-  background: url('imgs/skill_small_dkblue.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .water .activities {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-section#main.badges .water .activities h5 {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  margin: 20px 0 0;
-  background: transparent;
-}
-section#main.badges .water .activities div.bounding {
-  border-top: 1px solid #423c2e;
-  border-right: 1px solid #423c2e;
-  border-left: 1px solid #423c2e;
-  height: 8px;
-}
-section#main.badges .water .activities section {
-  width: 100%;
-}
-section#main.badges .water .activities section div {
-  width: 16%;
-  margin: 0;
-  padding: 0;
-  height: 32px;
-  display: inline-block;
-}
-section#main.badges .water .activities section div.water {
-  background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
-}
-section#main.badges .water .activities section div.fish {
-  background: url('imgs/activities_tiny_orange.png') no-repeat center;
-}
-section#main.badges .water .activities section div.plant {
-  background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
-}
-section#main.badges .water .activities section div.design-build {
-  background: url('imgs/activities_tiny_purple.png') no-repeat center;
-}
-section#main.badges .fish .content-badges {
-  background: url('imgs/fish_badge.png') no-repeat center;
-  height: 118px;
-}
-section#main.badges .fish .badge-container .skill.badge {
-  width: 80px;
-  height: 116px;
-  margin: 10px;
-  display: inline-table;
-  padding: 10px;
-  text-align: left;
-  color: #f9f6ef;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  background: #c93e1b;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
-  background: linear-gradient(140deg,transparent 15px,#c93e1b 15px);
-}
-section#main.badges .fish .badge-container .skill.badge a {
-  color: #f9f6ef;
-}
-section#main.badges .fish .badge-container .skill.badge hr {
-  border: 0;
-  height: 1px;
-  color: #f9f6ef;
-  background: #f9f6ef;
-}
-section#main.badges .fish .badge-container .skill.badge:nth-child(3n-1) {
-  background: #dbad22;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#dbad22 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#dbad22 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#dbad22 15px);
-  background: linear-gradient(140deg,transparent 15px,#dbad22 15px);
-}
-section#main.badges .fish .badge-container .skill.badge:nth-child(4n-1) {
-  background: #ce691f;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#ce691f 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#ce691f 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#ce691f 15px);
-  background: linear-gradient(140deg,transparent 15px,#ce691f 15px);
-}
-section#main.badges .fish .badge-container .skill.badge.hide {
-  display: none;
-}
-section#main.badges .fish .skills-badges .one {
-  background: url('imgs/skill_small_orange.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .fish .skills-badges .two {
-  background: url('imgs/skill_small_yellow.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .fish .skills-badges .three {
-  background: url('imgs/skill_small_red.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .fish .skills-badges .four {
-  background: url('imgs/skill_small_orange.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .fish .activities {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-section#main.badges .fish .activities h5 {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  margin: 20px 0 0;
-  background: transparent;
-}
-section#main.badges .fish .activities div.bounding {
-  border-top: 1px solid #423c2e;
-  border-right: 1px solid #423c2e;
-  border-left: 1px solid #423c2e;
-  height: 8px;
-}
-section#main.badges .fish .activities section {
-  width: 100%;
-}
-section#main.badges .fish .activities section div {
-  width: 16%;
-  margin: 0;
-  padding: 0;
-  height: 32px;
-  display: inline-block;
-}
-section#main.badges .fish .activities section div.water {
-  background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
-}
-section#main.badges .fish .activities section div.fish {
-  background: url('imgs/activities_tiny_orange.png') no-repeat center;
-}
-section#main.badges .fish .activities section div.plant {
-  background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
-}
-section#main.badges .fish .activities section div.design-build {
-  background: url('imgs/activities_tiny_purple.png') no-repeat center;
-}
-section#main.badges .plant .content-badges {
-  background: url('imgs/plants_badge.png') no-repeat center;
-  height: 118px;
-}
-section#main.badges .plant .badge-container .skill.badge {
-  width: 80px;
-  height: 116px;
-  margin: 10px;
-  display: inline-table;
-  padding: 10px;
-  text-align: left;
-  color: #f9f6ef;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  background: #4c7f0f;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
-  background: linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
-}
-section#main.badges .plant .badge-container .skill.badge a {
-  color: #f9f6ef;
-}
-section#main.badges .plant .badge-container .skill.badge hr {
-  border: 0;
-  height: 1px;
-  color: #f9f6ef;
-  background: #f9f6ef;
-}
-section#main.badges .plant .badge-container .skill.badge.hide {
-  display: none;
-}
-section#main.badges .plant .badge-container .skill.badge:nth-child(3n-1) {
-  background: #078c78;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#078c78 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#078c78 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#078c78 15px);
-  background: linear-gradient(140deg,transparent 15px,#078c78 15px);
-}
-section#main.badges .plant .badge-container .skill.badge:nth-child(4n-1) {
-  background: #acb200;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#acb200 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#acb200 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#acb200 15px);
-  background: linear-gradient(140deg,transparent 15px,#acb200 15px);
-}
-section#main.badges .plant .skills-badges .one {
-  background: url('imgs/skill_small_dkgreen.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .plant .skills-badges .two {
-  background: url('imgs/skill_small_ltgreen.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .plant .skills-badges .three {
-  background: url('imgs/skill_small_aquagreen.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .plant .skills-badges .four {
-  background: url('imgs/skill_small_dkgreen.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .plant .activities {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-section#main.badges .plant .activities h5 {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  margin: 20px 0 0;
-  background: transparent;
-}
-section#main.badges .plant .activities div.bounding {
-  border-top: 1px solid #423c2e;
-  border-right: 1px solid #423c2e;
-  border-left: 1px solid #423c2e;
-  height: 8px;
-}
-section#main.badges .plant .activities section {
-  width: 100%;
-}
-section#main.badges .plant .activities section div {
-  width: 16%;
-  margin: 0;
-  padding: 0;
-  height: 32px;
-  display: inline-block;
-}
-section#main.badges .plant .activities section div.water {
-  background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
-}
-section#main.badges .plant .activities section div.fish {
-  background: url('imgs/activities_tiny_orange.png') no-repeat center;
-}
-section#main.badges .plant .activities section div.plant {
-  background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
-}
-section#main.badges .plant .activities section div.design-build {
-  background: url('imgs/activities_tiny_purple.png') no-repeat center;
-}
-section#main.badges .design-build .content-badges {
-  background: url('imgs/design_badge.png') no-repeat center;
-  height: 118px;
-}
-section#main.badges .design-build .skill.badge {
-  width: 80px;
-  height: 116px;
-  margin: 10px;
-  display: inline-table;
-  padding: 10px;
-  text-align: left;
-  color: #f9f6ef;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  background: #8d3b92;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
-  background: linear-gradient(140deg,transparent 15px,#8d3b92 15px);
-}
-section#main.badges .design-build .skill.badge a {
-  color: #f9f6ef;
-}
-section#main.badges .design-build .skill.badge hr {
-  border: 0;
-  height: 1px;
-  color: #f9f6ef;
-  background: #f9f6ef;
-}
-section#main.badges .design-build .skill.badge:nth-child(3n) {
-  background: #e13955;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#e13955 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#e13955 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#e13955 15px);
-  background: linear-gradient(140deg,transparent 15px,#e13955 15px);
-}
-section#main.badges .design-build .skill.badge:nth-child(4n) {
-  background: #716854;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#716854 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#716854 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#716854 15px);
-  background: linear-gradient(140deg,transparent 15px,#716854 15px);
-}
-section#main.badges .design-build .skill.badge.hide {
-  display: none;
-}
-section#main.badges .design-build .skills-badges .one {
-  background: url('imgs/skill_small_purple.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .design-build .skills-badges .two {
-  background: url('imgs/skill_small_pink.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .design-build .skills-badges .three {
-  background: url('imgs/skill_small_gray.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .design-build .skills-badges .four {
-  background: url('imgs/skill_small_purple.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges .design-build .activities {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-section#main.badges .design-build .activities h5 {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  margin: 20px 0 0;
-  background: transparent;
-}
-section#main.badges .design-build .activities div.bounding {
-  border-top: 1px solid #423c2e;
-  border-right: 1px solid #423c2e;
-  border-left: 1px solid #423c2e;
-  height: 8px;
-}
-section#main.badges .design-build .activities section {
-  width: 100%;
-}
-section#main.badges .design-build .activities section div {
-  width: 16%;
-  margin: 0;
-  padding: 0;
-  height: 32px;
-  display: inline-block;
-}
-section#main.badges .design-build .activities section div.water {
-  background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
-}
-section#main.badges .design-build .activities section div.fish {
-  background: url('imgs/activities_tiny_orange.png') no-repeat center;
-}
-section#main.badges .design-build .activities section div.plant {
-  background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
-}
-section#main.badges .design-build .activities section div.design-build {
-  background: url('imgs/activities_tiny_purple.png') no-repeat center;
-}
-section#main.badges .badge-stack {
-  vertical-align: top;
-  margin: 20px 0 0;
-  text-align: center;
-}
-section#main.badges .content {
-  text-align: center;
-}
-section#main.badges .skills-badges {
-  width: 100%;
-  display: block;
 }
 section#main.badges section.badges-desc {
   width: 100%;
@@ -2098,6 +1684,7 @@ section#main.badges.page.aquapons {
   display: block;
 }
 section#main.badges.page.aquapons #aquapons-navigation {
+  position: relative;
   padding: 15px 0;
   max-height: 140px;
   background: #f7f1e5;
@@ -2111,7 +1698,8 @@ section#main.badges.page.aquapons .page-forward {
   display: inline-block;
   width: 30px;
   height: 38px;
-  position: relative;
+  position: absolute;
+  top: 60px;
 }
 section#main.badges.page.aquapons .page-back {
   background: url('imgs/badges-arrow-left.png') center no-repeat;
@@ -2120,514 +1708,28 @@ section#main.badges.page.aquapons .page-forward {
   background: url('imgs/badges-arrow-right.png') center no-repeat;
   right: 20px;
 }
-section#main.badges.page.aquapons div.aquapons.badge {
-  display: inline-block;
-  margin: 10px 10%;
-  text-align: center;
-  width: 134px;
-  height: 134px;
-  vertical-align: middle;
-}
-section#main.badges.page.aquapons div.aquapons.badge a {
-  position: relative;
-  display: inline;
-  color: #423c2e;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: .8em;
-  vertical-align: center;
-  clear: both;
-  text-align: center;
-}
-section#main.badges.page.aquapons div.aquapons.badge a.focus.junior-apprentice,
-section#main.badges.page.aquapons div.aquapons.badge a.focus.senior-apprentice {
-  top: -85px;
-}
-section#main.badges.page.aquapons div.aquapons.badge a.focus {
-  top: -78px;
-}
-section#main.badges.page.aquapons div.aquapons.badge a.secondary {
-  top: -65px;
-  font-size: .75em;
-  font-weight: 300;
-}
-section#main.badges.page.aquapons div.aquapons.badge a.secondary.junior-apprentice,
-section#main.badges.page.aquapons div.aquapons.badge a.secondary.senior-apprentice {
-  top: -72px;
-}
-section#main.badges.page.aquapons div.aquapons.badge img.focus {
-  position: relative;
-  display: inline;
-  width: 134px;
-  height: 134px;
-}
-section#main.badges.page.aquapons div.aquapons.badge img.secondary {
-  width: 107px;
-  height: 107px;
-}
-section#main.badges.page.aquapons div.aquapons.badge.hide {
-  display: none;
-}
-section#main.badges.page.aquapons .water,
-section#main.badges.page.aquapons .fish,
-section#main.badges.page.aquapons .plant,
-section#main.badges.page.aquapons .design-build {
+section#main.badges.page.aquapons .badge-stack {
   display: inline-block;
   width: 21.75%;
-  margin: 0;
-  padding: 20px 1.5% 0;
-}
-section#main.badges.page.aquapons .water .content-badges {
-  background: url('imgs/water_badge.png') no-repeat center;
-  height: 118px;
-}
-section#main.badges.page.aquapons .water .badge-container .skill.badge {
-  width: 80px;
-  height: 116px;
-  margin: 10px;
-  display: inline-table;
-  padding: 10px;
-  text-align: left;
-  color: #f9f6ef;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  background: #086098;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#086098 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#086098 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#086098 15px);
-  background: linear-gradient(140deg,transparent 15px,#086098 15px);
-}
-section#main.badges.page.aquapons .water .badge-container .skill.badge a {
-  color: #f9f6ef;
-}
-section#main.badges.page.aquapons .water .badge-container .skill.badge hr {
-  border: 0;
-  height: 1px;
-  color: #f9f6ef;
-  background: #f9f6ef;
-}
-section#main.badges.page.aquapons .water .badge-container .skill.badge:nth-child(3n-1) {
-  background: #3f268e;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#3f268e 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#3f268e 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#3f268e 15px);
-  background: linear-gradient(140deg,transparent 15px,#3f268e 15px);
-}
-section#main.badges.page.aquapons .water .badge-container .skill.badge:nth-child(4n-1) {
-  background: #26a3c2;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
-  background: linear-gradient(140deg,transparent 15px,#26a3c2 15px);
-}
-section#main.badges.page.aquapons .water .badge-container .skill.badge.hide {
-  display: none;
-}
-section#main.badges.page.aquapons .water .skills-badges .one {
-  background: url('imgs/skill_small_dkblue.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .water .skills-badges .two {
-  background: url('imgs/skill_small_ltblue.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .water .skills-badges .three {
-  background: url('imgs/skill_small_dkpurple.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .water .skills-badges .four {
-  background: url('imgs/skill_small_dkblue.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .water .activities {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-section#main.badges.page.aquapons .water .activities h5 {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  margin: 20px 0 0;
-  background: transparent;
-}
-section#main.badges.page.aquapons .water .activities div.bounding {
-  border-top: 1px solid #423c2e;
-  border-right: 1px solid #423c2e;
-  border-left: 1px solid #423c2e;
-  height: 8px;
-}
-section#main.badges.page.aquapons .water .activities section {
-  width: 100%;
-}
-section#main.badges.page.aquapons .water .activities section div {
-  width: 16%;
-  margin: 0;
-  padding: 0;
-  height: 32px;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .water .activities section div.water {
-  background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
-}
-section#main.badges.page.aquapons .water .activities section div.fish {
-  background: url('imgs/activities_tiny_orange.png') no-repeat center;
-}
-section#main.badges.page.aquapons .water .activities section div.plant {
-  background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
-}
-section#main.badges.page.aquapons .water .activities section div.design-build {
-  background: url('imgs/activities_tiny_purple.png') no-repeat center;
-}
-section#main.badges.page.aquapons .fish .content-badges {
-  background: url('imgs/fish_badge.png') no-repeat center;
-  height: 118px;
-}
-section#main.badges.page.aquapons .fish .badge-container .skill.badge {
-  width: 80px;
-  height: 116px;
-  margin: 10px;
-  display: inline-table;
-  padding: 10px;
-  text-align: left;
-  color: #f9f6ef;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  background: #c93e1b;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
-  background: linear-gradient(140deg,transparent 15px,#c93e1b 15px);
-}
-section#main.badges.page.aquapons .fish .badge-container .skill.badge a {
-  color: #f9f6ef;
-}
-section#main.badges.page.aquapons .fish .badge-container .skill.badge hr {
-  border: 0;
-  height: 1px;
-  color: #f9f6ef;
-  background: #f9f6ef;
-}
-section#main.badges.page.aquapons .fish .badge-container .skill.badge:nth-child(3n-1) {
-  background: #dbad22;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#dbad22 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#dbad22 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#dbad22 15px);
-  background: linear-gradient(140deg,transparent 15px,#dbad22 15px);
-}
-section#main.badges.page.aquapons .fish .badge-container .skill.badge:nth-child(4n-1) {
-  background: #ce691f;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#ce691f 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#ce691f 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#ce691f 15px);
-  background: linear-gradient(140deg,transparent 15px,#ce691f 15px);
-}
-section#main.badges.page.aquapons .fish .badge-container .skill.badge.hide {
-  display: none;
-}
-section#main.badges.page.aquapons .fish .skills-badges .one {
-  background: url('imgs/skill_small_orange.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .fish .skills-badges .two {
-  background: url('imgs/skill_small_yellow.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .fish .skills-badges .three {
-  background: url('imgs/skill_small_red.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .fish .skills-badges .four {
-  background: url('imgs/skill_small_orange.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .fish .activities {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-section#main.badges.page.aquapons .fish .activities h5 {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  margin: 20px 0 0;
-  background: transparent;
-}
-section#main.badges.page.aquapons .fish .activities div.bounding {
-  border-top: 1px solid #423c2e;
-  border-right: 1px solid #423c2e;
-  border-left: 1px solid #423c2e;
-  height: 8px;
-}
-section#main.badges.page.aquapons .fish .activities section {
-  width: 100%;
-}
-section#main.badges.page.aquapons .fish .activities section div {
-  width: 16%;
-  margin: 0;
-  padding: 0;
-  height: 32px;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .fish .activities section div.water {
-  background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
-}
-section#main.badges.page.aquapons .fish .activities section div.fish {
-  background: url('imgs/activities_tiny_orange.png') no-repeat center;
-}
-section#main.badges.page.aquapons .fish .activities section div.plant {
-  background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
-}
-section#main.badges.page.aquapons .fish .activities section div.design-build {
-  background: url('imgs/activities_tiny_purple.png') no-repeat center;
-}
-section#main.badges.page.aquapons .plant .content-badges {
-  background: url('imgs/plants_badge.png') no-repeat center;
-  height: 118px;
-}
-section#main.badges.page.aquapons .plant .badge-container .skill.badge {
-  width: 80px;
-  height: 116px;
-  margin: 10px;
-  display: inline-table;
-  padding: 10px;
-  text-align: left;
-  color: #f9f6ef;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  background: #4c7f0f;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
-  background: linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
-}
-section#main.badges.page.aquapons .plant .badge-container .skill.badge a {
-  color: #f9f6ef;
-}
-section#main.badges.page.aquapons .plant .badge-container .skill.badge hr {
-  border: 0;
-  height: 1px;
-  color: #f9f6ef;
-  background: #f9f6ef;
-}
-section#main.badges.page.aquapons .plant .badge-container .skill.badge.hide {
-  display: none;
-}
-section#main.badges.page.aquapons .plant .badge-container .skill.badge:nth-child(3n-1) {
-  background: #078c78;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#078c78 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#078c78 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#078c78 15px);
-  background: linear-gradient(140deg,transparent 15px,#078c78 15px);
-}
-section#main.badges.page.aquapons .plant .badge-container .skill.badge:nth-child(4n-1) {
-  background: #acb200;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#acb200 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#acb200 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#acb200 15px);
-  background: linear-gradient(140deg,transparent 15px,#acb200 15px);
-}
-section#main.badges.page.aquapons .plant .skills-badges .one {
-  background: url('imgs/skill_small_dkgreen.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .plant .skills-badges .two {
-  background: url('imgs/skill_small_ltgreen.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .plant .skills-badges .three {
-  background: url('imgs/skill_small_aquagreen.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .plant .skills-badges .four {
-  background: url('imgs/skill_small_dkgreen.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .plant .activities {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-section#main.badges.page.aquapons .plant .activities h5 {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  margin: 20px 0 0;
-  background: transparent;
-}
-section#main.badges.page.aquapons .plant .activities div.bounding {
-  border-top: 1px solid #423c2e;
-  border-right: 1px solid #423c2e;
-  border-left: 1px solid #423c2e;
-  height: 8px;
-}
-section#main.badges.page.aquapons .plant .activities section {
-  width: 100%;
-}
-section#main.badges.page.aquapons .plant .activities section div {
-  width: 16%;
-  margin: 0;
-  padding: 0;
-  height: 32px;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .plant .activities section div.water {
-  background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
-}
-section#main.badges.page.aquapons .plant .activities section div.fish {
-  background: url('imgs/activities_tiny_orange.png') no-repeat center;
-}
-section#main.badges.page.aquapons .plant .activities section div.plant {
-  background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
-}
-section#main.badges.page.aquapons .plant .activities section div.design-build {
-  background: url('imgs/activities_tiny_purple.png') no-repeat center;
-}
-section#main.badges.page.aquapons .design-build .content-badges {
-  background: url('imgs/design_badge.png') no-repeat center;
-  height: 118px;
-}
-section#main.badges.page.aquapons .design-build .skill.badge {
-  width: 80px;
-  height: 116px;
-  margin: 10px;
-  display: inline-table;
-  padding: 10px;
-  text-align: left;
-  color: #f9f6ef;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  background: #8d3b92;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
-  background: linear-gradient(140deg,transparent 15px,#8d3b92 15px);
-}
-section#main.badges.page.aquapons .design-build .skill.badge a {
-  color: #f9f6ef;
-}
-section#main.badges.page.aquapons .design-build .skill.badge hr {
-  border: 0;
-  height: 1px;
-  color: #f9f6ef;
-  background: #f9f6ef;
-}
-section#main.badges.page.aquapons .design-build .skill.badge:nth-child(3n) {
-  background: #e13955;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#e13955 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#e13955 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#e13955 15px);
-  background: linear-gradient(140deg,transparent 15px,#e13955 15px);
-}
-section#main.badges.page.aquapons .design-build .skill.badge:nth-child(4n) {
-  background: #716854;
-  background: -webkit-linear-gradient(140deg,transparent 15px,#716854 15px);
-  background: -o-linear-gradient(140deg,transparent 15px,#716854 15px);
-  background: -moz-linear-gradient(140deg,transparent 15px,#716854 15px);
-  background: linear-gradient(140deg,transparent 15px,#716854 15px);
-}
-section#main.badges.page.aquapons .design-build .skill.badge.hide {
-  display: none;
-}
-section#main.badges.page.aquapons .design-build .skills-badges .one {
-  background: url('imgs/skill_small_purple.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .design-build .skills-badges .two {
-  background: url('imgs/skill_small_pink.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .design-build .skills-badges .three {
-  background: url('imgs/skill_small_gray.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .design-build .skills-badges .four {
-  background: url('imgs/skill_small_purple.png') no-repeat center;
-  height: 64px;
-  width: 23%;
-  margin: 0;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .design-build .activities {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-section#main.badges.page.aquapons .design-build .activities h5 {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  margin: 20px 0 0;
-  background: transparent;
-}
-section#main.badges.page.aquapons .design-build .activities div.bounding {
-  border-top: 1px solid #423c2e;
-  border-right: 1px solid #423c2e;
-  border-left: 1px solid #423c2e;
-  height: 8px;
-}
-section#main.badges.page.aquapons .design-build .activities section {
-  width: 100%;
-}
-section#main.badges.page.aquapons .design-build .activities section div {
-  width: 16%;
-  margin: 0;
-  padding: 0;
-  height: 32px;
-  display: inline-block;
-}
-section#main.badges.page.aquapons .design-build .activities section div.water {
-  background: url('imgs/activities_tiny_dkblue.png') no-repeat center;
-}
-section#main.badges.page.aquapons .design-build .activities section div.fish {
-  background: url('imgs/activities_tiny_orange.png') no-repeat center;
-}
-section#main.badges.page.aquapons .design-build .activities section div.plant {
-  background: url('imgs/activities_tiny_dkgreen.png') no-repeat center;
-}
-section#main.badges.page.aquapons .design-build .activities section div.design-build {
-  background: url('imgs/activities_tiny_purple.png') no-repeat center;
-}
-section#main.badges.page.aquapons .badge-stack {
   vertical-align: top;
   margin: 20px 0 0;
   text-align: center;
 }
 section#main.badges.page.aquapons .content {
   text-align: center;
+}
+.page-skills-badges .category_descriptions {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  background: url('imgs/dot_dark.png');
+  border-right: 3px solid #423c2e;
+}
+.page-skills-badges .category_descriptions .category_info {
+  height: 200px;
+  padding: 20px 10px;
 }
 footer.main {
   width: 100%;

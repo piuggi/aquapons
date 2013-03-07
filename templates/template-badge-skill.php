@@ -42,10 +42,10 @@ if($badge_status->status == 100) $badge_complete = true;
 			'post_type' => 'badge',
 			'post_status' => 'publish',
 			'order' => 'ASC',
+			'posts_per_page' => -1,
 			'post_parent' => $post->ID
 		);
 		$children = new WP_Query( $args );
-	
 		$c=0;
 		while($children->have_posts()) : $children->the_post(); ?>
 			
@@ -53,7 +53,7 @@ if($badge_status->status == 100) $badge_complete = true;
 			<?php
 			if($badge_complete) {
 				$activity_status = "COMPLETE";
-				break;
+				//break;
 			} else {
 			if($c==0){?>
 			<h3>Activities</h3>

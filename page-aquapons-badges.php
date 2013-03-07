@@ -69,14 +69,13 @@
 								if($aquaponBadgeNum == $aquapons_level )$hide_div=false;
 */
 							?>
-							<div class="aquapons badge <?php if($hide_div==true) echo 'hide';?>">
-							<a href="?aquapons=<?php echo $x; ?>">
-							<img src="<?php bloginfo('template_directory'); if(!$current_level){ echo '/imgs/practioner_secondary.png';}else{ echo '/imgs/practioner_focus.png';}?>"></a>
-							<a class="<?php if(!$current_level){ echo ' secondary '; }else{echo ' focus ';} echo sanitize_title(get_the_title()); ?>" href='<?php echo get_permalink($page->ID); ?>'>
-								<?php $t = str_replace(" ", "<br/>", get_the_title() ); echo $t; ?>
-							</a>
-								
-						</div>
+							<div class="aquapons badge <?php if($current_level)echo 'current'; if($hide_div==true) echo 'hide';?>">
+								<a href="?aquapons=<?php echo $x; ?>">
+									<span class="vertical_align">
+										<?php $t = str_replace(" ", "<br/>", get_the_title() ); echo $t; ?>
+									</span>
+								</a>
+							</div>
 					<?php 
 					
 						if( ($bMore==true && $bFirstHide==false && $hide_div==true && $x!=1) || ($aquaponBadgeNum - $aquapons_level == 1 && $aquaponBadgeNum == $x)){

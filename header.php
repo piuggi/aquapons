@@ -21,7 +21,7 @@ var theme_dir = "<?php echo get_theme_root(); ?>";
 var theme_url = "<?php echo get_template_directory_uri() ?>";
 var theme_branch = "<?php echo $_GET['theme']; ?>";
 </script>
-<script src="http://beta.openbadges.org/issuer.js"></script>
+<!-- <script src="http://beta.openbadges.org/issuer.js"></script> -->
 <!--[if lt IE 9]>
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5shiv.js" type="text/javascript"></script>
 <![endif]-->
@@ -36,7 +36,9 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 	
 ?>
 
-<body <?php body_class(); ?>>
+<?php if(is_page()) { $page_slug = 'page-'.$post->post_name; } ?>
+<body <?php body_class($page_slug); ?>>
+
 <div id="container">
 	<header>
 		<div id="main-nav">

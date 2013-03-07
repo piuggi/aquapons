@@ -21,9 +21,11 @@
 		while ( $query->have_posts() ) {
 			$query->the_post();
 			$aquapons_levels[$x++] = $query->post->post_title; ?>
-			<div class="aquapons badge <?php if(getBadgeStatus($query->post->ID, $badge_info) == 100) echo "complete"; ?>">
+			<div class="aquapons badge <?php if(getBadgeStatus($query->post->ID, $badge_info) == 100) echo "complete"; ?>">			
 				<a href='<?php echo get_permalink($query->post->ID); ?>'>
+					<span class="vertical_align">
 					<?php echo $query->post->post_title; ?>
+					</span>
 				</a>
 			</div>
 		<?php } ?>
@@ -44,7 +46,7 @@
 					$badge = get_post($badge_id);
 					?>
 					<?php if($has_badges == false) { $has_badges = true; ?><h4><?php echo $aquapons_levels[$x]; ?></h4><?php } ?>
-					<div class="aquapons badge <?php  echo "complete"; ?>">
+					<div class="content badge <?php  echo "complete"; ?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>);">
 						<a href='<?php echo get_permalink($badge->ID); ?>'>
 							<?php echo $badge->post_title; ?>
 						</a>

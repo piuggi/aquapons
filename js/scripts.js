@@ -16,6 +16,14 @@ jQuery(document).ready(function($) {
 		}
 	});
 	
+	$('.show_category_descriptions').click(function() {
+		$('.category_descriptions').animate({left: '0px'});
+	});
+	
+	
+	$('.close_category_descriptions').click(function() {
+		$('.category_descriptions').animate({left: '-220px'});
+	});
 	
 		
 }); // jQuery
