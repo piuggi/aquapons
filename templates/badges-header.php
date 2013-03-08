@@ -8,7 +8,7 @@
 </div><!--#sub-nav-->
 <div id="secondary-nav">
 <section id="main-links">
-	<h2 id="page-title"><a href="">Badges</a></h2>
+	<h2 id="page-title"><a href=""><?php echo get_the_title(); ?></a></h2>
 	<hr>
 	<ul>
 		<li><a href="http://aquapons.info/badges/aquapons-badges/">Aquapons</a></li>

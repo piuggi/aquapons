@@ -23,7 +23,7 @@
 		<?php foreach($cats as $cat) { ?>
 		<?php rewind_posts(); ?>
 		<section class="<?php echo sanitize_title(strtolower($cat)); ?>">
-			<h3><?php echo $cat; ?> Badges <span class="show_category_descriptions">?</span></h3>
+			<h2><?php echo $cat; ?> Badges <span class="show_category_descriptions">?</span></h2>
 			<?php
 			/* Start the Loop */
 			while ( $query->have_posts() ) : 
@@ -57,7 +57,7 @@
 			<?php 
 			foreach($cats as $cat) { ?>
 				<section class="category_info">
-					<h3><?php echo $cat; ?></h3>
+					<h2><?php echo $cat; ?></h2>
 					<p><?php echo $cat_descriptions[$cat]; ?></p>
 				</section>
 			<?php } ?>

@@ -11,9 +11,9 @@
 
 
 <?php get_header(); ?>
+	<?php $category = get_the_category(); ?>
 
-
-	<section id="main" class="badges">
+	<section id="main" class="badges <?php echo $category[0]->slug ?>">
 
 	<?php 
 		$badge_type = get_post_meta($post->ID, 'badge_type', true);

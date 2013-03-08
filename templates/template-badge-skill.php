@@ -11,7 +11,10 @@ if($badge_status->status == 100) $badge_complete = true;
 ?>
 
 	<section id="skill-badge-nav">
-	<h2><?php the_title(); ?></h2>
+	<h2>
+		<?php the_title(); ?>
+		<?php if($badge_complete) echo "<span class='badge-complete'>BADGE COMPLETE</span> <span class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</span>"; ?>
+	</h2>
 	<hr/>
 	<ul id="skill-badge-subnav">
 		<li><a>Activities Overview</a></li>
@@ -26,16 +29,17 @@ if($badge_status->status == 100) $badge_complete = true;
 	
 	<section id="skill-badge-outline">
 		<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
+		<hr>
+		<div class="badge-objectives">
+			<?php echo get_field('badge_objectives', $post->ID); ?>
+		</div>
 	</section>
 	
-	<p><?php echo get_post_meta($post->ID, 'activity_description', true); ?></p>
-	<?php if(get_post_meta($post->ID, 'activity_response_type', true) == "image") { ?>
-		<input type="file" name="activity_submission">
-	<?php } ?>
+	
 
 
 	<section id="skill-badge-activities">	
-		<?php if($badge_complete) echo "<h3>BADGE COMPLETE</h3> <div class='button send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</div>"; ?>
+		<h3>Activities</h3>
 
 		<?php
 		$args = array(
@@ -46,7 +50,6 @@ if($badge_status->status == 100) $badge_complete = true;
 			'post_parent' => $post->ID
 		);
 		$children = new WP_Query( $args );
-		$c=0;
 		while($children->have_posts()) : $children->the_post(); ?>
 			
 			
@@ -55,10 +58,6 @@ if($badge_status->status == 100) $badge_complete = true;
 				$activity_status = "COMPLETE";
 				//break;
 			} else {
-			if($c==0){?>
-			<h3>Activities</h3>
-			<?php
-			}
 				$activity_id = get_the_ID();
 				// LOAD CURRENT STATUS
 				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activity_id' ORDER BY submission_timestamp DESC LIMIT 1");
@@ -70,8 +69,8 @@ if($badge_status->status == 100) $badge_complete = true;
 				
 				<a href='<?php echo get_permalink() ?>'><?php echo get_the_title() ?></a> 
 				<hr/>
+				<?php echo $activity_status ?>
 			</article>
-			<?php echo $activity_status ?>
 
 		<?php  
 			$c++;

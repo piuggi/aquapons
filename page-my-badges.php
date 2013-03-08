@@ -1,88 +1,161 @@
-<?php $section = 'badges'; ?>
+<?php $section = 'badges'; 
+	  $view = 'aquapons';
+?>
 <?php get_header(); ?>
+<?php
+	if(!isset($_GET['aquapons'])){
+		//::TO-DO
+		//check for users level
+		
+		//if no level present default to jr.
+		
+		$aquapons_level = 1;
+		
+		} else{
+			
+			$aquapons_level = $_GET['aquapons'];
+			if($aquapons_level<1)$aquapons_level=1;
+			
+		}
+		?>
+
+	<section id="main" class="badges page aquapons">
+		<section id="aquapons-navigation">
+		
+		<?php 
+			$aquaponBadgeNum = 4;
+			
+			//check our sub navigation needs 
+			$bLess = false; $bMore = false;
+			if($aquapons_level-1> 0) $bLess = true;
+			if($aquapons_level<$aquaponBadgeNum) $bMore = true;
+			
+
+			if($bLess ==true){	?>
+			
+			<a class="page-back" href="?aquapons=<?php echo $aquapons_level-1; ?>" >
+			</a>
+		<?php
+			}
+			
+			for($x = 1; $x <= $aquaponBadgeNum; $x++) { 
+				
+				// load all badges at this level
+				$args = array(
+					'post_type' => 'badge',
+					'meta_key' => 'badge_level',
+					'posts_per_page' => -1,
+					'meta_value' => $x,
+				);
+				$query = new WP_Query( $args );
+				while($query->have_posts()){
+					$query->the_post();
+					if(get_field('badge_type')=='aquapons') { ?>
+							<?php /*/(l.<?php echo get_field('badge_level', $query->post->ID); ?>)*/
+							
+								$current_level=false;
+								$hide_div=false;
+								$bFirstHide=false;
+								if(get_field('badge_level',$query->post->ID)== $aquapons_level) $current_level=true;
+								
+								//check if its out of our range ie. more than one
 	
-	<?php include(get_template_directory() . "/includes/badges_header.php"); ?>
+								if( abs($x-$aquapons_level)>1  ) $hide_div =true;	
+								//echo abs($x-$aquapons_level);
 
-	<section class="main">
-
-		<?php
-		$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."'"); 
-		?>		
-		<h3>My Aquapons Badges</h3>
-		<?php 
-		$args = array(
-			'post_type' => 'badge',
-			'category_name' => 'aquapons',
-			'orderby' => 'menu_order',
-			'order' => 'ASC'
-		);
-		$query = new WP_Query( $args );
-		$x = 1;
-		while ( $query->have_posts() ) {
-			$query->the_post();
-			$aquapons_levels[$x++] = $query->post->post_title; ?>
-			<div class="aquapons badge <?php if(getBadgeStatus($query->post->ID, $badge_info) == 100) echo "complete"; ?>">			
-				<a href='<?php echo get_permalink($query->post->ID); ?>'>
-					<span class="vertical_align">
-					<?php echo $query->post->post_title; ?>
-					</span>
-				</a>
-			</div>
-		<?php } ?>
-		
-		
-		
-		
-		
-		<?php 
-		// CONTENT BADGES
-		for($x = 1; $x <= count($aquapons_levels); $x++) {
-			$content_badge_ids = $wpdb->get_results("select * from $wpdb->postmeta AS t1 JOIN $wpdb->postmeta AS t2 JOIN $wpdb->posts as t3 
-				WHERE t2.meta_value = '$x'
-				AND t1.meta_key = 'badge_type' AND t1.meta_value = 'content' AND t2.meta_key = 'badge_level' AND t1.post_id = t2.post_id AND t1.post_id = t3.ID and t3.post_status = 'publish' ORDER BY t3.menu_order");
-			$has_badges = false;
-			foreach($content_badge_ids as $badge_id) {
-				if(getBadgeStatus($badge_id->post_id, $badge_info) == 100) {
-					$badge = get_post($badge_id);
-					?>
-					<?php if($has_badges == false) { $has_badges = true; ?><h4><?php echo $aquapons_levels[$x]; ?></h4><?php } ?>
-					<div class="content badge <?php  echo "complete"; ?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>);">
-						<a href='<?php echo get_permalink($badge->ID); ?>'>
-							<?php echo $badge->post_title; ?>
-						</a>
-					</div>
-			<?php }
-			} 
-		} ?>
-		
-
-		
-		
-		<h3>My Skills Badges - <a href="http://aquapons.info/badges/skills-badges">View all ></a></h3>
-		<h4>Recently Completed</h4>
-		<?php
-		$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."' AND `status` = 100 ORDER BY `updated` DESC LIMIT 3"); 
+								if(($aquapons_level == 1 || $aquapons_level == $aquaponBadgeNum ) && abs($x-$aquapons_level)==2)$hide_div=false;
+/*						
+								if( abs($x-$aquapons_level)>2 && $aquapons_level !=1 )$hide_div = false;
+								if($aquaponBadgeNum == $aquapons_level )$hide_div=false;
+*/
+							?>
+							<div class="aquapons badge <?php if(getBadgeStatus($query->post->ID, $badge_info) != 100) echo "incomplete"; ?><?php if($current_level)echo 'current'; if($hide_div==true) echo 'hide';?>">
+								<a href="?aquapons=<?php echo $x; ?>">
+									<span class="vertical_align">
+										<?php $t = str_replace(" ", "<br/>", get_the_title() ); echo $t; ?>
+									</span>
+								</a>
+							</div>
+					<?php 
+					
+						if( ($bMore==true && $bFirstHide==false && $hide_div==true && $x!=1) || ($aquaponBadgeNum - $aquapons_level == 1 && $aquaponBadgeNum == $x)){
+			
+								?>
+				
+								<a class="page-forward" href="?aquapons=<?php echo $aquapons_level+1; ?>" ></a>
+			
+					<?php 	
+						  $bFirstHide=true; 
+						  } //if page forward
+					
+				}//if aquapons
+				
+			  }//while
+			  
+			}//for
 		?>
+		
+		</section>
+		
+		<?php 
+		$cats = array('Water', 'Fish', 'Plant', 'Design + Build');
 
-		<h4>Recently Started</h4>
-		<?php
-		$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."' AND `status` != 100 ORDER BY `updated` DESC LIMIT 3"); 
-		?>
 
-		<h4>Recent Activity</h4>
-		<?php
-		// get most recent activity submissions
-		$activity_info = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE user_id = '".$current_user->ID."' ORDER BY `submission_timestamp` DESC LIMIT 10"); 
-		// load related skills badges
-		foreach($activity_info as $activity) {
-			$badge_id_array[] = $activity->badge_id;
+		for($x = 1; $x <= $aquaponBadgeNum; $x++) {
+			// load all badges at this level
+			$args = array(
+				'post_type' => 'badge',
+				'meta_key' => 'badge_level',
+				'posts_per_page' => -1,
+				'meta_value' => $x,
+			);
+			$query = new WP_Query( $args );
+			
+			//only show content & skills for the 
+			//aquapons badge we are looking at.
+			foreach($cats as $cat) { 
+				$current_level=false;
+				$hide_div=false;
+				if(get_field('badge_level',$query->post->ID)== $aquapons_level) $current_level=true;	
+				// show content badges
+				rewind_posts();
+				if($current_level) {
+				?>
+				<section class="badge-stack <?php echo ' level-'.$x;  echo " ".sanitize_title(strtolower($cat)); if(!$current_level) echo ' hide';?>">
+				<?php
+				
+				while ( $query->have_posts() ) {
+					$query->the_post();
+					$wp_cats = wp_get_post_categories($query->post->ID);
+					if(get_field('badge_type')=='content' && get_cat_name($wp_cats[0]) == $cat) { ?>
+						<div class="content badge <?php if(getBadgeStatus($query->post->ID, $badge_info) != 100) echo "incomplete"; ?> <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; if(!$current_level) echo ' hide';?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>);">
+							<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
+							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
+						</div>
+					<?php }
+				}
+				?>
+				<section class="badge-container <?php echo ' level-'.$x; ?>">
+				<?php
+				// show skill badges
+				rewind_posts(); 
+				while ( $query->have_posts() ) {
+					$query->the_post();
+					$wp_cats = wp_get_post_categories($query->post->ID);
+					if(get_field('badge_type')=='skill' && get_cat_name($wp_cats[0]) == $cat) { ?>
+						<div class="skill badge <?php if(getBadgeStatus($query->post->ID, $badge_info) != 100) echo "incomplete"; ?> <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; if(!$current_level) echo ' hide';?>">
+							<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
+							<hr>
+							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
+						</div>
+					<?php }
+				} ?>
+				</section><!-- .badge-container -->
+			</section><!-- .badge-stack ?> -->
+	<?php	} // if($current_level)
+		 } // foreach($cats as $cat)
+
 		}
-		$badge_id_array = array_unique($badge_id_array);
-		foreach($badge_id_array as $badge_id) {
-			$badge_ids .= ' OR badge_id = '. $badge_id;
-		}
-		$badge_ids = substr($badge_ids, 3);
-		$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."' AND ($badge_ids) ORDER BY `updated` DESC LIMIT 3"); 
 		?>
 
 	</section><!-- #main -->
