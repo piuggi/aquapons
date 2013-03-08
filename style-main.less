@@ -31,7 +31,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 @lt-green: #acb200;
 @teal: #078c78;
 
-
+@babyblue: #82bcf1;
+@yellow: #dbad35;
 @purple:#8d3b92;
 @fushia: #e13955;
 
@@ -41,7 +42,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 .sans-serif{ font-family: "proxima-nova",Verdana, sans-serif;}
 .serif {font-family: "jubilant", Georgia, Serif;}
-
+.left {float: left;}
+.right {float: right;}
 
 
 /* General */
@@ -62,7 +64,6 @@ h2{
 	margin: 0 0 20px 0;
 	color: @dkbrown;
 	text-align: left;
-	a{ color: @teal; font-size: .5em;}
 }
 
 
@@ -72,9 +73,9 @@ h2{
 
 /* Styles */
 .sub-nav-shadow{
-	-moz-box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.1);	
-	box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.1);	
+	box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
 .open-badges-callout-shadow{
@@ -117,10 +118,10 @@ h2{
 .skill-badge-background(@color:@green){
 	
 				background: @color;
-				background: -webkit-linear-gradient(140deg, transparent 15px, @color 15px);
-				background: -o-linear-gradient(140deg, transparent 15px, @color 15px);
-				background: -moz-linear-gradient(140deg, transparent 15px, @color 15px);
-				background: linear-gradient(140deg, transparent 15px, @color 15px);
+				background: -webkit-linear-gradient(320deg, transparent 15px, @color 15px);
+				background: -o-linear-gradient(320deg, transparent 15px, @color 15px);
+				background: -moz-linear-gradient(320deg, transparent 15px, @color 15px);
+				background: linear-gradient(320deg, transparent 15px, @color 15px);
 
 	
 }
@@ -557,7 +558,7 @@ h2{
 			li{
 
 				display: inline-block;
-				padding: 0 15px 0 0;
+				margin: 0 15px 0 0;
 
 			}
 
@@ -602,26 +603,50 @@ header{
 	position: relative;
 	#main-nav{
 		//.header-lock;
-		height:36px;
+		height:27px;
 		background-color: @dkbrown;
+		color:@beige;
 		top: 0;
 		padding: 20px 0 0;
 
-		h1#branding{ display: inline;  margin: 0 0 0 20px; font-weight: bold; 
-					 vertical-align: center; letter-spacing: .25em;
+		h1#branding{ 
+			display: inline;
+			margin: 0 0 0 20px;
+			font-weight: bold; 
+			vertical-align: center;
+			letter-spacing: .25em;
 		
-		a{ color:@beige; text-transform: uppercase; font-size: 1.25em;}
+			a{ color:@beige; text-transform: uppercase; font-size: 1.25em;}
 		}
 
+		a {			
+			font-size: 13px;
+			text-transform: uppercase;
+		}
+		a:hover {
+			color: #fff; 
+		}
+		
+		.selected a{color: #fff;}
+		.sub-nav a, .selected .sub-nav a{color: @dkbrown;}
+		.sub-nav a:hover, .selected .sub-nav a:hover{color: #fff;}
 
 		.header-ul;
 
 		ul#navigation{
-
 			margin: 0 0 0 24px;
 			vertical-align: center;
-
 		}
+		li{
+			padding: 0 0 1px;
+		}
+
+		.resources:hover, .resources.selected {border-bottom: 4px solid @babyblue;}
+		.badges:hover, .badges.selected {border-bottom: 4px solid @yellow;}
+		.community:hover, .community.selected {border-bottom: 4px solid @lt-green;}
+		.about:hover, .about.selected {border-bottom: 4px solid @fushia;}
+
+		#profile {padding: 0 0 1px; border-bottom: 4px solid @purple;}
 
 		ul#profile{
 			float: right;
@@ -632,34 +657,54 @@ header{
 
 
 	}
-	#sub-nav{
-		height:34px;
-		background-color: @beige;
-		top: 46px;
-
+	ul#navigation .sub-nav{
+		position: absolute;
+		margin: 5px 0;
+		left: 0;
+		right: 0;
+		
+		height:0px;
+		overflow: hidden;
 		.sub-nav-shadow;
-		//.header-lock;
-		.header-ul;
-
-		#crumb-nav{
-
-				font-size: .8em;
-				padding: 20px;
-				li {
-
-					margin: 10px 0 0 0;
-				}
-
+		li {
+			margin: 1px 4px 0 0;
+		}
+		li:before {
+		    content: "• ";
+		    color: #fff; /* or whatever color you prefer */
+		}
+		li:first-child:before {
+			content: "";
 		}
 
+	}
+	ul#navigation li:hover .sub-nav {
+		height: 25px;
+	}
+		
+	.resources .sub-nav {padding-left: 192px;background: @babyblue;}
+	.badges .sub-nav {padding-left: 282px;background: @yellow;}
+	.community .sub-nav {background: @lt-green;}
+	.about .sub-nav {background: @fushia;}
+	.profile .sub-nav {background: @purple;}
+	
+
+	#crumb-nav{
+		font-size: .8em;
+		padding: 20px;
+		li {
+			display: inline-block;
+			margin: 6px 0 0 0;
+		}
 	}
 
 	#secondary-nav{
 		height:117px;
-		margin-top: 80px;
 		padding: 0 1.5%;
+		margin: 80px 0 0;
 		position:relative;
 		direction: block;
+		z-index: 10;
 		//background-color: @offwhite;
 		.sub-nav-shadow;
 		
@@ -1033,14 +1078,15 @@ section#main.badges{
 
 	background: @dotted-pattern;
 
+/*
 	h2{
 
 		margin: 0;
 		padding: 20px 0 0 20px;
 		.sans-serif;
 		text-transform: uppercase;
-		float: left;
 	}
+*/
 
 
 	.aquapons-badges{
@@ -1168,14 +1214,13 @@ section#main.badges{
 	} //section.badges-desc
 	
 	
-	#skill-badge-nav{
+	#badge-nav{
 		
 			width: 100%;
 			display: block;
 			text-align: center;
-			height: 90px;
 			background: @lt-blue;
-			margin: 0;
+			padding: 20px 0;
 			
 			h2{text-align: center; float: none; font-size: 1.6em; font-weight: bold; color: @offwhite; text-transform: capitalize;}
 			
@@ -1199,8 +1244,8 @@ section#main.badges{
 				
 			}
 			
-	}
-	#skill-badge-outline{
+	} //#badge-nav
+	#badge-outline{
 		
 			display:block;
 			clear: both;
@@ -1344,9 +1389,36 @@ section#main.badges.page.aquapons{
 			list-style-position: inside;
 		}
 	}
-	
-	
 }
+
+
+#activity-nav {
+	width: 100%;
+	display: block;
+	text-align: left;
+	background: @lt-blue;
+	padding: 20px 0;
+	color: #fff;
+	li {
+		display: inline-block;
+		font-size: 11px;
+		a {color: #fff;}
+	}
+	h2 {
+		padding: 3px 0;
+		margin: 20px;
+		font-weight: 100;
+		color: #fff;
+		border-bottom: 1px solid white;
+	}
+	.estimated_time {
+		margin: -10px 20px 0;
+		float: right;
+		font-size: 11px;
+		.sans-serif;
+	}
+}
+
 
 footer.main{
 	width: 100%;

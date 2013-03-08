@@ -1,11 +1,6 @@
 <?php $theme = new themeCheck(); ?>
 
-<div id="sub-nav" style="display:none;">
-	<ul id="crumb-nav">
-		<li>‹ <a href="">Resources</a></li>
-		<li>‹ <a href="">Forum</a></li>
-	</ul>
-</div><!--#sub-nav-->
+
 <div id="secondary-nav">
 <section id="main-links">
 	<h2 id="page-title"><a href=""><?php echo get_the_title(); ?></a></h2>

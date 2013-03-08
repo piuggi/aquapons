@@ -1,3 +1,4 @@
+<?php $section = 'resources'; ?>
 <?php get_header(); ?>
 
 	<section class="main">

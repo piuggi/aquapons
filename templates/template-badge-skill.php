@@ -10,7 +10,7 @@ $badge_status = $wpdb->get_row("SELECT * FROM `aq_badge_status` WHERE user_id = 
 if($badge_status->status == 100) $badge_complete = true;
 ?>
 
-	<section id="skill-badge-nav">
+	<section id="badge-nav">
 	<h2>
 		<?php the_title(); ?>
 		<?php if($badge_complete) echo "<span class='badge-complete'>BADGE COMPLETE</span> <span class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</span>"; ?>
@@ -27,7 +27,7 @@ if($badge_status->status == 100) $badge_complete = true;
 	</ul>
 	</section>
 	
-	<section id="skill-badge-outline">
+	<section id="badge-outline">
 		<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
 		<hr>
 		<div class="badge-objectives">

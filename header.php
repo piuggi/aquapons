@@ -29,25 +29,46 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 </head>
 
 
-<?php global $current_user; get_currentuserinfo(); ?>
-<?php 
-	
-	$theme = new themeCheck();
+<?php
+global $current_user; get_currentuserinfo();
+global $section;
+global $view;
+
+$theme = new themeCheck();
 	
 ?>
 
 <?php if(is_page()) { $page_slug = 'page-'.$post->post_name; } ?>
-<body <?php body_class($page_slug); ?>>
+<body <?php body_class($page_slug ." ". $section); ?>>
 
 <div id="container">
 	<header>
 		<div id="main-nav">
 				<h1 id="branding"><a href="/">Aquapons</a></h1>
 				<ul id="navigation">
-					<li><a class="resources" href="http://aquapons.info/resources/">Resources</a></li>
-					<li><a class="badges" href="http://aquapons.info/badges-overview/">Badges</a></li>
-					<li><a class="community" href="http://aquapons.info/community/">Community</a></li>
-					<li><a class="about" href="http://aquapons.info/about/">About</a></li>
+					<li class="resources <?php if($section=='resources') echo 'selected'; ?>">
+						<a href="http://aquapons.info/resources/">Resources</a>						
+						<div class="sub-nav">
+							<ul>
+								<li><a href="/tutorials/">Tutorials</a></li>
+								<li><a href="/forum/">Forum</a></li>
+								<li><a href="/library/">Library</a></li>
+								<li><a href="/jobs/">Jobs</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="badges <?php if($section=='badges') echo 'selected'; ?>">
+						<a href="http://aquapons.info/badges-overview/">Badges</a>					
+						<div class="sub-nav">
+							<ul>
+								<li><a href="http://aquapons.info/badges/aquapons-badges/">Aquapons</a></li>
+								<li><a href="http://aquapons.info/badges/skills-badges/">Skills</a></li>
+								<li><a href="http://aquapons.info/badges/my-badges/">Mine</a></li>
+							</ul>
+						</div>	
+					</li>
+					<li class="community <?php if($section=='community') echo 'selected'; ?>"><a href="http://aquapons.info/community/">Community</a></li>
+					<li class="about <?php if($section=='about') echo 'selected'; ?>"><a href="http://aquapons.info/about/">About</a></li>
 				</ul>
 				<ul id="profile">
 					<li></li>
@@ -61,9 +82,9 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 					<?php } ?>
 				</ul>
 		</div><!--#main-nav-->
+		
+		
 		<?php 
-		global $section;
-		global $view;
 		if($view!=null)$headerPath = "/templates/".$section."-".$view."-header.php"; 
 		else $headerPath="/templates/".$section."-header.php";
 //		echo $headerPath;

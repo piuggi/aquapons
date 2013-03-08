@@ -32,23 +32,36 @@ $wpdb->insert(
 <section class="main">
 
 
-
-	<?php breadcrumb($post); ?>
+	<section id="activity-nav">
+		<ul>
+			<?php breadcrumb($post); ?>
+		</ul>
+		<h2><?php the_title(); ?></h2>
+		<div class="estimated_time">Estimated Time: 10 weeks</div>
+	</section>
+		
+	<section id="badge-outline">
+		<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
+	</section>
+	
+	<div class="sidebar right">
+		<h4>Related Resources</h4>
+	</div>
 	
 
-	<h2><?php the_title(); ?> - Activity Badge</h2>
-	<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
-
+	
+	<h2>Start Documenting</h2>
+	
+	
 	<p><?php echo get_post_meta($post->ID, 'activity_description', true); ?></p>
-	
-	<?php 
+		<?php 
 	if($activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$actvityid'  ORDER BY submission_timestamp DESC LIMIT 1")) {
 	?>
 	<div class="submission">
 	<?php
 	if($activity_info->current_status == 'reviewing') echo "<h4>Your submission is currently being reviewed.</h4>";
 	?>
-	<p>Current Submission:</p>
+	<h3>Current Submission:</h3>
 	<?php echo stripslashes($activity_info->data); ?>
 	</div>
 	
@@ -68,5 +81,13 @@ $wpdb->insert(
 	</form>
 	
 	<?php } // if(!$activity_info) ?>
+	
+	
+	
+	
+	<h2>Relevant Discussions</h2>
+
+	
+
 
 </section><!-- #main -->
