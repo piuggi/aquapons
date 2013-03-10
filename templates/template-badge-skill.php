@@ -11,20 +11,21 @@ if($badge_status->status == 100) $badge_complete = true;
 ?>
 
 	<section id="badge-nav">
-	<h2>
-		<?php the_title(); ?>
-		<?php if($badge_complete) echo "<span class='badge-complete'>BADGE COMPLETE</span> <span class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</span>"; ?>
-	</h2>
-	<hr/>
-	<ul id="skill-badge-subnav">
-		<li><a>Activities Overview</a></li>
-		<li>•</li>
-		<li><a>Completed Activities</a></li>
-		<li>•</li>
-		<li><a>Activities in Progress</a></li>
-		<li>•</li>
-		<li><a>Related Resources</a></li>
-	</ul>
+		<?php breadcrumb($post); ?>
+		<h2>
+			<?php the_title(); ?>
+			<?php if($badge_complete) echo "<span class='badge-complete'>BADGE COMPLETE</span> <span class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</span>"; ?>
+		</h2>
+		<hr/>
+		<ul id="skill-badge-subnav">
+			<li><a>Activities Overview</a></li>
+			<li>•</li>
+			<li><a>Completed Activities</a></li>
+			<li>•</li>
+			<li><a>Activities in Progress</a></li>
+			<li>•</li>
+			<li><a>Related Resources</a></li>
+		</ul>
 	</section>
 	
 	<section id="badge-outline">
@@ -39,12 +40,13 @@ if($badge_status->status == 100) $badge_complete = true;
 
 
 	<section id="skill-badge-activities">	
-		<h3>Activities</h3>
+	<h3>Activities</h3>
 
 		<?php
 		$args = array(
 			'post_type' => 'badge',
 			'post_status' => 'publish',
+			'orderby' => 'menu_order',
 			'order' => 'ASC',
 			'posts_per_page' => -1,
 			'post_parent' => $post->ID

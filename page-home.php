@@ -98,7 +98,7 @@
 									<p>50<em>answers</em></p>	
 								</section><!--.qleft-->
 								<section class="qright">
-										<div class="plants"></div>
+										<div class="plant"></div>
 										<h3>Title of Recent Question That Was Posted to the Forum?</h3>
 										<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
 								</section><!--.qright-->
@@ -123,7 +123,7 @@
 									<p>50<em>answers</em></p>	
 								</section><!--.qleft-->
 								<section class="qright">
-										<div class="plants"></div>
+										<div class="design-build"></div>
 										<h3>Title of Recent Question That Was Posted to the Forum?</h3>
 										<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
 								</section><!--.qright-->
@@ -136,7 +136,7 @@
 									<p>50<em>answers</em></p>	
 								</section><!--.qleft-->
 								<section class="qright">
-										<div class="fish"></div>
+										<div class="water"></div>
 										<h3>Title of Recent Question That Was Posted to the Forum?</h3>
 										<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
 								</section><!--.qright-->

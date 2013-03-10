@@ -33,9 +33,7 @@ $wpdb->insert(
 
 
 	<section id="activity-nav">
-		<ul>
-			<?php breadcrumb($post); ?>
-		</ul>
+		<?php breadcrumb($post); ?>
 		<h2><?php the_title(); ?></h2>
 		<div class="estimated_time">Estimated Time: 10 weeks</div>
 	</section>
@@ -44,48 +42,51 @@ $wpdb->insert(
 		<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
 	</section>
 	
-	<div class="sidebar right">
-		<h4>Related Resources</h4>
-	</div>
-	
-
-	
-	<h2>Start Documenting</h2>
+	<section class="text-content">
+		<div class="sidebar right">
+			<h4>Related Resources</h4>
+		</div>
 	
 	
-	<p><?php echo get_post_meta($post->ID, 'activity_description', true); ?></p>
-		<?php 
-	if($activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$actvityid'  ORDER BY submission_timestamp DESC LIMIT 1")) {
-	?>
-	<div class="submission">
-	<?php
-	if($activity_info->current_status == 'reviewing') echo "<h4>Your submission is currently being reviewed.</h4>";
-	?>
-	<h3>Current Submission:</h3>
-	<?php echo stripslashes($activity_info->data); ?>
-	</div>
 	
-	<?php } else { // if($activity_info) ?>
-	
-	<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
-		<?php if(get_field('activity_response_type') == 'text') { //get_post_meta($post->ID, 'activity_response_type', true) == "text") { ?>
-			<input type="text" name="activity_submission">
-		<?php } else if(get_field('activity_response_type') == 'textarea') { //get_post_meta($post->ID, 'activity_response_type', true) == "text") { ?>
-			<textarea name="activity_submission"></textarea>
-		<?php } else if(get_field('activity_response_type') == "image") { ?>
-			<input type="file" name="activity_submission">
-		<?php } ?>
+		<h2>Start Documenting</h2>
 		
-		<input type="submit">
+		
+		<p><?php echo get_post_meta($post->ID, 'activity_description', true); ?></p>
+			<?php 
+		if($activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$actvityid'  ORDER BY submission_timestamp DESC LIMIT 1")) {
+		?>
+		<div class="submission">
+		<?php
+		if($activity_info->current_status == 'reviewing') echo "<h4>Your submission is currently being reviewed.</h4>";
+		?>
+		<h3>Current Submission:</h3>
+		<?php echo stripslashes($activity_info->data); ?>
+		</div>
+		
+		<?php } else { // if($activity_info) ?>
+		
+		<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
+			<?php if(get_field('activity_response_type') == 'text') { //get_post_meta($post->ID, 'activity_response_type', true) == "text") { ?>
+				<input type="text" name="activity_submission">
+			<?php } else if(get_field('activity_response_type') == 'textarea') { //get_post_meta($post->ID, 'activity_response_type', true) == "text") { ?>
+				<textarea name="activity_submission"></textarea>
+			<?php } else if(get_field('activity_response_type') == "image") { ?>
+				<input type="file" name="activity_submission">
+			<?php } ?>
+			
+			<input type="submit">
+	
+		</form>
+		
+		<?php } // if(!$activity_info) ?>
+		
 
-	</form>
+		<h2>Relevant Discussions</h2>
 	
-	<?php } // if(!$activity_info) ?>
-	
-	
+	</section>
 	
 	
-	<h2>Relevant Discussions</h2>
 
 	
 

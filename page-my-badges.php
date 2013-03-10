@@ -1,6 +1,4 @@
-<?php $section = 'badges'; 
-	  $view = 'aquapons';
-?>
+<?php $section = 'badges'; ?>
 <?php get_header(); ?>
 <?php
 	if(!isset($_GET['aquapons'])){

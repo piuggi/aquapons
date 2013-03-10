@@ -2,7 +2,7 @@
 <?php get_header(); ?>
 
 
-	<section class="main">
+	<section id="main" class="text-content">
 
 		<?php 
 		$cats = array('Water', 'Fish', 'Plant', 'Design + Build');
@@ -10,6 +10,9 @@
 		$args = array(
 			'post_type' => 'badge',
 			'posts_per_page' => 10,
+			'meta_key' => 'badge_level',
+			'orderby' => 'meta_value_num',
+			'order' => 'ASC',
 			'meta_query' => array(
 				array(
 					'key' => 'badge_type',
@@ -22,7 +25,7 @@
 		<?php if ( $query->have_posts() ) : ?>
 		<?php foreach($cats as $cat) { ?>
 		<?php rewind_posts(); ?>
-		<section class="<?php echo sanitize_title(strtolower($cat)); ?>">
+		<section class="skills-row <?php echo sanitize_title(strtolower($cat)); ?>">
 			<h2><?php echo $cat; ?> Badges <span class="show_category_descriptions">?</span></h2>
 			<?php
 			/* Start the Loop */
@@ -52,7 +55,7 @@
 			
 		<?php endif; ?>
 		
-		<section class="category_descriptions">
+		<div class="category_descriptions">
 			<div class="close_category_descriptions">X</div>
 			<?php 
 			foreach($cats as $cat) { ?>
@@ -61,7 +64,7 @@
 					<p><?php echo $cat_descriptions[$cat]; ?></p>
 				</section>
 			<?php } ?>
-		</section>
+		</div>
 
 	</section><!-- #main -->
 

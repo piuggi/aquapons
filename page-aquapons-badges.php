@@ -1,6 +1,4 @@
-<?php $section = 'badges'; 
-	  $view = 'aquapons';
-?>
+<?php $section = 'badges'; ?>
 <?php get_header(); ?>
 <?php
 	if(!isset($_GET['aquapons'])){
@@ -46,6 +44,8 @@
 					'meta_key' => 'badge_level',
 					'posts_per_page' => -1,
 					'meta_value' => $x,
+					'orderby' => 'menu_order',
+					'order' => 'ASC'
 				);
 				$query = new WP_Query( $args );
 				while($query->have_posts()){
@@ -108,6 +108,8 @@
 				'meta_key' => 'badge_level',
 				'posts_per_page' => -1,
 				'meta_value' => $x,
+				'orderby' => 'menu_order',
+				'order' => 'ASC'
 			);
 			$query = new WP_Query( $args );
 			
@@ -121,14 +123,14 @@
 				rewind_posts();
 				if($current_level) {
 				?>
-				<section class="badge-stack <?php echo ' level-'.$x;  echo " ".sanitize_title(strtolower($cat)); if(!$current_level) echo ' hide';?>">
+				<section class="badge-stack <?php echo ' level-'.$x;  echo " ".sanitize_title(strtolower($cat)); ?>">
 				<?php
 				
 				while ( $query->have_posts() ) {
 					$query->the_post();
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='content' && get_cat_name($wp_cats[0]) == $cat) { ?>
-						<div class="content badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; if(!$current_level) echo ' hide';?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>);">
+						<div class="content badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; ?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>);">
 							<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
 							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
 						</div>
@@ -143,7 +145,7 @@
 					$query->the_post();
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='skill' && get_cat_name($wp_cats[0]) == $cat) { ?>
-						<div class="skill badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; if(!$current_level) echo ' hide';?>">
+						<div class="skill badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; ?>">
 							<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
 							<hr>
 							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->

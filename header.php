@@ -38,7 +38,10 @@ $theme = new themeCheck();
 	
 ?>
 
-<?php if(is_page()) { $page_slug = 'page-'.$post->post_name; } ?>
+<?php
+if(is_page()) { $page_slug = 'page-'.$post->post_name; }
+if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post_meta($post->ID, 'badge_type', true);
+?>
 <body <?php body_class($page_slug ." ". $section); ?>>
 
 <div id="container">

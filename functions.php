@@ -81,7 +81,7 @@ function getBadgeStatus($badge_id, $dbresults = null) {
 
 
 function breadcrumb($curr_post) {
-	
+	echo "<ul class='breadcrumb'>";
 	$link = "<li> ‹ <a href='%s'>%s</a>";
     $parent_id  = $curr_post->post_parent;  
     $breadcrumbs = array();  
@@ -101,6 +101,7 @@ function breadcrumb($curr_post) {
     $before = '<li> ‹ <a href="'.get_permalink($curr_post->ID).'" >';
     $after = '</li></a>';
     echo $delimiter . $before . get_the_title($curr_post->ID) . $after; 
+    echo "</ul>";
 }
 
 	

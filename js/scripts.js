@@ -17,12 +17,12 @@ jQuery(document).ready(function($) {
 	});
 	
 	$('.show_category_descriptions').click(function() {
-		$('.category_descriptions').animate({left: '0px'});
+		$('.category_descriptions').animate({left: '0px'}, 200);
 	});
 	
 	
 	$('.close_category_descriptions').click(function() {
-		$('.category_descriptions').animate({left: '-220px'});
+		$('.category_descriptions').animate({left: '-245px'}, 200);
 	});
 	
 		
