@@ -1,6 +1,3 @@
-<?php $theme = new themeCheck(); ?>
-
-
 <div id="secondary-nav">
 	<section id="main-links">
 		<h2 id="page-title"><a href=""><?php echo get_the_title(); ?></a></h2>
@@ -30,3 +27,4 @@
 		</form>
 		<hr>
 	</section>	<!--#page-search-->
+</div> <!-- #secondary-nav -->

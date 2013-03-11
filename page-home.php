@@ -166,42 +166,33 @@
 							</article><!--.question -->
 						</section><!--#discussions-->
 						<section id="resources" class="sidebar">
-							<ul>
-							<li class="recent_resource">
+							
 							<h4>Newly added resources </h4>
-							</li>
-							<li class="recent_resource">
-								<p>Power point presentation <a>Download ›</a></p>
-								<hr/>
-							</li>
-							<li class="recent_resource">
-								<p><a>Just a resource link ›</a></p>
-								<hr/>
-							</li>
-							<li class="recent_resource">
-								<p><a>Title of a resource</a> by author name</p>
-								<hr/>
-							</li>	
-							<li class="recent_resource">
-								<p>PDF Document to <a>Download ›</a></p>
-								<hr/>
-							</li>
-							<li class="recent_resource">
-								<p>Power point presentation <a>Download ›</a></p>
-								<hr/>
-							</li>
-							<li class="recent_resource">
-								<p><a>Just a resource link ›</a></p>
-								<hr/>
-							</li>
-							<li class="recent_resource">
-								<p><a>Title of a resource</a> by author name</p>
-								<hr/>
-							</li>	
-							<li class="recent_resource">
-								<p>PDF Document to <a>Download ›</a></p>
-								<hr/>
-							</li>
+							<ul>
+								<li class="recent_resource">
+									<p>Power point presentation <a>Download ›</a></p>
+								</li>
+								<li class="recent_resource">
+									<p><a>Just a resource link ›</a></p>
+								</li>
+								<li class="recent_resource">
+									<p><a>Title of a resource</a> by author name</p>
+								</li>	
+								<li class="recent_resource">
+									<p>PDF Document to <a>Download ›</a></p>
+								</li>
+								<li class="recent_resource">
+									<p>Power point presentation <a>Download ›</a></p>
+								</li>
+								<li class="recent_resource">
+									<p><a>Just a resource link ›</a></p>
+								</li>
+								<li class="recent_resource">
+									<p><a>Title of a resource</a> by author name</p>
+								</li>	
+								<li class="recent_resource">
+									<p>PDF Document to <a>Download ›</a></p>
+								</li>
 							</ul>			
 						</section>
 					</section><!--recent-->

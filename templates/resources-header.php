@@ -1,18 +1,12 @@
-<div id="sub-nav">
-	<ul id="crumb-nav">
-		<li>‹ <a href="">Resources</a></li>
-		<li>‹ <a href="">Forum</a></li>
-	</ul>
-</div><!--#sub-nav-->
 <div id="secondary-nav">
 	<section id="main-links">
-		<h2 id="page-title"><a href="">Forum</a></h2>
+		<h2 id="page-title"><a href=""><?php echo get_the_title(); ?></a></h2>
 		<hr>
 		<ul>
-			<li><a href="">Tutorials</a></li>
-			<li><a href="">Forum</a></li>
-			<li><a href="">Library</a></li>
-			<li><a href="">Jobs</a></li>
+			<li><a href="/resources/tutorials/">Tutorials</a></li>
+			<li><a href="/resources/forum/">Forum</a></li>
+			<li><a href="/resources/library/">Library</a></li>
+			<li><a href="/resources/jobs/">Jobs</a></li>
 		</ul>
 	</section><!--#main-links-->
 	<section id="content-filter">
@@ -24,9 +18,8 @@
 		<p><a href="">Content Area</a></p>
 	</section><!--#content-sort-->
 	<section id="page-search">
-		<p>Search</p>
 		<form>
-			<input type="text" name="search-item">
+			<input type="text" name="search-item" placeholder="Search">
 			<input type="hidden" value="" name="query">
 			<input type="submit" value="Forum" name="SiteArea">
 		</form>
