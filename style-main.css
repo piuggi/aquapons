@@ -132,12 +132,6 @@ table {
 .right {
   float: right;
 }
-.pad {
-  padding: 20px;
-}
-.offset_padding {
-  margin: -20px -20px 0;
-}
 .vertical_align {
   display: table-cell;
   vertical-align: middle;
@@ -171,10 +165,15 @@ table {
 .text-content {
   padding: 20px;
 }
+.main-col {
+  display: inline-table;
+  width: 75%;
+}
 body {
   border: 0;
   margin: 0;
   padding: 0;
+  color: #423c2e;
   background-color: #f9f6ef;
   font-family: "jubilant", Georgia, Serif;
   line-height: 1.2em;
@@ -191,7 +190,7 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 1.4em;
-  margin: 0 0 20px 0;
+  padding: 20px 0 10px 0;
   color: #423c2e;
   text-align: left;
 }
@@ -200,6 +199,10 @@ a:visited {
   color: #a59e8f;
   text-decoration: none;
   font-family: "proxima-nova", Verdana, sans-serif;
+}
+hr {
+  border: none;
+  border-bottom: 1px solid #423c2e;
 }
 header {
   background-color: #f9f6ef;
@@ -229,10 +232,10 @@ header #main-nav a {
   text-transform: uppercase;
 }
 header #main-nav a:hover {
-  color: #fff;
+  color: #f7f1e5;
 }
 header #main-nav .selected a {
-  color: #fff;
+  color: #f7f1e5;
 }
 header #main-nav .sub-nav a,
 header #main-nav .selected .sub-nav a {
@@ -240,7 +243,7 @@ header #main-nav .selected .sub-nav a {
 }
 header #main-nav .sub-nav a:hover,
 header #main-nav .selected .sub-nav a:hover {
-  color: #fff;
+  color: #f9f6ef;
 }
 header #main-nav ul {
   padding: 0;
@@ -303,7 +306,7 @@ header ul#navigation .sub-nav li {
 }
 header ul#navigation .sub-nav li:before {
   content: "• ";
-  color: #fff;
+  color: #f9f6ef;
 }
 header ul#navigation .sub-nav li:first-child:before {
   content: "";
@@ -503,40 +506,13 @@ footer.main footer ul li {
   padding: 20px 2% 0;
   vertical-align: top;
 }
-footer.main footer ul li h4 {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #f9f6ef;
-  font-weight: 200;
-}
-footer.main footer ul li p {
-  font-family: "proxima-nova", Verdana, sans-serif;
-  color: #a59e8f;
-  font-size: 1em;
-  font-weight: 200;
-  line-height: 1.2em;
-}
-footer.main footer ul li hr.fish {
-  background-color: #ce691f;
-  color: #ce691f;
-}
-footer.main footer ul li hr.water {
-  background-color: #086098;
-  color: #ce691f;
-}
-footer.main footer ul li hr.plant {
-  background-color: #4c7f0f;
-  color: #ce691f;
-}
-footer.main footer ul li hr.design-build {
-  background-color: #8d3b92;
-  color: #ce691f;
+footer.main footer ul #daily-tip p {
+  font-size: 18px;
 }
 footer.main footer ul #site-desc {
   margin: -30px 0 0;
   padding: 0;
-  width: 18.5%;
+  width: 240px;
   position: relative;
   z-index: 200;
   background-color: #a59e8f;
@@ -551,10 +527,47 @@ footer.main footer ul #site-desc h4 {
   height: 68px;
   margin: 20px 25px;
 }
+footer.main footer ul #site-desc hr {
+  margin: 10px;
+}
 footer.main footer ul #site-desc p {
   color: #423c2e;
-  padding: 0px 5px 10px 10px;
+  padding: 5px 15px;
   font-size: .8em;
+}
+footer.main footer h4 {
+  font-family: "proxima-nova", Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #f9f6ef;
+  font-weight: 200;
+}
+footer.main footer p {
+  margin: 0 0 1em;
+  font-family: "proxima-nova", Verdana, sans-serif;
+  color: #a59e8f;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 1.2em;
+}
+footer.main footer a,
+footer.main footer a:visited {
+  color: #f9f6ef;
+}
+footer.main footer hr {
+  border-bottom: 1px solid #716854;
+}
+footer.main footer hr.fish {
+  border-bottom: 1px solid #ce691f;
+}
+footer.main footer hr.water {
+  border-bottom: 1px solid #ce691f;
+}
+footer.main footer hr.plant {
+  border-bottom: 1px solid #ce691f;
+}
+footer.main footer hr.design-build {
+  border-bottom: 1px solid #ce691f;
 }
 footer.main footer #copyright {
   float: right;
@@ -564,6 +577,65 @@ footer.main footer #copyright {
   color: #a59e8f;
   font-size: .7em;
 }
+.sidebar {
+  display: inline-table;
+  min-height: 600px;
+  width: 20%;
+  padding: 0 2%;
+  clear: left;
+}
+.sidebar h4 {
+  font-family: "proxima-nova", Verdana, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #423c2e;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 1px solid #423c2e;
+}
+.sidebar hr {
+  border: 0;
+  height: 1px;
+  color: #716854;
+  background-color: #716854;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+.sidebar p {
+  width: 100%;
+  font-family: "jubilant", Georgia, Serif;
+  color: #423c2e;
+  margin: 12px 0;
+  font-size: .9em;
+}
+.sidebar li {
+  width: 100%;
+  padding: 5px 0 5px;
+}
+.sidebar a {
+  color: #078c78;
+  font-family: "jubilant", Georgia, Serif;
+  text-decoration: underline;
+}
+.tmce-active .mceEditor iframe {
+  background: #f9f6ef;
+}
+.tmce-active .mceEditor p {
+  color: #423c2e;
+  font-size: 16px;
+  line-height: 1.2em;
+}
+.tmce-active .mceEditor table td {
+  vertical-align: top;
+}
+.tmce-active .mceEditor .mceStatusbar {
+  display: none;
+}
+.tmce-active .wp-editor-container {
+  border: none;
+  border-width: 0;
+}
 .badge.water,
 .badge.fish,
 .badge.plant,
@@ -571,10 +643,11 @@ footer.main footer #copyright {
   margin: 0;
   padding: 20px 1.5% 0;
 }
-.skill.badge {
+.skill.badge,
+.skill-activity {
   width: 80px;
   height: 116px;
-  margin: 10px;
+  margin: 0 10px 20px 10px;
   display: inline-table;
   padding: 10px;
   text-align: left;
@@ -584,10 +657,12 @@ footer.main footer #copyright {
   color: #f9f6ef;
   font-family: "proxima-nova", Verdana, sans-serif;
 }
-.skill.badge a {
+.skill.badge a,
+.skill-activity a {
   color: #f9f6ef;
 }
-.skill.badge hr {
+.skill.badge hr,
+.skill-activity hr {
   border: 0;
   height: 1px;
   color: #f9f6ef;
@@ -595,93 +670,90 @@ footer.main footer #copyright {
 }
 .water .skill.badge {
   background: #086098;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#086098 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#086098 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#086098 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#086098 15px);
   background: linear-gradient(320deg,transparent 15px,#086098 15px);
 }
 .water .skill.badge:nth-child(3n-1) {
   background: #3f268e;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#3f268e 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#3f268e 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#3f268e 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#3f268e 15px);
   background: linear-gradient(320deg,transparent 15px,#3f268e 15px);
 }
 .water .skill.badge:nth-child(4n-1) {
   background: #26a3c2;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#26a3c2 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#26a3c2 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#26a3c2 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#26a3c2 15px);
   background: linear-gradient(320deg,transparent 15px,#26a3c2 15px);
 }
 .fish .skill.badge {
   background: #c93e1b;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#c93e1b 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#c93e1b 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#c93e1b 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#c93e1b 15px);
   background: linear-gradient(320deg,transparent 15px,#c93e1b 15px);
 }
 .fish .skill.badge:nth-child(3n-1) {
   background: #dbad35;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#dbad35 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#dbad35 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#dbad35 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#dbad35 15px);
   background: linear-gradient(320deg,transparent 15px,#dbad35 15px);
 }
 .fish .skill.badge:nth-child(4n-1) {
   background: #ce691f;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#ce691f 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#ce691f 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#ce691f 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#ce691f 15px);
   background: linear-gradient(320deg,transparent 15px,#ce691f 15px);
 }
 .plant .skill.badge {
   background: #4c7f0f;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#4c7f0f 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#4c7f0f 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#4c7f0f 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#4c7f0f 15px);
   background: linear-gradient(320deg,transparent 15px,#4c7f0f 15px);
 }
 .plant .skill.badge:nth-child(3n-1) {
   background: #078c78;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#078c78 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#078c78 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#078c78 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#078c78 15px);
   background: linear-gradient(320deg,transparent 15px,#078c78 15px);
 }
 .plant .skill.badge:nth-child(4n-1) {
   background: #acb200;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#acb200 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#acb200 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#acb200 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#acb200 15px);
   background: linear-gradient(320deg,transparent 15px,#acb200 15px);
 }
 .design-build .skill.badge {
   background: #8d3b92;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#8d3b92 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#8d3b92 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#8d3b92 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#8d3b92 15px);
   background: linear-gradient(320deg,transparent 15px,#8d3b92 15px);
 }
 .design-build .skill.badge:nth-child(3n-1) {
   background: #e13955;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#e13955 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#e13955 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#e13955 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#e13955 15px);
   background: linear-gradient(320deg,transparent 15px,#e13955 15px);
 }
 .design-build .skill.badge:nth-child(4n-1) {
   background: #716854;
-  background: -webkit-linear-gradient(320deg,transparent 15px,#716854 15px);
+  background: -webkit-linear-gradient(140deg,transparent 15px,#716854 15px);
   background: -o-linear-gradient(320deg,transparent 15px,#716854 15px);
   background: -moz-linear-gradient(320deg,transparent 15px,#716854 15px);
   background: linear-gradient(320deg,transparent 15px,#716854 15px);
 }
 .badge.incomplete {
   opacity: .5;
-}
-.badge-container {
-  text-align: left;
 }
 .badge.aquapons {
   display: inline-block;
@@ -708,6 +780,7 @@ footer.main footer #copyright {
   font-size: .75em;
 }
 .badge.content {
+  display: inline-block;
   height: 83px;
   width: 118px;
   text-indent: 9999px;
@@ -729,7 +802,7 @@ footer.main footer #copyright {
 .badges-display .content {
   text-align: center;
 }
-.question article.question {
+.question {
   width: 97%;
   max-width: 900px;
   min-height: 64px;
@@ -737,16 +810,16 @@ footer.main footer #copyright {
   margin: 10px 0 0 0;
   padding: 5px 0;
 }
-.question article.question .qleft {
+.question .qleft {
   width: 120px;
   display: inline-block;
   height: inherit;
   overflow: hidden;
   vertical-align: middle;
   margin: 0 0 15px 0;
-  padding: 1px 0 0px;
+  padding: 2px 0 0px;
 }
-.question article.question .qleft p {
+.question .qleft p {
   color: #423c2e;
   font-size: 1.75em;
   font-family: "proxima-nova", Verdana, sans-serif;
@@ -755,14 +828,14 @@ footer.main footer #copyright {
   display: inline-block;
   vertical-align: top;
 }
-.question article.question .qleft p em {
+.question .qleft p em {
   font-size: .4em;
   display: block;
 }
-.question article.question .qleft p:last-child {
+.question .qleft p:last-child {
   margin: -38px 0 0 70px;
 }
-.question article.question .qleft hr {
+.question .qleft hr {
   display: inline-block;
   width: 80px;
   transform: rotate(300deg);
@@ -772,12 +845,12 @@ footer.main footer #copyright {
   -moz-transform: rotate(300deg);
   margin: 0 0 0 -15px;
 }
-.question article.question .qright {
+.question .qright {
   display: inline-block;
   width: 80%;
   background-color: #f9f6ef;
 }
-.question article.question .qright div {
+.question .qright div {
   width: 12px;
   min-height: 64px;
   margin: 0;
@@ -785,48 +858,45 @@ footer.main footer #copyright {
   float: left;
   margin: 0 10px 0 0;
 }
-.question article.question .qright div.water {
+.question .qright div.water {
   background-color: #086098;
 }
-.question article.question .qright div.plant {
+.question .qright div.plant {
   background-color: #4c7f0f;
 }
-.question article.question .qright div.design-build {
+.question .qright div.design-build {
   background-color: #8d3b92;
 }
-.question article.question .qright div.fish {
+.question .qright div.fish {
   background-color: #ce691f;
 }
-.question article.question .qright h3 {
+.question .qright h3 {
   margin: 10px 0 0;
   padding: 0;
   font-size: 1.2em;
   font-family: georgia, serif;
 }
-.question article.question .qright p {
+.question .qright p {
   margin: 0;
   padding: 2px 0 0;
   font-size: .8em;
   font-family: "proxima-nova", Verdana, sans-serif;
 }
-.question article.question .qright p a.water,
-.question article.question .qright p a.water:visited {
+.question .qright p a.water,
+.question .qright p a.water:visited {
   color: #086098;
 }
-.question article.question .qright p a.plant,
-.question article.question .qright p a.plant:visited {
+.question .qright p a.plant,
+.question .qright p a.plant:visited {
   color: #4c7f0f;
 }
-.question article.question .qright p a.design-build,
-.question article.question .qright p a.design-build:visited {
+.question .qright p a.design-build,
+.question .qright p a.design-build:visited {
   color: #8d3b92;
 }
-.question article.question .qright p a.fish,
-.question article.question .qright p a.fish:visited {
+.question .qright p a.fish,
+.question .qright p a.fish:visited {
   color: #ce691f;
-}
-.question article.question:first-child {
-  margin: 30px 0 0 0;
 }
 .header-ul ul {
   padding: 0;
@@ -850,6 +920,16 @@ header.badges #content-sort {
   width: 100%;
   min-height: 500px !important;
   padding-bottom: 40px;
+  zoom: 1;
+}
+#main:before {
+  content: '';
+  display: block;
+}
+#main:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 .badges #main {
   background: url('imgs/dot_dark.png');
@@ -883,7 +963,7 @@ header.badges #content-sort {
   width: 100%;
   display: block;
   text-align: center;
-  background: #26a3c2;
+  background: #a59e8f;
   padding: 20px 0;
 }
 .badges #badge-nav h2 {
@@ -951,10 +1031,6 @@ header.badges #content-sort {
   color: #f7f1e5;
   background: #f7f1e5;
 }
-.badges #skill-badge-activities a {
-  color: #f7f1e5;
-  font-size: 1.2em;
-}
 .badges .water #badge-nav,
 .badges .water .skill-activity {
   background: #26a3c2;
@@ -971,19 +1047,22 @@ header.badges #content-sort {
 .badges .design-build .skill-activity {
   background: #8d3b92;
 }
-section#main.home #mantle {
+.page-home #main {
+  background: url('imgs/dot_dark.png');
+}
+.page-home #mantle {
   width: 100%;
   text-align: center;
 }
-section#main.home #mantle ul {
+.page-home #mantle ul {
   padding: 0;
   margin: 0;
   display: inline;
 }
-section#main.home #mantle ul li {
+.page-home #mantle ul li {
   display: inline-block;
 }
-section#main.home #mantle #showcase figcaption {
+.page-home #mantle #showcase figcaption {
   width: 400px;
   position: absolute;
   top: 200px;
@@ -992,297 +1071,166 @@ section#main.home #mantle #showcase figcaption {
   color: #f9f6ef;
   text-align: right;
 }
-section#main.home #mantle #showcase figcaption h4 {
+.page-home #mantle #showcase figcaption h4 {
   display: block;
+  margin: .7em 0;
   font-family: "jubilant", Georgia, Serif;
   font-size: 3em;
   text-transform: capitalize;
   text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;
 }
-section#main.home #mantle #showcase figcaption p {
+.page-home #mantle #showcase figcaption p {
   display: block;
+  margin: .7em 0;
   text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;
 }
-section#main.home #mantle #showcase figcaption p.institution {
+.page-home #mantle #showcase figcaption p.institution {
   font-family: "proxima-nova", Verdana, sans-serif;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1.6em;
 }
-section#main.home #mantle #showcase figcaption p.location {
+.page-home #mantle #showcase figcaption p.location {
   font-family: "proxima-nova", Verdana, sans-serif;
   text-transform: capitalize;
   font-weight: bold;
 }
-section#main.home #mantle #showcase img {
+.page-home #mantle #showcase img {
   width: 100% !important;
   height: auto;
 }
-section#main.home #mantle ul {
+.page-home .steps {
+  position: relative;
+  top: -4px;
+}
+.page-home .steps a {
+  display: block;
+  margin: 0;
+  padding: 0 1%;
+  width: 100%;
+  height: 100%;
+}
+.page-home .steps ul {
   width: 100%;
   margin: 0 auto;
   padding: 0 auto;
-  position: relative;
-  top: -73px;
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
 }
-section#main.home #mantle ul li {
+.page-home .steps ul li {
+  display: inline-block;
+  height: 86px;
   margin: 0 1%;
-  padding: 0 1%;
   width: 15%;
   font-family: "proxima-nova", Verdana, sans-serif;
   font-weight: 600;
-  text-transform: uppercase;
+  text-align: center;
   font-size: .7em;
   background: #d6cebe;
-  height: 70px;
+  overflow: hidden;
   color: #423c2e;
-  transition: background-color 3s;
-  -webkit-transition: background-color 3s;
-  -moz-transition: background-color 3s;
-  -o-transition: background-color 3s;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
 }
-section#main.home #mantle ul li h3 {
-  vertical-align: bottom;
-}
-section#main.home #mantle ul li figure {
-  margin: 10px 0;
+.page-home .steps ul li figure {
+  padding: 10px 0;
   height: 35px;
   width: auto;
 }
-section#main.home #mantle ul li figure img {
+.page-home .steps ul li figure img {
   vertical-align: center;
   max-width: 90%;
-  transition: opacity 2s;
-  -webkit-transition: opacity 2s;
-  -moz-transition: opacity 2s;
-  -o-transition: opacity 2s;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
 }
-section#main.home #mantle ul li:hover {
+.page-home .steps ul li h3 {
+  vertical-align: bottom;
+  text-transform: uppercase;
+}
+.page-home .steps ul li hr {
+  width: 80%;
+  margin: 8px auto;
+  border: none;
+  border-top: 1px solid #d6cebe;
+}
+.page-home .steps ul li p {
+  padding: 0 5%;
+  font-family: "jubilant", Georgia, Serif;
+  font-weight: normal;
+  font-size: 16px;
+}
+.page-home .steps ul li:hover {
+  height: 175px;
   background: #f9f6ef;
 }
-section#main.home #mantle ul li:hover img {
+.page-home .steps ul li:hover img {
   opacity: 0.5;
 }
-section#main.home #mantle #stripes {
+.page-home .steps #stripes {
   width: 100%;
   height: 10px;
   background: url('imgs/pagestripes.png') repeat-x;
   position: relative;
-  top: -73px;
+  top: 0px;
 }
-section#main.home #callout {
+.page-home #callout {
   width: 100%;
   position: relative;
   max-height: 250px;
   overflow: hidden;
-  top: -40px;
   font-family: "proxima-nova", Verdana, sans-serif;
   padding: 0 2%;
 }
-section#main.home #callout h2 {
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 1.4em;
-  margin: 0 0 20px 0;
-  color: #423c2e;
-  text-align: left;
-}
-section#main.home #callout figure {
+.page-home #callout figure {
   display: inline-table;
   margin: 10px;
   padding: 0 2%;
 }
-section#main.home #callout figure img {
+.page-home #callout figure img {
   width: 160px;
   height: 160px;
   overflow: hidden;
 }
-section#main.home #callout figure figcaption {
+.page-home #callout figure figcaption {
   text-align: center;
 }
-section#main.home #callout figure figcaption h3 {
+.page-home #callout figure figcaption h3 {
   font-weight: bold;
   color: #078c78;
 }
-section#main.home #callout figure.first {
+.page-home #callout figure.first {
   padding: 0;
   margin-left: 0;
 }
-section#main.home #additional-content {
-  background: url('imgs/dot_dark.png');
-  min-height: 600px;
-  padding: 0 2%;
+.page-home #new-institutions {
+  padding: 20px 0 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 240px;
+  white-space: nowrap;
 }
-section#main.home #additional-content #recent-discussions {
-  position: relative;
-  top: 20px;
-  margin: 20px 0;
-}
-section#main.home #additional-content #discussions {
-  display: inline-table;
-  width: 75%;
-}
-section#main.home #additional-content #discussions article.question {
-  width: 97%;
-  max-width: 900px;
-  min-height: 64px;
-  display: block;
-  margin: 10px 0 0 0;
-  padding: 5px 0;
-}
-section#main.home #additional-content #discussions article.question .qleft {
-  width: 120px;
-  display: inline-block;
-  height: inherit;
-  overflow: hidden;
-  vertical-align: middle;
-  margin: 0 0 15px 0;
-  padding: 1px 0 0px;
-}
-section#main.home #additional-content #discussions article.question .qleft p {
-  color: #423c2e;
-  font-size: 1.75em;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  text-align: center;
-  margin: 0;
-  display: inline-block;
-  vertical-align: top;
-}
-section#main.home #additional-content #discussions article.question .qleft p em {
-  font-size: .4em;
-  display: block;
-}
-section#main.home #additional-content #discussions article.question .qleft p:last-child {
-  margin: -38px 0 0 70px;
-}
-section#main.home #additional-content #discussions article.question .qleft hr {
-  display: inline-block;
-  width: 80px;
-  transform: rotate(300deg);
-  -ms-transform: rotate(300deg);
-  -webkit-transform: rotate(300deg);
-  -o-transform: rotate(300deg);
-  -moz-transform: rotate(300deg);
-  margin: 0 0 0 -15px;
-}
-section#main.home #additional-content #discussions article.question .qright {
-  display: inline-block;
-  width: 80%;
-  background-color: #f9f6ef;
-}
-section#main.home #additional-content #discussions article.question .qright div {
-  width: 12px;
-  min-height: 64px;
-  margin: 0;
-  padding: 0;
-  float: left;
-  margin: 0 10px 0 0;
-}
-section#main.home #additional-content #discussions article.question .qright div.water {
-  background-color: #086098;
-}
-section#main.home #additional-content #discussions article.question .qright div.plant {
-  background-color: #4c7f0f;
-}
-section#main.home #additional-content #discussions article.question .qright div.design-build {
-  background-color: #8d3b92;
-}
-section#main.home #additional-content #discussions article.question .qright div.fish {
-  background-color: #ce691f;
-}
-section#main.home #additional-content #discussions article.question .qright h3 {
-  margin: 10px 0 0;
-  padding: 0;
-  font-size: 1.2em;
-  font-family: georgia, serif;
-}
-section#main.home #additional-content #discussions article.question .qright p {
-  margin: 0;
-  padding: 2px 0 0;
-  font-size: .8em;
-  font-family: "proxima-nova", Verdana, sans-serif;
-}
-section#main.home #additional-content #discussions article.question .qright p a.water,
-section#main.home #additional-content #discussions article.question .qright p a.water:visited {
-  color: #086098;
-}
-section#main.home #additional-content #discussions article.question .qright p a.plant,
-section#main.home #additional-content #discussions article.question .qright p a.plant:visited {
-  color: #4c7f0f;
-}
-section#main.home #additional-content #discussions article.question .qright p a.design-build,
-section#main.home #additional-content #discussions article.question .qright p a.design-build:visited {
-  color: #8d3b92;
-}
-section#main.home #additional-content #discussions article.question .qright p a.fish,
-section#main.home #additional-content #discussions article.question .qright p a.fish:visited {
-  color: #ce691f;
-}
-section#main.home #additional-content #discussions article.question:first-child {
-  margin: 30px 0 0 0;
-}
-section#main.home #additional-content #resources {
-  position: relative;
-  display: inline-table;
-  width: 20%;
-  clear: left;
-}
-section#main.home #additional-content #resources h4 {
-  display: inline;
-  font-family: "proxima-nova", Verdana, sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #423c2e;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-section#main.home #additional-content #resources .recent_resource {
-  width: 100%;
-  padding: 5px 0 5px;
-}
-section#main.home #additional-content #resources .recent_resource hr {
-  border: 0;
-  height: 1px;
-  color: #716854;
-  background-color: #716854;
-  display: block;
-  padding: 0;
-  margin: 0;
-}
-section#main.home #additional-content #resources p {
-  width: 100%;
-  font-family: "jubilant", Georgia, Serif;
-  color: #423c2e;
-  margin: 12px 0;
-  font-size: .9em;
-}
-section#main.home #additional-content #resources p a {
-  color: #078c78;
-  font-family: "jubilant", Georgia, Serif;
-  text-decoration: underline;
-}
-section#main.home #new-institutions {
-  padding: 20px 0 60px 0;
-  overflow: hidden;
-  max-height: 260px;
-}
-section#main.home #new-institutions .institution {
+.page-home #new-institutions .institution {
   width: 216px;
-  display: inline-table;
+  display: inline-block;
   background: #f9f6ef;
   border: 1px solid #a59e8f;
-  margin: 0 2%;
+  margin: 0 2% 0 0;
   text-align: center;
   vertical-align: top;
 }
-section#main.home #new-institutions .institution figure {
+.page-home #new-institutions .institution figure {
   height: 78px;
   padding-bottom: 18px;
 }
-section#main.home #new-institutions .institution img {
+.page-home #new-institutions .institution img {
   padding: 20px 0 5px;
 }
-section#main.home #new-institutions .institution h4 {
+.page-home #new-institutions .institution h4 {
   font-family: "proxima-nova", Verdana, sans-serif;
   font-weight: 100;
   font-size: .9em;
@@ -1291,7 +1239,7 @@ section#main.home #new-institutions .institution h4 {
   margin: 0 auto;
   color: #423c2e;
 }
-section#main.home #new-institutions .institution p {
+.page-home #new-institutions .institution p {
   font-family: "jubilant", Georgia, Serif;
   font-size: .75em;
   font-style: italic;
@@ -1301,7 +1249,7 @@ section#main.home #new-institutions .institution p {
   position: relative;
   color: #423c2e;
 }
-section#main.home #new-institutions .institution.first {
+.page-home #new-institutions .institution.first {
   margin: 0 2% 0 0;
 }
 section#main.forum {
@@ -1332,8 +1280,6 @@ section#main.forum #page-content {
   width: 100%;
   display: block;
   margin: 0 0 0 20px;
-}
-section#main.forum #page-content article.question {
   width: 97%;
   max-width: 900px;
   min-height: 64px;
@@ -1341,16 +1287,16 @@ section#main.forum #page-content article.question {
   margin: 10px 0 0 0;
   padding: 5px 0;
 }
-section#main.forum #page-content article.question .qleft {
+section#main.forum #page-content .qleft {
   width: 120px;
   display: inline-block;
   height: inherit;
   overflow: hidden;
   vertical-align: middle;
   margin: 0 0 15px 0;
-  padding: 1px 0 0px;
+  padding: 2px 0 0px;
 }
-section#main.forum #page-content article.question .qleft p {
+section#main.forum #page-content .qleft p {
   color: #423c2e;
   font-size: 1.75em;
   font-family: "proxima-nova", Verdana, sans-serif;
@@ -1359,14 +1305,14 @@ section#main.forum #page-content article.question .qleft p {
   display: inline-block;
   vertical-align: top;
 }
-section#main.forum #page-content article.question .qleft p em {
+section#main.forum #page-content .qleft p em {
   font-size: .4em;
   display: block;
 }
-section#main.forum #page-content article.question .qleft p:last-child {
+section#main.forum #page-content .qleft p:last-child {
   margin: -38px 0 0 70px;
 }
-section#main.forum #page-content article.question .qleft hr {
+section#main.forum #page-content .qleft hr {
   display: inline-block;
   width: 80px;
   transform: rotate(300deg);
@@ -1376,12 +1322,12 @@ section#main.forum #page-content article.question .qleft hr {
   -moz-transform: rotate(300deg);
   margin: 0 0 0 -15px;
 }
-section#main.forum #page-content article.question .qright {
+section#main.forum #page-content .qright {
   display: inline-block;
   width: 80%;
   background-color: #f9f6ef;
 }
-section#main.forum #page-content article.question .qright div {
+section#main.forum #page-content .qright div {
   width: 12px;
   min-height: 64px;
   margin: 0;
@@ -1389,48 +1335,45 @@ section#main.forum #page-content article.question .qright div {
   float: left;
   margin: 0 10px 0 0;
 }
-section#main.forum #page-content article.question .qright div.water {
+section#main.forum #page-content .qright div.water {
   background-color: #086098;
 }
-section#main.forum #page-content article.question .qright div.plant {
+section#main.forum #page-content .qright div.plant {
   background-color: #4c7f0f;
 }
-section#main.forum #page-content article.question .qright div.design-build {
+section#main.forum #page-content .qright div.design-build {
   background-color: #8d3b92;
 }
-section#main.forum #page-content article.question .qright div.fish {
+section#main.forum #page-content .qright div.fish {
   background-color: #ce691f;
 }
-section#main.forum #page-content article.question .qright h3 {
+section#main.forum #page-content .qright h3 {
   margin: 10px 0 0;
   padding: 0;
   font-size: 1.2em;
   font-family: georgia, serif;
 }
-section#main.forum #page-content article.question .qright p {
+section#main.forum #page-content .qright p {
   margin: 0;
   padding: 2px 0 0;
   font-size: .8em;
   font-family: "proxima-nova", Verdana, sans-serif;
 }
-section#main.forum #page-content article.question .qright p a.water,
-section#main.forum #page-content article.question .qright p a.water:visited {
+section#main.forum #page-content .qright p a.water,
+section#main.forum #page-content .qright p a.water:visited {
   color: #086098;
 }
-section#main.forum #page-content article.question .qright p a.plant,
-section#main.forum #page-content article.question .qright p a.plant:visited {
+section#main.forum #page-content .qright p a.plant,
+section#main.forum #page-content .qright p a.plant:visited {
   color: #4c7f0f;
 }
-section#main.forum #page-content article.question .qright p a.design-build,
-section#main.forum #page-content article.question .qright p a.design-build:visited {
+section#main.forum #page-content .qright p a.design-build,
+section#main.forum #page-content .qright p a.design-build:visited {
   color: #8d3b92;
 }
-section#main.forum #page-content article.question .qright p a.fish,
-section#main.forum #page-content article.question .qright p a.fish:visited {
+section#main.forum #page-content .qright p a.fish,
+section#main.forum #page-content .qright p a.fish:visited {
   color: #ce691f;
-}
-section#main.forum #page-content article.question:first-child {
-  margin: 30px 0 0 0;
 }
 .page-badges-overview h2 {
   padding: 20px 0 0 20px;
@@ -1674,14 +1617,14 @@ section#main.forum #page-content article.question:first-child {
   text-align: center;
 }
 .page-skills-badges .skills-row {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .page-skills-badges .category_descriptions {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -245px;
-  width: 240px;
+  left: -345px;
+  width: 340px;
   background: url('imgs/dotted_pattern_light.png');
   border-right: 3px solid #423c2e;
 }
@@ -1703,10 +1646,10 @@ section#main.forum #page-content article.question:first-child {
 .single-badge .breadcrumb li {
   display: inline-block;
   font-size: 11px;
-  color: #fff;
+  color: #f7f1e5;
 }
 .single-badge .breadcrumb li a {
-  color: #fff;
+  color: #f7f1e5;
 }
 .single-badge .badge-objectives ul {
   -moz-column-count: 3;
@@ -1723,13 +1666,13 @@ section#main.forum #page-content article.question:first-child {
   display: block;
   text-align: left;
   padding: 20px 0;
-  color: #fff;
+  color: #f7f1e5;
 }
 .single-activity #activity-nav h2 {
   padding: 3px 0;
   margin: 20px;
   font-weight: 100;
-  color: #fff;
+  color: #f7f1e5;
   border-bottom: 1px solid white;
 }
 .single-activity #activity-nav .estimated_time {

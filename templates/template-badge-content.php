@@ -10,27 +10,29 @@ $badge_status = $wpdb->get_row("SELECT * FROM `aq_badge_status` WHERE user_id = 
 if($badge_status->status == 100) $badge_complete = true;
 ?>
 
-	<section id="badge-nav">
-	<h2>
-		<?php the_title(); ?>
-		<?php if($badge_complete) echo "<span class='badge-complete'>BADGE COMPLETE</span> <span class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</span>"; ?>
-	</h2>
-	<hr/>
-	<ul id="skill-badge-subnav">
-		<li><a>Activities Overview</a></li>
-		<li>•</li>
-		<li><a>Completed Activities</a></li>
-		<li>•</li>
-		<li><a>Activities in Progress</a></li>
-		<li>•</li>
-		<li><a>Related Resources</a></li>
-	</ul>
+	<section id="badge-nav">	
+		<?php breadcrumb($post); ?>
+		<h2>
+			<?php the_title(); ?>
+			<?php if($badge_complete) echo "<span class='badge-complete'>BADGE COMPLETE</span> <span class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</span>"; ?>
+		</h2>
+		<hr/>
+		<ul id="skill-badge-subnav">
+			<li><a>Activities Overview</a></li>
+			<li>•</li>
+			<li><a>Completed Activities</a></li>
+			<li>•</li>
+			<li><a>Activities in Progress</a></li>
+			<li>•</li>
+			<li><a>Related Resources</a></li>
+		</ul>
 	</section>
 	
-	<section id="skill-badge-outline">
+	<section id="badge-outline">
 		<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
 		<hr>
 		<div class="badge-objectives">
+			<h3>Learning Objectives</h3>
 			<?php echo get_field('badge_objectives', $post->ID); ?>
 		</div>
 	</section>

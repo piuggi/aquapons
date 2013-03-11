@@ -22,7 +22,7 @@ jQuery(document).ready(function($) {
 	
 	
 	$('.close_category_descriptions').click(function() {
-		$('.category_descriptions').animate({left: '-245px'}, 200);
+		$('.category_descriptions').animate({left: '-345px'}, 200);
 	});
 	
 		

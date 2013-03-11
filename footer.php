@@ -22,12 +22,18 @@
 				<li id="feat-aquapon">
 					<h4>Featured Aquapon</h4>
 					<hr>
-					<p></p>
+					<div class="avatar"></div>
+					<h3><a>John Smith</a></h3>
+					<p><a>Meet this grower ›</a></p>
 				</li>
 				<li id="contact-us">
 					<h4>Contact Us</h4>
 					<hr>
-					<p></p>
+					<p>For technical support please call <a>1.800.867.5309</a> or <a>send us an email</a></p>
+					<p>2151 South Robinson Avenue<br>
+					Milwaukee, WI 53207</p>
+					<p>Stay Connected:<br>			
+					</p>
 				</li>
 				<li id="site-desc">
 					<h4>SweetWater Foundation</h4>

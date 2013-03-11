@@ -20,32 +20,55 @@
 						</figcaption>
 						<img id="aquapon_ledgend" src="<?php echo bloginfo('template_url') ?>/imgs/featured_dev_test.png" alt="One of our featured Aquapons">
 					</figure>
+				</section>
+				<section class="steps">
 					<ul >
-						<li id="start" class="steps">
+						<li id="start">
+							<a href="/resources/tutorials/">
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/book.png"></figure>
 							<h3>Start Learning</h3>
+							<hr>
+							<p>Tout to get people to the Tutorials Section</p>
+							</a>
 						</li>
-						<li id="hone" class="steps">
+						<li id="hone">
+							<a href="/badges/skills-badges/">
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/trim.png"></figure>
 							<h3>Hone your skills</h3>
+							<hr>
+							<p>Tout to get people to the Skills Section</p>
+							</a>
 						</li>
-						<li id="share" class="steps">
+						<li id="share">
+							<a href="/resources/forum/">
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/comment.png"></figure>
 							<h3>Share Knowledge</h3>
+							<hr>
+							<p>Tout to get people to the Forum Section</p>
+							</a>
 						</li>
-						<li id="meet" class="steps">
+						<li id="meet">
+							<a href="/community/">
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/leaf.png"></figure>
 							<h3>Meet Aquapons</h3>
+							<hr>
+							<p>Tout to get people to the Community Section</p>
+							</a>
 						</li>		
-						<li id="earn" class="steps">
+						<li id="earn">
+							<a href="/badges/badges-overview/">
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/banner.png"></figure>
 							<h3>Earn Badges</h3>
+							<hr>
+							<p>Tout to get people to the Badges Overview Section</p>
+							</a>
 						</li>
 					</ul>
 					<section id="stripes">
 					</section><!--stripes -->
-				</section><!--mantle-->
-				<section id="callout">
+				</section><!-- steps -->
+
+				<section id="callout" class="textcontent">
 					<section id="featured_grower">
 					<h2>Featured Growers </h2>
 					<figure class="first">
@@ -86,10 +109,10 @@
 					</figure>
 					</section><!--featured grower -->
 				</section>
-				<section id="additional-content">
+				<section id="additional-content" class="text-content">
 					<section id="recent-discussions">
 						
-						<section id="discussions">
+						<section id="discussions" class="main-col">
 							<h2>Recent Discussion <a>All Discussions ›</a></h2>
 							<article class="question">
 								<section class="qleft">	
@@ -142,43 +165,44 @@
 								</section><!--.qright-->
 							</article><!--.question -->
 						</section><!--#discussions-->
-						<section id="resources">
-							<article class="recent_resource">
+						<section id="resources" class="sidebar">
+							<ul>
+							<li class="recent_resource">
 							<h4>Newly added resources </h4>
-							<hr/>
-							</article>
-							<article class="recent_resource">
+							</li>
+							<li class="recent_resource">
 								<p>Power point presentation <a>Download ›</a></p>
 								<hr/>
-							</article>
-							<article class="recent_resource">
+							</li>
+							<li class="recent_resource">
 								<p><a>Just a resource link ›</a></p>
 								<hr/>
-							</article>
-							<article class="recent_resource">
-								<p><a>Title of a resource </a>by author name</p>
+							</li>
+							<li class="recent_resource">
+								<p><a>Title of a resource</a> by author name</p>
 								<hr/>
-							</article>	
-							<article class="recent_resource">
+							</li>	
+							<li class="recent_resource">
 								<p>PDF Document to <a>Download ›</a></p>
 								<hr/>
-							</article>
-							<article class="recent_resource">
+							</li>
+							<li class="recent_resource">
 								<p>Power point presentation <a>Download ›</a></p>
 								<hr/>
-							</article>
-							<article class="recent_resource">
+							</li>
+							<li class="recent_resource">
 								<p><a>Just a resource link ›</a></p>
 								<hr/>
-							</article>
-							<article class="recent_resource">
-								<p><a>Title of a resource </a>by author name</p>
+							</li>
+							<li class="recent_resource">
+								<p><a>Title of a resource</a> by author name</p>
 								<hr/>
-							</article>	
-							<article class="recent_resource">
+							</li>	
+							<li class="recent_resource">
 								<p>PDF Document to <a>Download ›</a></p>
 								<hr/>
-							</article>						
+							</li>
+							</ul>			
 						</section>
 					</section><!--recent-->
 					<section id="new-institutions">

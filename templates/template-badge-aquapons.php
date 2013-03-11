@@ -3,28 +3,63 @@
 
 <section class="main">
 
-	<h2><?php the_title(); ?> - Aquapons Badge</h2>
-	<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
 
-	<p><?php echo get_post_meta($post->ID, 'activity_description', true); ?></p>
-	<?php if(get_post_meta($post->ID, 'activity_response_type', true) == "image") { ?>
-		<input type="file" name="activity_submission">
-	<?php } ?>
+	
+	
+	<section id="badge-nav">	
+		<h2>
+			<?php the_title(); ?>
+			<?php if($badge_complete) echo "<span class='badge-complete'>BADGE COMPLETE</span> <span class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</span>"; ?>
+		</h2>
+		<hr/>
+		<ul id="skill-badge-subnav">
+			<li><a>Activities Overview</a></li>
+			<li>•</li>
+			<li><a>Completed Activities</a></li>
+			<li>•</li>
+			<li><a>Activities in Progress</a></li>
+			<li>•</li>
+			<li><a>Related Resources</a></li>
+		</ul>
+	</section>
+	
+	<section id="badge-outline">
+		<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
+		<hr>
+		<div class="badge-objectives">
+			<h3>Learning Objectives</h3>
+			<?php echo get_field('badge_objectives', $post->ID); ?>
+		</div>
+	</section>
+	
+	
+
+
+	<section id="skill-badge-activities">	
+		<h3>Content Badges</h3>
+	
+		<?php
+		$args = array(
+			'post_type' => 'badge',
+			'post_status' => 'publish',
+			'order' => 'ASC',
+			'post_parent' => $post->ID
+		);
+		$children = new WP_Query( $args );
+	
+		while($children->have_posts()) : $children->the_post(); ?>
 		
-	<?php
-	$args = array(
-		'post_type' => 'badge',
-		'post_status' => 'publish',
-		'order' => 'ASC',
-		'post_parent' => $post->ID
-	);
-	$children = new WP_Query( $args );
+			<div class="content badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; ?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>);">
+				<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
+				<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
+			</div>
+			
+	
+		<?php endwhile; ?> 
+				
 
-	while($children->have_posts()) : $children->the_post(); ?>
-		
-		<a href='<?php echo get_permalink($page->ID) ?>'><?php echo get_the_title($page->ID) ?></a>
+	</section>
 
-	<?php endwhile; ?> 
 	
 	
 
