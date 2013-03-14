@@ -22,7 +22,7 @@
 				<li id="feat-aquapon">
 					<h4>Featured Aquapon</h4>
 					<hr>
-					<div class="avatar"></div>
+					<div class="avatar"><img src="<?php bloginfo( 'template_url' ); ?>/imgs/feat_grower4.png" alt="Featured Grower"></div>
 					<h3><a>John Smith</a></h3>
 					<p><a>Meet this grower ›</a></p>
 				</li>
