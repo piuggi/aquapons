@@ -9,7 +9,7 @@
 			
 		$args = array(
 			'post_type' => 'badge',
-			'posts_per_page' => 10,
+			'posts_per_page' => -1,
 			'meta_key' => 'badge_level',
 			'orderby' => 'meta_value_num',
 			'order' => 'ASC',

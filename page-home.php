@@ -28,7 +28,7 @@
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/book.png"></figure>
 							<h3>Start Learning</h3>
 							<hr>
-							<p>Tout to get people to the Tutorials Section</p>
+							<p>Ready to learn about aquaponics? Get started now!</p>
 							</a>
 						</li>
 						<li id="hone">
@@ -36,7 +36,7 @@
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/trim.png"></figure>
 							<h3>Hone your skills</h3>
 							<hr>
-							<p>Tout to get people to the Skills Section</p>
+							<p>Learn new skills or improve existing ones.</p>
 							</a>
 						</li>
 						<li id="share">
@@ -44,7 +44,7 @@
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/comment.png"></figure>
 							<h3>Share Knowledge</h3>
 							<hr>
-							<p>Tout to get people to the Forum Section</p>
+							<p>Help others learn aquaponics by sharing your experiences.</p>
 							</a>
 						</li>
 						<li id="meet">
@@ -52,7 +52,7 @@
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/leaf.png"></figure>
 							<h3>Meet Aquapons</h3>
 							<hr>
-							<p>Tout to get people to the Community Section</p>
+							<p>Connect with like-minded people. Make friends. Build a community.</p>
 							</a>
 						</li>		
 						<li id="earn">
@@ -60,7 +60,7 @@
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/banner.png"></figure>
 							<h3>Earn Badges</h3>
 							<hr>
-							<p>Tout to get people to the Badges Overview Section</p>
+							<p>A look at our badge program. Start earning badges today!</p>
 							</a>
 						</li>
 					</ul>

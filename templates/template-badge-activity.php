@@ -153,38 +153,14 @@ $wpdb->insert(
 		
 		<div class="sidebar">
 			<h4>Related Resources</h4>
-			<article class="recent_resource">
-				<p>Power point presentation <a>Download ›</a></p>
-				<hr/>
-			</article>
-			<article class="recent_resource">
-				<p><a>Just a resource link ›</a></p>
-				<hr/>
-			</article>
-			<article class="recent_resource">
-				<p><a>Title of a resource </a>by author name</p>
-				<hr/>
-			</article>	
-			<article class="recent_resource">
-				<p>PDF Document to <a>Download ›</a></p>
-				<hr/>
-			</article>
-			<article class="recent_resource">
-				<p>Power point presentation <a>Download ›</a></p>
-				<hr/>
-			</article>
-			<article class="recent_resource">
-				<p><a>Just a resource link ›</a></p>
-				<hr/>
-			</article>
-			<article class="recent_resource">
-				<p><a>Title of a resource </a>by author name</p>
-				<hr/>
-			</article>	
-			<article class="recent_resource">
-				<p>PDF Document to <a>Download ›</a></p>
-				<hr/>
-			</article>		
+						<?php 
+			$resources = get_field('related_resources');
+			foreach($resources as $resource) { ?>
+				<article>
+					<a href="<?php echo get_permalink($resource->ID); ?>"><?php echo $resource->post_title; ?></a>
+				</article>
+				
+			<?php } ?>	
 		</div>
 	
 	
