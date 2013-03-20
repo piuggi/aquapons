@@ -56,7 +56,10 @@
 								$current_level=false;
 								$hide_div=false;
 								$bFirstHide=false;
-								if(get_field('badge_level',$query->post->ID)== $aquapons_level) $current_level=true;
+								if(get_field('badge_level',$query->post->ID)== $aquapons_level) {
+									$current_level=true;
+									$aquapons_badge_desc = get_field('badge_description',$query->post->ID);
+								}
 								
 								//check if its out of our range ie. more than one
 	
@@ -96,6 +99,13 @@
 		?>
 		
 		</section>
+		
+		
+							
+		<section id="badge-outline">
+			<p><?php echo $aquapons_badge_desc; ?></p>
+		</section>
+		
 		
 		<?php 
 		$cats = array('Water', 'Fish', 'Plant', 'Design + Build');

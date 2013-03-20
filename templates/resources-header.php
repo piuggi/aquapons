@@ -18,10 +18,11 @@
 		<p><a href="">Content Area</a></p>
 	</section><!--#content-sort-->
 	<section id="page-search">
-		<form>
-			<input type="text" name="search-item" placeholder="Search">
-			<input type="hidden" value="" name="query">
-			<input type="submit" value="Forum" name="SiteArea">
+		<form role="search" method="get" id="searchform" action="<?php bloginfo('home'); ?>">
+			<input type="text" name="s" placeholder="Search">
+			<input type="hidden" value="<?php echo $_GET['theme'] ?>" name="theme">
+	        <input type="hidden" name="post_type" value="resource" />
+			<input type="submit" id="searchsubmit" value="Search">
 		</form>
 		<hr>
 	</section>	<!--#page-search-->

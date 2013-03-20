@@ -104,7 +104,13 @@ function breadcrumb($curr_post) {
     echo "</ul>";
 }
 
-	
+
+
+
+if (function_exists( 'add_image_size' ) ) { 
+	add_image_size( 'tutorial-thumb', 300, 400, true ); //300 pixels wide (and unlimited height)
+}
+
 
 
 ?>
