@@ -33,50 +33,25 @@
 
 						<article class="tutorial">
 							<?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?>
-							<h4 class="meta-info">Posted 3 days ago by <a>Username123</a> | 3 comments</h4>
+							<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
 							<h3><?php echo get_the_title(); ?></h3>
 							<?php the_excerpt(); ?>
 							<footer>
-								Level: <span class="level">Senior Apprentice</span>
+								Level: <span class="level">
+									<?php $resource_level = get_field('resource_level');
+										if($resource_level == 1) echo "Junior Apprentice";
+										if($resource_level == 2) echo "Senior Apprentice";
+										if($resource_level == 3) echo "Journeymon";
+										if($resource_level == 4) echo "Master";
+									?>
+								</span>
 								<span class="approval">12 growers found this useful</span>
 							</footer>
 						</article>
 						
 						
 					<?php } ?>	
-						
-						<article class="tutorial">
-							<img src="" alt="Tutorial Name">
-							<h4 class="meta-info">Posted 3 days ago by <a>Username123</a> | 3 comments</h4>
-							<h3>Name of Tutorial</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<footer>
-								Level: <span class="level">Senior Apprentice</span>
-								<span class="approval">12 growers found this useful</span>
-							</footer>
-						</article>
-						<article class="tutorial">
-							<img src="" alt="Tutorial Name">
-							<h4 class="meta-info">Posted 3 days ago by <a>Username123</a> | 3 comments</h4>
-							<h3>Name of Tutorial</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<footer>
-								Level: <span class="level">Senior Apprentice</span>
-								<span class="approval">12 growers found this useful</span>
-							</footer>
-						</article>
-						<article class="tutorial">
-							<img src="" alt="Tutorial Name">
-							<h4 class="meta-info">Posted 3 days ago by <a>Username123</a> | 3 comments</h4>
-							<h3>Name of Tutorial</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<footer>
-								Level: <span class="level">Senior Apprentice</span>
-								<span class="approval">12 growers found this useful</span>
-							</footer>
-						</article>
-						
-						
+								
 					</section><!--#discussions-->
 			
 			 
