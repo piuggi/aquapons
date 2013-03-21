@@ -49,6 +49,20 @@ if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post
 		<div id="main-nav">
 				<h1 id="branding"><a href="/">Aquapons</a></h1>
 				<ul id="navigation">
+					<li class="badges <?php if($section=='badges') echo 'selected'; ?>">
+						<a href="http://aquapons.info/badges-overview/">Badges</a>					
+						<div class="sub-nav">
+							<ul>
+								<li><a href="http://aquapons.info/badges/aquapons-badges/">Aquapons</a></li>
+								<li><a href="http://aquapons.info/badges/skills-badges/">Skills</a></li>
+								<li><a href="http://aquapons.info/badges/my-badges/">Mine</a></li>
+							</ul>
+						</div>	
+					</li>
+					
+					<li class="community <?php if($section=='community') echo 'selected'; ?>">
+						<a href="http://aquapons.info/community/">Community</a>
+					</li>
 					<li class="resources <?php if($section=='resources') echo 'selected'; ?>">
 						<a href="http://aquapons.info/resources/">Resources</a>						
 						<div class="sub-nav">
@@ -60,18 +74,9 @@ if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post
 							</ul>
 						</div>
 					</li>
-					<li class="badges <?php if($section=='badges') echo 'selected'; ?>">
-						<a href="http://aquapons.info/badges-overview/">Badges</a>					
-						<div class="sub-nav">
-							<ul>
-								<li><a href="http://aquapons.info/badges/aquapons-badges/">Aquapons</a></li>
-								<li><a href="http://aquapons.info/badges/skills-badges/">Skills</a></li>
-								<li><a href="http://aquapons.info/badges/my-badges/">Mine</a></li>
-							</ul>
-						</div>	
+					<li class="about <?php if($section=='about') echo 'selected'; ?>">
+						<a href="http://aquapons.info/about/">About</a>
 					</li>
-					<li class="community <?php if($section=='community') echo 'selected'; ?>"><a href="http://aquapons.info/community/">Community</a></li>
-					<li class="about <?php if($section=='about') echo 'selected'; ?>"><a href="http://aquapons.info/about/">About</a></li>
 				</ul>
 				<ul id="profile">
 					<li></li>

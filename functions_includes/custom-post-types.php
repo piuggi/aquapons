@@ -96,4 +96,49 @@ function register_cpt_resource() {
     register_post_type( 'resource', $args );
 }
 
+
+add_action( 'init', 'register_cpt_featured_aquapon' );
+
+function register_cpt_featured_aquapon() {
+
+    $labels = array( 
+        'name' => _x( 'Featured Aquapons', 'featured_aquapon' ),
+        'singular_name' => _x( 'Featured Aquapon', 'featured_aquapon' ),
+        'add_new' => _x( 'Add New', 'featured_aquapon' ),
+        'add_new_item' => _x( 'Add New Featured Aquapon', 'featured_aquapon' ),
+        'edit_item' => _x( 'Edit Featured Aquapon', 'featured_aquapon' ),
+        'new_item' => _x( 'New Featured Aquapon', 'featured_aquapon' ),
+        'view_item' => _x( 'View Featured Aquapon', 'featured_aquapon' ),
+        'search_items' => _x( 'Search Featured Aquapons', 'featured_aquapon' ),
+        'not_found' => _x( 'No featured aquapons found', 'featured_aquapon' ),
+        'not_found_in_trash' => _x( 'No featured aquapons found in Trash', 'featured_aquapon' ),
+        'parent_item_colon' => _x( 'Parent Featured Aquapon:', 'featured_aquapon' ),
+        'menu_name' => _x( 'Featured Aquapons', 'featured_aquapon' ),
+    );
+
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => false,
+        
+        'supports' => array( 'title', 'editor', 'thumbnail' ),
+        'taxonomies' => array( 'category' ),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 10,
+        
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => true,
+        'capability_type' => 'post'
+    );
+
+    register_post_type( 'featured_aquapon', $args );
+}
+
+
 ?>
