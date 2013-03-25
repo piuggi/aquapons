@@ -33,9 +33,6 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 global $current_user; get_currentuserinfo();
 global $section;
 global $view;
-
-$theme = new themeCheck();
-	
 ?>
 
 <?php
@@ -94,7 +91,8 @@ if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post
 		
 		<?php 
 		if($view!=null)$headerPath = "/templates/".$section."-".$view."-header.php"; 
-		else $headerPath="/templates/".$section."-header.php";
+		else if($section) $headerPath="/templates/".$section."-header.php";
+		else $headerPath="/templates/default-header.php";
 //		echo $headerPath;
 		include(get_template_directory() . $headerPath);
 		?>
