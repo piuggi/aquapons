@@ -67,6 +67,12 @@
 					<section id="stripes">
 					</section><!--stripes -->
 				</section><!-- steps -->
+				
+				<?php if(!$first_timer) { ?>
+					<section class="outline">
+						<?php echo get_field('first_time_visitor_message'); ?>
+					</section>
+				<?php } ?>
 
 				<section id="callout" class="textcontent">
 					<section id="featured_grower">
@@ -196,7 +202,7 @@
 							</ul>			
 						</section>
 					</section><!--recent-->
-					<section id="new-institutions">
+					<section id="new-institutions" class="side-scroller">
 						<h2>New Institutions <a>All institutions ›</a></h2>
 						<article class="institution first">
 							<figure>

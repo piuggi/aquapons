@@ -1,3 +1,9 @@
+<?php 
+if($_GET['post_type']=='badge') $section = 'badges';
+if($_GET['post_type']=='resource') $section = 'resources';
+?>
+
+
 <?php get_header(); ?>
 
 	<section class="main text-content">
@@ -18,27 +24,30 @@
 			
 					<article class="search_result badge">
 						<a href="<?php echo get_permalink(); ?>"><img src="<?php echo get_field('badge_image'); ?>" alt="<?php echo get_the_title(); ?>"></a>
-						<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
-						<?php echo get_field('badge_description'); ?>
-						<footer>
-							Level: <span class="level">Senior Apprentice</span>
-							<span class="approval">12 growers found this useful</span>
-						</footer>
-						
+						<div class="info">
+							<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+							<?php echo get_field('badge_description'); ?>
+							<footer>
+								Level: <span class="level"><?php badge_level_name(get_field('badge_level')); ?></span>
+								<span class="approval">12 growers found this useful</span>
+							</footer>
+							</div>
 						
 					</article>
 					
 				<?php } else if(get_post_type() == 'resource') { ?>
 				
-					<article class="search_result tutorial">
+					<article class="search_result resource">
 						<a href="<?php echo get_permalink(); ?>"><img src="" alt="<?php echo get_the_title(); ?>"></a>
-						<h4 class="meta-info">Posted 3 days ago by <a>Username123</a> | 3 comments</h4>
-						<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
-						<?php the_excerpt(); ?>
-						<footer>
-							Level: <span class="level">Senior Apprentice</span>
-							<span class="approval">12 growers found this useful</span>
-						</footer>
+						<div class="info">
+							<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
+							<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+							<?php the_excerpt(); ?>
+							<footer>
+								Level: <span class="level"><?php badge_level_name(get_field('resource_level')); ?></span>
+								<span class="approval">12 growers found this useful</span>
+							</footer>
+						</div>
 					</article>
 				
 				

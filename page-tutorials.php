@@ -37,14 +37,7 @@
 							<h3><?php echo get_the_title(); ?></h3>
 							<?php the_excerpt(); ?>
 							<footer>
-								Level: <span class="level">
-									<?php $resource_level = get_field('resource_level');
-										if($resource_level == 1) echo "Junior Apprentice";
-										if($resource_level == 2) echo "Senior Apprentice";
-										if($resource_level == 3) echo "Journeymon";
-										if($resource_level == 4) echo "Master";
-									?>
-								</span>
+								Level: <span class="level"><?php badge_level_name(get_field('resource_level')); ?></span>
 								<span class="approval">12 growers found this useful</span>
 							</footer>
 						</article>

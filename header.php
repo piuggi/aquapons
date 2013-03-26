@@ -37,7 +37,7 @@ global $view;
 
 <?php
 if(is_page()) { $page_slug = 'page-'.$post->post_name; }
-if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post_meta($post->ID, 'badge_type', true);
+//if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post_meta($post->ID, 'badge_type', true);
 ?>
 <body <?php body_class($page_slug ." ". $section); ?>>
 
@@ -90,10 +90,9 @@ if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post
 		
 		
 		<?php 
-		if($view!=null)$headerPath = "/templates/".$section."-".$view."-header.php"; 
-		else if($section) $headerPath="/templates/".$section."-header.php";
-		else $headerPath="/templates/default-header.php";
-//		echo $headerPath;
+		if($view!=null) $headerPath = "/templates/".$section."-".$view."-header.php"; 
+		else if($section) $headerPath = "/templates/".$section."-header.php";
+		else $headerPath = "/templates/default-header.php";
 		include(get_template_directory() . $headerPath);
 		?>
 	</header><!--header-->
