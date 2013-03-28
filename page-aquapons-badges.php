@@ -102,7 +102,7 @@
 		
 		
 							
-		<section id="badge-outline">
+		<section id="badge-outline" class="outline">
 			<p><?php echo $aquapons_badge_desc; ?></p>
 		</section>
 		

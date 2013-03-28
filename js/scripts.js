@@ -1,6 +1,5 @@
 jQuery(document).ready(function($) {
 
-
 	// add theme name to all URLs in <a> tags
 	$('#container a').each(function() {
 		var url = $(this).attr('href');
@@ -16,17 +15,7 @@ jQuery(document).ready(function($) {
 		}
 	});
 	
-	$('.show_category_descriptions').click(function() {
-		$('.category_descriptions').animate({left: '0px'}, 200);
-	});
-	
-	
-	$('.close_category_descriptions').click(function() {
-		$('.category_descriptions').animate({left: '-345px'}, 200);
-	});
-	
-	
-	$('select#submission_type').change(function(){
+		$('select#submission_type').change(function(){
 		
 		var selection = $('select#submission_type').val();
 		var change = $('input#activity_submission');
@@ -68,6 +57,31 @@ jQuery(document).ready(function($) {
 		$('form#journal_input').show();
 		
 	});
+	
+	$('.show_category_descriptions').click(function() {
+		$('.category_descriptions_mask').fadeIn(200);
+		$('.category_descriptions').animate({left: '0px'}, 200);
+        if($(document).scrollTop() > 222) {
+	        $('.close_category_descriptions').css('position', 'fixed');
+        } else {
+	        $('.close_category_descriptions').css('position', 'absolute');
+        }
+	});
+	
+	
+	$('.close_category_descriptions, .category_descriptions_mask').click(function() {
+		$('.category_descriptions_mask').fadeOut(200);
+		$('.category_descriptions').animate({left: '-345px'}, 200);
+	});
+	
+	$(document).on("mousewheel", function() {
+        if($(document).scrollTop() > 222) {
+	        $('.close_category_descriptions').css('position', 'fixed');
+        } else {
+	        $('.close_category_descriptions').css('position', 'absolute');
+        }
+    });
+	
 		
 }); // jQuery
 

@@ -25,8 +25,8 @@
 		<?php if ( $query->have_posts() ) : ?>
 		<?php foreach($cats as $cat) { ?>
 		<?php rewind_posts(); ?>
-		<section class="skills-row <?php echo sanitize_title(strtolower($cat)); ?>">
-			<h2><?php echo $cat; ?> Badges <span class="show_category_descriptions">?</span></h2>
+		<h2><?php echo $cat; ?> Badges <span class="show_category_descriptions">?</span></h2>
+		<section class="skills-row <?php echo sanitize_title(strtolower($cat)); ?> side-scroller">
 			<?php
 			/* Start the Loop */
 			while ( $query->have_posts() ) : 
@@ -54,7 +54,7 @@
 			No content found
 			
 		<?php endif; ?>
-		
+		<div class="category_descriptions_mask"></div>
 		<div class="category_descriptions">
 			<div class="close_category_descriptions">X</div>
 			<?php 

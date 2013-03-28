@@ -1,9 +1,3 @@
-<div id="sub-nav">
-	<ul id="crumb-nav">
-		<li>‹ <a href="">Resources</a></li>
-		<li>‹ <a href="">Forum</a></li>
-	</ul>
-</div><!--#sub-nav-->
 <div id="secondary-nav">
 	<section id="main-links">
 
@@ -20,12 +14,10 @@
 		</ul>
 	</section><!--#main-links-->
 	<section id="page-search">
-		<p>Account Settings</p>
-		<form>
-			<input type="text" name="search-item">
-			<input type="hidden" value="" name="query">
-			<input type="submit" value="Forum" name="SiteArea">
-		</form>
 		<hr>
+		<ul>
+			<li><a href="">Account Settings</a></li>
+		</ul>
+		
 	</section>	<!--#page-search-->
 </div><!--#secondary-nav-->
