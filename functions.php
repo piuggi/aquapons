@@ -79,7 +79,6 @@ function getBadgeStatus($badge_id, $dbresults = null) {
 
 
 
-
 function breadcrumb($curr_post) {
 	echo "<ul class='breadcrumb'>";
 	$link = "<li> ‹ <a href='%s'>%s</a>";
@@ -106,9 +105,75 @@ function breadcrumb($curr_post) {
 
 
 
+function insertSubmission($info){
+
+	global $wpdb;
+	$wpdb->insert(
+		'aq_badge_submissions', 
+		array(
+			'id'                   => NULL,
+			'user_id'              => $info['user_id'],
+			'badge_id'             => $info['badge_id'],
+			'activity_id'          => $info['activity_id'],
+			'current_status'       => $info['current_status'],
+			'type'				   => $info['type'],
+			'data'                 => $info['data'],
+			'submission_timestamp'  => $info['submission_timestamp']
+		)
+	);
+}
+
+
+
 
 if (function_exists( 'add_image_size' ) ) { 
 	add_image_size( 'tutorial-thumb', 400, 300, true ); //300 pixels wide (and unlimited height)
+}
+
+//spit out activity upload nav for sidebar or main-col use.
+function activityUploadNav(){ ?>
+	
+			<nav id="activity_upload">
+				<section class="submission_nav upload">
+					<h1></h1>
+					<h4>Upload</h4>
+					<hr>
+					<p>Share your progress by uploading photos, videos or text files.</p>
+					<form id="file_upload" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" style="display:none;">
+						<select id="submission_type" name="submission_type">
+							<option selected="selected" value="image">Image</option>
+							<option value="video">Video</option>
+							<option value="file">File</option>
+						</select>
+						<input id="activity_submission" type="file" name="activity_submission"/>
+						<input id="activity_video" type="text" placeholder="" name="activity_video" style="display:none;"/>
+						<input type="submit" name="post" value="Post it!"/>
+		
+						<p id="activity_video" class="form-help" style="display:none;" >Enter the video URL from Vimeo or YouTube <br/> (eg. http://vimeo.com/32100234)</p>
+					</form>
+				</section>
+				<section class="submission_nav journal">
+					<h1></h1>
+					<h4>New Entry</h4>
+					<hr>
+					<p>Create a new journal entry to document your thinking about this activity.</p>
+					<form id="journal_entry" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8" style="display:none;">
+						<input type="submit" name="entry" value="Create Journal Entry">
+					</form>
+				</section>
+				<section class="submission_nav review" >
+					<h1></h1>
+					<h4>Submit for Review</h4>
+					<hr>
+					<p>Submit all of your documentation for this activity to be reviewed.</p>
+					<form id="submit_activity" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8" style="display:none;">
+						<input type="submit" name="submit" value="Submit Activity For Review">
+					</form>
+				</section>
+			</nav>
+	
+	
+<?php 
 }
 
 

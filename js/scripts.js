@@ -25,6 +25,49 @@ jQuery(document).ready(function($) {
 		$('.category_descriptions').animate({left: '-345px'}, 200);
 	});
 	
+	
+	$('select#submission_type').change(function(){
+		
+		var selection = $('select#submission_type').val();
+		var change = $('input#activity_submission');
+		if(selection == 'video'){
+			
+			$('form #activity_video').show();
+			$('form #activity_submission').hide();
+		}
+		else if(selection == 'file' || selection == 'image'){
+		
+			$('form #activity_video').hide();
+			$('form #activity_submission').show();
+			
+		}
+		
+	});
+	
+	$('section.submission_nav').hover(function(){
+						
+				$(this).find('p').hide();
+				$(this).find('form').show();
+				if($(this).find('form').find('select').val() == 'video' ){
+
+					$('.form-help').show();					
+					
+				}
+
+			  },
+			  function(){ //out
+				$(this).find('p').show();
+				$(this).find('form').hide();
+			  }
+	);
+	
+	$('form#journal_entry').submit(function(e){
+		
+		e.preventDefault();
+		$('.submission').hide();
+		$('form#journal_input').show();
+		
+	});
 		
 }); // jQuery
 

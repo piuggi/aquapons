@@ -542,7 +542,7 @@ footer.main{
 	clear: left;
 	article { padding: 10px 0; border-bottom: 1px solid @dkbrown; }
 	h4{ .sans-serif; font-weight: 600; text-transform: uppercase; color: @dkbrown; margin-bottom: 0; padding-bottom: 0; border-bottom: 1px solid @dkbrown;}
-	hr{ border: 0; height: 1px; color: @medbrown; background-color: @medbrown; display: block; padding: 0; margin: 0; }
+	hr{ border: 0; height: 1px; color: @medbrown; display: block; padding: 0; margin: 0; }
 	p{width: 100%; .serif; color: @dkbrown; margin: 12px 0; font-size: .9em; }
 	li { width: 100%; padding: 5px 0 5px; border-bottom: 1px solid @dkbrown;}
 	a{ color: @teal; .serif; text-decoration: underline; }
@@ -553,6 +553,8 @@ footer.main{
 .tmce-active .mceEditor {
 	iframe {
 		background: @beige;
+		min-height: 600px;
+		
 	}
 	p {
 		color: @dkbrown;
@@ -916,6 +918,7 @@ header.badges{
 			text-align: center;
 			.sub-nav-shadow;
 			p{ .sans-serif; font-size: 1.4em; text-align: center; }
+			h3{ text-align: center; font-weight: bold; font-size: 1.1em; text-transform: uppercase;}
 		
 	}
 	#skill-badge-activities{
@@ -1624,15 +1627,66 @@ section#main.forum{
 		}
 	}
 	
+	
 	.water #activity-nav { background: @lt-blue; }
 	.fish #activity-nav { background: @orange; }
 	.plant #activity-nav { background: @lt-green; }
 	.design-build #activity-nav { background: @purple; }
+	
+	
+	.submission{ position: relative; display: inline-table; width: 45%; margin: 0 2.5%; height: auto; vertical-align: top; }
+	img{ width: 100%; }
+	
+	p.form-help{ font-size: .6em; .sans-serif; font-weight: bold; line-height: 1em; width: 90% !important;  }
+	
+	.h_iframe{ position: relative; display:inline-table;padding-top:55%; width: 100%;}
+	
+	.h_iframe iframe{ position: absolute; width:100%;height:100%;top:0;left:0; }
+	
+	article.text{
+		
+		width: 90%;
+		padding: 20px 5%;
+		margin: 20px 0;
+		background: @beige;
+		height: 200px;
+		overflow: hidden;
+		
+		display: inline-table;
+		vertical-align: top;
+		
+	}
+	
+	
+	nav#activity_upload{ width: 100%; display: block; text-align: center;}
+	.submission_nav{ display: inline-table; width: 28%; margin: 10px 1%;  background: @beige; height: 162px; vertical-align: top; 
+				
+				hr{ width: 80%; border: 0; height: 1px; color: @medbrown; background: @medbrown; display: block; padding: 0; margin: 10px auto; }
+				p{width: 75%; margin: 0 auto;}
+				selection{ display:inline;}
+				input[type="file"]{ display: inline; width: 150px;}
+				input[type="submit"]{display: block; margin: 5px auto 4px;}
+	 }
+	 
+	.upload h1{height:25px; background: url('imgs/arrow.png') no-repeat center; margin: 20px 0 5px 0; }
+	.journal h1{ height:25px; background: url('imgs/pencil.png') no-repeat center; margin: 20px 0 5px 0;}
+	.review h1{height:25px; background: url('imgs/glasses.png') no-repeat center; margin: 20px 0 5px 0; }
+	
+	
 
 } // .single-activity
 
 
+.sidebar{ 
 
+	.submission_nav{ width: 85%; padding: 0 7.5%;
+					
+		hr{ position: relative;  padding: 0 12.5%; border: 0; height: 1px; color: @medbrown;  background: none; }
+		p{width: 100%;}
+		
+	}
+
+ }
 
 .page-resources {
 	
