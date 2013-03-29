@@ -37,7 +37,9 @@ global $view;
 
 <?php
 if(is_page()) { $page_slug = 'page-'.$post->post_name; }
-//if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post_meta($post->ID, 'badge_type', true);
+if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post_meta($post->ID, 'badge_type', true);
+
+
 ?>
 <body <?php body_class($page_slug ." ". $section); ?>>
 
