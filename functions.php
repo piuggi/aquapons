@@ -2,7 +2,7 @@
 
 session_start();
 
-if(!$_COOKIE['previous_visitor']) $first_timer = true;
+if($_COOKIE['previous_visitor'] != '1') $first_timer = true;
 setcookie("previous_visitor", "1", time() + 9999999, '/');
 
 if($_GET['logout']) {

@@ -68,7 +68,9 @@
 					</section><!--stripes -->
 				</section><!-- steps -->
 				
-				<?php if(!$first_timer) { ?>
+				<?php 
+				global $first_timer;
+				if($first_timer) { ?>
 					<section class="outline">
 						<?php echo get_field('first_time_visitor_message'); ?>
 					</section>
