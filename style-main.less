@@ -86,9 +86,9 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 }
 
 .sub-nav-shadow{
-	-moz-box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);	
-	box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.1);	
+	box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
 .open-badges-callout-shadow{
@@ -135,25 +135,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	img { width: 100%; height: 100%; }
 }
 
-.outline{
-	
-		display:block;
-		clear: both;
-		margin: -4px 0 20px;
-		padding: 40px 12%;
-		background: @offwhite;
-		text-align: center;
-		.sub-nav-shadow;
-		p{ .sans-serif; font-size: 1.4em; text-align: center; }	
-}
 
-.side-scroller {
-	margin-right: 20px;
-	padding: 20px 10px 10px 0;
-	overflow-x: auto;
-	overflow-y: hidden;
-	white-space: nowrap;
-}
 
 /*-------------------------------------------------------------------------------------	
 	Standard Elements
@@ -167,16 +149,9 @@ body{
 	color: @dkbrown;
 	background-color: @beige;
 	.serif;
-	line-height: 1.3em;
+	line-height: 1.2em;
 }
 
-#container {
-	overflow-x: hidden;
-}
-
-h1, h2, h3, h4, h5, h6, p {
-	margin-bottom: 1.2em;
-}
 
 h1, h2, h3, h4, h5, h6 {
 	.sans-serif;	
@@ -216,19 +191,11 @@ hr {
 /* HEADER */
 
 header{
-	width: 100%;
+	
 	background-color: @beige;
 	position: relative;
-	
-	h1, h2, h3, h4, h5, h6, p {
-		margin-bottom: 0;
-	}
-
-	
-	
 	#main-nav{
 		//.header-lock;
-		position: relative;
 		height:27px;
 		background-color: @dkbrown;
 		color:@beige;
@@ -260,21 +227,18 @@ header{
 		.header-ul;
 
 		ul#navigation{
-			position: absolute;
-			bottom: 0;
 			margin: 0 0 0 24px;
-			vertical-align: center;			
-			li{
-				margin: 0 15px 0 0;
-				padding: 0 0 1px;
-				border-bottom: 4px solid rgba(0,0,0,0);
-			}
-	
-			.resources:hover, .resources.selected {border-bottom: 4px solid @babyblue;}
-			.badges:hover, .badges.selected {border-bottom: 4px solid @yellow;}
-			.community:hover, .community.selected {border-bottom: 4px solid @lt-green;}
-			.about:hover, .about.selected {border-bottom: 4px solid @fushia;}
+			vertical-align: center;
 		}
+		li{
+			margin: 0 15px 0 0;
+			padding: 0 0 1px;
+		}
+
+		.resources:hover, .resources.selected {border-bottom: 4px solid @babyblue;}
+		.badges:hover, .badges.selected {border-bottom: 4px solid @yellow;}
+		.community:hover, .community.selected {border-bottom: 4px solid @lt-green;}
+		.about:hover, .about.selected {border-bottom: 4px solid @fushia;}
 
 		#profile {padding: 0 0 1px; border-bottom: 4px solid @purple;}
 
@@ -285,45 +249,40 @@ header{
 		}
 
 
-		ul#navigation .sub-nav{
-			position: absolute;
-			overflow: hidden;
-			z-index: 100;
-			margin: 4px -9999px;
-			padding: 0 9999px;
-			left: 0;
-			right: 0;
-			.transition();
-			width: 500px;
-			height:0px;
-			overflow: hidden;
-			.sub-nav-shadow;
-			li {
-				margin: 1px 4px 0 0;
-			}
-			li:before {
-			    content: "• ";
-			    color: @beige;
-			}
-			li:first-child:before {
-				content: "";
-			}
-	
-		}
-		ul#navigation li:hover .sub-nav {
-			height: 25px;		
-		}
-
-		
-		.badges .sub-nav {background: @yellow;}
-		.community .sub-nav {background: @lt-green;}
-		.resources .sub-nav {background: @babyblue;}
-		.resources .sub-nav ul {margin-left: 164px;}
-		.about .sub-nav {background: @fushia;}
-		.profile .sub-nav {background: @purple;}
-
 
 	}
+	ul#navigation .sub-nav{
+		position: absolute;
+		z-index: 100;
+		margin: 5px 0;
+		left: 0;
+		right: 0;
+		.transition();
+		
+		height:0px;
+		overflow: hidden;
+		.sub-nav-shadow;
+		li {
+			margin: 1px 4px 0 0;
+		}
+		li:before {
+		    content: "• ";
+		    color: @beige;
+		}
+		li:first-child:before {
+			content: "";
+		}
+
+	}
+	ul#navigation li:hover .sub-nav {
+		height: 25px;		
+	}
+		
+	.badges .sub-nav {padding-left: 192px;background: @yellow;}
+	.community .sub-nav {background: @lt-green;}
+	.resources .sub-nav {padding-left: 357px;background: @babyblue;}
+	.about .sub-nav {background: @fushia;}
+	.profile .sub-nav {background: @purple;}
 	
 
 	#crumb-nav{
@@ -379,7 +338,7 @@ header{
 		section:first-child{ margin: 40px 0 0 ;}
 
 		#page-search{
-			width: 27%; /*280/960*/
+			width: 28%; /*280/960*/
 			form{  display: inline; margin: 0 0 0 1%;}
 			padding: 0 0 18px 0;
 
@@ -595,6 +554,7 @@ footer.main{
 	iframe {
 		background: @beige;
 		min-height: 600px;
+		
 	}
 	p {
 		color: @dkbrown;
@@ -728,6 +688,7 @@ footer.main{
 
 .badges-display{
 
+	width: 100%;
 	display: block;
 
 		
@@ -861,9 +822,7 @@ header.badges{
 	padding-bottom: 40px;
 	.clearfix();
 }
-#main.text-content {
-	width: 98%;
-}
+
 
 
 
@@ -884,7 +843,7 @@ header.badges{
 
 	.aquapons-badges{
 
-		width: 96%;
+		width: 100%;
 		display: block;
 		height: 134px;
 		margin: 0;
@@ -903,13 +862,13 @@ header.badges{
 	
 	.badges-display{
 
-		width: 96%;
+		width: 100%;
 		display: block;
 
 		.water,.fish,.plant,.design-build{
 
 			display: inline-block;
-			width: 20%;
+			width: 21.75%;
 			margin: 0;
 			padding: 20px 1.5% 0;
 		}
@@ -947,20 +906,21 @@ header.badges{
 			
 	} //#badge-nav
 	
-	#badge-outline{
 	
-		display:block;
-		clear: both;
-		padding: 40px 12%;
-		background: @offwhite;
-		text-align: center;
-		.sub-nav-shadow;
-		p{ .sans-serif; font-size: 1.4em; text-align: center; }
-		h3{ text-align: center; font-weight: bold; font-size: 1.1em; text-transform: uppercase;}
+	
+	
+	#badge-outline{
+		
+			display:block;
+			clear: both;
+			padding: 40px 12%;
+			background: @offwhite;
+			text-align: center;
+			.sub-nav-shadow;
+			p{ .sans-serif; font-size: 1.4em; text-align: center; }
+			h3{ text-align: center; font-weight: bold; font-size: 1.1em; text-transform: uppercase;}
 		
 	}
-	
-	
 	#skill-badge-activities{
 			padding: 20px 12%;
 			text-align: center;
@@ -1073,7 +1033,7 @@ header.badges{
 				color: @beige;
 				text-align: right;
 				
-				h4{display: block; margin: .7em 0; color: @beige; .serif; font-size: 3em; font-weight: normal; text-transform: capitalize;text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;}
+				h4{display: block; margin: .7em 0; .serif; font-size: 3em; text-transform: capitalize;text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;}
 				p{display: block; margin: .7em 0; text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;}
 				p.institution{ .sans-serif; text-transform: uppercase; font-weight: bold; font-size: 1.6em; }
 				p.location{.sans-serif; text-transform: capitalize; font-weight: bold;	}
@@ -1173,7 +1133,7 @@ header.badges{
 	}
 		
 	#callout{
-		width: 96%%;
+		width: 100%;
 		position: relative;
 		max-height: 250px;
 		overflow: hidden;
@@ -1207,7 +1167,11 @@ header.badges{
 	}//#callout
 	
 	#new-institutions{
+		padding: 20px 0 0;
+		overflow-x: auto;
+		overflow-y: hidden;
 		height: 240px;
+		white-space: nowrap;
 		.institution{
 			
 			width: 216px;
@@ -1302,7 +1266,7 @@ section#main.forum{
 		padding: 20px 0 0 20px;
 	}
 	#main section {
-		padding: 0 2%;
+		padding: 0 10px;
 	}
 	.content-badges {
 		height: 118px;
@@ -1404,13 +1368,13 @@ section#main.forum{
 	
 	section.badges-desc{
 
-		width: 96%;
+		width: 100%;
 		margin: 40px 20px 0;
 
 
 		section.badges-desc-content{
 
-			width: 66%;
+			width: 74%;
 			display: inline-block;
 			vertical-align: top;
 
@@ -1578,19 +1542,9 @@ section#main.forum{
 
 .page-skills-badges {
 	.skills-row {
-		padding: 0 10px 10px 0;
+		margin-bottom: 20px;
 		white-space: nowrap;
 		overflow-x: auto;
-	}
-	.category_descriptions_mask {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background: @dkbrown;
-		opacity: .2;
-		display: none;
 	}
 	.category_descriptions {
 		position: absolute;
@@ -1608,9 +1562,8 @@ section#main.forum{
 	.close_category_descriptions {
 		.sans-serif;
 		position: absolute;
-		top: 20px;
-		left: 310px;
-		cursor: pointer;
+		top: 10px;
+		right: 10px;
 	}
 }
 
@@ -1674,11 +1627,12 @@ section#main.forum{
 		}
 	}
 	
+	
 	.water #activity-nav { background: @lt-blue; }
 	.fish #activity-nav { background: @orange; }
 	.plant #activity-nav { background: @lt-green; }
 	.design-build #activity-nav { background: @purple; }
-
+	
 	
 	.submission{ position: relative; display: inline-table; width: 45%; margin: 0 2.5%; height: auto; vertical-align: top; }
 	img{ width: 100%; }
@@ -1706,7 +1660,7 @@ section#main.forum{
 	
 	nav#activity_upload{ width: 100%; display: block; text-align: center;}
 	.submission_nav{ display: inline-table; width: 28%; margin: 10px 1%;  background: @beige; height: 162px; vertical-align: top; 
-				h4 { margin: 0; }
+				
 				hr{ width: 80%; border: 0; height: 1px; color: @medbrown; background: @medbrown; display: block; padding: 0; margin: 10px auto; }
 				p{width: 75%; margin: 0 auto;}
 				selection{ display:inline;}
@@ -1732,8 +1686,7 @@ section#main.forum{
 		
 	}
 
-}
-
+ }
 
 .page-resources {
 	
@@ -1809,67 +1762,6 @@ section#main.forum{
 	
 }
 
-
-
-.page-profile {
-
-	section.main {
-		overflow: hidden;
-	}
-
-	header #secondary-nav section:first-child {
-		margin: 20px 0 0;
-	}
-	
-	header #secondary-nav #page-search {
-		padding: 0;
-	}
-	
-	.background {
-		-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-		float: left;
-		width: 33%;
-		margin-bottom: -99999px;
-		padding-bottom: 99999px;
-		.sub-nav-shadow;
-		h4 {
-			margin: 20px 0 0;
-			font-size: .8em;
-			font-weight: bold;
-			color: @dkbeige;
-		}
-		h4:first-child {
-			margin: 0;
-		}
-	}
-	
-	
-	.my_badges {
-		-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-		width: 67%;
-		margin-left: 33%;
-		background: @dotted-pattern-light;
-		h3 {
-			font-size: 1em;
-			text-transform: uppercase;
-			border-bottom: 1px solid @dkbrown;
-			margin: 20px 0 15px;
-		}
-		h2 + h3 {
-			margin: -20px 0 15px;
-		}
-		
-		
-		.content.badge {
-			width: 24%;
-		}
-	}
-	
-	
-}
-
-
-
 .search-results {
 	
 	.search_result {
@@ -1879,10 +1771,6 @@ section#main.forum{
 		padding: 10px 0;
 		
 	
-		.info {
-			margin: 0 0 40px 180px;
-		}
-		
 	
 		img {
 			width: 140px;
@@ -1893,7 +1781,7 @@ section#main.forum{
 		
 		
 		footer {
-			margin: 20px 0 0 0;
+			margin: 20px 0 0 160px;
 			padding: 5px 0;
 			border-top: 1px solid @dkbrown;
 			border-bottom: 2px solid @dkbrown;
@@ -1907,4 +1795,153 @@ section#main.forum{
 		
 	}
 	
+}
+
+.page-sign-up{
+	
+	.main{ padding: 20px 5%;}
+	h2{  }
+	h3{ color: @dkbrown; display: block; font-size: 1.4em;}
+	
+	.simplr-message.error{
+		
+		color: @beige;
+		background: @red;
+		border-radius: 5px;
+		margin: 10px 0;
+		display: table;
+		clear: both;
+	}
+	
+	.simplr-message.success{
+	
+		color: @beige;
+		background: @green;
+		border-radius: 5px;
+		margin: 10px 0;
+		display: table;
+		clear:both;
+	}
+	
+	.simplr-field{ 
+		display: block;
+		clear: both;
+		width: 50%;
+		padding: 10px;
+		margin: 10px 20px;
+				
+	}
+	#simplr-form{
+		label {
+			display: inline;
+			clear:none;
+			margin: 0 20px 0 0;
+			width: 35%;
+			
+		}
+		input{
+			
+			width: 50%;
+			display: inline;
+			clear: none;
+			float:left;
+			height: 3em;
+			border-radius: 5px;
+			border: 1px solid @medbeige;
+			padding: 0 20px;
+			
+		}
+		
+		input[type="submit"]{
+			
+			width: 200px;
+			background: @babyblue;
+			border: none;
+			height:30px;
+			color: @beige;
+			border-radius: 5px;
+			float:left;
+			
+		}
+		
+		input[type="submit"]:hover{
+			
+			background: @blue;
+			
+		}
+		
+		height: 400px;
+		margin: 40px auto;
+		padding: 30px;
+		
+	}
+	
+	
+	
+}
+
+
+.page-sign-in{
+	
+		.main{ padding: 20px 5%;}
+
+		#loginform{
+
+				
+					p{
+						height: 3em;
+						
+						
+					}
+					
+					label {
+						display: inline;
+						clear:none;
+						margin: 0 20px 0 0;
+						width: 100px;
+						float: left;
+						
+					}
+					
+					input{
+			
+						display: inline;
+						clear: none;
+						float:left;
+						height: 3em;
+						border-radius: 5px;
+						border: 1px solid @medbeige;
+						padding: 0 20px;
+						
+					}
+					input[type="submit"]{
+			
+						background: @babyblue;
+						border: none;
+						height:30px;
+						color: @beige;
+						border-radius: 5px;
+						float:left;
+						
+					}
+					
+					input[type="submit"]:hover{
+						
+						background: @blue;
+						
+					}
+								
+					
+					.login-remember{
+						
+						label{
+							
+							width: 300px;
+							float: left;
+						}
+						input{ height: 0; }
+						
+					}
+			
+		}
 }
