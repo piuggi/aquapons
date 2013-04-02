@@ -3,6 +3,12 @@
 
 	<section class="main">
 		<section class="background text-content">
+			
+			<?php
+			//if logged in and current profile page == current user, show edit buttons
+			?>
+			<!-- <div class="edit_setting edit_background">Edit</div> -->
+			
 			<h2>Background</h2>
 			
 			<h4>Member Since</h4>
@@ -19,6 +25,7 @@
 			<p>Nutritionist</p>
 			<p>Some Company Name</p>
 			
+			<!-- <div class="edit_setting edit_resume">Edit</div> -->
 			<h4>Resume</h4>
 			<p><a href="#">Download ›</a>
 			

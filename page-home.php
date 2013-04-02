@@ -177,31 +177,34 @@
 							
 							<h4>Newly added resources </h4>
 							<ul>
-								<li class="recent_resource">
-									<p>Power point presentation <a>Download ›</a></p>
-								</li>
-								<li class="recent_resource">
-									<p><a>Just a resource link ›</a></p>
-								</li>
-								<li class="recent_resource">
-									<p><a>Title of a resource</a> by author name</p>
-								</li>	
-								<li class="recent_resource">
-									<p>PDF Document to <a>Download ›</a></p>
-								</li>
-								<li class="recent_resource">
-									<p>Power point presentation <a>Download ›</a></p>
-								</li>
-								<li class="recent_resource">
-									<p><a>Just a resource link ›</a></p>
-								</li>
-								<li class="recent_resource">
-									<p><a>Title of a resource</a> by author name</p>
-								</li>	
-								<li class="recent_resource">
-									<p>PDF Document to <a>Download ›</a></p>
-								</li>
-							</ul>			
+								<?php
+								$resource_args = array(
+									'post_type' => 'resource',
+									'orderby' => 'post_date',
+									'order' => 'ASC'
+								);
+								$resource_query = new WP_Query( $resource_args );
+								while($resource_query->have_posts()) {
+									$resource_query->the_post();
+								?>
+			
+									<li class="recent_resource">
+										<a href="<?php echo the_permalink(); ?>">
+											<h5><?php echo get_the_title(); ?></h5>
+										</a>
+									</li>
+									
+									
+								<?php } ?>	
+							</ul>	
+							
+							
+
+								
+					</section><!--#discussions-->
+							
+							
+									
 						</section>
 					</section><!--recent-->
 					<section id="new-institutions" class="side-scroller">
