@@ -78,10 +78,8 @@ if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post
 					</li>
 				</ul>
 				<ul id="profile">
-					<li></li>
 					<?php if ( is_user_logged_in() ) { ?>
 					<li><a href="/profile/">My Profile</a></li>
-					<li>or</li>
 					<li><a href="<?php echo wp_logout_url( home_url() ); ?>">Log Out</a></li>
 					<?php } else { ?> 
 					<li><a href="/sign-in/">Sign In</a></li> 
