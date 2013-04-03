@@ -140,5 +140,92 @@ function register_cpt_featured_aquapon() {
     register_post_type( 'featured_aquapon', $args );
 }
 
+add_action('init', 'register_cpt_institution');
+
+function register_cpt_institution(){
+	
+    $labels = array( 
+        'name' => _x( 'Institutions', 'institution' ),
+        'singular_name' => _x( 'Institution', 'institution' ),
+        'add_new' => _x( 'Add New', 'institution' ),
+        'add_new_item' => _x( 'Add New Institution', 'institution' ),
+        'edit_item' => _x( 'Edit Institution', 'institution' ),
+        'new_item' => _x( 'New Institution', 'institution' ),
+        'view_item' => _x( 'View Institutions', 'institution' ),
+        'search_items' => _x( 'Search Institutions', 'institution' ),
+        'not_found' => _x( 'No Institutions found', 'institution' ),
+        'not_found_in_trash' => _x( 'No Institutions found in Trash', 'institution' ),
+        'parent_item_colon' => _x( 'Parent Institution:', 'institution' ),
+        'menu_name' => _x( 'Institutions', 'institution' ),
+    );
+    
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => false,
+        
+        'supports' => array( 'title', 'editor', 'thumbnail' ),
+        'taxonomies' => array( 'category' ),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 10,
+        
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => true,
+        'capability_type' => 'post'
+    );
+    
+    register_post_type( 'institution', $args );
+	
+}
+
+add_action('init', 'register_cpt_discussion');
+
+function register_cpt_discussion(){
+	
+    $labels = array( 
+        'name' => _x( 'Discussions', 'discussion' ),
+        'singular_name' => _x( 'Discussion', 'discussion' ),
+        'add_new' => _x( 'Add New', 'discussion' ),
+        'add_new_item' => _x( 'Add New Discussion', 'discussion' ),
+        'edit_item' => _x( 'Edit Discussion', 'discussion' ),
+        'new_item' => _x( 'New Discussion', 'discussion' ),
+        'view_item' => _x( 'View Discussions', 'discussion' ),
+        'search_items' => _x( 'Search Discussions', 'discussion' ),
+        'not_found' => _x( 'No Discussions found', 'discussion' ),
+        'not_found_in_trash' => _x( 'No Discussions found in Trash', 'discussion' ),
+        'parent_item_colon' => _x( 'Parent Discussion:', 'discussion' ),
+        'menu_name' => _x( 'Discussions', 'discussion' ),
+    );
+    
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => false,
+        
+        'supports' => array( 'title', 'editor', 'thumbnail' ),
+        'taxonomies' => array( 'category' ),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 10,
+        
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => true,
+        'capability_type' => 'post'
+    );
+    
+    register_post_type( 'discussion', $args );
+	
+}
 
 ?>
