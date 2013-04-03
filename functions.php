@@ -17,8 +17,6 @@ include('functions_includes/badge-ajax.php');
 include('functions_includes/misc-functions.php');
 
 
-
-
 //$_SESSION['user_id'] = "";
 if($_GET['user']) {
 	$user_meta = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE user_token_id = '".$_GET['user']."' LIMIT 1");
@@ -44,10 +42,6 @@ function load_scripts_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'load_scripts_styles' );
-
-
-
-
 
 if (function_exists( 'add_image_size' ) ) { 
 	add_image_size( 'tutorial-thumb', 400, 300, true ); //300 pixels wide (and unlimited height)
