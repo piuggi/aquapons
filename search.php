@@ -23,7 +23,7 @@ if($_GET['post_type']=='resource') $section = 'resources';
 				<?php if(get_post_type() == 'badge') { ?>
 			
 					<article class="search_result badge">
-						<a href="<?php echo get_permalink(); ?>"><img src="<?php echo get_field('badge_image'); ?>" alt="<?php echo get_the_title(); ?>"></a>
+						<a href="<?php echo get_permalink(); ?>"><?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?></a>
 						<div class="info">
 							<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
 							<?php echo get_field('badge_description'); ?>
@@ -38,7 +38,7 @@ if($_GET['post_type']=='resource') $section = 'resources';
 				<?php } else if(get_post_type() == 'resource') { ?>
 				
 					<article class="search_result resource">
-						<a href="<?php echo get_permalink(); ?>"><img src="" alt="<?php echo get_the_title(); ?>"></a>
+						<a href="<?php echo get_permalink(); ?>"><?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?></a>
 						<div class="info">
 							<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
 							<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>

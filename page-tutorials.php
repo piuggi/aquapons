@@ -32,14 +32,16 @@
 					?>
 
 						<article class="tutorial">
-							<?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?>
-							<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
-							<h3><?php echo get_the_title(); ?></h3>
-							<?php the_excerpt(); ?>
-							<footer>
-								Level: <span class="level"><?php badge_level_name(get_field('resource_level')); ?></span>
-								<span class="approval">12 growers found this useful</span>
-							</footer>
+							<a href="<?php echo get_permalink(); ?>"><?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?></a>
+							<div class="info">
+								<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
+								<h3><?php echo get_the_title(); ?></h3>
+								<?php the_excerpt(); ?>
+								<footer>
+									Level: <span class="level"><?php badge_level_name(get_field('resource_level')); ?></span>
+									<span class="approval">12 growers found this useful</span>
+								</footer>
+							</div>
 						</article>
 						
 						

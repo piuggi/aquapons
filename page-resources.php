@@ -19,72 +19,61 @@
 					<section class="main-col">
 						<h2>Follow A Tutorial</h2>
 						
-						<article class="tutorial">
-							<img src="" alt="Tutorial Name">
-							<h4 class="meta-info">Posted 3 days ago by <a>Username123</a> | 3 comments</h4>
-							<h3>Name of Tutorial</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<footer>
-								Level: <span class="level">Senior Apprentice</span>
-								<span class="approval">12 growers found this useful</span>
-							</footer>
-						</article>
-						<article class="tutorial">
-							<img src="" alt="Tutorial Name">
-							<h4 class="meta-info">Posted 3 days ago by <a>Username123</a> | 3 comments</h4>
-							<h3>Name of Tutorial</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<footer>
-								Level: <span class="level">Senior Apprentice</span>
-								<span class="approval">12 growers found this useful</span>
-							</footer>
-						</article>
-						<article class="tutorial">
-							<img src="" alt="Tutorial Name">
-							<h4 class="meta-info">Posted 3 days ago by <a>Username123</a> | 3 comments</h4>
-							<h3>Name of Tutorial</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<footer>
-								Level: <span class="level">Senior Apprentice</span>
-								<span class="approval">12 growers found this useful</span>
-							</footer>
-						</article>
-						<article class="tutorial">
-							<img src="" alt="Tutorial Name">
-							<h4 class="meta-info">Posted 3 days ago by <a>Username123</a> | 3 comments</h4>
-							<h3>Name of Tutorial</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<footer>
-								Level: <span class="level">Senior Apprentice</span>
-								<span class="approval">12 growers found this useful</span>
-							</footer>
-						</article>
+						
+						<?php
+						$args = array(
+							'post_type' => 'resource',
+							'meta_key' => 'resource_type',
+							'meta_value' => 'tutorial',
+							'orderby' => 'post_date',
+							'order' => 'ASC',
+							'post_count' => 3
+						);
+						$query = new WP_Query( $args );
+						while($query->have_posts()) {
+							$query->the_post();
+						?>
+	
+							<article class="tutorial">
+								<?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?>
+								<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
+								<h3><?php echo get_the_title(); ?></h3>
+								<?php the_excerpt(); ?>
+								<footer>
+									Level: <span class="level"><?php badge_level_name(get_field('resource_level')); ?></span>
+									<span class="approval">12 growers found this useful</span>
+								</footer>
+							</article>
+							
+							
+						<?php } ?>	
+						
+						
+
 					</section>
 
 					<section id="find_a_job" class="sidebar">
 
 						<h4>Find a Job</h4>
 						<ul>
+						<?php
+						$args = array(
+							'post_type' => 'resource',
+							'meta_key' => 'resource_type',
+							'meta_value' => 'job',
+							'orderby' => 'post_date',
+							'order' => 'ASC',
+							'post_count' => 6
+						);
+						$query = new WP_Query( $args );
+						while($query->have_posts()) {
+							$query->the_post();
+						?>
 							<li>
-								<h5>Title of a Job Position</h5>
-								<p><a>Some Co.</a></p>
+								<h5><?php echo get_the_title(); ?></h5>
+								<p><a href="<?php echo get_field('job_post_url'); ?>"><?php echo get_field('company_name'); ?></a></p>
 							</li>
-							<li>
-								<h5>Title of a Job Position</h5>
-								<p><a>Some Co.</a></p>
-							</li>
-							<li>
-								<h5>Title of a Job Position</h5>
-								<p><a>Some Co.</a></p>
-							</li>
-							<li>
-								<h5>Title of a Job Position</h5>
-								<p><a>Some Co.</a></p>
-							</li>
-							<li>
-								<h5>Title of a Job Position</h5>
-								<p><a>Some Co.</a></p>
-							</li>
+						<?php } ?>
 						</ul>			
 					</section>
 					
@@ -93,7 +82,7 @@
 
 						<ul>
 							<li id="start">
-								<a href="/resources/tutorials/">
+								<a href="/resources/books/">
 								<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/book.png"></figure>
 								<h3>Books</h3>
 								<hr>
@@ -101,7 +90,7 @@
 								</a>
 							</li>
 							<li id="hone">
-								<a href="/badges/skills-badges/">
+								<a href="/badges/articles/">
 								<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/trim.png"></figure>
 								<h3>Articles</h3>
 								<hr>
@@ -109,7 +98,7 @@
 								</a>
 							</li>
 							<li id="share">
-								<a href="/resources/forum/">
+								<a href="/resources/presentations/">
 								<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/comment.png"></figure>
 								<h3>Presentations</h3>
 								<hr>
@@ -117,7 +106,7 @@
 								</a>
 							</li>
 							<li id="meet">
-								<a href="/community/">
+								<a href="/resources/links">
 								<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/leaf.png"></figure>
 								<h3>Links</h3>
 								<hr>
@@ -125,7 +114,7 @@
 								</a>
 							</li>		
 							<li id="earn">
-								<a href="/badges/badges-overview/">
+								<a href="/resources/products/">
 								<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/banner.png"></figure>
 								<h3>Products</h3>
 								<hr>

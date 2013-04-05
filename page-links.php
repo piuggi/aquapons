@@ -16,13 +16,13 @@
 			 	<section class="main-col">
 			 	
 			 	
-					<h2>Recent Job Postings</h2>
+					<h2>Recent Links</h2>
 					
 					<?php
 					$args = array(
 						'post_type' => 'resource',
 						'meta_key' => 'resource_type',
-						'meta_value' => 'job',
+						'meta_value' => 'link',
 						'orderby' => 'post_date',
 						'order' => 'ASC'
 					);

@@ -88,7 +88,7 @@
 	
 			
 			
-			<h2>My Skills Badges - <a href="http://aquapons.info/badges/skills-badges">View all ></a></h2>
+			<h2>My Skills Badges <a href="http://aquapons.info/badges/skills-badges">View all ›</a></h2>
 			<h3>Recently Completed</h3>
 			<?php
 			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."' AND `status` = 100 ORDER BY `updated` DESC LIMIT 3"); 
