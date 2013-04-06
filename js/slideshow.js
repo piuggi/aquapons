@@ -20,7 +20,7 @@ jQuery(window).load(function($){
 	  before: function(el) {
 	        jQuery(el).removeClass('active'); //remove active class
 	  },
-	  timeout: 100000,
+	  timeout: 4000,
 	  speed: 500,
 	  height: h,
 	  containerResize: 0,
