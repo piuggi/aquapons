@@ -31,4 +31,16 @@ jQuery(window).load(function($){
 	
 });
 
+jQuery(document).ready(function($){
+	// a little buggy still needs some work
+	$(window).resize(function() {
+	  //console.log('Handler for .resize() called.');
+	  var h = $('#first').children('img').height();
+	  $('#mantle').height(h);
+	  $('.showcase').height(h);
+	  
+	});
 
+	
+	
+});

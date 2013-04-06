@@ -18,16 +18,17 @@
 				
 					<?php 
 					
-					$args = array('post_type' => 'featured_aquapon', 'posts_per_page'=> 10); 
+					$args = array('post_type' => 'featured_aquapon', 'posts_per_page'=> 10, 'orderby'=>'date','order'=>'DESC'); 
 					$loop = new WP_Query($args);
 					$c=0;
 					while( $loop->have_posts()): $loop->the_post();
 					$c++;
+					
 					?>
-
+					
 					<figure class="showcase" <?php if($c==1) echo 'id="first"'; ?>>
 						<figcaption>
-							<h4 class="name"><a href=""><?php echo get_the_title();?></a></h4>
+							<h4 class="name"><a href="<?php the_permalink(); ?>"><?php echo get_the_title();?></a></h4>
 							<p class="institution"><?php echo  get_post_meta(get_the_ID(), 'instution', true);  ?></p>
 							
 							<?php $loc = get_post_meta(get_the_ID(), 'location', true); 
@@ -106,49 +107,47 @@
 				<section id="callout" class="textcontent">
 					<section id="featured_grower">
 					<h2>Featured Growers </h2>
-					<figure class="first">
-						<img src="<?php echo bloginfo('template_url') ?>/imgs/feat_grower1.png" alt=""/>
+					<?php 
+						//will have to add query to stop from finding COPPA Users
+						$args = array( 'orderby'=> 'registered',
+										'order'=> 'DESC',
+										'number'=> 10
+						 				); 
+						 				
+						 $growers = get_users($args);
+						 $g=0;
+						 foreach($growers as $grower){
+					?>	 
+						  
+					<figure <?php if($g==0) echo 'class="first"'; ?>>
+						<?php if(userphoto_exists($grower)) userphoto_thumbnail($grower); 
+							  else echo get_avatar( $grower->user_email, 160);//defaults to blank gravatar can substitute if we want 		
+						?>
+						<!--<img src="<?php echo bloginfo('template_url') ?>/imgs/feat_grower1.png" alt=""/>-->
 						<figcaption>
-							<h3>CoolUsername12324</h3>
+							<h3><?php echo $grower->display_name; ?></h3>
 						</figcaption>
 					</figure>
-					<figure>
-						<img src="<?php echo bloginfo('template_url') ?>/imgs/feat_grower2.png" alt=""/>
-						<figcaption>
-							<h3>CoolUsername12324</h3>
-						</figcaption>
-					</figure>
-					<figure>
-						<img src="<?php echo bloginfo('template_url') ?>/imgs/feat_grower3.png" alt=""/>
-						<figcaption>
-							<h3>CoolUsername12324</h3>
-						</figcaption>
-					</figure>
-					<figure>
-						<img src="<?php echo bloginfo('template_url') ?>/imgs/feat_grower4.png" alt=""/>
-						<figcaption>
-							<h3>CoolUsername12324</h3>
-						</figcaption>
-					</figure>
-					<figure>
-						<img src="<?php echo bloginfo('template_url') ?>/imgs/feat_grower5.png" alt=""/>
-						<figcaption>
-							<h3>CoolUsername12324</h3>
-						</figcaption>
-					</figure>
-					<figure>
-						<img src="<?php echo bloginfo('template_url') ?>/imgs/feat_grower1.png" alt=""/>
-						<figcaption>
-							<h3>CoolUsername12324</h3>
-						</figcaption>
-					</figure>
+						  
+					<?php $g++; }/*end for each $growers */ ?>
 					</section><!--featured grower -->
 				</section>
 				<section id="additional-content" class="text-content">
 					<section id="recent-discussions">
-						
 						<section id="discussions" class="main-col">
-							<h2>Recent Discussion <a>All Discussions ›</a></h2>
+							<h2>Recent Discussions <a href="">All Discussions ›</a></h2>
+							<?php 
+
+							$args = array('post_type' => 'discussion', 'posts_per_page'=> 5, 'orderby'=>'date','order'=>'DESC'); 
+							$discussions = new WP_Query($args);
+							while( $discussions->have_posts()): $discussions->the_post();
+								$cats = get_the_category();
+								//print_r($cats);
+								
+								if($cats) $class = $cats[0]->slug;
+								else $class = 'plant';
+							?>
+							
 							<article class="question">
 								<section class="qleft">	
 									<p>50<em>votes</em></p>
@@ -156,49 +155,14 @@
 									<p>50<em>answers</em></p>	
 								</section><!--.qleft-->
 								<section class="qright">
-										<div class="plant"></div>
-										<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-										<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
+										<div class="<?php echo $class; ?>"></div>
+										<h3><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+										<p>Posted <?php echo time_ago(); ?> by <a class="<?php echo $class; ?>" href=""><?php echo get_the_author(); ?></a></p>
 								</section><!--.qright-->
-							</article><!--.question -->
-			
-							<article class="question">
-								<section class="qleft">	
-									<p>50<em>votes</em></p>
-									<hr>
-									<p>50<em>answers</em></p>	
-								</section><!--.qleft-->
-								<section class="qright">
-										<div class="fish"></div>
-										<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-										<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
-								</section><!--.qright-->
-							</article><!--.question -->
-														<article class="question">
-								<section class="qleft">	
-									<p>50<em>votes</em></p>
-									<hr>
-									<p>50<em>answers</em></p>	
-								</section><!--.qleft-->
-								<section class="qright">
-										<div class="design-build"></div>
-										<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-										<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
-								</section><!--.qright-->
-							</article><!--.question -->
-			
-							<article class="question">
-								<section class="qleft">	
-									<p>50<em>votes</em></p>
-									<hr>
-									<p>50<em>answers</em></p>	
-								</section><!--.qleft-->
-								<section class="qright">
-										<div class="water"></div>
-										<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-										<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
-								</section><!--.qright-->
-							</article><!--.question -->
+							</article><!--.question <?php echo get_the_title(); ?>  -->
+							
+							
+							<?php endwhile; wp_reset_query(); ?>
 						</section><!--#discussions-->
 						<section id="resources" class="sidebar">
 							

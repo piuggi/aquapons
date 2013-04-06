@@ -112,6 +112,15 @@ function insertSubmission($info){
 	);
 }
 
+//return how long ago a post was made
+//http://upthemes.com/blog/2010/03/wordpress-master-tip-display-time-ago-for-posts-or-comments/
+function time_ago( $type = 'post' ) {
+	$d = 'comment' == $type ? 'get_comment_time' : 'get_post_time';
+
+	return human_time_diff($d('U'), current_time('timestamp')) . " " . __('ago');
+
+}
+
 
 
 	
