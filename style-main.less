@@ -187,6 +187,12 @@ h2{
 	padding: 20px 0 10px 0;
 	color: @dkbrown;
 	text-align: left;
+	a, a:visited { 
+		margin-left: 6px;
+		color: @teal;
+		font-size: 14px;
+		text-transform: none;
+	}
 }
 
 a, a:visited{
@@ -1829,40 +1835,44 @@ section#main.forum{
 	
 }
 
-.search-results {
+
+
+.resource, .search_result {
+	position: relative;
+	clear: both;
+	min-height: 130px;
+	margin: 0 0 20px;
+	padding: 10px 0;
 	
-	.search_result {
-		position: relative;
-		clear: both;
-		min-height: 130px;
-		padding: 10px 0;
-		
+	.info {
+		margin-left: 160px;
+	}
+
+
+	img {
+		width: 140px;
+		height: auto;
+		float: left;
+		margin: 0 20px 0 0;
+	}
 	
 	
-		img {
-			width: 140px;
-			height: auto;
-			float: left;
-			margin: 0 20px 0 0;
-		}
+	footer {
+		margin: 20px 0 0 0;
+		padding: 5px 0;
+		border-top: 1px solid @dkbrown;
+		border-bottom: 2px solid @dkbrown;
+		.sans-serif;
+	}
+	.level {
 		
-		
-		footer {
-			margin: 20px 0 0 160px;
-			padding: 5px 0;
-			border-top: 1px solid @dkbrown;
-			border-bottom: 2px solid @dkbrown;
-			.sans-serif;
-		}
-		.level {
-			
-			font-weight: bold;
-			margin-right: 20px;
-		}
-		
+		font-weight: bold;
+		margin-right: 20px;
 	}
 	
 }
+
+
 
 .page-sign-up{
 	
@@ -2059,11 +2069,7 @@ section#main.forum{
 			text-transform: uppercase;
 			border-bottom: 1px solid @dkbrown;
 			margin: 20px 0 15px;
-		}
-		h2 + h3 {
-			margin: -20px 0 15px;
-		}
-		
+		}		
 		
 		.content.badge {
 			width: 24%;
