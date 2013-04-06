@@ -34,9 +34,11 @@ function load_scripts_styles() {
 	global $wp_styles;
 
 	//wp_enqueue_script( 'load-script', get_template_directory_uri() . '/js/scripts.js', array(), '1.0', true );
-
+	
 	wp_enqueue_script( 'misc-script', get_template_directory_uri() . '/js/scripts.js', array('jquery'));
 	wp_enqueue_script( 'badge-review-script', get_template_directory_uri() . '/js/badges.js', array('jquery'));
+	wp_enqueue_script( 'jquery-cycle', get_template_directory_uri(). '/js/jquery.cycle.all.js', array('jquery'));
+	wp_enqueue_script( 'load-slideshow',get_template_directory_uri().'/js/slideshow.js',array('jquery'));
 	wp_enqueue_style( 'wp-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'main-style', get_bloginfo('template_directory') . '/style-main.css' );
 

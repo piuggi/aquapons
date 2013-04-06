@@ -10,17 +10,44 @@
 			$page_class = sanitize_title(get_the_title());
 			$page_class = strtolower($page_class);
 			?>
+			
+
 			<section id="main" class="<?php echo $page_class;?>">
+			
 				<section id="mantle">
-					<figure id="showcase">
+				
+					<?php 
+					
+					$args = array('post_type' => 'featured_aquapon', 'posts_per_page'=> 10); 
+					$loop = new WP_Query($args);
+					$c=0;
+					while( $loop->have_posts()): $loop->the_post();
+					$c++;
+					?>
+
+					<figure class="showcase" <?php if($c==1) echo 'id="first"'; ?>>
 						<figcaption>
-							<h4 class="name">Linda Jackson</h4>
-							<p class="institution">institution name</p>
-							<p class="location">san diego, california</p>
+							<h4 class="name"><a href=""><?php echo get_the_title();?></a></h4>
+							<p class="institution"><?php echo  get_post_meta(get_the_ID(), 'instution', true);  ?></p>
+							
+							<?php $loc = get_post_meta(get_the_ID(), 'location', true); 
+								if($loc != ''){
+							?>
+							<p class="location"><?php echo $loc; ?></p>
+							<?php } ?>
+							
 						</figcaption>
-						<img id="aquapon_ledgend" src="<?php echo bloginfo('template_url') ?>/imgs/featured_dev_test.png" alt="One of our featured Aquapons">
-					</figure>
-				</section>
+						<?php $imgId = get_post_meta(get_the_ID(), 'image', true);  ?>
+						<?php $imgArray = wp_get_attachment_image_src( $imgId);?>
+						
+						<img class="aquapon_ledgend" src="<?php echo $imgArray[0];  ?>" alt="One of our featured Aquapons <?php echo get_the_title();?>">
+					</figure><!--showcase -->
+
+
+					<?php endwhile; wp_reset_query(); ?>
+				
+
+				</section><!--mantle-->
 				<section class="steps">
 					<ul >
 						<li id="start">
