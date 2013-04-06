@@ -122,6 +122,17 @@ function time_ago( $type = 'post' ) {
 }
 
 
+function establishedDate($rawdate){
+	
+	$year = substr($rawdate, 0, 4);
+	$month = substr($rawdate, 4, 2);
+
+	$monthName = date("F", mktime(0, 0, 0, intval($month), 10));
+	$est = "Est. {$monthName}, {$year}";
+	
+	return $est;
+}
+
 
 	
 ?>

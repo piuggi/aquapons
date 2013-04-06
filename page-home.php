@@ -20,13 +20,13 @@
 					
 					$args = array('post_type' => 'featured_aquapon', 'posts_per_page'=> 10, 'orderby'=>'date','order'=>'DESC'); 
 					$loop = new WP_Query($args);
-					$c=0;
+					
 					while( $loop->have_posts()): $loop->the_post();
-					$c++;
+					
 					
 					?>
 					
-					<figure class="showcase" <?php if($c==1) echo 'id="first"'; ?>>
+					<figure class="showcase" <?php if(!$g++) echo 'id="first"'; ?>>
 						<figcaption>
 							<h4 class="name"><a href="<?php the_permalink(); ?>"><?php echo get_the_title();?></a></h4>
 							<p class="institution"><?php echo  get_post_meta(get_the_ID(), 'instution', true);  ?></p>
@@ -109,17 +109,17 @@
 					<h2>Featured Growers </h2>
 					<?php 
 						//will have to add query to stop from finding COPPA Users
-						$args = array( 'orderby'=> 'registered',
+						$grower_args = array( 'orderby'=> 'registered',
 										'order'=> 'DESC',
 										'number'=> 10
 						 				); 
 						 				
-						 $growers = get_users($args);
-						 $g=0;
+						 $growers = get_users($grower_args);
+						 
 						 foreach($growers as $grower){
 					?>	 
 						  
-					<figure <?php if($g==0) echo 'class="first"'; ?>>
+					<figure <?php if(!$g++) echo 'class="first"'; ?>>
 						<?php if(userphoto_exists($grower)) userphoto_thumbnail($grower); 
 							  else echo get_avatar( $grower->user_email, 160);//defaults to blank gravatar can substitute if we want 		
 						?>
@@ -129,17 +129,20 @@
 						</figcaption>
 					</figure>
 						  
-					<?php $g++; }/*end for each $growers */ ?>
+					<?php  }/*end for each $growers */ ?>
 					</section><!--featured grower -->
-				</section>
+				</section><!-- callout -->
 				<section id="additional-content" class="text-content">
 					<section id="recent-discussions">
 						<section id="discussions" class="main-col">
 							<h2>Recent Discussions <a href="">All Discussions ›</a></h2>
 							<?php 
 
-							$args = array('post_type' => 'discussion', 'posts_per_page'=> 5, 'orderby'=>'date','order'=>'DESC'); 
-							$discussions = new WP_Query($args);
+							$discussion_args = array('post_type' => 'discussion', 
+										  'posts_per_page'=> 5, 
+										  'orderby'=>'date',
+										  'order'=>'DESC'); 
+							$discussions = new WP_Query($discussion_args);
 							while( $discussions->have_posts()): $discussions->the_post();
 								$cats = get_the_category();
 								//print_r($cats);
@@ -172,7 +175,7 @@
 								$resource_args = array(
 									'post_type' => 'resource',
 									'orderby' => 'post_date',
-									'order' => 'ASC'
+									'order' => 'ASC',
 								);
 								$resource_query = new WP_Query( $resource_args );
 								while($resource_query->have_posts()) {
@@ -186,57 +189,42 @@
 									</li>
 									
 									
-								<?php } ?>	
+								<?php } wp_reset_query(); ?>	
 							</ul>	
-							
-							
-
 								
-					</section><!--#discussions-->
-							
-							
-									
-						</section>
-					</section><!--recent-->
+							</section><!--#resources-->	
+					</section><!--recent-discussions-->
 					<section id="new-institutions" class="side-scroller">
 						<h2>New Institutions <a>All institutions ›</a></h2>
-						<article class="institution first">
+						
+						<?php  
+							$institution_args = array(
+														'post_type'=> 'institution',
+														'orderby'=> 'date',
+														'order'	=> 'DESC',			
+													);
+							$institutions = new WP_Query($institution_args);
+							while($institutions->have_posts()){
+								$institutions->the_post();
+						?>
+						<article class="institution <?php if(!$g++) echo ' first'; ?>">
 							<figure>
-							<img src="<?php echo bloginfo('template_url') ?>/imgs/largerleaf.png">
-							<h4>Brooklyn Growers Society</h4>
+							<div class="icon"><img src="<?php echo bloginfo('template_url') ?>/imgs/<?php echo get_post_meta($post->ID, 'institution_icon', true); ?>.png"></div>
+							<h4><?php echo get_post_meta($post->ID, 'institution_name', true); ?></h4>
 							</figure>
-							<p>Est. April,2005 • 54 Members</p>
-						</article>
-						<article class="institution">
-							<figure>
-							<img src="<?php echo bloginfo('template_url') ?>/imgs/squiggle.png">
-							<h4>Washington University Aquaponics</h4>
-							</figure>
-							<p>Est. Sept,2008 • 65 Members</p>
-						</article>
-						<article class="institution">
-							<figure>
-							<img src="<?php echo bloginfo('template_url') ?>/imgs/fish.png">
-							<h4>Jefferson High School Urban Farming Club</h4>
-							</figure>
-							<p>Est. August,2013 • 34 Members</p>
-						</article>
-						<article class="institution">
-							<figure>
-							<img src="<?php echo bloginfo('template_url') ?>/imgs/largerleaf.png">
-							<h4>Brooklyn Growers Society</h4>
-							</figure>
-							<p>Est. January, 2013 • 23 Members</p>
-						</article>
-						<article class="institution">
-							<figure>
-							<img src="<?php echo bloginfo('template_url') ?>/imgs/squiggle.png">
-							<h4>Washington University Aquaponics</h4>
-							</figure>
-							<p>Est. Sept,2008 • 65 Members</p>
-						</article>
+							<?php $rawdate = get_post_meta($post->ID, 'established_date', true); 
+								
+							?>
+							<p><?php echo establishedDate($rawdate); ?> • 54 Members</p>
+						</article><!-- .institution -->
+						
+						
+						
+						<?php } wp_reset_query(); ?>
+
 					</section><!--new_institutions -->
-			 </section><!--additional_content -->
+				</section><!--additional content -->
+
 			 
 			<?php
 				// print post results
