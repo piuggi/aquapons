@@ -28,12 +28,12 @@ if($badge_status->status == 100) $badge_complete = true;
 		</ul>
 	</section>
 	
-	<section id="badge-outline">
-		<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
+	<section class="badge-outline">
+		<p><?php echo get_field('badge_description'); ?></p>
 		<hr>
 		<div class="badge-objectives">
 			<h3>Learning Objectives</h3>
-			<?php echo get_field('badge_objectives', $post->ID); ?>
+			<?php echo get_field('badge_objectives'); ?>
 		</div>
 	</section>
 	

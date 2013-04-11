@@ -37,6 +37,7 @@
 								<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
 								<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
 								<?php the_excerpt(); ?>
+								<p><a href="<?php echo get_field('link_url'); ?>">link</a></p>
 								<footer>
 									Level: <span class="level"><?php badge_level_name(get_field('resource_level')); ?></span>
 									<span class="approval">12 growers found this useful</span>

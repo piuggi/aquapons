@@ -180,6 +180,10 @@ h1, h2, h3, h4, h5, h6 {
 	.sans-serif;	
 }
 
+p {
+	margin-bottom: 1em;
+}
+
 h2{
 	font-weight: 600;
 	text-transform: uppercase;
@@ -222,11 +226,10 @@ header{
 	width: 100%;
 	background-color: @beige;
 	position: relative;
-	
-	h1, h2, h3, h4, h5, h6, p {
+
+	h1, h2, h3, h4, h5, h6 {
 		margin-bottom: 0;
 	}
-
 	
 	
 	#main-nav{
@@ -960,13 +963,14 @@ header.badges{
 	
 	
 	
-	#badge-outline{
+	.badge-outline{
 		
 			display:block;
 			clear: both;
 			padding: 40px 12%;
-			background: @offwhite;
+			color: @dkbrown;
 			text-align: center;
+			line-height: 1.5em;
 			.sub-nav-shadow;
 			p{ .sans-serif; font-size: 1.4em; text-align: center; }
 			h3{ text-align: center; font-weight: bold; font-size: 1.1em; text-transform: uppercase;}
@@ -1645,15 +1649,23 @@ section#main.forum{
 		}
 	}
 	.badge-objectives {
+		margin: 25px 0;
+		p {
+			.serif;
+			font-size: 14px;
+		}
 		ul {
 			-moz-column-count:3;
 			-webkit-column-count:3;
 			column-count:3;
 		}
 		ul li {
+			display: inline-block;
 			list-style: disc;
-			width: 100px;
 			list-style-position: inside;
+		}
+		ul li:before {
+			content: "• ";
 		}
 	}
 }

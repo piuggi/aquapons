@@ -86,12 +86,17 @@ if(is_user_logged_in()){
 		<h2><?php the_title(); ?></h2>
 		<div class="estimated_time">Estimated Time: <?php echo get_post_meta($post->ID, 'estimated_timeframe', true); ?></div>
 	</section>
+	
+	
+
 		
-	<section id="badge-outline">
-		<p><?php echo get_post_meta($post->ID, 'badge_description', true); ?></p>
+	<section class="badge-outline">
+		<?php echo get_field('activity_description'); ?>
 		<hr>
-		<h3>Learning Objectives</h3>
-		<p><?php echo get_post_meta($post->ID, 'badge_objectives', true); ?></p>
+		<div class="badge-objectives">
+			<h3>Instructions</h3>
+			<?php echo get_field('activity_instructions'); ?>
+		</div>
 	</section>
 	
 	<section class="text-content">
