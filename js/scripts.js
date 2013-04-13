@@ -81,6 +81,11 @@ jQuery(document).ready(function($) {
 	        $('.close_category_descriptions').css('position', 'absolute');
         }
     });
+    
+    
+    $('.edit_background').click(function() {
+	   $('.background').toggleClass('editing');
+    });
 	
 		
 }); // jQuery

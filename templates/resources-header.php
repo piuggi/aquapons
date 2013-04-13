@@ -1,11 +1,11 @@
 <div id="secondary-nav">
 	<section id="main-links">
-		<h2 id="page-title"><a href="">
+		<h2 id="page-title">
 			<?php 
 			if($_GET['s']) echo 'Resources';
 			else echo get_the_title(); 
 			?>
-		</a></h2>
+		</h2>
 		<hr>
 		<ul>
 			<li><a href="/resources/tutorials/">Tutorials</a></li>

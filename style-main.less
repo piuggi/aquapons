@@ -201,13 +201,13 @@ h2{
 
 a, a:visited{
 	
-	color: @dkbeige;
+	color: @teal;
 	text-decoration: none;
 	.sans-serif;
 }
 
 a:hover{
-
+	color: @orange;
 	//font-weight: bold;
 };
 
@@ -215,6 +215,29 @@ hr {
 	border: none;
 	border-bottom: 1px solid @dkbrown;
 }
+
+label {
+	display: block;
+	clear:none;
+	margin: 5px 0 0 0;
+	font-size: 13px;
+}
+
+input{
+	display: block;
+	width: 50%;
+	color: @dkbrown;
+	border-radius: 5px;
+	border: 1px solid @medbeige;
+	padding: 7px 15px;
+	font-size: 14px;	
+}
+
+input[type="submit"]:hover, input[type="button"]:hover{
+	background: @medbeige;
+	cursor: pointer;
+}
+
 
 
 /*-------------------------------------------------------------------------------------	
@@ -231,6 +254,22 @@ header{
 		margin-bottom: 0;
 	}
 	
+	h2 {
+		font-size: 40px;
+		text-transform: none;
+	}
+	
+	h3 {
+		position: relative;
+		top: -10px;
+	}
+	
+	a, a:visited {
+		color: @dkbeige;
+	}
+	a:hover {
+		color: @medbrown;
+	}
 	
 	#main-nav{
 		//.header-lock;
@@ -402,6 +441,10 @@ header{
 				font-size: 14px;
 				font-style: italic;
 				color: @dkbeige;
+				display: inline;
+				border-radius: 0;
+				padding: 0;
+				
 			}
 			input[type="submit"]{
 				position: absolute;
@@ -564,6 +607,9 @@ footer.main{
 		
 		a, a:visited {
 			color: @beige;
+		}
+		a:hover {
+			color: @dkbeige;
 		}
 
 		hr{ 
@@ -813,22 +859,14 @@ footer.main{
 		div.plant{ background-color: @green;}
 		div.design-build{ background-color: @purple;}
 		div.fish{ background-color:@orange;}
-		div.community-impact{ background: @lt-blue; }
-		div.economic-impact{ background: @yellow;}
-		div.environmental-impact{ background:@lt-green; }
-		div.uncategorized{ background: @fushia;}
 
-		h3, h3 a{ margin: 10px 0 0; padding: 0; font-size: 1.1em; color: @dkbrown; font-family: georgia, serif;}
+		h3{ margin: 10px 0 0; padding: 0; font-size: 1.2em; font-family: georgia, serif;}
 		p{ margin: 0; padding: 2px 0 0; font-size: .8em; .sans-serif; 
 
 				a.water, a.water:visited{ color: @blue;}
 				a.plant, a.plant:visited{ color: @green;}
 				a.design-build, a.design-build:visited{ color: @purple;}
 				a.fish, a.fish:visited{ color:@orange;}
-				a.community-impact, a.community-impact:visited{ color: @lt-blue; }
-				a.economic-impact, a.economic-impact:visited{ color: @yellow;}
-				a.environmental-impact, a.environmental-impact:visited{ color:@lt-green; }
-				a.uncategorized, a.uncategorized:visited{ color: @fushia;}
 		}
 	}
 
@@ -976,6 +1014,7 @@ header.badges{
 			display:block;
 			clear: both;
 			padding: 40px 12%;
+			background: @beige;
 			color: @dkbrown;
 			text-align: center;
 			line-height: 1.5em;
@@ -1081,32 +1120,22 @@ header.badges{
 	#main {background: @dotted-pattern;}
 	
 	#mantle{
-		//text-align: center;
+		width: 100%;
+		text-align: center;
 		.header-ul;
-		width: 100% !important;
-		height:auto;
-		display: table;
-		position: relative;
-		//margin: 0;
-				
-		.showcase{
-			width: 100%;
-			//overflow: hidden;
-			height: auto;
+
+		#showcase{
+			
 			figcaption{
 				width: 400px;
+				position: absolute;
 				top: 200px;
 				left: 60%;
-				position: relative;
 				display:run-in;
 				color: @beige;
 				text-align: right;
-				z-index: 99;
 				
-				h4{display: block; margin: .7em 0; .serif; font-size: 3em; text-transform: capitalize;text-shadow: rgba(0,0,0,0.8) 2px 2px 2px; 
-					
-					a{ color: @beige;}
-				}
+				h4{display: block; margin: .7em 0; .serif; font-size: 3em; text-transform: capitalize;text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;}
 				p{display: block; margin: .7em 0; text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;}
 				p.institution{ .sans-serif; text-transform: uppercase; font-weight: bold; font-size: 1.6em; }
 				p.location{.sans-serif; text-transform: capitalize; font-weight: bold;	}
@@ -1114,12 +1143,8 @@ header.badges{
 				
 			}
 						
-			img{ position: absolute;
-				 top: 0;
-				 left: 0;
-				 width: 100% !important;
-				 height: auto; 
-				 display: block;}
+			img{width: 100% !important;
+				height: auto; }
 				
 		}
 	
@@ -1127,7 +1152,6 @@ header.badges{
 	
 	.steps {
 		position: relative;
-		z-index: 900;
 		top: -4px;
 		a {
 			display: block;
@@ -1260,29 +1284,20 @@ header.badges{
 			figure{
 				height: 78px;
 				padding-bottom: 18px;
-				position: relative;
-				text-align: center;
+				
 			}
-			.icon{
-				height: 50px;
-				position: relative;
-				text-align: center;
-				padding: 10px 0 0;
-				img{
-					vertical-align: middle;
-					//position: absolute;
-					//top: 20%;
-					//left: 40%;
-					
-				}
-			}		
+			
+			img{
+				
+				padding: 20px 0 5px;
+			}
+						
 			h4{
 				
 				.sans-serif;
 				font-weight: 100;
 				font-size: .9em;
 				white-space:pre-line;
-				line-height: 1em;
 				width: 80%;
 				margin: 0 auto;
 				color: @dkbrown;
@@ -1795,6 +1810,7 @@ section#main.forum{
 	#browse_the_library {
 		a {
 			display: block;
+			color: @dkbeige;
 			margin: 0;
 			padding: 0 1%;
 			width: 100%;
@@ -2087,6 +2103,51 @@ section#main.forum{
 		}
 	}
 	
+	.background.editable {
+		padding-left: 60px;
+	}
+	
+	
+	.background_admin {
+		display: none;
+	}
+	
+	.background.editing .background_display {
+		display: none;
+	}
+	
+	.background.editing .background_admin {
+		display: block;
+	}
+	
+	.edit_setting {
+		width: 35px;
+		height: 35px;
+		float: left;
+		margin: 20px 0 0 -44px;
+		background: url(imgs/pencil.png) no-repeat center center;
+		cursor: pointer;
+	}
+	
+	.edit_setting:hover {
+		opacity: .8;
+	}
+	
+	.edit_background {
+		background-image: url(imgs/pencil.png);
+		text-indent: 9999px;
+		overflow: hidden;
+	}
+	
+	.edit_resume {
+		background-image: url(imgs/arrow.png);
+		text-indent: 9999px;
+		overflow: hidden;
+	}
+	
+	.school, .company {
+		margin: 0 0 20px;
+	}
 	
 	.my_badges {
 		-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;

@@ -1,11 +1,15 @@
+<?php
+global $userid; 
+$current_userdata = get_userdata($userid);
+?>
 <div id="secondary-nav">
 	<section id="main-links">
 
-		<h3><?php 
-		$user_role = $current_user->roles; 
+		<h3><?php
+		$user_role = $current_userdata->roles; 
 		echo ucwords(str_replace("_", " ", $user_role[0])); ?>
 		</h3>
-		<h2 id="page-title"><a href=""><?php echo $current_user->display_name; ?></a></h2>
+		<h2 id="page-title"><?php echo $current_userdata->display_name; ?></h2>
 		<hr>
 		<ul>
 			<li><a href="">Alerts</a></li>

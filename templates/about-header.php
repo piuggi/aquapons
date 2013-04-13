@@ -1,6 +1,6 @@
 <div id="secondary-nav">
 	<section id="main-links">
-		<h2 id="page-title"><a href=""><?php echo get_the_title(); ?></a></h2>
+		<h2 id="page-title"><?php echo get_the_title(); ?></h2>
 		<hr>
 		<ul>
 			<li><a href="/resources/tutorials/">About Sweet Water Foundation</a></li>

@@ -116,8 +116,6 @@ if(is_user_logged_in()){
 		
 		<h2>Recent Documentation</h2>
 		<section class="main-col">
-		<label for="activity_submission"><?php echo get_post_meta($post->ID, 'activity_description', true); ?></label>
-
 			<?php //<h3>Current Submission:</h3>?>
 			<?php
 			foreach($activity_retrieve as $activity_info){
@@ -188,8 +186,7 @@ if(is_user_logged_in()){
 			<?php } else { $userSubmissions=false; // if($activity_info) ?>
 				
 				<h2>Start Documenting</h2>
-				<section class="main-col">	
-				<label for="activity_submission"><?php echo get_post_meta($post->ID, 'activity_description', true); ?></label>
+				<section class="main-col">
 
 					
 			<?php	} ?>
@@ -198,7 +195,6 @@ if(is_user_logged_in()){
 			
 				<h2>Log In to Start Documenting</h2>
 				<section class="main-col">	
-				<label for="activity_submission"><?php echo get_post_meta($post->ID, 'activity_description', true); ?></label>
 			
 			<?php } ?>
 			

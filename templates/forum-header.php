@@ -6,7 +6,7 @@
 </div><!--#sub-nav-->
 <div id="secondary-nav">
 	<section id="main-links">
-		<h2 id="page-title"><a href="">Forum</a></h2>
+		<h2 id="page-title">Forum</h2>
 		<hr>
 		<ul>
 			<li><a href="">Tutorials</a></li>

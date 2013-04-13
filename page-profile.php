@@ -1,31 +1,108 @@
 <?php $section = 'profile'; ?>
+
+<?php
+
+if($_SESSION['user_id']) $userid = $_SESSION['user_id'];
+else $userid = get_current_user_id();
+
+?>
 <?php get_header(); ?>
 
+
 	<section class="main">
-		<section class="background text-content">
+		<section class="background text-content <?php if($current_user->ID == $userid) echo "editable"; ?>">
 			
 			<?php
 			//if logged in and current profile page == current user, show edit buttons
+			if($current_user->ID == $userid) { ?>
+				<div class="edit_setting edit_background">Edit</div>
+			<?php 
+			}
+			
+			$background_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE wp_user_id = '".$userid."'"); 
 			?>
-			<!-- <div class="edit_setting edit_background">Edit</div> -->
 			
 			<h2>Background</h2>
+				
+				<div class="background_display">
+				<h4>Member Since</h4>
+				<p><?php echo date("F, Y", strtotime(get_userdata($userid)->user_registered)); ?></p>
+				
+				<h4>Current City</h4>
+				<p><?php echo $background_info->location; ?></p>
+				
+				<h4>Education</h4>
+				<?php
+				$schools = $wpdb->get_results("SELECT * FROM aq_education WHERE user_id = '".$userid."'"); 
+				foreach($schools as $school) {
+				?>
+				<div class="school">
+					<h5><a href="<?php echo $school->url; ?>"><?php echo $school->name; ?></a></h5>
+					<h6><?php echo $school->accredidation; ?></h6>
+				</div>
+				<?php } ?>
+				
+				<h4>Professional Experience</h4>
+				<div class="company">
+					<h5><a href="">Some Company Name</a></h5>
+					<h6>Nutritionist</h6>
+				</div>
+				
+			</div>
 			
-			<h4>Member Since</h4>
-			<p><?php echo date("F, Y", strtotime(get_userdata(get_current_user_id( ))->user_registered)); ?></p>
 			
-			<h4>Current City</h4>
-			<p>Los Angeles</p>
 			
-			<h4>Education</h4>
-			<p>Stanford University</p>
-			<p>UCLA</p>
+			<div class="background_admin">
+				
+				<h4>Current City</h4>
+				<input class='current_city' value='<?php echo $background_info->location; ?>'>
+				
+				<h4>Education</h4>
+				<?php
+				$schools = $wpdb->get_results("SELECT * FROM aq_education WHERE user_id = '".$userid."'"); 
+				foreach($schools as $school) {
+				?>
+				<div class="school">
+					<input class='school_name' value='<?php echo $school->name; ?>' placeholder="School Name">
+					<input class='school_name' value='<?php echo $school->url; ?>' placeholder="School Website">
+					<input class='school_name' value='<?php echo $school->accredidation; ?>' placeholder="Degree/Certificate earned">
+				</div>
+				<?php } ?>
+				<div class="new school">
+					<label>Add new school</label>
+					<input class='school_name' placeholder="School Name">
+					<input class='school_url' placeholder="School Website">
+					<input class='degree' placeholder="Degree/Certificate earned">
+				</div>
+				
+				<h4>Professional Experience</h4>
+				<?php
+				$jobs = $wpdb->get_results("SELECT * FROM aq_experience WHERE user_id = '".$userid."'"); 
+				foreach($jobs as $job) {
+				?>
+				<div class="company">
+					<input class='company_name' value='<?php echo $job->company; ?>' placeholder="Company/Institution Name">
+					<input class='company_name' value='<?php echo $job->url; ?>' placeholder="Company/Institution Website">
+					<input class='job_title' value='<?php echo $job->title; ?>' placeholder="Job Title">
+				</div>
+				<?php } ?>
+				<div class="new company">
+					<label>Add New:</label>
+					<input class='company_name' placeholder="Company/Institution Name">
+					<input class='company_name' placeholder="Company/Institution Website">
+					<input class='job_title' placeholder="Job Title">
+				</div>
+				
+				<input type="button" value="Save Changes">
 			
-			<h4>Professional Experience</h4>
-			<p>Nutritionist</p>
-			<p>Some Company Name</p>
+			</div>
 			
-			<!-- <div class="edit_setting edit_resume">Edit</div> -->
+			
+			
+			<?php if($current_user->ID == $userid) { ?>
+				<div class="edit_setting edit_resume">Upload</div>
+			<?php } ?>
+			
 			<h4>Resume</h4>
 			<p><a href="#">Download ›</a>
 			
@@ -37,7 +114,7 @@
 		<section class="my_badges text-content">
 			
 			<?php
-			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."'"); 
+			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."'"); 
 			?>		
 			<h2>My Aquapons Badges</h2>
 			<?php 

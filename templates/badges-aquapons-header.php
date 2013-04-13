@@ -9,7 +9,7 @@
 </div><!--#sub-nav-->
 <div id="secondary-nav">
 <section id="main-links" class="<?php echo $page;?>">
-	<h2 id="page-title"><a href="">Badges</a></h2>
+	<h2 id="page-title">Badges</h2>
 	<hr>
 	<ul>
 		<li><a href="http://aquapons.info/badges/aquapons-badges/">Aquapons</a></li>

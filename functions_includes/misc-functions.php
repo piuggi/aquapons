@@ -134,5 +134,23 @@ function establishedDate($rawdate){
 }
 
 
+function updateProfileInfo($info) {
+	global $wpdb;
+	// update metainfo
+	$wpdb->update(
+		'aq_usermeta',  
+		array( 
+			'location' => $info['location']
+		),
+		array( 'wp_user_id' => $info['userid'] )
+	);
+
+
+	// update education info
 	
+	
+	// update experience info
+	
+}
+
 ?>
