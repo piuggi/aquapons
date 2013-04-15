@@ -81,10 +81,16 @@ jQuery(document).ready(function($) {
 	        $('.close_category_descriptions').css('position', 'absolute');
         }
     });
-    
-    
-    $('.edit_background').click(function() {
-	   $('.background').toggleClass('editing');
+	
+	
+	
+	
+	
+    $('.edit_background, .cancel_background_info').click(function() {
+    	$('.background').toggleClass('editing');
+    	$('.background_admin input[type!="submit"]').each(function() {
+	    	$(this).val($(this).attr('original_value'));
+    	});
     });
 	
 		

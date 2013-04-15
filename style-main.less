@@ -225,7 +225,7 @@ label {
 
 input{
 	display: block;
-	width: 50%;
+	width: 240px;
 	color: @dkbrown;
 	border-radius: 5px;
 	border: 1px solid @medbeige;
@@ -1119,23 +1119,33 @@ header.badges{
 
 	#main {background: @dotted-pattern;}
 	
-	#mantle{
-		width: 100%;
-		text-align: center;
+		#mantle{
+		//text-align: center;
 		.header-ul;
-
-		#showcase{
-			
+		width: 100% !important;
+		height:auto;
+		display: table;
+		position: relative;
+		//margin: 0;
+				
+		.showcase{
+			width: 100%;
+			//overflow: hidden;
+			height: auto;
 			figcaption{
 				width: 400px;
-				position: absolute;
 				top: 200px;
 				left: 60%;
+				position: relative;
 				display:run-in;
 				color: @beige;
 				text-align: right;
+				z-index: 99;
 				
-				h4{display: block; margin: .7em 0; .serif; font-size: 3em; text-transform: capitalize;text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;}
+				h4{display: block; margin: .7em 0; .serif; font-size: 3em; text-transform: capitalize;text-shadow: rgba(0,0,0,0.8) 2px 2px 2px; 
+					
+					a{ color: @beige;}
+				}
 				p{display: block; margin: .7em 0; text-shadow: rgba(0,0,0,0.8) 2px 2px 2px;}
 				p.institution{ .sans-serif; text-transform: uppercase; font-weight: bold; font-size: 1.6em; }
 				p.location{.sans-serif; text-transform: capitalize; font-weight: bold;	}
@@ -1143,8 +1153,12 @@ header.badges{
 				
 			}
 						
-			img{width: 100% !important;
-				height: auto; }
+			img{ position: absolute;
+				 top: 0;
+				 left: 0;
+				 width: 100% !important;
+				 height: auto; 
+				 display: block;}
 				
 		}
 	
@@ -1152,8 +1166,10 @@ header.badges{
 	
 	.steps {
 		position: relative;
+		z-index: 900;
 		top: -4px;
 		a {
+			color: @medbrown;
 			display: block;
 			margin: 0;
 			padding: 0 1%;
