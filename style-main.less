@@ -204,6 +204,7 @@ a, a:visited{
 	color: @teal;
 	text-decoration: none;
 	.sans-serif;
+	cursor: pointer;
 }
 
 a:hover{
@@ -231,6 +232,13 @@ input{
 	border: 1px solid @medbeige;
 	padding: 7px 15px;
 	font-size: 14px;	
+}
+
+input[type='submit'], input[type='button'] {
+	width: auto;
+	display: inline-block;
+	margin: 0 15px 0 0;
+	padding: 7px 35px;
 }
 
 input[type="submit"]:hover, input[type="button"]:hover{
@@ -2206,6 +2214,7 @@ section#main.forum{
 	
 	.background_admin {
 		display: none;
+		margin-bottom: 50px;
 	}
 	
 	.background.editing .background_display {
@@ -2220,25 +2229,29 @@ section#main.forum{
 		width: 35px;
 		height: 35px;
 		float: left;
-		margin: 20px 0 0 -44px;
+		margin: 0 0 0 -44px;
+		padding: 0px;
 		background: url(imgs/pencil.png) no-repeat center center;
+		text-indent: 9999px;
+		overflow: hidden;
 		cursor: pointer;
+		border: none;
 	}
-	
 	.edit_setting:hover {
 		opacity: .8;
 	}
 	
 	.edit_background {
 		background-image: url(imgs/pencil.png);
-		text-indent: 9999px;
-		overflow: hidden;
+		margin-top: 15px;
+	}
+	
+	.delete_school, .delete_company {
+		background-image: url(imgs/trash.png);
 	}
 	
 	.edit_resume {
 		background-image: url(imgs/arrow.png);
-		text-indent: 9999px;
-		overflow: hidden;
 	}
 	
 	.school, .company {

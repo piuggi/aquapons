@@ -92,6 +92,28 @@ jQuery(document).ready(function($) {
 	    	$(this).val($(this).attr('original_value'));
     	});
     });
+    
+    
+    $('.delete_school').click(function() {
+	    if(confirm('Are you sure you want to remove this school from your profile?')) {
+	    	var this_button = $(this);
+	    	this_button.slideUp();
+		    this_button.next().slideUp().find('.remove_school').val('true');
+	    }
+    });
+    
+    
+    $('.delete_company').click(function() {
+	    if(confirm('Are you sure you want to remove this job from your profile?')) {
+	    	var this_button = $(this);
+	    	this_button.slideUp();
+		    this_button.next().slideUp().find('.remove_company').val('true');
+	    }
+    });
+	
+	$(".edit_resume").change(function(){
+        $(this).parent().submit();
+    });
 	
 	
 	//resources forum stuff
