@@ -135,7 +135,7 @@
 				<section id="additional-content" class="text-content">
 					<section id="recent-discussions">
 						<section id="discussions" class="main-col">
-							<h2>Recent Discussions <a href="">All Discussions ›</a></h2>
+							<h2>Recent Discussions <a href="/resources/forum/">All Discussions ›</a></h2>
 							<?php 
 
 							$discussion_args = array('post_type' => 'discussion', 
@@ -159,7 +159,7 @@
 								</section><!--.qleft-->
 								<section class="qright">
 										<div class="<?php echo $class; ?>"></div>
-										<h3><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+										<h3><a class="<?php echo $class; ?>" href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
 										<p>Posted <?php echo time_ago(); ?> by <a class="<?php echo $class; ?>" href=""><?php echo get_the_author(); ?></a></p>
 								</section><!--.qright-->
 							</article><!--.question <?php echo get_the_title(); ?>  -->
