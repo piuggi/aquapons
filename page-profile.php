@@ -5,11 +5,12 @@
 if($_SESSION['user_id']) $userid = $_SESSION['user_id'];
 else $userid = get_current_user_id();
 
+//print_r($_POST);
 
-if(isset($_POST['post'])) {
-
+if(isset($_POST['location'])) {
+	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
 	if($current_user->ID == $userid){
-		// UPADTE PROFILE INFO
+		// UPDATE PROFILE INFO
 		$wpdb->update( 
 			'aq_usermeta', 
 			array( 
@@ -18,13 +19,103 @@ if(isset($_POST['post'])) {
 			array( 'wp_user_id' => $current_user->ID) 
 		);
 		
-		
 		// UPDATE EDUCATION INFO
+		$school_ids = explode(',',$_POST['school_ids']);
 		
+		foreach($school_ids as $school_id) {
+			// REMOVE UNWANTED SCHOOLS
+			if($_POST['remove_school'.$school_id]) {
+				$wpdb->query( 
+					$wpdb->prepare("DELETE FROM aq_affiliations WHERE id='".$school_id."' AND user_id = '".$current_user->ID."'")
+				);
+			}
 		
+			// UPDATE SCHOOLS
+			$school_name = $_POST['school_name'.$school_id];
+			$school_url = $_POST['school_url'.$school_id];
+			$school_accredidation = $_POST['school_accredidation'.$school_id];
+			$wpdb->update( 
+				'aq_affiliations', 
+				array( 
+					'name' => $school_name,
+					'url' => $school_url,
+					'degree' => $school_accredidation
+				), 
+				array( 'id' => $school_id, 'user_id' => $current_user->ID) 
+			);
+		}
+		
+		// ADD NEW SCHOOLS
+		if($_POST['new_school_name']) {
+			$wpdb->insert( 
+				'aq_affiliations', 
+				array( 
+					'user_id' => $current_user->ID,
+					'type' => 'education',
+					'name' => $_POST['new_school_name'],
+					'url' => $_POST['new_school_url'],
+					'degree' => $_POST['new_school_accredidation']
+				)
+			);
+		}
 		
 		// UPDATE EXPERIENCE INFO	
-	
+		$company_ids = explode(',',$_POST['company_ids']);
+		
+		foreach($company_ids as $company_id) {
+			// REMOVE UNWANTED COMPANIES
+			if($_POST['remove_company'.$company_id]) {
+				$wpdb->query( 
+					$wpdb->prepare("DELETE FROM aq_affiliations WHERE id='".$company_id."' AND user_id = '".$current_user->ID."'")
+				);
+			}
+		
+			// UPDATE COMPANIES
+			$company_name = $_POST['company_name'.$company_id];
+			$company_url = $_POST['company_url'.$company_id];
+			$job_title = $_POST['job_title'.$company_id];
+			$wpdb->update( 
+				'aq_affiliations', 
+				array( 
+					'name' => $company_name,
+					'url' => $company_url,
+					'job_title' => $job_title
+				), 
+				array( 'id' => $company_id, 'user_id' => $current_user->ID) 
+			);
+		}
+		
+		// ADD NEW COMPANIES
+		if($_POST['new_company_name']) {
+			$wpdb->insert( 
+				'aq_affiliations', 
+				array( 
+					'user_id' => $current_user->ID,
+					'type' => 'experience',
+					'name' => $_POST['new_company_name'],
+					'url' => $_POST['new_company_url'],
+					'job_title' => $_POST['new_job_title']
+				)
+			);
+		}
+	}
+}
+
+// HANDLE RESUME UPLOAD
+if($_FILES['resume_upload']) {
+	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
+	if($current_user->ID == $userid){
+
+		if ( ! function_exists( 'wp_handle_upload' ) ) require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		$uploadedfile = $_FILES["resume_upload"];
+		$wpfile = wp_handle_upload($uploadedfile,array('test_form'=>false));
+		$wpdb->update( 
+			'aq_usermeta', 
+			array( 
+				'resume' => $wpfile['url']
+			), 
+			array( 'wp_user_id' => $current_user->ID) 
+		);
 	}
 }
 
@@ -41,7 +132,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 			<?php
 			//if logged in and current profile page == current user, show edit buttons
 			if($current_user->ID == $userid) { ?>
-				<div class="edit_setting edit_background">Edit</div>
+				<div class="edit_setting edit_background"><span>Edit</span></div>
 			<?php 
 			}
 			
@@ -87,63 +178,82 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 			</div>
 			
 			
-			
+			<?php
+			//if logged in and current profile page == current user, show edit buttons
+			if($current_user->ID == $userid) { ?>
 			<div class="background_admin">
-				
+			<form id="profile_background_form" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
 				<h4>Current City</h4>
 				<input name="location" class='edit_location' original_value='<?php echo $background_info->location; ?>' value='<?php echo $background_info->location; ?>'>
 				
 				<h4>Education</h4>
 				<?
+				$school_ids = array();
 				foreach($affiliations as $school) {
 					if($school->type == 'education') {
+					$school_ids[] = $school->id;
 				?>
+				<div class="edit_setting delete_school">Remove</div>
 				<div class="school school_<?php echo $school->id; ?>">
-					<input class='edit_school_name' original_value='<?php echo $school->name; ?>' value='<?php echo $school->name; ?>' placeholder="School Name">
-					<input class='edit_school_url' original_value='<?php echo $school->url; ?>' value='<?php echo $school->url; ?>' placeholder="School Website">
-					<input class='edit_school_accreditation' original_value='<?php echo $school->degree; ?>' value='<?php echo $school->degree; ?>' placeholder="Degree/Certificate earned">
+					<input name="school_name<?php echo $school->id; ?>" class='edit_school_name' original_value='<?php echo $school->name; ?>' value='<?php echo $school->name; ?>' placeholder="School Name">
+					<input name="school_url<?php echo $school->id; ?>" class='edit_school_url' original_value='<?php echo $school->url; ?>' value='<?php echo $school->url; ?>' placeholder="School Website">
+					<input name="school_accredidation<?php echo $school->id; ?>" class='edit_school_accreditation' original_value='<?php echo $school->degree; ?>' value='<?php echo $school->degree; ?>' placeholder="Degree/Certificate earned">
+					<input type="hidden" name="remove_school<?php echo $school->id; ?>" class="remove_school" value="false">
 				</div>
 				<?php }	
 				} ?>
+				<input type="hidden" name="school_ids" original_value="<?php echo implode(',', $school_ids); ?>" value="<?php echo implode(',', $school_ids); ?>">
 				<div class="new school">
 					<label>Add new school</label>
-					<input class='edit_school_name' placeholder="School Name">
-					<input class='edit_school_url' placeholder="School Website">
-					<input class='edit_school_accreditation' placeholder="Degree/Certificate earned">
+					<input name="new_school_name" class='edit_school_name' placeholder="School Name">
+					<input name="new_school_url" class='edit_school_url' placeholder="School Website">
+					<input name="new_school_accredidation" class='edit_school_accreditation' placeholder="Degree/Certificate earned">
 				</div>
 				
 				<h4>Professional Experience</h4>
 				<?php
-				foreach($affiliations as $job) {
-					if($job->type == 'experience') {
+				$company_ids = array();
+				foreach($affiliations as $company) {
+					if($company->type == 'experience') {
+					$company_ids[] = $company->id;
 				?>
-				<div class="company company_<?php echo $school->id; ?>">
-					<input class='edit_company_name' original_value='<?php echo $job->name; ?>' value='<?php echo $job->name; ?>' placeholder="Company/Institution Name">
-					<input class='edit_company_url' original_value='<?php echo $job->url; ?>' value='<?php echo $job->url; ?>' placeholder="Company/Institution Website">
-					<input class='edit_job_title' original_value='<?php echo $job->job_title; ?>' value='<?php echo $job->job_title; ?>' placeholder="Job Title">
+				<div class="edit_setting delete_company">Remove</div>
+				<div class="company company_<?php echo $company->id; ?>">
+					<input name="company_name<?php echo $company->id; ?>" class='edit_company_name' original_value='<?php echo $company->name; ?>' value='<?php echo $company->name; ?>' placeholder="Company/Institution Name">
+					<input name="company_url<?php echo $company->id; ?>" class='edit_company_url' original_value='<?php echo $company->url; ?>' value='<?php echo $company->url; ?>' placeholder="Company/Institution Website">
+					<input name="job_title<?php echo $company->id; ?>" class='edit_job_title' original_value='<?php echo $company->job_title; ?>' value='<?php echo $company->job_title; ?>' placeholder="Job Title">
+					<input type="hidden" name="remove_company<?php echo $company->id; ?>" class="remove_company" value="false">
 				</div>
 				<?php }
 				} ?>
+				<input type="hidden" name="company_ids" original_value="<?php echo implode(',', $company_ids); ?>" value="<?php echo implode(',', $company_ids); ?>">
 				<div class="new company">
 					<label>Add New:</label>
-					<input class='edit_company_name' placeholder="Company/Institution Name">
-					<input class='edit_company_name' placeholder="Company/Institution Website">
-					<input class='edit_job_title' placeholder="Job Title">
+					<input name="new_company_name" class='edit_company_name' placeholder="Company/Institution Name">
+					<input name="new_company_url" class='edit_company_name' placeholder="Company/Institution Website">
+					<input name="new_job_title" class='edit_job_title' placeholder="Job Title">
 				</div>
 				
 				<input type="submit" class="save_background_info" value="Save Changes">
 				<a class="cancel_background_info">Cancel</a>
-			
+			</form>
 			</div>
-			
+			<?php } // if($current_user->ID == $userid) ?>
 			
 			
 			<?php if($current_user->ID == $userid) { ?>
-				<div class="edit_setting edit_resume">Upload</div>
+				<form id="resume_upload_form" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+					<input type="file" name="resume_upload" class="edit_setting edit_resume">
+				</form>
 			<?php } ?>
 			
-			<h4>Resume</h4>
-			<p><a href="#">Download ›</a>
+			<?php if($background_info->resume) { ?>
+				<h4>Resume</h4>
+				<p><a href="<?php echo $background_info->resume; ?>">Download ›</a></p>
+			<?php } else if($current_user->ID == $userid) { ?>
+				<h4>Resume</h4>
+				<p>Click the button to the left to update your resume</p>
+			<?php } ?>
 			
 			<h2>Memberships</h2>
 			
