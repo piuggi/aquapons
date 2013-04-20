@@ -115,6 +115,31 @@ jQuery(document).ready(function($) {
         $(this).parent().submit();
     });
 	
+	
+	//resources forum stuff
+	$('#new_discussion').submit(function(e){
+				
+		var q=$('#question').val();
+		var t=$('#title').val();
+		var c=$('#category').val();
+
+		if(t==''|| q=='' || c=='' ){
+			alert("You must have a title, category and description!");
+			e.preventDefault();
+		}
+		
+		
+	});
+	
+	$('#ask').click(function(){
+		
+		$('#form').slideToggle('slow');
+		if($('#ask').html() == 'Ask a Question') $('#ask').html('Close');	
+		else $('#ask').html('Ask a Question');	
+			
+		
+		
+	});
 		
 }); // jQuery
 

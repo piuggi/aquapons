@@ -27,7 +27,6 @@
 							<div class="water"></div>
 							<div class="water"></div>
 							<div class="water"></div>
-							<div class="water"></div>
 						</section><!--icons-->
 					</section><!--.activities-->
 				</section><!--.water -->
@@ -43,7 +42,6 @@
 						<h5>activities</h5>
 						<div class="bounding"></div>
 						<section class="icons">
-							<div class="fish"></div>
 							<div class="fish"></div>
 							<div class="fish"></div>
 							<div class="fish"></div>
@@ -67,7 +65,6 @@
 							<div class="plant"></div>
 							<div class="plant"></div>
 							<div class="plant"></div>
-							<div class="plant"></div>
 						</section><!--icons-->
 					</section><!--.activities-->
 				</section><!--.plant -->
@@ -83,7 +80,6 @@
 						<h5>activities</h5>
 						<div class="bounding"></div>
 						<section class="icons">
-							<div class="design-build"></div>
 							<div class="design-build"></div>
 							<div class="design-build"></div>
 							<div class="design-build"></div>
