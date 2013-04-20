@@ -1502,27 +1502,23 @@ section#main.forum{
 
 			p{color: @dkbrown;}
 
-			p.main-copy{
+			.main-copy p{
 				.sans-serif;
 				font-weight: 200;
 				font-size: 1.5em;
 				margin: 0 0 20px 0;
 			}
-			p.body-copy{
-
-				width: 45%;
-				margin: 0;
-				display: inline-block;
+			.body-copy{
 				font-weight: 400;
 				.serif;
-
+				-moz-column-count: 2;
+				-moz-column-gap: 15px;
+				-webkit-column-count: 2;
+				-webkit-column-gap: 15px;
+				column-count: 2;
+				column-gap: 15px; 
 			}
 
-			p.body-copy:nth-child(even){
-
-				margin: 0 5% 0 0;
-
-			}
 
 		}/* badges-desc-content */
 

@@ -30,7 +30,7 @@ function register_cpt_badge() {
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
-        'menu_position' => 5,
+        'menu_position' => 1,
         
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
@@ -81,7 +81,7 @@ function register_cpt_resource() {
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
-        'menu_position' => 20,
+        'menu_position' => 10,
         
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
@@ -125,7 +125,7 @@ function register_cpt_featured_aquapon() {
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
-        'menu_position' => 10,
+        'menu_position' => 20,
         
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
@@ -168,7 +168,7 @@ function register_cpt_institution(){
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
-        'menu_position' => 10,
+        'menu_position' => 19,
         
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
@@ -227,5 +227,53 @@ function register_cpt_discussion(){
     register_post_type( 'discussion', $args );
 	
 }
+
+
+
+
+add_action( 'init', 'register_cpt_tip' );
+
+function register_cpt_tip() {
+
+    $labels = array( 
+        'name' => _x( 'Tips', 'tip' ),
+        'singular_name' => _x( 'Tip', 'tip' ),
+        'add_new' => _x( 'Add New', 'tip' ),
+        'add_new_item' => _x( 'Add New Tip', 'tip' ),
+        'edit_item' => _x( 'Edit Tip', 'tip' ),
+        'new_item' => _x( 'New Tip', 'tip' ),
+        'view_item' => _x( 'View Tip', 'tip' ),
+        'search_items' => _x( 'Search Tips', 'tip' ),
+        'not_found' => _x( 'No tips found', 'tip' ),
+        'not_found_in_trash' => _x( 'No tips found in Trash', 'tip' ),
+        'parent_item_colon' => _x( 'Parent Tip:', 'tip' ),
+        'menu_name' => _x( 'Tips', 'tip' ),
+    );
+
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => false,
+        
+        'supports' => array( 'custom-fields' ),
+        
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        
+        
+        'show_in_nav_menus' => false,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => true,
+        'capability_type' => 'post'
+    );
+
+    register_post_type( 'tip', $args );
+}
+
+
 
 ?>
