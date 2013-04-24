@@ -58,7 +58,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 
 .sans-serif{ font-family: "proxima-nova",Verdana, sans-serif;}
-.serif {font-family: "jubilant", Georgia, Serif;}
+.serif {font-family: "jubilat", Georgia, Serif;}
 .left {float: left;}
 .right {float: right;}
 /*
@@ -871,9 +871,10 @@ header#pagination{
 		div.aquapons{background-color: @lt-blue;}
 
 
-		h3{ margin: 10px 0 0; padding: 0; font-size: 1.2em; font-family: georgia, serif;}
+		h3{ margin: 10px 0 0; padding: 0; font-size: 1.2em; .serif;}
 		p{ margin: 0; padding: 2px 0 0; font-size: .8em; .sans-serif; }
 		
+/*
 		a.water, a.water:visited{ color: @blue !important;}
 		a.plant, a.plant:visited{ color: @green !important;}
 		a.design-build, a.design-build:visited{ color: @purple !important;}
@@ -882,6 +883,9 @@ header#pagination{
 		a.environmental-impact, a.environmental-impact:visited{color:@lt-green !important;}
 		a.community-impact, a.community-impact:visited{color:@blue-purple !important;}
 		a.aquapons, a.aquapons:visited{color: @lt-blue !important;}
+*/
+		
+		h3 a { .serif; color: @dkbrown; }
 	}
 
 }
@@ -1783,7 +1787,189 @@ section#main.forum{
 
 
 
+.single-discussion{
+	#main{
+		
+		background: @beige;
+		min-height: 0 !important;
+		padding: 0;
+	}
+	
+	.breadcrumb {
+		position: relative;
+		top: 0px;
+		background: @offwhite;
+		width: 100%;
+		padding: 5px;
+		
+		li {
+			display: inline-block;
+			font-size: 11px;
+			color: @dkbrown;
+			a {color: @dkbrown;}
+			a.strong{ font-weight: bold;}
+		}
+	}
+	
+	header#original{
+		
+		background: @lined-pattern;
+		padding: 45px;
+		position: relative;
+		
+	}
+	
+	section#responses.water, header#original.water{ border-bottom: solid 4px @blue;}
+	section#responses.plant, header#original.plant{ border-bottom: solid 4px @green;}
+	section#responses.design-build, header#original.design-build{ border-bottom: solid 4px @purple;}
+	section#responses.fish, header#original.fish{ border-bottom: solid 4px @orange;}
+	section#responses.economic-impact, header#original.economic-impact{ border-bottom: solid 4px @yellow;}
+	section#responses.environmental-impact, header#original.environmental-impact{ border-bottom: solid 4px @lt-green;}
+	section#responses.community-impact, header#original.community-impact{ border-bottom: solid 4px @blue-purple;}
+	section#responses.aquapons, header#original.aquapons{ border-bottom: solid 4px @lt-blue;}
+	
+	figure.user_photo img{
+		
+		display: block;
+		position: relative;
+		
+	}
+	section.original_post{
+		
+		display: block;
+		margin: 0 0 0 100px;
+		figure.user_photo{ width: 100px; height: 100px; overflow: hidden;
+			img{width: 100%; height: 100%; }
+		}
+		p.author{ .sans-serif; font-size: .8em; color: @medbrown; margin: 0;
+		 		  
+		 		  a{font-weight: bold; color: @teal;}
+		 		
+		 		}
+		h2{ .serif;  font-weight: 100; padding: 10px 0 20px;}		
+	}
+	
+	section#responses{
+		
+		width: 100%;
+		min-height: 600px;
+		background: @beige;
+		display: block;
+		padding: 30px 0;
+		h2 {margin-left: 4%;}
+		
+		section{vertical-align: top;
+			p.unregistered{ margin: 10px 4%;}
+		}
+		hr{margin: 0 4%; background: @medbeige; border-color: @medbeige; height: 2px; display: block; clear: all;}
+		form{ margin: 20px 4%;}
+		textarea{ color: @dkbrown; display: block; border: none; background: transparent; outline: none; .serif; resize: none;  font-size: 1em; width: 100%; height: 150px;}
+		textarea::-webkit-input-placeholder { color: @dkbrown; .serif;  }
+		textarea::-moz-placeholder { color: @dkbrown; .serif;  } /* firefox 19+ */
+		textarea:-ms-input-placeholder { color:@dkbrown; .serif;  } /* ie */
+		textarea:-moz-placeholder { color:@dkbrown; .serif;  }
+		input[type="submit"]{ border-radius: 0; background: @dkbrown !important; color: @offwhite; text-transform: uppercase;} 
+		aside{vertical-align:top;}
+		
+		
+		section.answer{
+			
+			margin: 20px 4%;
+			display: block;
+			min-height: 150px;
+						
+			article.desc{
+				
+				background: white;
+				display: block;
+				min-height: 100px;
+				position: relative;
+				padding: 20px;
+				width: 90%;
+				float: right;
+			}
+			
+			article.desc:after{
+				
+				content: "";
+				position: absolute;
+				bottom: -40px;
+				left: 40px;
+				border-width: 40px 0 0 40px;
+				border-style: solid;
+				border-color: white transparent;
+				display: block;
+			}
+			
+			figure{
+				
+				width: 50px;
+				height: 50px;
+				overflow: hidden;
+				margin: 10px 0 5px 20%;
+				display: inline-table;
+				img{ width: 100%; height: 100%;}
+			}
+			
+			section.user_data{
+				margin: 10px 0 0 10px;
+				display: inline-table;
+				p{ display: inline-block; margin: 0; padding: 0; 
+				strong{ font-weight: bold; } 
+				}
+				
+			}
+			.header-ul;
+			ul{
+				
+				float: right;
+				
+				margin: 10px 0 0;
+				
+				li{
+					margin: 0 10px;
+				}
+				
+			}
+			
+			ul.rank{
+				
+				display: inline;
+				float: none;
+				width: 8%;
+				margin: 0 2% 0 0;
+				position: relative;
+				text-align: center;
+				li{ width: 100%; display: inline; clear: both; position: absolute; text-align: center; width: 37px; height: 20px;}
+				li.up{ text-indent: -999px; background: url('imgs/up.png') no-repeat; }
+				li.current{top: 25px;}
+				li.down{ text-indent: -999px; background: url('imgs/down.png') no-repeat; top: 50px; }
+				
+			}
+			
+		}
+		section.answer.child{
+			
+			article.desc{ min-height: 50px; width: 80%;}
+			figure{margin: 10px 0 5px 30%;}
+			
+		}
+		
+	}
+	
+	
+	section#similar{
+		
+		width: 100%;
+		min-height: 200px;
+		background: @lined-pattern;
+		padding: 20px 40px;
+		
+	}
 
+	
+	
+}
 
 
 .single-badge {
