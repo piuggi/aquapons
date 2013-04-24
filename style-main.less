@@ -517,6 +517,27 @@ footer.main{
 	background: linear-gradient(to bottom, #423c2e 0%,#221f17 92%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#423c2e', endColorstr='#221f17',GradientType=0 ); /* IE6-9 */
 
+	header#pagination{
+
+		width: 100%;
+		display: block;
+		padding: 10px 0 0;
+		height: 60px;
+		.header-ul;
+
+		p{display: inline-block; .sans-serif; vertical-align: middle;}
+		p.left{ }
+		p.right{ }
+		text-align: center;
+		ul{ display: inline-block; width: 87%; vertical-align: middle; 
+
+			li{ .sans-serif; 
+				font-size: 1.35em;
+			}
+		}
+
+
+	}
 	footer{
 
 		min-height: 275px;
@@ -652,26 +673,7 @@ footer.main{
 }
 .tmce-active .wp-editor-container {border: none;border-width: 0;}
 
-header#pagination{
 
-	width: 100%;
-	display: block;
-	padding: 10px 0 0;
-	height: 60px;
-	.header-ul;
-
-	p{display: inline-block; .sans-serif; vertical-align: middle;}
-	text-align: center;
-	ul{ display: inline-block; width: 87%; vertical-align: middle; 
-
-		li{ .sans-serif; 
-			font-size: 1.35em;
-			margin: 0 20px;
-		}
-	}
-
-
-}
 
 
 /* BADGES */
@@ -865,16 +867,10 @@ header#pagination{
 		div.plant{ background-color: @green;}
 		div.design-build{ background-color: @purple;}
 		div.fish{ background-color:@orange;}
-		div.economic-impact{background-color:@yellow;}
-		div.environmental-impact{background-color: @lt-green;}
-		div.community-impact{background-color: @blue-purple;}
-		div.aquapons{background-color: @lt-blue;}
 
-
-		h3{ margin: 10px 0 0; padding: 0; font-size: 1.2em; .serif;}
+		h3{ margin: 10px 0 0; padding: 0; font-size: 1.2em; font-family: georgia, serif;}
 		p{ margin: 0; padding: 2px 0 0; font-size: .8em; .sans-serif; }
 		
-/*
 		a.water, a.water:visited{ color: @blue !important;}
 		a.plant, a.plant:visited{ color: @green !important;}
 		a.design-build, a.design-build:visited{ color: @purple !important;}
@@ -883,9 +879,6 @@ header#pagination{
 		a.environmental-impact, a.environmental-impact:visited{color:@lt-green !important;}
 		a.community-impact, a.community-impact:visited{color:@blue-purple !important;}
 		a.aquapons, a.aquapons:visited{color: @lt-blue !important;}
-*/
-		
-		h3 a { .serif; color: @dkbrown; }
 	}
 
 }
@@ -1369,84 +1362,9 @@ header.badges{
 
 section#main.forum{
 	background: @lined-pattern;
-	padding-bottom: 0 !important;
-	min-height: 0 !important;
-	
+
 	#overview{
-		section{ background: @tan; margin: 0; padding: 20px 40px; 
-			
-			input{ 
-				
-				border-radius: 0;
-				
-			}
-			input[type="text"]{
-				
-				background: transparent;
-				border: none;
-				border-bottom: 1px solid @dkbrown;
-				width: 60%;
-				.serif;
-				color: @dkbrown;
-				outline: none;
-				display: inline;
-				
-			}
-			
-			
-			input[type="text"]::-webkit-input-placeholder { color:@dkbrown; .serif; }
-			input[type="text"]::-moz-placeholder { color:@dkbrown; .serif;  } /* firefox 19+ */
-			input[type="text"]:-ms-input-placeholder { color:@dkbrown; .serif;  } /* ie */
-			input[type="text"]:-moz-placeholder { color:@dkbrown; .serif;  }
-			
-			select{
-				
-				border-radius: 0;
-				border: 1px solid @dkbeige;
-				height: 30px;
-				width: 180px;
-				padding: 0 0px 0 10px;
-				background: url('imgs/dropdown.png') right no-repeat @beige;
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				outline: none;
-				
-				
-			}
-			
-			textarea{
-				
-				display: block;
-				width: 75%;
-				height: 100px;
-				margin: 20px 0;
-				padding: 1% 1.5%;
-				border: none;
-				background: transparent;
-				outline: none;
-				color:@dkbeige;
-				.serif;
-				resize: none;
-				font-size: .9em;
-				
-			}
-			
-		
-			textarea::-webkit-input-placeholder { color: @dkbeige; .serif;  }
-			textarea::-moz-placeholder { color: @dkbeige; .serif;  } /* firefox 19+ */
-			textarea:-ms-input-placeholder { color:@dkbeige; .serif;  } /* ie */
-			textarea:-moz-placeholder { color:@dkbeige; .serif;  }
-			
-			input[type="submit"]{
-				background: @dkbrown;
-				color: @beige;
-				text-transform: uppercase;
-				width: 150px;	
-				padding: 10px 0;
-			}
-			
-			
-		}
+
 		header{ width: 100%; height: 4px; display: block; background-color:@dkbrown;}
 		footer{ width: 140px; height: 28px; background-color: @medbrown; float: right; margin: 0 20px 0 0;
 				p { .sans-serif; margin: 4px 0 0 0; padding: 0; text-align: center; color: @beige; font-size: .9em;}
@@ -1465,7 +1383,7 @@ section#main.forum{
 }//section#main.forum
 
 
-//Badges Overview Page
+
 
 .page-badges-overview {
 
@@ -1587,27 +1505,23 @@ section#main.forum{
 
 			p{color: @dkbrown;}
 
-			p.main-copy{
+			.main-copy p{
 				.sans-serif;
 				font-weight: 200;
 				font-size: 1.5em;
 				margin: 0 0 20px 0;
 			}
-			p.body-copy{
-
-				width: 45%;
-				margin: 0;
-				display: inline-block;
+			.body-copy{
 				font-weight: 400;
 				.serif;
-
+				-moz-column-count: 2;
+				-moz-column-gap: 15px;
+				-webkit-column-count: 2;
+				-webkit-column-gap: 15px;
+				column-count: 2;
+				column-gap: 15px; 
 			}
 
-			p.body-copy:nth-child(even){
-
-				margin: 0 5% 0 0;
-
-			}
 
 		}/* badges-desc-content */
 

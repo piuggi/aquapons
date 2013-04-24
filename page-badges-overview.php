@@ -91,12 +91,12 @@
 			</section><!--.badges-display-->
 			<section class="badges-desc">
 				<section class="badges-desc-content">
-						<p class="main-copy">This is how you earn an AQUAPONS badge. Badges are designed to help you learn useful skills by doing a set of activities. All of our skills fall in one of four content areas: Water, Fish, Plants or Design & Build.
-						</p>
-						<p class="body-copy">You might be think "badges? I don't need any stinking badges!" Well, badges are a fun, interactive way to learn valuable skills in school and the workplace. All you have to do is pick a skill and complete the associated activities. An AQUAPONS mentor will review your work and let you know if you're done or if you have some additional content to upload.
-						</p>
-						<p class="body-copy">Our badges are designed and tested by educators and industry professionals. That means our learning program is geared to help you improve yourself, your performance in school and your opportunity in the workplace. Not only will you have more opportunity, you have the opportuntiy to interact with a whole community of aquaponics practitioners that can help you along the way.
-						</p>
+						<div class="main-copy">
+							<?php echo get_field('intro_paragraph'); ?>
+						</div>
+						<div class="body-copy">
+							<?php echo get_field('overview_text'); ?>
+						</div>
 				</section>
 				<section class="open-badges-callout">
 					<div class="mozilla-foundation"></div>
