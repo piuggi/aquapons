@@ -673,7 +673,26 @@ footer.main{
 }
 .tmce-active .wp-editor-container {border: none;border-width: 0;}
 
+header#pagination{
 
+	width: 100%;
+	display: block;
+	padding: 10px 0 0;
+	height: 60px;
+	.header-ul;
+
+	p{display: inline-block; .sans-serif; vertical-align: middle;}
+	text-align: center;
+	ul{ display: inline-block; width: 87%; vertical-align: middle; 
+
+		li{ .sans-serif; 
+			font-size: 1.35em;
+			margin: 0 20px;
+		}
+	}
+
+
+}
 
 
 /* BADGES */
@@ -871,14 +890,14 @@ footer.main{
 		h3{ margin: 10px 0 0; padding: 0; font-size: 1.2em; font-family: georgia, serif;}
 		p{ margin: 0; padding: 2px 0 0; font-size: .8em; .sans-serif; }
 		
-		a.water, a.water:visited{ color: @blue !important;}
-		a.plant, a.plant:visited{ color: @green !important;}
-		a.design-build, a.design-build:visited{ color: @purple !important;}
-		a.fish, a.fish:visited{ color:@orange !important;}
-		a.economic-impact, a.economic-impact:visited{color:@yellow !important;}
-		a.environmental-impact, a.environmental-impact:visited{color:@lt-green !important;}
-		a.community-impact, a.community-impact:visited{color:@blue-purple !important;}
-		a.aquapons, a.aquapons:visited{color: @lt-blue !important;}
+		div.water{ background-color: @blue;}
+		div.plant{ background-color: @green;}
+		div.design-build{ background-color: @purple;}
+		div.fish{ background-color:@orange;}
+		div.economic-impact{background-color:@yellow;}
+		div.environmental-impact{background-color: @lt-green;}
+		div.community-impact{background-color: @blue-purple;}
+		div.aquapons{background-color: @lt-blue;}
 	}
 
 }
