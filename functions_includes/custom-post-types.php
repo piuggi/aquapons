@@ -212,7 +212,7 @@ function register_cpt_discussion(){
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
-        'menu_position' => 10,
+        'menu_position' => 15,
         
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,

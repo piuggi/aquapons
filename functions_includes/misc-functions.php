@@ -122,6 +122,13 @@ function time_ago( $type = 'post' ) {
 }
 
 
+function time_ago_comment($date){
+		
+	$unix = strtotime($date);
+	return human_time_diff($unix, current_time('timestamp')) . " " . __('ago');
+	
+}
+
 function establishedDate($rawdate){
 	
 	$year = substr($rawdate, 0, 4);

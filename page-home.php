@@ -153,9 +153,9 @@
 							
 							<article class="question">
 								<section class="qleft">	
-									<p>50<em>votes</em></p>
+									<p><?php echo get_post_meta(get_the_ID(), 'votes', true) ?><em>votes</em></p>
 									<hr>
-									<p>50<em>answers</em></p>	
+									<p><?php echo get_post_meta(get_the_ID(), 'answers', true) ?><em>answers</em></p>	
 								</section><!--.qleft-->
 								<section class="qright">
 										<div class="<?php echo $class; ?>"></div>

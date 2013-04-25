@@ -14,7 +14,10 @@
 		
 		);
 		
-		wp_insert_post($post_args, true);
+		$id = wp_insert_post($post_args);
+		add_post_meta($id, 'views', 0, true );
+		add_post_meta($id, 'votes', 0, true );
+		add_post_meta($id, 'answers', 0, true );
 	}
 	
 ?>
@@ -85,9 +88,9 @@
 							
 							<article class="question">
 								<section class="qleft">	
-									<p>50<em>votes</em></p>
+									<p><?php echo get_post_meta(get_the_ID(), 'votes', true) ?><em>votes</em></p>
 									<hr>
-									<p>50<em>answers</em></p>	
+									<p><?php echo get_post_meta(get_the_ID(), 'answers', true) ?><em>answers</em></p>	
 								</section><!--.qleft-->
 								<section class="qright">
 										<div class="<?php echo $class; ?>"></div>
