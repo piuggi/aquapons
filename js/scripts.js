@@ -15,6 +15,21 @@ jQuery(document).ready(function($) {
 		}
 	});
 	
+	
+	// HANDLE DAILY TIPS
+	$('.tip').first().addClass('selected');
+	$('.next_tip').click(function() {
+		var current_tip = $('.tip.selected');
+		var next_tip = $('.tip.selected').next();
+		if(!next_tip.hasClass('tip')) next_tip = $('.tip').first();
+		current_tip.fadeOut(300);
+		next_tip.delay(310).fadeIn(300);
+		current_tip.removeClass('selected');
+		next_tip.addClass('selected');
+	});
+	
+	
+	
 		$('select#submission_type').change(function(){
 		
 		var selection = $('select#submission_type').val();

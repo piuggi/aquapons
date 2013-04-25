@@ -17,7 +17,18 @@
 				<li id="daily-tip">
 					<h4>Daily Tip</h4>
 					<hr class="fish">
-					<p>Bacon ipsum dolor sit amet capicola salami prosciutto biltong meatball bacon short ribs turducken meatloaf boudin venison. Bacon ipsum dolor sit amet.</p>
+					<?php 
+					$args = array('post_type' => 'tip', 'posts_per_page'=> 10, 'orderby'=>'date','order'=>'DESC'); 
+					$loop = new WP_Query($args);
+					
+					while( $loop->have_posts()) {
+						$loop->the_post();
+						?>
+						<div class="tip">
+							<?php echo get_field('tip_content'); ?>
+						</div>
+					<?php } ?>
+					<div class="next_tip">Next ›</div>
 				</li>
 				<li id="feat-aquapon">
 					<h4>Featured Aquapon</h4>
@@ -29,16 +40,14 @@
 				<li id="contact-us">
 					<h4>Contact Us</h4>
 					<hr>
-					<p>For technical support please call <a>1.800.867.5309</a> or <a>send us an email</a></p>
-					<p>2151 South Robinson Avenue<br>
-					Milwaukee, WI 53207</p>
-					<p>Stay Connected:<br>			
+					<?php echo get_field('contact_info', 1026); ?>		
 					</p>
 				</li>
 				<li id="site-desc">
 					<h4>SweetWater Foundation</h4>
 					<hr>
-					<p>This site was created in partnership with SweetWater Foundation, HASTAC and the McArthur Foundation through a Digital Media Learning Grant.</p>
+					
+					<?php echo get_field('sweet_water_ribbon_content', 1026); ?>
 				</li>
 			</ul>
 			<p id="copyright"> &copy; Aquapons 2013</p>

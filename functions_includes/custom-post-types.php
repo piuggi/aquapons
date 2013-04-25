@@ -254,7 +254,7 @@ function register_cpt_tip() {
         'labels' => $labels,
         'hierarchical' => false,
         
-        'supports' => array( 'custom-fields' ),
+        'supports' => array( 'title', 'custom-fields' ),
         
         'public' => true,
         'show_ui' => true,
