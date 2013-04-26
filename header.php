@@ -37,12 +37,12 @@ global $view;
 
 <?php
 if(is_page()) { $page_slug = 'page-'.$post->post_name; }
-if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post_meta($post->ID, 'badge_type', true);
+elseif($_GET['s']) {}
+elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post_meta($post->ID, 'badge_type', true);
 
 
 ?>
 <body <?php body_class($page_slug ." ". $section); ?>>
-
 <div id="container">
 	<header>
 		<div id="main-nav">
@@ -91,7 +91,7 @@ if(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_post
 		</div><!--#main-nav-->
 		
 		
-		<?php 
+		<?php
 		if($view!=null) $headerPath = "/templates/".$section."-".$view."-header.php"; 
 		else if($section) $headerPath = "/templates/".$section."-header.php";
 		else $headerPath = "/templates/default-header.php";

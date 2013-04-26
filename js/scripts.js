@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
 				url = url + "?theme="+theme_branch;
 				$(this).attr('href', url);
 			}
-			else {
+			else if(url.indexOf('&theme=') == -1) {
 				url = url + "&theme="+theme_branch;
 				$(this).attr('href', url);
 			}
