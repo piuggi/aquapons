@@ -727,6 +727,7 @@ header#pagination{
 
 
 .skill.badge, .skill-activity{
+	position: relative;
 	width: 105px;
 	height: 140px;
 	margin: 0 10px 20px 10px;
@@ -743,31 +744,43 @@ header#pagination{
 	hr{	
 		border: 0;
 		height: 1px; color: @beige; background: @beige;
-	}		
+	}
+	.badge_level {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		font-size: 14px;
+		line-height: .6em;
+		font-weight: bold;
+	}
 }
 
 .water{
 	.skill.badge{ .skill-badge-background(@blue); }
 	.skill.badge:nth-child(3n-1){ .skill-badge-background(@blue-purple); }
 	.skill.badge:nth-child(4n-1){ .skill-badge-background(@lt-blue); }	
+	.badge_level { color: @blue; }
 }
 
 .fish{
 	.skill.badge{ .skill-badge-background(@red); }
 	.skill.badge:nth-child(3n-1){ .skill-badge-background(@yellow); }
 	.skill.badge:nth-child(4n-1){ .skill-badge-background(@orange); }	
+	.badge_level { color: @red; }
 }
 
 .plant{
 	.skill.badge{ .skill-badge-background(@green); }
 	.skill.badge:nth-child(3n-1){ .skill-badge-background(@teal); }
 	.skill.badge:nth-child(4n-1){ .skill-badge-background(@lt-green); }	
+	.badge_level { color: @green; }
 }
 
 .design-build{
 	.skill.badge{ .skill-badge-background(@purple); }
 	.skill.badge:nth-child(3n-1){ .skill-badge-background(@fushia); }
 	.skill.badge:nth-child(4n-1){ .skill-badge-background(@medbrown); }	
+	.badge_level { color: @purple; }
 }
 
 

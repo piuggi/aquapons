@@ -160,4 +160,13 @@ function updateProfileInfo($info) {
 	
 }
 
+
+function getUserToken($user_id) {
+
+	$user_info = $wpdb->get_row("SELECT user_token_id FROM aq_usermeta WHERE wp_user_id = '$user_id'");
+	return $user_info->user_token_id;
+	
+}
+
+
 ?>

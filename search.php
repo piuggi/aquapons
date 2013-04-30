@@ -1,6 +1,7 @@
 <?php 
 if($_GET['post_type']=='badge') $section = 'badges';
 if(strpos($_GET['post_type'], 'resource') !== false) $section = 'resources';
+if($_GET['post_type']=='users') $section = 'community';
 ?>
 
 <?php get_header(); ?>
@@ -11,11 +12,29 @@ if(strpos($_GET['post_type'], 'resource') !== false) $section = 'resources';
 
 		<h2>Search Results for "<?php echo $_GET['s']; ?>"</h2>
 		
-		<?php if ( have_posts() ) : ?>
+		
+		
+		<?php if($_GET['post_type']=='users') { ?>
+				
+			<?php
+			    $user_search = new WP_User_Query( 
+					array(
+						'search' => '*' . $_GET['s'] . '*' 
+					));
+					
+				$users = $user_search->get_results();
+				foreach($users as $user){
+					$user_info = get_userdata($user->ID); ?>
+					<a href="http://aquapons.info/profile/<?php //echo getUserToken($user->ID); ?>"><?php echo $user_info->display_name; ?></a>
+				<?php } ?>
+		
+		
+		
+		<?php } else if ( have_posts() ) { ?>
 
 			<?php
 			/* Start the Loop */
-			while ( have_posts() ) : the_post(); ?>
+			while ( have_posts() ) { the_post(); ?>
 			
 			
 			
@@ -84,9 +103,9 @@ if(strpos($_GET['post_type'], 'resource') !== false) $section = 'resources';
 				
 				<?php } ?>
 				
-			<?php endwhile; ?>
+			<?php } ?>
 			
-			<?php if($wp_query->max_num_pages>1): ?>
+			<?php if($wp_query->max_num_pages>1) { ?>
 				<?php
 					
 				    $big = 999999999;
@@ -102,13 +121,13 @@ if(strpos($_GET['post_type'], 'resource') !== false) $section = 'resources';
 		        <header id="pagination">
 		        	<?php  echo paginate_links( $paginate_args); ?>
 		        </header>
-	        <?php endif; ?>
+	        <?php }  ?>
 
-		<?php else : ?>
+		<?php } else { ?>
 			
 			No results found
 			
-		<?php endif; ?>
+		<?php } ?>
 		
         <header id="pagination">
         	<?php echo paginate_links(); ?>

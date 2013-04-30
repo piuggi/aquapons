@@ -1,35 +1,29 @@
-<div id="sub-nav">
-	<ul id="crumb-nav">
-		<li>‹ <a href="">Resources</a></li>
-		<li>‹ <a href="">Forum</a></li>
-	</ul>
-</div><!--#sub-nav-->
 <div id="secondary-nav">
 	<section id="main-links">
-		<h2 id="page-title">Forum</h2>
+		<h2 id="page-title">
+			<?php 
+			if($_GET['s']) echo 'Community';
+			else echo get_the_title(); 
+			?>
+		</h2>
 		<hr>
 		<ul>
-			<li><a href="">Tutorials</a></li>
-			<li><a href="">Forum</a></li>
-			<li><a href="">Library</a></li>
-			<li><a href="">Jobs</a></li>
+			<li><a href="http://aquapons.info/community/featured-aquapons/">Featured Aquapons</a></li>
+			<li><a href="http://aquapons.info/community/user-directory/">User Directory</a></li>
+			<li><a href="http://aquapons.info/community/peer-evaluations/">Peer Evaluations</a></li>
 		</ul>
 	</section><!--#main-links-->
-	<section id="content-filter">
-		<hr>
-		<p><a href="">Filter</a></p>
-	</section><!--#content-filter-->
-	<section id="content-sort">
-		<hr>
-		<p><a href="">Content Area</a></p>
-	</section><!--#content-sort-->
+
+	
+	
+	
 	<section id="page-search">
-		<p>Search</p>
-		<form>
-			<input type="text" name="search-item">
-			<input type="hidden" value="" name="query">
-			<input type="submit" value="Forum" name="SiteArea">
+		<form role="search" method="get" id="searchform" action="<?php bloginfo('home'); ?>">
+			<input type="text" name="s" placeholder="Search" value="<?php echo $_GET['s']; ?>">
+			<input type="hidden" value="<?php echo $_GET['theme'] ?>" name="theme">
+	        <input type="hidden" name="post_type" value="users" />
+			<input type="submit" id="searchsubmit" value="Search">
 		</form>
 		<hr>
 	</section>	<!--#page-search-->
-</div><!--#secondary-nav-->
+</div> <!-- #secondary-nav -->

@@ -158,7 +158,7 @@
 						<div class="skill badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; ?>">
 							<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
 							<hr>
-							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
+							<div class="badge_level"><?php echo get_field('badge_level', $query->post->ID); ?></div>
 						</div>
 					<?php }
 				} ?>
