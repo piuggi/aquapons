@@ -260,6 +260,7 @@ header{
 
 	h1, h2, h3, h4, h5, h6 {
 		margin-bottom: 0;
+		line-height: 1em;
 	}
 	
 	h2 {
@@ -374,6 +375,7 @@ header{
 		
 		.badges .sub-nav {background: @yellow;}
 		.community .sub-nav {background: @lt-green;}
+		.community .sub-nav ul {margin-left: 69px;}
 		.resources .sub-nav {background: @babyblue;}
 		.resources .sub-nav ul {margin-left: 164px;}
 		.about .sub-nav {background: @fushia;}
@@ -393,9 +395,9 @@ header{
 	}
 
 	#secondary-nav{
-		height:117px;
-		padding: 0 1.5%;
-		margin: 80px 0 0;
+		/* height:117px; */
+		padding: 0 1.5% 10px;
+		margin: 50px 0 0;
 		position:relative;
 		direction: block;
 		z-index: 10;
@@ -1142,6 +1144,9 @@ header.badges{
 		height: 300px;
 		border-bottom: 10px solid @orange;
 		background: #ccc;
+	}
+	.info {
+		margin-left: 420px;
 	}
 	.meta-info {
 		margin-bottom: 8px;
@@ -2198,6 +2203,7 @@ section#main.forum{
 					border-bottom: 1px solid @medbeige;
 				}
 				p {
+					height: 100px;
 					padding: 0 5%;
 					.serif;
 					font-weight: normal;
@@ -2217,7 +2223,7 @@ section#main.forum{
 
 
 
-.resource, .search_result {
+.resource, .institution, .search_result {
 	position: relative;
 	clear: both;
 	min-height: 130px;
@@ -2237,6 +2243,9 @@ section#main.forum{
 		.serif;
 		font-size: 28px;
 		margin-bottom: 10px;
+	}
+	h3 + .meta-info {
+		margin-top: -10px;
 	}
 	
 	img {
@@ -2416,24 +2425,17 @@ section#main.forum{
 
 
 
-.page-profile {
+.page-profile, .single-institution {
 
 	section.main {
 		overflow: hidden;
 	}
 
-	header #secondary-nav section:first-child {
-		margin: 20px 0 0;
-	}
-	
-	header #secondary-nav #page-search {
-		padding: 0;
-	}
-	
 	.background {
 		-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 		float: left;
 		width: 33%;
+		min-height: 500px;
 		margin-bottom: -99999px;
 		padding-bottom: 99999px;
 		.sub-nav-shadow;
@@ -2502,6 +2504,7 @@ section#main.forum{
 	.my_badges {
 		-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 		width: 67%;
+		min-height: 500px;
 		margin-left: 33%;
 		background: @dotted-pattern-light;
 		h3 {
@@ -2516,6 +2519,14 @@ section#main.forum{
 		}
 	}
 	
-	
 }
+
+.page-profile header #secondary-nav section:first-child {
+	margin: 25px 0 0;
+}
+	
+.page-profile header #secondary-nav #page-search {
+	padding: 0;
+}
+	
 

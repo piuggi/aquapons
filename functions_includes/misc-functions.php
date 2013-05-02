@@ -1,6 +1,13 @@
 <?php
 
 
+function excerpt($text, $length = 300) {
+	
+	if(strlen($text) < $length-3) return $text;
+	else return substr($text, 0, $length) . "…";
+}
+
+
 function getBadgeStatus($badge_id, $dbresults = null) {
 	if(!$dbresults) {
 		global $current_user, $wpdb; 
@@ -162,10 +169,10 @@ function updateProfileInfo($info) {
 
 
 function getUserToken($user_id) {
-
-	$user_info = $wpdb->get_row("SELECT user_token_id FROM aq_usermeta WHERE wp_user_id = '$user_id'");
+	global $wpdb;
+	$user_info = $wpdb->get_row("SELECT `user_token_id` FROM aq_usermeta WHERE wp_user_id = '$user_id'");
 	return $user_info->user_token_id;
-	
+
 }
 
 
