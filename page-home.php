@@ -207,6 +207,7 @@
 							while($institutions->have_posts()){
 								$institutions->the_post();
 						?>
+						<a href="<?php echo get_permalink(); ?>">
 						<article class="institution <?php if(!$g++) echo ' first'; ?>">
 							<figure>
 							<div class="icon"><img src="<?php echo bloginfo('template_url') ?>/imgs/<?php echo get_post_meta($post->ID, 'institution_icon', true); ?>.png"></div>
@@ -217,7 +218,7 @@
 							?>
 							<p><?php echo establishedDate($rawdate); ?> • 54 Members</p>
 						</article><!-- .institution -->
-						
+						</a>
 						
 						
 						<?php } wp_reset_query(); ?>
