@@ -40,9 +40,10 @@ function load_scripts_styles() {
 	wp_enqueue_script( 'jquery-cycle', get_template_directory_uri(). '/js/jquery.cycle.all.js', array('jquery'));
 	wp_enqueue_script( 'load-slideshow',get_template_directory_uri().'/js/slideshow.js',array('jquery'));
 	wp_enqueue_script( 'discussion',get_template_directory_uri().'/js/discussion.js',array('jquery'));
+	wp_enqueue_script('single-activity', get_template_directory_uri().'/js/single-activity.js', array('jquery'));
+
 	wp_enqueue_style( 'wp-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'main-style', get_bloginfo('template_directory') . '/style-main.css' );
-
 }
 add_action( 'wp_enqueue_scripts', 'load_scripts_styles' );
 

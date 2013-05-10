@@ -155,7 +155,84 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	white-space: nowrap;
 }
 
-
+.ask-form(@color){
+	
+	section{ background: @color; margin: 0; padding: 20px 40px; 
+			
+			input{ 
+				
+				border-radius: 0;
+				
+			}
+			input[type="text"]{
+				
+				background: transparent;
+				border: none;
+				border-bottom: 1px solid @dkbrown;
+				width: 60%;
+				.serif;
+				color: @dkbrown;
+				outline: none;
+				display: inline;
+				
+			}
+			
+			
+			input[type="text"]::-webkit-input-placeholder { color:@dkbrown; .serif; }
+			input[type="text"]::-moz-placeholder { color:@dkbrown; .serif;  } /* firefox 19+ */
+			input[type="text"]:-ms-input-placeholder { color:@dkbrown; .serif;  } /* ie */
+			input[type="text"]:-moz-placeholder { color:@dkbrown; .serif;  }
+			
+			select{
+				
+				border-radius: 0;
+				border: 1px solid @dkbeige;
+				height: 30px;
+				width: 180px;
+				padding: 0 0px 0 10px;
+				background: url('imgs/dropdown.png') right no-repeat @beige;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				outline: none;
+				
+				
+			}
+			
+			textarea{
+				
+				display: block;
+				width: 75%;
+				height: 100px;
+				margin: 20px 0;
+				padding: 1% 1.5%;
+				border: none;
+				background: transparent;
+				outline: none;
+				color:@dkbeige;
+				.serif;
+				resize: none;
+				font-size: .9em;
+				
+			}
+			
+		
+			textarea::-webkit-input-placeholder { color: @dkbeige; .serif;  }
+			textarea::-moz-placeholder { color: @dkbeige; .serif;  } /* firefox 19+ */
+			textarea:-ms-input-placeholder { color:@dkbeige; .serif;  } /* ie */
+			textarea:-moz-placeholder { color:@dkbeige; .serif;  }
+			
+			input[type="submit"]{
+				background: @dkbrown;
+				color: @beige;
+				text-transform: uppercase;
+				width: 150px;	
+				padding: 10px 0;
+			}
+			
+			
+		}
+	
+}
 
 /*-------------------------------------------------------------------------------------	
 	Standard Elements
@@ -939,6 +1016,61 @@ header#pagination{
 
 }
 
+.question.more{
+	
+	width: 100%;
+	max-width: 100%;
+	background: @lined-pattern;
+	padding: 0px !important;
+	margin-bottom: 20px;
+	.qright{ background: none; margin-top: 20px; }
+	.qleft{margin-left: 20px; margin-top: 20px;}
+	div{background: none !important;}
+	
+	.responses{background: @beige; width: 100%; min-height: 100px;
+				
+				
+				p.nothing{ margin: 40px; font-weight: bold;}
+				
+				p.close{padding: 5px 10px; float: right; margin: 0; margin-right: 30px; color:@offwhite; text-transform: uppercase; .sans-serif; font-size: .8em;}
+				p.close.bottom{margin-top: -30px;}
+				p.water{ background-color: @blue;}
+				p.plant{ background-color: @green;}
+				p.design-build{ background-color: @purple;}
+				p.fish{ background-color:@orange;}
+				p.economic-impact{background-color:@yellow;}
+				p.environmental-impact{background-color: @lt-green;}
+				p.community-impact{background-color: @blue-purple;}
+				p.aquapons{background-color: @lt-blue;}
+				
+				section{ vertical-align: top;}
+				
+				section.answer.child{
+				
+					article.desc{ min-height: 50px; width: 80%;}
+					figure{margin: 10px 0 5px 30%;}
+				
+				}
+				form{ margin: 20px 4%;}
+				textarea{ color: @dkbrown; display: block; border: none; background: transparent; outline: none; .serif; resize: none;  font-size: 1em; width: 100%; height: 150px;}
+				textarea::-webkit-input-placeholder { color: @dkbrown; .serif;  }
+				textarea::-moz-placeholder { color: @dkbrown; .serif;  } /* firefox 19+ */
+				textarea:-ms-input-placeholder { color:@dkbrown; .serif;  } /* ie */
+				textarea:-moz-placeholder { color:@dkbrown; .serif;  }
+				input[type="submit"]{ border-radius: 0; background: @dkbrown !important; color: @offwhite; text-transform: uppercase;} 
+				
+				
+	}
+	.responses.water{border-top: 3px solid @blue; border-bottom: 3px solid @blue;}
+	.responses.plant{border-top: 3px solid @green; border-bottom: 3px solid @green;}
+	.responses.design-build{border-top: 4px solid @purple; border-bottom: 4px solid @purple;}
+	.responses.fish{ border-top: 4px solid @orange; border-bottom: 4px solid @orange;}
+	.responses.economic-impact{border-top: 4px solid @yellow; border-bottom: 4px solid @yellow;}
+	.responses.environmental-impact{border-top: 4px solid @lt-green; border-bottom: 4px solid @lt-green;}
+	.responses.community-impact{border-top: 4px solid @blue-purple; border-bottom: 4px solid @blue-purple;}
+	.responses.aquapons{border-top: 4px solid @lt-blue; border-botom: 4px solid @lt-blue;}
+	
+}
 
 
 
@@ -964,7 +1096,82 @@ header#pagination{
 	background-color: @medbrown;
 }
 */
-
+section.answer{
+	
+	margin: 40px 4%;
+	display: block;
+	min-height: 150px;
+				
+	article.desc{
+		
+		background: white;
+		display: block;
+		min-height: 100px;
+		position: relative;
+		padding: 20px;
+		width: 90%;
+		float: right;
+	}
+	
+	article.desc:after{
+		
+		content: "";
+		position: absolute;
+		bottom: -40px;
+		left: 40px;
+		border-width: 40px 0 0 40px;
+		border-style: solid;
+		border-color: white transparent;
+		display: block;
+	}
+	
+	figure{
+		
+		width: 50px;
+		height: 50px;
+		overflow: hidden;
+		margin: 10px 0 5px 20%;
+		display: inline-table;
+		img{ width: 100%; height: 100%;}
+	}
+	
+	section.user_data{
+		margin: 10px 0 0 10px;
+		display: inline-table;
+		p{ display: inline-block; margin: 0; padding: 0; 
+		strong{ font-weight: bold; } 
+		}
+		
+	}
+	.header-ul;
+	ul{
+		
+		float: right;
+		
+		margin: 10px 0 0;
+		
+		li{
+			margin: 0 10px;
+		}
+		
+	}
+	
+	ul.rank{
+		
+		display: inline;
+		float: none;
+		width: 8%;
+		margin: 0 2% 0 0;
+		position: relative;
+		text-align: center;
+		li{ width: 100%; display: inline; clear: both; position: absolute; text-align: center; width: 37px; height: 20px;}
+		li.up{ text-indent: -999px; background: url('imgs/up.png') no-repeat; }
+		li.current{top: 25px;}
+		li.down{ text-indent: -999px; background: url('imgs/down.png') no-repeat; top: 50px; }
+		
+	}
+	
+}
 
 
 
@@ -983,7 +1190,7 @@ header.badges{
 	position: relative;
 	width: 100%;
 	min-height: 500px !important;
-	padding-bottom: 40px;
+	//padding-bottom: 40px;
 	.clearfix();
 }
 #main.text-content {
@@ -1422,80 +1629,7 @@ section#main.forum{
 	min-height: 0 !important;
 	
 	#overview{
-		section{ background: @tan; margin: 0; padding: 20px 40px; 
-			
-			input{ 
-				
-				border-radius: 0;
-				
-			}
-			input[type="text"]{
-				
-				background: transparent;
-				border: none;
-				border-bottom: 1px solid @dkbrown;
-				width: 60%;
-				.serif;
-				color: @dkbrown;
-				outline: none;
-				display: inline;
-				
-			}
-			
-			
-			input[type="text"]::-webkit-input-placeholder { color:@dkbrown; .serif; }
-			input[type="text"]::-moz-placeholder { color:@dkbrown; .serif;  } /* firefox 19+ */
-			input[type="text"]:-ms-input-placeholder { color:@dkbrown; .serif;  } /* ie */
-			input[type="text"]:-moz-placeholder { color:@dkbrown; .serif;  }
-			
-			select{
-				
-				border-radius: 0;
-				border: 1px solid @dkbeige;
-				height: 30px;
-				width: 180px;
-				padding: 0 0px 0 10px;
-				background: url('imgs/dropdown.png') right no-repeat @beige;
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				outline: none;
-				
-				
-			}
-			
-			textarea{
-				
-				display: block;
-				width: 75%;
-				height: 100px;
-				margin: 20px 0;
-				padding: 1% 1.5%;
-				border: none;
-				background: transparent;
-				outline: none;
-				color:@dkbeige;
-				.serif;
-				resize: none;
-				font-size: .9em;
-				
-			}
-			
-		
-			textarea::-webkit-input-placeholder { color: @dkbeige; .serif;  }
-			textarea::-moz-placeholder { color: @dkbeige; .serif;  } /* firefox 19+ */
-			textarea:-ms-input-placeholder { color:@dkbeige; .serif;  } /* ie */
-			textarea:-moz-placeholder { color:@dkbeige; .serif;  }
-			
-			input[type="submit"]{
-				background: @dkbrown;
-				color: @beige;
-				text-transform: uppercase;
-				width: 150px;	
-				padding: 10px 0;
-			}
-			
-			
-		}
+		.ask-form(@tan);
 		header{ width: 100%; height: 4px; display: block; background-color:@dkbrown;}
 		footer{ width: 140px; height: 28px; background-color: @medbrown; float: right; margin: 0 20px 0 0;
 				p { .sans-serif; margin: 4px 0 0 0; padding: 0; text-align: center; color: @beige; font-size: .9em;}
@@ -1916,82 +2050,6 @@ section#main.forum{
 		aside{vertical-align:top;}
 		
 		
-		section.answer{
-			
-			margin: 20px 4%;
-			display: block;
-			min-height: 150px;
-						
-			article.desc{
-				
-				background: white;
-				display: block;
-				min-height: 100px;
-				position: relative;
-				padding: 20px;
-				width: 90%;
-				float: right;
-			}
-			
-			article.desc:after{
-				
-				content: "";
-				position: absolute;
-				bottom: -40px;
-				left: 40px;
-				border-width: 40px 0 0 40px;
-				border-style: solid;
-				border-color: white transparent;
-				display: block;
-			}
-			
-			figure{
-				
-				width: 50px;
-				height: 50px;
-				overflow: hidden;
-				margin: 10px 0 5px 20%;
-				display: inline-table;
-				img{ width: 100%; height: 100%;}
-			}
-			
-			section.user_data{
-				margin: 10px 0 0 10px;
-				display: inline-table;
-				p{ display: inline-block; margin: 0; padding: 0; 
-				strong{ font-weight: bold; } 
-				}
-				
-			}
-			.header-ul;
-			ul{
-				
-				float: right;
-				
-				margin: 10px 0 0;
-				
-				li{
-					margin: 0 10px;
-				}
-				
-			}
-			
-			ul.rank{
-				
-				display: inline;
-				float: none;
-				width: 8%;
-				margin: 0 2% 0 0;
-				position: relative;
-				text-align: center;
-				li{ width: 100%; display: inline; clear: both; position: absolute; text-align: center; width: 37px; height: 20px;}
-				li.up{ text-indent: -999px; background: url('imgs/up.png') no-repeat; }
-				li.current{top: 25px;}
-				li.down{ text-indent: -999px; background: url('imgs/down.png') no-repeat; top: 50px; }
-				
-			}
-			
-		}
 		section.answer.child{
 			
 			article.desc{ min-height: 50px; width: 80%;}
@@ -2123,8 +2181,10 @@ section#main.forum{
 	.upload h1{height:25px; background: url('imgs/arrow.png') no-repeat center; margin: 20px 0 5px 0; }
 	.journal h1{ height:25px; background: url('imgs/pencil.png') no-repeat center; margin: 20px 0 5px 0;}
 	.review h1{height:25px; background: url('imgs/glasses.png') no-repeat center; margin: 20px 0 5px 0; }
-	
-	
+	#ask-question{.ask-form(@beige);}
+	.sidebar{min-height: 0 !important;}
+	#discussions h2{padding: 20px;}
+	.question{padding: 20px;}
 
 } // .single-activity
 

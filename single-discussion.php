@@ -89,7 +89,7 @@
 		if($result['comment_flags']>=2){
 			
 			$answers = get_post_meta(get_the_ID(), 'answers', true);
-			$answers--; update_post_meta(get_the_ID(), 'answers', $answers);
+			$answers--; if($answers>=0) update_post_meta(get_the_ID(), 'answers', $answers);
 			
 			$data = array('comment_status'=>'flagged');
 			$where = array('id'=> $theID );

@@ -9,7 +9,30 @@ else $userid = get_current_user_id();
 
 $activityid = get_the_ID();
 $badgeid = $post->post_parent;
-if(isset($_POST['post'])) {
+if(isset($_POST['ask'])){
+	
+	//we have a new question for this badge
+	
+	$post_args = array(
+
+		'post_type'=> 'discussion',
+		'post_status'=> 'publish',
+		'post_title'=> $_POST['title'],
+		'post_category'=>array($_POST['category']),
+		'post_content'=> $_POST['question'],
+		'post_author'=> get_current_user_id()
+		
+	
+	);
+	
+	$question_id = wp_insert_post($post_args);
+	add_post_meta($question_id, 'views', 0, true );
+	add_post_meta($question_id, 'votes', 0, true );
+	add_post_meta($question_id, 'answers', 0, true );
+	add_post_meta($question_id, 'activity_id', $activityid ,true);
+	
+	
+}else if(isset($_POST['post'])) {
 
 //print_r($_POST);
 
@@ -18,7 +41,7 @@ if(isset($_POST['post'])) {
 //print_r($_FILES["activity_submission"]);
 
 if(is_user_logged_in()){
-	
+		
 	if($submissiontype === 'video'){
 		
 		$data=$_POST['activity_video'];
@@ -213,64 +236,6 @@ if(is_user_logged_in()){
 				
 						
 			<?php if(!$userSubmissions) activityUploadNav(); ?>
-			
-			
-			<section id="discussions">
-				<h2>Relevant Discussion <a>All Discussions ›</a></h2>
-				<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="plant"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-	
-				<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="fish"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-											<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="design-build"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-	
-				<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="water"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-			</section><!--#discussions-->
-			
-			
-			
 		
 		</section> <!--main col -->
 		
@@ -290,9 +255,108 @@ if(is_user_logged_in()){
 	
 	</section>
 	
+	<section id="discussions">
+	<h2>Relevant Discussions <a href="/forum">All Discussions ›</a></h2>
+	<?php $totalDiscussions = 0; ?>
+	<?php if(is_user_logged_in()){
 	
+			$discussion_args = array(	'post_type' => 'discussion', 
+				 						'orderby'=>'date',
+				 						'order'=>'DESC',
+				 						'author'=> get_current_user_id(),
+				 						'meta_query'=>array(
+				 										array(
+				 											'key'=> 'activity_id',
+				 											'value'=> $activityid
+				 										)
+				 									)
+				 					); 
+		} else {
 
+			$discussion_args = array(	'post_type' => 'discussion', 
+				 						'orderby'=>'date',
+				 						'order'=>'DESC',
+				 						'meta_query'=>array(
+				 										array(
+				 											'key'=> 'activity_id',
+				 											'value'=> $activityid
+				 										)
+				 									)
+				 					);
+
+		}
+		
+		$discussions = new WP_Query($discussion_args);
+		
+		if(is_user_logged_in() && $discussions->found_posts==0){
+				//if the user is signed in but hasn't asked any questions 
+				//default to any questions asked by the community.
+				
+				$discussion_args = array(	'post_type' => 'discussion', 
+		 									'orderby'=>'date',
+		 									'order'=>'DESC',
+					 						'meta_query'=>array(
+					 										array(
+					 											'key'=> 'activity_id',
+					 											'value'=> $activityid
+					 										)
+					 									)
+					 					);
+		 		$discussions = new WP_Query($discussion_args);
+
+			
+		}
+							
+		while( $discussions->have_posts()): $discussions->the_post(); 
+		
+					$cats = get_the_category();
+					//print_r($cats);
+					
+					if($cats) $class = $cats[0]->slug;
+					else $class = 'plant';
+		?>
+		
+			<article class="question">
+				<section class="qleft">	
+					<p><?php echo get_post_meta(get_the_ID(), 'votes', true) ?><em>votes</em></p>
+					<hr>
+					<p><?php echo get_post_meta(get_the_ID(), 'answers', true) ?><em>answers</em></p>	
+				</section><!--.qleft-->
+				<section class="qright">
+						<div class="<?php echo $class; ?>"></div>
+						<h3><a data-id="<?php the_ID(); ?>" data-user="<?php echo get_current_user_id(); ?>" data-theme="<?php echo $_GET['theme']; ?>" class="<?php echo $class; ?>" href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+						<p>Posted <?php echo time_ago(); ?> by <a class="<?php echo $class; ?>" href=""><?php echo get_the_author(); ?></a></p>
+				</section><!--.qright-->
+			</article><!--.question <?php echo get_the_title(); ?>  -->
+	<?php endwhile; ?>
+
+</section><!--#discussions-->
 	
+	<section id="ask-question">
+		<section id="form">
+			<h2>Ask A Question</h2>
+			<?php if(is_user_logged_in()): ?>
+			<form id="new_discussion" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
+				<input id="title" type="text" name="title" placeholder="Give this question a descriptive title...">
+				<?php 
+					$cats_args = array('type'=>'discussions', 'exclude'=>1);
+					$cats = get_categories($cats_args); 
+				?>
+
+				<select id="category" name="category">
+					<option value="">Relevant Content Area</option>
+					<?php foreach($cats as $cat): ?>
+					<option value="<?php echo $cat->cat_ID; ?>"><?php echo $cat->cat_name; ?></option>
+					<?php endforeach; ?>
+				</select>
+				<textarea id="question" name="question" placeholder="What's the problem?"></textarea>
+				<input type="submit" name="ask" value="Post Question">
+			</form>
+			<?php else: ?>
+			<p><a href='/sign-in'>You Must Log in to post a question</a></p>						
+			<?php endif;?>
+		</section>
+	</section><!--#ask-->
 
 
 </section><!-- #main -->

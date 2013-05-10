@@ -85,7 +85,7 @@ jQuery(document).ready(function($){
 		
 		}else{
 		
-			alert('You must log in to vote!');	
+			alert('You must log in to Flag Content!');	
 			
 		}
 		
