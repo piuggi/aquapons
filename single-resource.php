@@ -14,7 +14,6 @@
 
 	<?php if ( have_posts() ) : the_post(); ?>
 	
-		<h3><?php the_excerpt(); ?></h3>
 		<?php the_content(); ?>
 	
 	<?php else : ?>

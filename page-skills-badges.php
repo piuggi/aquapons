@@ -6,12 +6,14 @@
 
 		<?php 
 		$cats = array('Water', 'Fish', 'Plant', 'Design + Build');
-			
+		
+		$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."'"); 
+		
 		$args = array(
 			'post_type' => 'badge',
 			'posts_per_page' => -1,
 			'meta_key' => 'badge_level',
-			'orderby' => 'meta_value_num',
+			'orderby' => 'meta_value_num menu_order',
 			'order' => 'ASC',
 			'meta_query' => array(
 				array(
@@ -40,6 +42,12 @@
 					<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
 					<hr>
 					<div class="badge_level"><?php echo get_field('badge_level', $query->post->ID); ?></div>
+					<?php if($current_badge_status = getBadgeStatus($query->post->ID, $badge_info)) { ?>
+						<div class="completion_container">
+							<div class="badge_completion" style="width: <?php echo $current_badge_status/2; ?>px"><?php echo $current_badge_status; ?>%</div>
+							<div class="badge_completion_label"><?php echo $current_badge_status; ?>%</div>
+						</div>
+					<?php } ?>
 				</div>
 
 			<?php } ?>

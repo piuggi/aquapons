@@ -36,7 +36,7 @@
 
 
 	<section id="skill-badge-activities">	
-		<h3>Content Badges</h3>
+		<h3>In order to earn this badge, you must complete the badges in these content areas:</h3>
 	
 		<?php
 		$args = array(

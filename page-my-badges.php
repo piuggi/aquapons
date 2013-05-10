@@ -43,6 +43,8 @@
 					'post_type' => 'badge',
 					'meta_key' => 'badge_level',
 					'posts_per_page' => -1,
+					'orderby' => 'menu_order',
+					'order' => 'ASC',
 					'meta_value' => $x,
 				);
 				$query = new WP_Query( $args );
@@ -105,6 +107,8 @@
 				'post_type' => 'badge',
 				'meta_key' => 'badge_level',
 				'posts_per_page' => -1,
+				'orderby' => 'menu_order',
+				'order' => 'ASC',
 				'meta_value' => $x,
 			);
 			$query = new WP_Query( $args );
