@@ -287,6 +287,7 @@ function updateBadgeStatus($user_id, $parent_badge_id) {
 			array( 
 				'user_id' => $user_id,
 				'badge_id' => $parent_badge_id,
+				'badge_type' => $parent_badge_type,
 				'status' => $percentage_complete
 			)
 		);

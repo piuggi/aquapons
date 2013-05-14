@@ -21,6 +21,33 @@ function getBadgeStatus($badge_id, $dbresults = null) {
 }
 
 
+function showBadge($badge_id) { 
+	global $badge_info;
+	?>
+	<a href='<?php echo get_permalink($badge_id); ?>'>
+	<div class="skill badge <?php $cat = get_the_category($badge_id); echo $cat[0]->slug; ?> <?php echo sanitize_title(get_the_title($badge_id)); echo ' level-'.$x; ?>">
+		<h4><?php echo get_the_title($badge_id); ?></h4>
+		<hr>
+		<div class="badge_level"><?php echo get_field('badge_level', $badge_id); ?></div>
+		<?php if($current_badge_status = getBadgeStatus($badge_id, $badge_info)) { ?>
+			<div class="status_container">
+				<?php if($current_badge_status != 'complete') { ?>
+					<div class="completion_container">
+						<div class="badge_completion" style="width: <?php echo $current_badge_status/4; ?>px"><?php echo $current_badge_status; ?>%</div>
+					</div>
+				<?php } ?>
+				<div class="badge_completion_label">
+					<?php if($current_badge_status == 'complete') echo "COMPLETE";
+					else echo $current_badge_status . "%"; ?>
+					</div>
+			</div>
+		<?php } ?>
+	</div>
+	</a>
+
+<?php
+}
+
 
 
 function breadcrumb($curr_post) {

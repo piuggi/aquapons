@@ -383,8 +383,7 @@ if(is_user_logged_in()){
 				<article>
 					<a href="<?php echo get_permalink($resource->ID); ?>"><?php echo $resource->post_title; ?></a>
 				</article>
-				
-			<?php } ?>	
+			<?php } echo "&nbsp;" ?>	
 		</div>
 	
 	
