@@ -86,13 +86,22 @@ function activityUploadNav(){ ?>
 						<input type="submit" name="entry" value="Create Journal Entry">
 					</form>
 				</section>
+				<section class="submission_nav complete" >
+					<h1></h1>
+					<h4>Mark As Complete</h4>
+					<hr>
+					<p>Click here to complete this activity and move on to the next one.</p>
+					<form id="submit_activity" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8" style="display:none;">
+						<input type="submit" name="complete" value="Complete Activity">
+					</form>
+				</section>
 				<section class="submission_nav review" >
 					<h1></h1>
 					<h4>Submit for Review</h4>
 					<hr>
 					<p>Submit all of your documentation for this activity to be reviewed.</p>
 					<form id="submit_activity" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8" style="display:none;">
-						<input type="submit" name="submit" value="Submit Activity For Review">
+						<input type="submit" name="submit" value="Submit Activity for Review">
 					</form>
 				</section>
 			</nav>

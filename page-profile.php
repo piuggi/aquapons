@@ -7,7 +7,7 @@ else $userid = get_current_user_id();
 
 //print_r($_POST);
 
-if(isset($_POST['location'])) {
+if(isset($_POST)) {
 	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
 	if($current_user->ID == $userid){
 		// UPDATE PROFILE INFO

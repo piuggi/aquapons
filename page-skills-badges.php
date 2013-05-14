@@ -43,9 +43,16 @@
 					<hr>
 					<div class="badge_level"><?php echo get_field('badge_level', $query->post->ID); ?></div>
 					<?php if($current_badge_status = getBadgeStatus($query->post->ID, $badge_info)) { ?>
-						<div class="completion_container">
-							<div class="badge_completion" style="width: <?php echo $current_badge_status/2; ?>px"><?php echo $current_badge_status; ?>%</div>
-							<div class="badge_completion_label"><?php echo $current_badge_status; ?>%</div>
+						<div class="status_container">
+							<?php if($current_badge_status < 100) { ?>
+								<div class="completion_container">
+									<div class="badge_completion" style="width: <?php echo $current_badge_status/4; ?>px"><?php echo $current_badge_status; ?>%</div>
+								</div>
+							<?php } ?>
+							<div class="badge_completion_label">
+								<?php if($current_badge_status == 100) echo "COMPLETE";
+								else echo $current_badge_status . "%"; ?>
+								</div>
 						</div>
 					<?php } ?>
 				</div>

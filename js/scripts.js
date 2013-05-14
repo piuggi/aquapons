@@ -68,7 +68,7 @@ jQuery(document).ready(function($) {
 	$('form#journal_entry').submit(function(e){
 		
 		e.preventDefault();
-		$('.submission').hide();
+		$('#activity_upload').hide();
 		$('form#journal_input').show();
 		
 	});

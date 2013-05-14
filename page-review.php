@@ -43,14 +43,24 @@
 			?>
 			
 			<div class="pending_review">
-				<p>User: <?php echo $user_email ?></p>
-				<p><a href="<?php echo get_permalink($badge_id); ?>"><?php echo $badge_name ?></a></p>
-				<p><a href="<?php echo get_permalink($activity_id); ?>"><?php echo $activity_name ?></a></p>
-				<p>Description: <?php echo $description ?></p>
-				<p>User Submission: <?php echo stripslashes($review->data); ?></p>
-				<textarea class="approval_comments" placeholder="All rejected badge submissions must include a written explanation"></textarea>
-				<div class="approve_badge button" submission_id="<?php echo $submission_id ?>" badge_id="<?php echo $badge_id ?>" activity_id="<?php echo $activity_id ?>" user_id="<?php echo $user_email ?>" user_token="<?php echo $user_token ?>" evidence="<?php echo $evidence ?>" version="<?php echo $version ?>" badgename="<?php echo $badge_name ?>" badgeimage="<?php echo $badge_image ?>" description="<?php echo $description ?>" criteria="<?php echo $criteria ?>" expires="<?php echo $expires ?>" reviewer_id="<?php echo get_current_user_id(); ?>">Approve</div>
-				<div class="reject_badge button">Reject</div>
+				<div class="submission_info">
+					<h4>User</h4>
+					<p><a href="/profile/?user=<?php echo $user_token; ?>"><?php echo $user_info->display_name; ?><br>
+						<?php
+						$user_role = $user_info->roles; 
+						echo ucwords(str_replace("_", " ", $user_role[0])); ?>
+					</a></p>
+					<h4>Badge</h4>
+					<p><a href="<?php echo get_permalink($badge_id); ?>?user=<?php echo $user_token; ?>"><?php echo $badge_name ?></a></p>
+				</div>
+				<div class="review_inputs">
+					<!-- <p>Badge Description: <?php echo $description ?></p> -->
+					<label for="reviewer_comments"><h4>Reviewer Comments</h4></label>
+					<textarea class="approval_comments" id="reviewer_comments" placeholder="All rejected badge submissions must include a written explanation of decision."></textarea>
+					<input type="button" class="approve_badge" submission_id="<?php echo $submission_id ?>" badge_id="<?php echo $badge_id ?>" activity_id="<?php echo $activity_id ?>" user_id="<?php echo $user_email ?>" user_token="<?php echo $user_token ?>" evidence="<?php echo $evidence ?>" version="<?php echo $version ?>" badgename="<?php echo $badge_name ?>" badgeimage="<?php echo $badge_image ?>" <?php /*description="< ?php echo $description ? >" criteria="< ?php echo $criteria ? >" */?> expires="<?php echo $expires ?>" reviewer_id="<?php echo get_current_user_id(); ?>" value="Approve">
+					<input type="button" class="reject_badge" value="Reject">
+
+				</div>
 			</div>
 			
 
