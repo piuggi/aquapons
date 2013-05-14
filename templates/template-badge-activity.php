@@ -111,6 +111,7 @@ if(is_user_logged_in()){
 		);
 		//does wpdb query with info	
 		insertSubmission($info);
+		updateBadgeStatus($userid, $badgeid);
 		
 		
 /*
@@ -143,6 +144,7 @@ if(is_user_logged_in()){
 		);
 		//does wpdb query with info	
 		insertSubmission($info);
+		updateBadgeStatus($userid, $badgeid);
 		
 		
 /*

@@ -7,7 +7,7 @@ else $userid = get_current_user_id();
 
 $badgeid = $post->ID;
 $badge_status = $wpdb->get_row("SELECT * FROM `aq_badge_status` WHERE user_id = '$userid' AND badge_id = '$badgeid' LIMIT 1");
-if($badge_status->status == 100) $badge_complete = true;
+if($badge_status->status == 'complete') $badge_complete = true;
 ?>
 
 	<section id="badge-nav">
@@ -59,7 +59,7 @@ if($badge_status->status == 100) $badge_complete = true;
 			
 			<?php
 			if($badge_complete) {
-				$activity_status = "COMPLETE";
+				$activity_status = "complete";
 				//break;
 			} else {
 				$activity_id = get_the_ID();
@@ -76,13 +76,15 @@ if($badge_status->status == 100) $badge_complete = true;
 			<a href='<?php echo get_permalink() ?>'>
 			<article class="skill-activity">
 			<?php } ?>
-				<?php echo get_the_title() ?>
+				<h4><?php echo get_the_title() ?></h4>
 				<hr/>
-				<?php 
-				if($activity_status == 'complete') echo "COMPLETE";
-				else if(get_field('self_evaluation') && $activity_status == 'reviewing') echo "Reviewing";
-				else if($activity_status) echo "In Progress";
-				?>
+				<h4 class="status_container badge_completion_label">
+					<?php 
+					if($activity_status == 'complete') echo "COMPLETE";
+					else if(get_field('self_evaluation') && $activity_status == 'reviewing') echo "Reviewing";
+					else if($activity_status) echo "In Progress";
+					?>
+				</h4>
 			</article>
 			</a>
 

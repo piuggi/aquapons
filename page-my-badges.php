@@ -145,11 +145,28 @@
 					$query->the_post();
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='skill' && get_cat_name($wp_cats[0]) == $cat) { ?>
-						<div class="skill badge <?php if(getBadgeStatus($query->post->ID, $badge_info) != 100) echo "incomplete"; ?> <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; if(!$current_level) echo ' hide';?>">
-							<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
+		
+						<a href='<?php echo get_permalink($page->ID); ?>'>
+						<div class="skill badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; ?> <?php if(getBadgeStatus($query->post->ID, $badge_info) !== 'complete') echo "incomplete"; ?>">
+							<h4><?php the_title(); ?></h4>
 							<hr>
-							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
+							<div class="badge_level"><?php echo get_field('badge_level', $query->post->ID); ?></div>
+							<?php if($current_badge_status = getBadgeStatus($query->post->ID, $badge_info)) { ?>
+								<div class="status_container">
+									<?php if($current_badge_status != 'complete') { ?>
+										<div class="completion_container">
+											<div class="badge_completion" style="width: <?php echo $current_badge_status/4; ?>px"><?php echo $current_badge_status; ?>%</div>
+										</div>
+									<?php } ?>
+									<div class="badge_completion_label">
+										<?php if($current_badge_status == 'complete') echo "COMPLETE";
+										else echo $current_badge_status . "%"; ?>
+										</div>
+								</div>
+							<?php } ?>
 						</div>
+						</a>
+						
 					<?php }
 				} ?>
 				</section><!-- .badge-container -->
