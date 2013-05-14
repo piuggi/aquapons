@@ -39,7 +39,7 @@
 							
 						</figcaption>
 						<?php $imgId = get_post_meta(get_the_ID(), 'image', true);  ?>
-						<?php $imgArray = wp_get_attachment_image_src( $imgId);?>
+						<?php $imgArray = wp_get_attachment_image_src( $imgId, 'full');?>
 						
 						<img class="aquapon_ledgend" src="<?php echo $imgArray[0];  ?>" alt="One of our featured Aquapons <?php echo get_the_title();?>">
 					</figure><!--showcase -->
