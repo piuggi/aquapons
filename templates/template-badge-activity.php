@@ -12,7 +12,6 @@ else $userid = get_current_user_id();
 $submissiontype = $_POST['submission_type'];
 $activityid = get_the_ID();
 $badgeid = $post->post_parent;
-<<<<<<< HEAD
 if(isset($_POST['ask'])){
 	
 	//we have a new question for this badge
@@ -37,9 +36,6 @@ if(isset($_POST['ask'])){
 	
 	
 }else if(isset($_POST['post'])) {
-||||||| merged common ancestors
-if(isset($_POST['post'])) {
-=======
 
 
 // SELF-EVAL CHECK			
@@ -65,15 +61,6 @@ if($self_eval[0]) {
 	}
 }
 			
-
-
-
-if(isset($_POST['post'])) {
->>>>>>> 0549e1955a4d17dee2b0764827a41eac496d9ed7
-
-
-
-
 //print_r($_POST);
 
 //$wpdb->query("INSERT INTO `aq_badge_submissions` (`id`, `user_id`, `badge_id`, `activity_id`, `current_status`, `data`) VALUES (NULL, '$userid', '$badgeid', '$activityid', 'reviewing', '".$_POST['activity_submission']."')");
@@ -319,7 +306,7 @@ if(is_user_logged_in()){
 					
 			<?php	} ?>
 			
-			<?php }else{ //ifuserlogged in  ?>
+			<?php } else{ //ifuserlogged in  ?>
 			
 				<h2>Log In to Start Documenting</h2>
 				<section class="main-col">	
@@ -340,129 +327,7 @@ if(is_user_logged_in()){
 			</form>
 			
 				
-						
-<<<<<<< HEAD
-			<?php if(!$userSubmissions) activityUploadNav(); ?>
-||||||| merged common ancestors
-			<?php if(!$userSubmissions) activityUploadNav(); ?>
-			
-			
-			<section id="discussions">
-				<h2>Relevant Discussion <a>All Discussions ›</a></h2>
-				<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="plant"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-	
-				<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="fish"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-											<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="design-build"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-	
-				<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="water"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-			</section><!--#discussions-->
-			
-			
-			
-=======
-			
-			
-			<section id="discussions">
-				<h2>Relevant Discussion <a>All Discussions ›</a></h2>
-				<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="plant"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-	
-				<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="fish"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-											<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="design-build"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-	
-				<article class="question">
-					<section class="qleft">	
-						<p>50<em>votes</em></p>
-						<hr>
-						<p>50<em>answers</em></p>	
-					</section><!--.qleft-->
-					<section class="qright">
-							<div class="water"></div>
-							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
-							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
-					</section><!--.qright-->
-				</article><!--.question -->
-			</section><!--#discussions-->
-			
-			
-			
->>>>>>> 0549e1955a4d17dee2b0764827a41eac496d9ed7
+			<?php// if(!$userSubmissions) activityUploadNav(); ?>
 		
 		</section> <!--main col -->
 		
@@ -499,7 +364,7 @@ if(is_user_logged_in()){
 				 									)
 				 					); 
 		} else {
-
+			
 			$discussion_args = array(	'post_type' => 'discussion', 
 				 						'orderby'=>'date',
 				 						'order'=>'DESC',
@@ -510,10 +375,12 @@ if(is_user_logged_in()){
 				 										)
 				 									)
 				 					);
-
+			//print_r($discussion_args);
 		}
 		
 		$discussions = new WP_Query($discussion_args);
+		
+		//print_r($discussions);
 		
 		if(is_user_logged_in() && $discussions->found_posts==0){
 				//if the user is signed in but hasn't asked any questions 
@@ -533,9 +400,7 @@ if(is_user_logged_in()){
 
 			
 		}
-							
 		while( $discussions->have_posts()): $discussions->the_post(); 
-		
 					$cats = get_the_category();
 					//print_r($cats);
 					
