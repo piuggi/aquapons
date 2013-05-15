@@ -135,7 +135,15 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 	img { width: 100%; height: 100%; }
 }
 
-.outline{
+.alert {
+	display: block;
+	background: (@green * 14);
+	border-radius: 5px;
+	border: 1px solid @green;
+	margin: 0 0 5px;
+	padding: 7px 15px;
+	font-size: 14px;	
+}.outline{
 	
 		display:block;
 		clear: both;
@@ -301,12 +309,13 @@ label {
 	font-size: 13px;
 }
 
-input{
+input, textarea{
 	display: block;
 	width: 240px;
 	color: @dkbrown;
 	border-radius: 5px;
 	border: 1px solid @medbeige;
+	margin: 0 0 5px;
 	padding: 7px 15px;
 	font-size: 14px;	
 }
@@ -323,7 +332,10 @@ input[type="submit"]:hover, input[type="button"]:hover{
 	cursor: pointer;
 }
 
-
+sub {
+	font-size: .7em;
+	vertical-align:sub;
+}
 
 /*-------------------------------------------------------------------------------------	
 	Common Sections
@@ -337,6 +349,7 @@ header{
 
 	h1, h2, h3, h4, h5, h6 {
 		margin-bottom: 0;
+		line-height: 1em;
 	}
 	
 	h2 {
@@ -451,6 +464,7 @@ header{
 		
 		.badges .sub-nav {background: @yellow;}
 		.community .sub-nav {background: @lt-green;}
+		.community .sub-nav ul {margin-left: 69px;}
 		.resources .sub-nav {background: @babyblue;}
 		.resources .sub-nav ul {margin-left: 164px;}
 		.about .sub-nav {background: @fushia;}
@@ -470,9 +484,9 @@ header{
 	}
 
 	#secondary-nav{
-		height:117px;
-		padding: 0 1.5%;
-		margin: 80px 0 0;
+		/* height:117px; */
+		padding: 0 1.5% 10px;
+		margin: 50px 0 0;
 		position:relative;
 		direction: block;
 		z-index: 10;
@@ -822,6 +836,12 @@ header#pagination{
 		border: 0;
 		height: 1px; color: @beige; background: @beige;
 	}
+	h4, hr {
+		opacity: .75;
+	}
+	:hover h4, :hover hr {
+		opacity: 1;
+	}
 	.badge_level {
 		position: absolute;
 		bottom: 0;
@@ -830,36 +850,82 @@ header#pagination{
 		line-height: .6em;
 		font-weight: bold;
 	}
+	.status_container {
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+		width: 100px;
+	}
+	.completion_container {
+		float: left;
+		width: 25px;
+		height: 10px;
+		margin: 0 5px 0 0;
+		border: 1px solid @beige;
+		overflow: hidden;	
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+	}
+	.badge_completion {
+		text-indent: 100%;
+		background: @beige;	
+		opacity: .5;
+	}
+	.badge_completion_label {
+		font-size: 9px;
+		line-height: 12px;
+		color: @beige;
+		text-transform: uppercase;
+	}
 }
 
+.skill-activity.disabled {
+	opacity: .5;
+}
+
+.skill.badge:hover h4, .skill.badge:hover hr, .skill-activity:hover h4, .skill-activity:hover hr {
+	opacity: 1;
+}
 .water{
 	.skill.badge{ .skill-badge-background(@blue); }
 	.skill.badge:nth-child(3n-1){ .skill-badge-background(@blue-purple); }
 	.skill.badge:nth-child(4n-1){ .skill-badge-background(@lt-blue); }	
 	.badge_level { color: @blue; }
 }
-
+.water.skill.badge{ .skill-badge-background(@blue); }
+.water.skill.badge:nth-child(3n-1){ .skill-badge-background(@blue-purple); }
+.water.skill.badge:nth-child(4n-1){ .skill-badge-background(@lt-blue); }	
+.water.badge_level { color: @blue; }
 .fish{
 	.skill.badge{ .skill-badge-background(@red); }
 	.skill.badge:nth-child(3n-1){ .skill-badge-background(@yellow); }
 	.skill.badge:nth-child(4n-1){ .skill-badge-background(@orange); }	
 	.badge_level { color: @red; }
 }
-
+.fish.skill.badge{ .skill-badge-background(@red); }
+.fish.skill.badge:nth-child(3n-1){ .skill-badge-background(@yellow); }
+.fish.skill.badge:nth-child(4n-1){ .skill-badge-background(@orange); }	
+.fish.badge_level { color: @red; }
 .plant{
 	.skill.badge{ .skill-badge-background(@green); }
 	.skill.badge:nth-child(3n-1){ .skill-badge-background(@teal); }
 	.skill.badge:nth-child(4n-1){ .skill-badge-background(@lt-green); }	
 	.badge_level { color: @green; }
 }
-
+.plant.skill.badge{ .skill-badge-background(@green); }
+.plant.skill.badge:nth-child(3n-1){ .skill-badge-background(@teal); }
+.plant.skill.badge:nth-child(4n-1){ .skill-badge-background(@lt-green); }	
+.plant.badge_level { color: @green; }
 .design-build{
 	.skill.badge{ .skill-badge-background(@purple); }
 	.skill.badge:nth-child(3n-1){ .skill-badge-background(@fushia); }
 	.skill.badge:nth-child(4n-1){ .skill-badge-background(@medbrown); }	
 	.badge_level { color: @purple; }
 }
-
+.design-build.skill.badge{ .skill-badge-background(@purple); }
+.design-build.skill.badge:nth-child(3n-1){ .skill-badge-background(@fushia); }
+.design-build.skill.badge:nth-child(4n-1){ .skill-badge-background(@medbrown); }	
+.design-build.badge_level { color: @purple; }
 
 
 .badge.incomplete {
@@ -1350,6 +1416,9 @@ header.badges{
 		border-bottom: 10px solid @orange;
 		background: #ccc;
 	}
+	.info {
+		margin-left: 420px;
+	}
 	.meta-info {
 		margin-bottom: 8px;
 		font-size: 13px;
@@ -1580,6 +1649,9 @@ header.badges{
 			img{
 				
 				padding: 20px 0 5px;
+				width: auto;
+				margin: 0;
+				float: none;
 			}
 						
 			h4{
@@ -2129,6 +2201,16 @@ section#main.forum{
 			color: @offwhite;
 			border-bottom: 1px solid white;
 		}
+		h3 {
+			float: right;
+			margin: 0 20px;
+			border-radius: 5px;
+			background: @offwhite;
+			color: @dkbrown;
+			padding: 7px 15px;
+			font-size: 14px;
+			font-weight: 600;	
+		}
 		.estimated_time {
 			margin: -10px 20px 0;
 			float: right;
@@ -2175,16 +2257,26 @@ section#main.forum{
 				p{width: 75%; margin: 0 auto;}
 				selection{ display:inline;}
 				input[type="file"]{ display: inline; width: 150px;}
-				input[type="submit"]{display: block; margin: 5px auto 4px;}
+				input[type="submit"]{display: block; margin: 5px auto 4px;padding-left: 15px; padding-right: 15px;}
 	 }
 	 
 	.upload h1{height:25px; background: url('imgs/arrow.png') no-repeat center; margin: 20px 0 5px 0; }
 	.journal h1{ height:25px; background: url('imgs/pencil.png') no-repeat center; margin: 20px 0 5px 0;}
+	.complete h1{height:25px; background: url('imgs/glasses.png') no-repeat center; margin: 20px 0 5px 0; }
 	.review h1{height:25px; background: url('imgs/glasses.png') no-repeat center; margin: 20px 0 5px 0; }
 	#ask-question{.ask-form(@beige);}
 	.sidebar{min-height: 0 !important;}
 	#discussions h2{padding: 20px;}
 	.question{padding: 20px;}
+	.no_submission .complete, .no_submission .review {
+		opacity: .5;
+		pointer-events: none;
+	}
+	.review { display:none; }
+	.self_eval {
+		.complete { display:none; }
+		.review { display:inline-table; }
+	}
 
 } // .single-activity
 
@@ -2258,6 +2350,7 @@ section#main.forum{
 					border-bottom: 1px solid @medbeige;
 				}
 				p {
+					height: 100px;
 					padding: 0 5%;
 					.serif;
 					font-weight: normal;
@@ -2277,7 +2370,7 @@ section#main.forum{
 
 
 
-.resource, .search_result {
+.resource, .institution, .search_result {
 	position: relative;
 	clear: both;
 	min-height: 130px;
@@ -2297,6 +2390,9 @@ section#main.forum{
 		.serif;
 		font-size: 28px;
 		margin-bottom: 10px;
+	}
+	h3 + .meta-info {
+		margin-top: -10px;
 	}
 	
 	img {
@@ -2476,7 +2572,7 @@ section#main.forum{
 
 
 
-.page-profile {
+.page-profile, single-institution {
 
 	section.main {
 		overflow: hidden;
@@ -2576,6 +2672,38 @@ section#main.forum{
 		}
 	}
 	
-	
 }
+.page-profile header #secondary-nav section:first-child {
+	margin: 25px 0 0;
+}
+	
+.page-profile header #secondary-nav #page-search {
+	padding: 0;
+}
+	
+.page-review {
+	.pending_review {
+		clear: both;
+		margin: 20px;
+		padding: 0px 20px 20px;
+		border-bottom: 1px solid @dkbeige;
+	}
+	.submission_info {
+		float: left;
+		width: 20%;
+	}
+	.review_inputs {
+		margin-left: 25%;
+		textarea {
+			width: 100%;
+			height: 100px;
+			padding: 5px;
+			font-size: 16px;
+		}
+		.approve_badge {
+			clear: both;
+		}
+	}
+}
+
 

@@ -7,7 +7,7 @@ else $userid = get_current_user_id();
 
 $badgeid = $post->ID;
 $badge_status = $wpdb->get_row("SELECT * FROM `aq_badge_status` WHERE user_id = '$userid' AND badge_id = '$badgeid' LIMIT 1");
-if($badge_status->status == 100) $badge_complete = true;
+if($badge_status->status == 'complete') $badge_complete = true;
 ?>
 
 	<section id="badge-nav">
@@ -41,7 +41,7 @@ if($badge_status->status == 100) $badge_complete = true;
 
 
 	<section id="skill-badge-activities">	
-	<h3>Activities</h3>
+	<h3>In order to earn this badge, you must complete these Activities:</h3>
 
 		<?php
 		$args = array(
@@ -53,27 +53,40 @@ if($badge_status->status == 100) $badge_complete = true;
 			'post_parent' => $post->ID
 		);
 		$children = new WP_Query( $args );
+		$ready_for_eval = true;
 		while($children->have_posts()) : $children->the_post(); ?>
 			
 			
 			<?php
 			if($badge_complete) {
-				$activity_status = "COMPLETE";
+				$activity_status = "complete";
 				//break;
 			} else {
 				$activity_id = get_the_ID();
 				// LOAD CURRENT STATUS
 				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activity_id' ORDER BY submission_timestamp DESC LIMIT 1");
 				$activity_status = $activity_info->current_status;
+				if(!get_field('self_evaluation') && $activity_status != 'complete') $ready_for_eval = false;
 			} 
 			?>
 			
+			<?php if(get_field('self_evaluation') && !$ready_for_eval) { ?>
+			<article class="skill-activity disabled">
+			<?php } else { ?>
+			<a href='<?php echo get_permalink() ?>'>
 			<article class="skill-activity">
-				
-				<a href='<?php echo get_permalink() ?>'><?php echo get_the_title() ?></a> 
+			<?php } ?>
+				<h4><?php echo get_the_title() ?></h4>
 				<hr/>
-				<?php echo $activity_status ?>
+				<h4 class="status_container badge_completion_label">
+					<?php 
+					if($activity_status == 'complete') echo "COMPLETE";
+					else if(get_field('self_evaluation') && $activity_status == 'reviewing') echo "Reviewing";
+					else if($activity_status) echo "In Progress";
+					?>
+				</h4>
 			</article>
+			</a>
 
 		<?php  
 			$c++;

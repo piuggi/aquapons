@@ -60,7 +60,13 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 					</li>
 					
 					<li class="community <?php if($section=='community') echo 'selected'; ?>">
-						<a href="http://aquapons.info/community/">Community</a>
+						<a href="http://aquapons.info/community/">Community</a>						
+						<div class="sub-nav">
+							<ul>
+								<li><a href="http://aquapons.info/community/institutions/">Groups/Institutions</a></li>
+								<li><a href="http://aquapons.info/review/">Peer Evaluations</a></li>
+							</ul>
+						</div>
 					</li>
 					<li class="resources <?php if($section=='resources') echo 'selected'; ?>">
 						<a href="http://aquapons.info/resources/">Resources</a>						

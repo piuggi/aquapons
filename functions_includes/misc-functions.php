@@ -1,6 +1,13 @@
 <?php
 
 
+function excerpt($text, $length = 300) {
+	
+	if(strlen($text) < $length-3) return $text;
+	else return substr($text, 0, $length) . "…";
+}
+
+
 function getBadgeStatus($badge_id, $dbresults = null) {
 	if(!$dbresults) {
 		global $current_user, $wpdb; 
@@ -13,6 +20,33 @@ function getBadgeStatus($badge_id, $dbresults = null) {
 	return 0;
 }
 
+
+function showBadge($badge_id) { 
+	global $badge_info;
+	?>
+	<a href='<?php echo get_permalink($badge_id); ?>'>
+	<div class="skill badge <?php $cat = get_the_category($badge_id); echo $cat[0]->slug; ?> <?php echo sanitize_title(get_the_title($badge_id)); echo ' level-'.$x; ?>">
+		<h4><?php echo get_the_title($badge_id); ?></h4>
+		<hr>
+		<div class="badge_level"><?php echo get_field('badge_level', $badge_id); ?></div>
+		<?php if($current_badge_status = getBadgeStatus($badge_id, $badge_info)) { ?>
+			<div class="status_container">
+				<?php if($current_badge_status != 'complete') { ?>
+					<div class="completion_container">
+						<div class="badge_completion" style="width: <?php echo $current_badge_status/4; ?>px"><?php echo $current_badge_status; ?>%</div>
+					</div>
+				<?php } ?>
+				<div class="badge_completion_label">
+					<?php if($current_badge_status == 'complete') echo "COMPLETE";
+					else echo $current_badge_status . "%"; ?>
+					</div>
+			</div>
+		<?php } ?>
+	</div>
+	</a>
+
+<?php
+}
 
 
 
@@ -79,13 +113,22 @@ function activityUploadNav(){ ?>
 						<input type="submit" name="entry" value="Create Journal Entry">
 					</form>
 				</section>
+				<section class="submission_nav complete" >
+					<h1></h1>
+					<h4>Mark As Complete</h4>
+					<hr>
+					<p>Click here to complete this activity and move on to the next one.</p>
+					<form id="submit_activity" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8" style="display:none;">
+						<input type="submit" name="complete" value="Complete Activity">
+					</form>
+				</section>
 				<section class="submission_nav review" >
 					<h1></h1>
 					<h4>Submit for Review</h4>
 					<hr>
 					<p>Submit all of your documentation for this activity to be reviewed.</p>
 					<form id="submit_activity" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8" style="display:none;">
-						<input type="submit" name="submit" value="Submit Activity For Review">
+						<input type="submit" name="submit" value="Submit Activity for Review">
 					</form>
 				</section>
 			</nav>
@@ -162,10 +205,10 @@ function updateProfileInfo($info) {
 
 
 function getUserToken($user_id) {
-
-	$user_info = $wpdb->get_row("SELECT user_token_id FROM aq_usermeta WHERE wp_user_id = '$user_id'");
+	global $wpdb;
+	$user_info = $wpdb->get_row("SELECT `user_token_id` FROM aq_usermeta WHERE wp_user_id = '$user_id'");
 	return $user_info->user_token_id;
-	
+
 }
 
 

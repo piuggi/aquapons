@@ -41,7 +41,7 @@ if($badge_status->status == 100) $badge_complete = true;
 
 
 	<section id="skill-badge-activities">	
-		<h3>Required Skills</h3>
+		<h3>In order to earn this badge, you must complete these required Skills:</h3>
 
 		<?php
 		$args = array(

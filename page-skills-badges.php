@@ -6,12 +6,14 @@
 
 		<?php 
 		$cats = array('Water', 'Fish', 'Plant', 'Design + Build');
-			
+		
+		$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."'"); 
+		
 		$args = array(
 			'post_type' => 'badge',
 			'posts_per_page' => -1,
 			'meta_key' => 'badge_level',
-			'orderby' => 'meta_value_num',
+			'orderby' => 'meta_value_num menu_order',
 			'order' => 'ASC',
 			'meta_query' => array(
 				array(
@@ -36,11 +38,26 @@
 				$cat_descriptions[$cat] = category_description($wp_cats[0]);
 			?>
 			
+				<a href='<?php echo get_permalink($page->ID); ?>'>
 				<div class="skill badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; ?>">
-					<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
+					<h4><?php the_title(); ?></h4>
 					<hr>
 					<div class="badge_level"><?php echo get_field('badge_level', $query->post->ID); ?></div>
+					<?php if($current_badge_status = getBadgeStatus($query->post->ID, $badge_info)) { ?>
+						<div class="status_container">
+							<?php if($current_badge_status != 'complete') { ?>
+								<div class="completion_container">
+									<div class="badge_completion" style="width: <?php echo $current_badge_status/4; ?>px"><?php echo $current_badge_status; ?>%</div>
+								</div>
+							<?php } ?>
+							<div class="badge_completion_label">
+								<?php if($current_badge_status == 'complete') echo "COMPLETE";
+								else echo $current_badge_status . "%"; ?>
+								</div>
+						</div>
+					<?php } ?>
 				</div>
+				</a>
 
 			<?php } ?>
 

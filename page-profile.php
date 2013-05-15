@@ -7,7 +7,7 @@ else $userid = get_current_user_id();
 
 //print_r($_POST);
 
-if(isset($_POST['location'])) {
+if(isset($_POST)) {
 	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
 	if($current_user->ID == $userid){
 		// UPDATE PROFILE INFO
@@ -238,7 +238,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 				<a class="cancel_background_info">Cancel</a>
 			</form>
 			</div>
-			<?php } // if($current_user->ID == $userid) ?>
+			<?php } ?>
 			
 			
 			<?php if($current_user->ID == $userid) { ?>
@@ -315,20 +315,35 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 			
 			
 			<h2>My Skills Badges <a href="http://aquapons.info/badges/skills-badges">View all ›</a></h2>
+
+			<?php
+			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."' AND `badge_type`='skill' AND `status` = 'complete' ORDER BY `updated` ASC LIMIT 3");
+			
+			if(count($badge_info)) { ?>
 			<h3>Recently Completed</h3>
-			<?php
-			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."' AND `status` = 100 ORDER BY `updated` DESC LIMIT 3"); 
-			?>
+				<?php foreach($badge_info as $badge) {
+					showBadge($badge->badge_id);
+				} ?>
+			<?php } ?>
 	
+			<?php
+			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."' AND `badge_type`='skill' AND `status` != 'complete' ORDER BY `updated` ASC LIMIT 3"); 
+			
+			if(count($badge_info)) { ?>
 			<h3>Recently Started</h3>
-			<?php
-			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."' AND `status` != 100 ORDER BY `updated` DESC LIMIT 3"); 
-			?>
+				<?php foreach($badge_info as $badge) { 
+				showBadge($badge->badge_id);
+				} ?>
+			<?php } ?>
 	
-			<h3>Recent Activity</h3>
-			<?php
+			<?php 
 			// get most recent activity submissions
-			$activity_info = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE user_id = '".$current_user->ID."' ORDER BY `submission_timestamp` DESC LIMIT 10"); 
+			$activity_info = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE user_id = '".$userid."' AND `current_status`='complete' ORDER BY `submission_timestamp` ASC LIMIT 15"); 
+
+			if(count($activity_info)) { ?>
+			<h3>Recent Activity</h3>
+
+			<?php 
 			// load related skills badges
 			foreach($activity_info as $activity) {
 				$badge_id_array[] = $activity->badge_id;
@@ -338,8 +353,13 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 				$badge_ids .= ' OR badge_id = '. $badge_id;
 			}
 			$badge_ids = substr($badge_ids, 3);
-			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."' AND ($badge_ids) ORDER BY `updated` DESC LIMIT 3"); 
-			?>		
+			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."' AND `badge_type`='skill' AND ($badge_ids) ORDER BY `updated` ASC LIMIT 3"); 
+			
+			foreach($badge_info as $badge) { ?>
+				<?php showBadge($badge->badge_id); ?>
+			<?php } 
+			}
+			?>	
 		
 		</section> <!-- .my_badges -->
 

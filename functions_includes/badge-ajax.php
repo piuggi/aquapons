@@ -233,27 +233,31 @@ add_action('wp_ajax_reviewBadgeAjax', 'reviewBadgeAjax');
 
 function updateBadgeStatus($user_id, $parent_badge_id) {
 	
-	
-	
+	global $wpdb;
 	
 	// check requirements for badge
-	$parent_badge_type = get_post_meta($badgeId, 'badge_type', true);
-	$my_wp_query = new WP_Query();
-	$all_wp_badges = $my_wp_query->query(array('post_type' => 'badge'));
-	$siblings = get_page_children($badgeId, $all_wp_badges);
+		//$my_wp_query = new WP_Query();
+		//$all_wp_badges = $my_wp_query->query(array('post_type' => 'badge'));
+		//$siblings = get_page_children($parent_badge_id, $all_wp_badges);
+		
+	$args = array(
+		'post_parent' => $parent_badge_id,
+		'post_type' => 'badge',
+		'post_status' => 'publish'
+	); 
+	$siblings = get_posts($args); 
+		
 	// if skills badge, check all related activities
-	// if all activities are complete, grant badge
 	$percentage_complete = 0;
 	$indiv_percent = 100/sizeof($siblings);
+	$parent_badge_type = get_field('badge_type', $parent_badge_id);
 	if($parent_badge_type == "skill") {
 		$grantBadge = true;
-		
 		foreach($siblings as $sibling) {
-			$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = ".$user_info->wp_user_id." AND activity_id = ".$sibling->ID);
-			//echo " activity status: ".$activity_info->current_status;
-			if($activity_info->current_status == "approved") $percentage_complete += $indiv_percent;
+			$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE `user_id` = '$user_id' AND `activity_id` = '".$sibling->ID."' AND `type` = ''");
+			//echo $sibling->ID ." activity status:".$activity_info->current_status;
+			if($activity_info->current_status == "complete" || $activity_info->current_status == "reviewing") $percentage_complete += $indiv_percent;
 		}
-		echo "percent complete: ".round($percentage_complete);
 	}
 	// else check all sibling badges
 	else {
@@ -262,28 +266,29 @@ function updateBadgeStatus($user_id, $parent_badge_id) {
 			//echo " activity status: ".$activity_info->current_status;
 			if($activity_info->status == 100) $percentage_complete += $indiv_percent;
 		}
-		echo "percent complete: ".round($percentage_complete);
 		
 	}
 	
+	$percentage_complete = round($percentage_complete);
+	
 	// UPDATE BADGE STATUS IN DB
-	$badge_status = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_info->wp_user_id." AND badge_id = ".$_POST['badge_id']);
-	print_r($badge_status);
+	$badge_status = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_id." AND badge_id = ".$parent_badge_id);
 	if($badge_status) {
 		$wpdb->update( 
 			'aq_badge_status', 
 			array( 
-				'status' => round($percentage_complete)
+				'status' => $percentage_complete
 			), 
-			array( 'user_id' => $user_info->wp_user_id, 'badge_id' => $_POST['badge_id'] )
+			array( 'user_id' => $user_id, 'badge_id' => $parent_badge_id )
 		);
 	} else {
 		$wpdb->insert( 
 			'aq_badge_status', 
 			array( 
-				'user_id' => $user_info->wp_user_id,
-				'badge_id' => $_POST['badge_id'],
-				'status' => round($percentage_complete)
+				'user_id' => $user_id,
+				'badge_id' => $parent_badge_id,
+				'badge_type' => $parent_badge_type,
+				'status' => $percentage_complete
 			)
 		);
 	}
@@ -297,10 +302,7 @@ function updateBadgeStatus($user_id, $parent_badge_id) {
 		if($ancestors[0]) updateBadgeStatus($ancestors[0]);	
 	} 
 
-	
-	
-	
-	
+		
 }
 
 

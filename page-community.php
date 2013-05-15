@@ -49,54 +49,59 @@
 	
 						<?php endwhile; wp_reset_query(); ?>
 						
+							
+						<h2>Featured Institutions <a>All institutions ›</a></h2>
+							
+						<?php  
+							$institution_args = array(
+									'post_type'=> 'institution',
+									'orderby'=> 'date',
+									'order'	=> 'DESC',			
+								);
+							$institutions = new WP_Query($institution_args);
+							while($institutions->have_posts()){
+								$institutions->the_post();
+									?>
+									<article class="institution <?php if(!$g++) echo ' first'; ?>">
+										<figure>
+										<div class="icon"><img src="<?php echo bloginfo('template_url') ?>/imgs/<?php echo get_post_meta($post->ID, 'institution_icon', true); ?>.png"></div>
+										<h4><?php echo get_post_meta($post->ID, 'institution_name', true); ?></h4>
+										</figure>
+										<?php $rawdate = get_post_meta($post->ID, 'established_date', true); 
+											
+										?>
+										<p><?php echo establishedDate($rawdate); ?> • 54 Members</p>
+									</article><!-- .institution -->
+						
+						
+						
+						<?php } wp_reset_query(); ?>
+						
 					</section>
 
 					<section id="new_aquapons" class="sidebar">
 
-						<h4>New Aquapons</h4>
+						<h4>Newest Aquapons</h4>
 						<ul>
-						
- 
-						
-						<?php $args = array(
-						    'orderby'       => 'registered', 
-						    'order'         => 'DESC', 
-						    'number'        => 10,
-						    'hide_empty' 	=> false);
-
-						wp_list_authors($args);
-						
-						?>
+						<?php						
+		 			    $user_search = new WP_User_Query( 
+							array(
+							    'orderby'       => 'registered', 
+							    'order'         => 'DESC', 
+							    'number'        => 15,
+							));
+							
+						$users = $user_search->get_results();
+						foreach($users as $user){
+							$user_info = get_userdata($user->ID); ?>
+		
+							<li><a href="http://aquapons.info/profile/?user=<?php echo getUserToken($user->ID); ?>"><?php echo $user_info->display_name; ?></a></li>
+						<?php } ?>
 						</ul>			
 					</section>
 				
 				
-				<h2>New Institutions <a>All institutions ›</a></h2>
-						
-					<?php  
-						$institution_args = array(
-								'post_type'=> 'institution',
-								'orderby'=> 'date',
-								'order'	=> 'DESC',			
-							);
-						$institutions = new WP_Query($institution_args);
-						while($institutions->have_posts()){
-							$institutions->the_post();
-								?>
-								<article class="institution <?php if(!$g++) echo ' first'; ?>">
-									<figure>
-									<div class="icon"><img src="<?php echo bloginfo('template_url') ?>/imgs/<?php echo get_post_meta($post->ID, 'institution_icon', true); ?>.png"></div>
-									<h4><?php echo get_post_meta($post->ID, 'institution_name', true); ?></h4>
-									</figure>
-									<?php $rawdate = get_post_meta($post->ID, 'established_date', true); 
-										
-									?>
-									<p><?php echo establishedDate($rawdate); ?> • 54 Members</p>
-								</article><!-- .institution -->
-					
-					
-					
-					<?php } wp_reset_query(); ?>
+				
 
 				
 				</section><!-- .text-content -->

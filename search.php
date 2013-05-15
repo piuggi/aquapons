@@ -1,11 +1,10 @@
 <?php 
 if($_GET['post_type']=='badge') $section = 'badges';
 if(strpos($_GET['post_type'], 'resource') !== false) $section = 'resources';
-if($_GET['post_type']=='users') $section = 'community';
+if($_GET['post_type']=='institution') $section = 'community';
 ?>
 
 <?php get_header(); ?>
-
 	<section class="main text-content">
 		<section class="main-col">
 
@@ -14,7 +13,7 @@ if($_GET['post_type']=='users') $section = 'community';
 		
 		
 		
-		<?php if($_GET['post_type']=='users') { ?>
+		<?php if($_GET['post_type']=='institution') { ?>
 				
 			<?php
 			    $user_search = new WP_User_Query( 
@@ -25,12 +24,27 @@ if($_GET['post_type']=='users') $section = 'community';
 				$users = $user_search->get_results();
 				foreach($users as $user){
 					$user_info = get_userdata($user->ID); ?>
-					<a href="http://aquapons.info/profile/<?php //echo getUserToken($user->ID); ?>"><?php echo $user_info->display_name; ?></a>
+					<article class="search_result user">
+						
+						<div class="info">
+							<a href="http://aquapons.info/profile/?user=<?php echo getUserToken($user->ID); ?>"><?php echo $user_info->display_name; ?></a>
+							<footer>
+								Level: <span class="level">
+								<?php
+								$user_role = $user_info->roles; 
+								echo ucwords(str_replace("_", " ", $user_role[0])); 
+								?>
+								</span>
+							</footer>
+						</div>
+					</article>
 				<?php } ?>
 		
 		
 		
-		<?php } else if ( have_posts() ) { ?>
+		<?php } //if($_GET['post_type']=='institutions') ?>
+		
+		<?php if ( have_posts() ) { ?>
 
 			<?php
 			/* Start the Loop */
@@ -95,6 +109,23 @@ if($_GET['post_type']=='users') $section = 'community';
 							<?php the_excerpt(); ?>
 							<footer>
 								<span class="approval"><?php echo get_field('answers'); ?> people have answered this | <?php echo get_field('votes'); ?> growers found this useful</span>
+							</footer>
+						</div>
+					</article>
+				
+				
+				
+				<?php } else if(get_post_type() == 'institution') { ?>
+					<article class="search_result instituion">						
+						<a href="<?php echo get_permalink(); ?>">
+							<img src="<?php echo get_template_directory_uri() ?>/imgs/placeholder-search.png" alt="<?php echo get_the_title(); ?>">
+						</a>
+						<div class="info">
+							<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+							<h4 class="meta-info"><?php echo get_field('institution_location'); ?></h4>
+							<?php echo excerpt(get_field('institution_description')); ?>
+							<footer>
+								<span class="approval">52 members</span>
 							</footer>
 						</div>
 					</article>

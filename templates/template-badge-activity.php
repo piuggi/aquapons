@@ -7,8 +7,12 @@
 if($_SESSION['user_id']) $userid = $_SESSION['user_id'];
 else $userid = get_current_user_id();
 
+
+
+$submissiontype = $_POST['submission_type'];
 $activityid = get_the_ID();
 $badgeid = $post->post_parent;
+<<<<<<< HEAD
 if(isset($_POST['ask'])){
 	
 	//we have a new question for this badge
@@ -33,6 +37,42 @@ if(isset($_POST['ask'])){
 	
 	
 }else if(isset($_POST['post'])) {
+||||||| merged common ancestors
+if(isset($_POST['post'])) {
+=======
+
+
+// SELF-EVAL CHECK			
+// check to see if activity is self-eval
+$self_eval = get_field('self_evaluation');
+// if so, are all other activities complete?
+$badge_complete = true;
+if($self_eval[0]) {
+	$args = array(
+		'post_type' => 'badge',
+		'post_status' => 'publish',
+		'orderby' => 'menu_order',
+		'order' => 'ASC',
+		'posts_per_page' => -1,
+		'post_parent' => $badgeid
+	);
+	$children = new WP_Query( $args );
+	while($children->have_posts()) { $children->the_post();
+		$activity_id = get_the_ID();
+		// LOAD CURRENT STATUS
+		$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activity_id' ORDER BY submission_timestamp DESC LIMIT 1");
+		if($activity_info->current_status != 'complete' && $activityid != $activity_id) $badge_complete = false;
+	}
+}
+			
+
+
+
+if(isset($_POST['post'])) {
+>>>>>>> 0549e1955a4d17dee2b0764827a41eac496d9ed7
+
+
+
 
 //print_r($_POST);
 
@@ -69,7 +109,7 @@ if(is_user_logged_in()){
 	'user_id'=> $userid,
 	'badge_id'             => $badgeid,
 	'activity_id'          => $activityid,
-	'current_status'       => 'submitting',
+	'current_status'       => 'submission',
 	'type'				   => $submissiontype,
 	'data'                 => $data,
 	'submission_timestamp'  => date('Y-m-d H:i:s')
@@ -84,16 +124,65 @@ if(is_user_logged_in()){
 }		
 
 
-}elseif(isset($_POST['submit'])){
+}elseif(isset($_POST['complete'])){
 	
 	//echo 'Submit!';
 	if(is_user_logged_in()){
 		//will have to query for all submissions by user and update them
+		$info = array( 
+
+		'user_id' 			   => $userid,
+		'badge_id'             => $badgeid,
+		'activity_id'          => $activityid,
+		'current_status'       => 'complete',
+		'submission_timestamp' => date('Y-m-d H:i:s')
+		
+		);
+		//does wpdb query with info	
+		insertSubmission($info);
+		updateBadgeStatus($userid, $badgeid);
+		
+		
+/*
 		$data = array('current_status'=>'reviewing');
 		$where = array('user_id'=> $userid,
 					   'activity_id' => $activityid);
 		
 		$wpdb->update('aq_badge_submissions', $data, $where );
+*/
+	
+	}else{
+	
+		$error = array("Could not complete request. You must log in to submit content.");
+	}
+} elseif(isset($_POST['submit'])){
+	
+	//echo 'Submit!';
+	if(is_user_logged_in()){
+		//will have to query for all submissions by user and update them
+		$info = array( 
+
+		'user_id' 			   => $userid,
+		'badge_id'             => $badgeid,
+		'activity_id'          => $activityid,
+		'current_status'       => 'reviewing',
+		'type'				   => $submissiontype,
+		'data'                 => $data,
+		'submission_timestamp' => date('Y-m-d H:i:s')
+		
+		);
+		//does wpdb query with info	
+		insertSubmission($info);
+		updateBadgeStatus($userid, $badgeid);
+		
+		
+/*
+		$data = array('current_status'=>'reviewing');
+		$where = array('user_id'=> $userid,
+					   'activity_id' => $activityid);
+		
+		$wpdb->update('aq_badge_submissions', $data, $where );
+*/
 	
 	}else{
 	
@@ -101,11 +190,20 @@ if(is_user_logged_in()){
 	}
 }
 ?>
-<section class="main">
+<section class="main <?php if($self_eval[0]) echo 'self_eval'; ?>">
 
 
 	<section id="activity-nav">
 		<?php breadcrumb($post); ?>
+
+		<?php 				
+		$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activityid' ORDER BY submission_timestamp DESC LIMIT 1");
+		if($activity_info->current_status == 'complete') { ?>
+			<h3 class="badge_status">COMPLETE</h3>			
+		<?php } elseif($activity_info->current_status == 'reviewing') { ?>
+			<h3 class="badge_status">REVIEWING</h3>			
+		<?php } ?>
+
 		<h2><?php the_title(); ?></h2>
 		<div class="estimated_time">Estimated Time: <?php echo get_post_meta($post->ID, 'estimated_timeframe', true); ?></div>
 	</section>
@@ -135,7 +233,7 @@ if(is_user_logged_in()){
 			}
 			if(is_user_logged_in()){
 		
-			if($activity_retrieve = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activityid'  ORDER BY submission_timestamp DESC")) { $userSubmissions = true; ?>
+			if($activity_retrieve = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activityid'  AND (`type`='text' OR `type`='image' OR `type`='video' OR `type`='file')  ORDER BY submission_timestamp DESC")) { $userSubmissions = true; ?>
 		
 		<h2>Recent Documentation</h2>
 		<section class="main-col">
@@ -147,7 +245,6 @@ if(is_user_logged_in()){
 				?>
 				<div class="submission <?php echo $type; ?>">
 				<?php
-				if($activity_info->current_status == 'reviewing') echo "<h4>Your submission is currently being reviewed.</h4>";
 				switch($type){
 					
 					case "image":
@@ -177,7 +274,7 @@ if(is_user_logged_in()){
 							 ?>
 							<h5><?php  echo $date; ?> </h5>
 							<hr>
-							<p><?php echo $activity_info->data; ?></p>
+							<p><?php echo stripslashes($activity_info->data); ?></p>
 						
 						</article>
 						
@@ -206,11 +303,19 @@ if(is_user_logged_in()){
 				</div>
 			
 			<?php }/*end foreach($activity_retrieve as $activity_info)*/ ?>
+			
+			
+			<?php } elseif($self_eval[0] && !$badge_complete) { ?>
+			
+				<h2>Start Documenting</h2>
+				<h3>You must complete all other activities before you fill out a self-evaluation.</h3>
+			
 			<?php } else { $userSubmissions=false; // if($activity_info) ?>
 				
 				<h2>Start Documenting</h2>
-				<section class="main-col">
+				<section class="main-col no_submission">
 
+				<?php if(!$userSubmissions && $current_user->ID == $userid) activityUploadNav(); ?>
 					
 			<?php	} ?>
 			
@@ -218,6 +323,7 @@ if(is_user_logged_in()){
 			
 				<h2>Log In to Start Documenting</h2>
 				<section class="main-col">	
+				
 			
 			<?php } ?>
 			
@@ -235,21 +341,142 @@ if(is_user_logged_in()){
 			
 				
 						
+<<<<<<< HEAD
 			<?php if(!$userSubmissions) activityUploadNav(); ?>
+||||||| merged common ancestors
+			<?php if(!$userSubmissions) activityUploadNav(); ?>
+			
+			
+			<section id="discussions">
+				<h2>Relevant Discussion <a>All Discussions ›</a></h2>
+				<article class="question">
+					<section class="qleft">	
+						<p>50<em>votes</em></p>
+						<hr>
+						<p>50<em>answers</em></p>	
+					</section><!--.qleft-->
+					<section class="qright">
+							<div class="plant"></div>
+							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
+							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
+					</section><!--.qright-->
+				</article><!--.question -->
+	
+				<article class="question">
+					<section class="qleft">	
+						<p>50<em>votes</em></p>
+						<hr>
+						<p>50<em>answers</em></p>	
+					</section><!--.qleft-->
+					<section class="qright">
+							<div class="fish"></div>
+							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
+							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
+					</section><!--.qright-->
+				</article><!--.question -->
+											<article class="question">
+					<section class="qleft">	
+						<p>50<em>votes</em></p>
+						<hr>
+						<p>50<em>answers</em></p>	
+					</section><!--.qleft-->
+					<section class="qright">
+							<div class="design-build"></div>
+							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
+							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
+					</section><!--.qright-->
+				</article><!--.question -->
+	
+				<article class="question">
+					<section class="qleft">	
+						<p>50<em>votes</em></p>
+						<hr>
+						<p>50<em>answers</em></p>	
+					</section><!--.qleft-->
+					<section class="qright">
+							<div class="water"></div>
+							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
+							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
+					</section><!--.qright-->
+				</article><!--.question -->
+			</section><!--#discussions-->
+			
+			
+			
+=======
+			
+			
+			<section id="discussions">
+				<h2>Relevant Discussion <a>All Discussions ›</a></h2>
+				<article class="question">
+					<section class="qleft">	
+						<p>50<em>votes</em></p>
+						<hr>
+						<p>50<em>answers</em></p>	
+					</section><!--.qleft-->
+					<section class="qright">
+							<div class="plant"></div>
+							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
+							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
+					</section><!--.qright-->
+				</article><!--.question -->
+	
+				<article class="question">
+					<section class="qleft">	
+						<p>50<em>votes</em></p>
+						<hr>
+						<p>50<em>answers</em></p>	
+					</section><!--.qleft-->
+					<section class="qright">
+							<div class="fish"></div>
+							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
+							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
+					</section><!--.qright-->
+				</article><!--.question -->
+											<article class="question">
+					<section class="qleft">	
+						<p>50<em>votes</em></p>
+						<hr>
+						<p>50<em>answers</em></p>	
+					</section><!--.qleft-->
+					<section class="qright">
+							<div class="design-build"></div>
+							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
+							<p>Posted 5 minutes ago by <a class="plants" href="">Username123</a></p>
+					</section><!--.qright-->
+				</article><!--.question -->
+	
+				<article class="question">
+					<section class="qleft">	
+						<p>50<em>votes</em></p>
+						<hr>
+						<p>50<em>answers</em></p>	
+					</section><!--.qleft-->
+					<section class="qright">
+							<div class="water"></div>
+							<h3>Title of Recent Question That Was Posted to the Forum?</h3>
+							<p>Posted 5 minutes ago by <a class="fish" href="">Username123</a></p>
+					</section><!--.qright-->
+				</article><!--.question -->
+			</section><!--#discussions-->
+			
+			
+			
+>>>>>>> 0549e1955a4d17dee2b0764827a41eac496d9ed7
 		
 		</section> <!--main col -->
 		
 		<div class="sidebar">
-			<?php if($userSubmissions) activityUploadNav(); ?>
-			<h4>Related Resources</h4>
-						<?php 
+			<?php if($userSubmissions && $current_user->ID == $userid) activityUploadNav(); ?>
+			<?php
+			$first_resource = 0;
 			$resources = get_field('related_resources');
 			foreach($resources as $resource) { ?>
+				<?php if(!$first_resource) { $first_resource = 1; ?><h4>Related Resources</h4><?php } ?>
 				<article>
 					<a href="<?php echo get_permalink($resource->ID); ?>"><?php echo $resource->post_title; ?></a>
 				</article>
-				
-			<?php } ?>	
+			<?php } echo "&nbsp;" ?>	
 		</div>
 	
 	

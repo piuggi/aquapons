@@ -52,5 +52,27 @@ if (function_exists( 'add_image_size' ) ) {
 }
 
 
+// Add User Meta Field to DB on user registration
+
+function new_user_add_metainfo($user_id) {
+	global $wpdb;
+	
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$random_string = '';
+	for ($i = 0; $i < 40; $i++) {
+		$random_string .= $characters[rand(0, strlen($characters) - 1)];
+	}
+	
+    $wpdb->insert( 
+		'aq_usermeta', 
+		array( 
+			'wp_user_id' => $user_id, 
+			'user_token_id' => $random_string 
+		)
+	);
+
+}
+
+add_action('user_register', 'new_user_add_metainfo');
 
 ?>
