@@ -28,7 +28,7 @@
 		<?php foreach($cats as $cat) { ?>
 		<?php rewind_posts(); ?>
 		<h2><?php echo $cat; ?> Badges <span class="show_category_descriptions">?</span></h2>
-		<section class="skills-row <?php echo sanitize_title(strtolower($cat)); ?> side-scroller">
+		<section class="skills-row side-scroller">
 			<?php
 			/* Start the Loop */
 			while ( $query->have_posts() ) : 
@@ -36,30 +36,10 @@
 			$wp_cats = wp_get_post_categories($query->post->ID);
 			if(get_cat_name($wp_cats[0]) == $cat) {
 				$cat_descriptions[$cat] = category_description($wp_cats[0]);
-			?>
-			
-				<a href='<?php echo get_permalink($page->ID); ?>'>
-				<div class="skill badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; ?>">
-					<h4><?php the_title(); ?></h4>
-					<hr>
-					<div class="badge_level"><?php echo get_field('badge_level', $query->post->ID); ?></div>
-					<?php if($current_badge_status = getBadgeStatus($query->post->ID, $badge_info)) { ?>
-						<div class="status_container">
-							<?php if($current_badge_status != 'complete') { ?>
-								<div class="completion_container">
-									<div class="badge_completion" style="width: <?php echo $current_badge_status/4; ?>px"><?php echo $current_badge_status; ?>%</div>
-								</div>
-							<?php } ?>
-							<div class="badge_completion_label">
-								<?php if($current_badge_status == 'complete') echo "COMPLETE";
-								else echo $current_badge_status . "%"; ?>
-								</div>
-						</div>
-					<?php } ?>
-				</div>
-				</a>
 
-			<?php } ?>
+				showBadge($query->post->ID);
+
+			} ?>
 
 			<?php endwhile; ?>
 		</section>

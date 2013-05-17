@@ -24,7 +24,7 @@ function getBadgeStatus($badge_id, $dbresults = null) {
 function showBadge($badge_id) { 
 	global $badge_info;
 	?>
-	<a href='<?php echo get_permalink($badge_id); ?>'>
+	<a href='<?php echo get_permalink($badge_id); ?>' class="<?php $cat = get_the_category($badge_id); echo $cat[0]->slug; ?>">
 	<div class="skill badge <?php $cat = get_the_category($badge_id); echo $cat[0]->slug; ?> <?php echo sanitize_title(get_the_title($badge_id)); echo ' level-'.$x; ?>">
 		<h4><?php echo get_the_title($badge_id); ?></h4>
 		<hr>
