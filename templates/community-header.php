@@ -9,7 +9,6 @@
 		<hr>
 		<ul>
 			<li><a href="http://aquapons.info/community/institutions/">Groups/Institutions</a></li>
-			<li><a href="http://aquapons.info/review/">Peer Evaluations</a></li>
 		</ul>
 	</section><!--#main-links-->
 

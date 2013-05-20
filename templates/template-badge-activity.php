@@ -1,5 +1,3 @@
-
-
 <?php include(get_template_directory() . "/includes/badges_header.php"); ?>
 
 <?php
@@ -37,29 +35,6 @@ if(isset($_POST['ask'])){
 	
 }else if(isset($_POST['post'])) {
 
-
-// SELF-EVAL CHECK			
-// check to see if activity is self-eval
-$self_eval = get_field('self_evaluation');
-// if so, are all other activities complete?
-$badge_complete = true;
-if($self_eval[0]) {
-	$args = array(
-		'post_type' => 'badge',
-		'post_status' => 'publish',
-		'orderby' => 'menu_order',
-		'order' => 'ASC',
-		'posts_per_page' => -1,
-		'post_parent' => $badgeid
-	);
-	$children = new WP_Query( $args );
-	while($children->have_posts()) { $children->the_post();
-		$activity_id = get_the_ID();
-		// LOAD CURRENT STATUS
-		$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activity_id' ORDER BY submission_timestamp DESC LIMIT 1");
-		if($activity_info->current_status != 'complete' && $activityid != $activity_id) $badge_complete = false;
-	}
-}
 			
 //print_r($_POST);
 
@@ -175,7 +150,33 @@ if(is_user_logged_in()){
 	
 		$error = array("Could not complete request. You must log in to submit content.");
 	}
+
 }
+
+
+// SELF-EVAL CHECK			
+// check to see if activity is self-eval
+$self_eval = get_field('self_evaluation');
+// if so, are all other activities complete?
+$badge_complete = true;
+if($self_eval[0]) {
+	$args = array(
+		'post_type' => 'badge',
+		'post_status' => 'publish',
+		'orderby' => 'menu_order',
+		'order' => 'ASC',
+		'posts_per_page' => -1,
+		'post_parent' => $badgeid
+	);
+	$children = new WP_Query( $args );
+	while($children->have_posts()) { $children->the_post();
+		$activity_id = get_the_ID();
+		// LOAD CURRENT STATUS
+		$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activity_id' ORDER BY submission_timestamp DESC LIMIT 1");
+		if($activity_info->current_status != 'complete' && $activityid != $activity_id) $badge_complete = false;
+	}
+}
+
 ?>
 <section class="main <?php if($self_eval[0]) echo 'self_eval'; ?>">
 
@@ -203,7 +204,7 @@ if(is_user_logged_in()){
 		<hr>
 		<div class="badge-objectives">
 			<h3>Instructions</h3>
-			<?php echo get_field('activity_instructions'); ?>
+			<?php echo get_field('activity_instructions'); echo $self_eval[0]; ?>
 		</div>
 	</section>
 	
