@@ -30,7 +30,7 @@
 						<p class="author">Posted <?php echo time_ago_comment( $comment->comment_date ); ?> by </p>
 						<?php $user_info = get_userdata($commenter_id);?>
 						<br/>
-						<p> <a class="<?php echo $class; ?>" href=""><?php echo $user_info-> display_name; ?></a>, <strong><?php echo $user_info->user_level; ?></strong></p>
+						<p> <a class="<?php echo $class; ?>" href=""><?php echo $user_info-> display_name; ?></a>, <strong><?php $user_role = $user_info->roles; echo ucwords(str_replace("_", " ", $user_role[0])); ?></strong></p>
 					</section>
 					<ul>
 						<li data-id="<?php echo $comment->ID; ?>" data-post="<?php echo $post_id; ?>" data-user="<?php echo $current_user; ?>" data-theme="<?php echo $theme; ?>" class="comment">
@@ -66,7 +66,7 @@
 									<p class="author">Posted <?php echo time_ago_comment( $child->comment_date ); ?> by </p>
 									<?php $user_info = get_userdata($child_id);?>
 									<br/>
-									<p> <a class="<?php echo $class; ?>" href=""><?php echo $user_info-> display_name; ?></a>, <strong><?php echo $user_info->user_level; ?></strong></p>
+									<p> <a class="<?php echo $class; ?>" href=""><?php echo $user_info-> display_name; ?></a>, <strong><?php $user_role = $user_info->roles; echo ucwords(str_replace("_", " ", $user_role[0])); ?></strong></p>
 								</section>		
 								<ul>
 									<li data-id="<?php echo $comment->ID; ?>" data-post="<?php echo $post_id; ?>" data-user="<?php echo $current_user; ?>" data-theme="<?php echo $theme; ?>" class="flag">
