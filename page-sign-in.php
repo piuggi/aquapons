@@ -2,7 +2,9 @@
 <?php get_header(); ?>
 
 	<section class="main">
-	
+		
+		<?php the_post(); ?>
+		<?php the_content(); ?>
 		<?php wp_login_form(); ?>
 			
 	</section><!-- #main -->

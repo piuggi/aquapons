@@ -319,12 +319,14 @@ if($self_eval[0]) {
 					<?php wp_editor('', 'wysiwyg_activity_submission', array(
 						'media_buttons' => false,
 						'textarea_name' => 'activity_submission',
-						'textarea_rows' => 10,
-						'teeny' => true
+						'textarea_rows' => 15,
+						'teeny' => true, 
+						'quicktags' => false
 						)
 					); ?>
 					<input type="hidden" name="submission_type" value="text">
 					<input type="submit" name="post" value="Enter Text">
+					<a class="cancel_link cancel_journal_input">Cancel</a>
 			</form>
 			
 				

@@ -794,6 +794,19 @@ footer.main{
 }
 .tmce-active .wp-editor-container {border: none;border-width: 0;}
 
+
+/* USE INSTEAD OF .tmce-active .mceEditor */
+.mceIframeContainer {
+	background: @beige;
+	iframe {
+		min-height: 300px;
+	}
+}
+.single .mceEditor .mceStatusbar {
+	display: none;
+}
+
+
 header#pagination{
 
 	width: 100%;
@@ -2266,6 +2279,7 @@ section#main.forum{
 		
 	}
 	
+	input[type='submit'] {margin-top: 15px;}
 	
 	nav#activity_upload{ width: 100%; display: block; text-align: center;}
 	.submission_nav{ display: inline-table; width: 28%; margin: 10px 1%;  background: @beige; height: 162px; vertical-align: top; 
@@ -2453,14 +2467,24 @@ section#main.forum{
 		clear: both;
 	}
 	
-	.simplr-message.success{
+	.simplr-message {
 	
-		color: @beige;
-		background: @green;
+	
+		color: #222;
+		font-size: 18px;
 		border-radius: 5px;
 		margin: 10px 0;
 		display: table;
 		clear:both;
+	}
+	
+	.simplr-message.success {
+		background: @lt-green;
+	}
+	
+	.simplr-message.error {
+		background: @red;
+		color: @beige;
 	}
 	
 	.simplr-field{ 
@@ -2472,6 +2496,12 @@ section#main.forum{
 				
 	}
 	#simplr-form{
+	
+		
+		margin: 0;
+		padding: 0;
+	
+	
 		label {
 			display: inline;
 			clear:none;
@@ -2510,12 +2540,60 @@ section#main.forum{
 			
 		}
 		
-		height: 400px;
-		margin: 40px auto;
-		padding: 30px;
+		
+		label {
+			.sans-serif;
+			margin: 20px 0 0;
+			font-size: .8em;
+			font-weight: bold;
+			font-style: normal;
+			color: @dkbeige;
+		}
+		
+		
+		input,input[type='text'], textarea{
+			display: block;
+			clear: both;
+			width: 240px;
+			height: auto;
+			color: @dkbrown;
+			border-radius: 5px;
+			border: 1px solid @medbeige;
+			margin: 0 0 5px;
+			padding: 7px 15px;
+			font-size: 14px;	
+		}
+		
+		input[type='submit'], input[type='button'] {
+			float: none;
+			clear: both;
+			color: @dkbrown;
+			width: auto;
+			display: block;
+			margin: 15px 15px 20px 0;
+			padding: 7px 35px;
+		}
+		
+		input[type="submit"]:hover, input[type="button"]:hover{
+			color: @dkbrown;
+			background: @medbeige;
+			cursor: pointer;
+		}
+		
+		.simplr-field {
+			margin: 0;
+			padding: 0;
+		}
+	
+		.simplr-field.error {
+			background: transparent;
+		}
+		
+		.error input {
+			background: #fcc;
+		}
 		
 	}
-	
 	
 	
 }
@@ -2535,40 +2613,42 @@ section#main.forum{
 					}
 					
 					label {
-						display: inline;
-						clear:none;
-						margin: 0 20px 0 0;
-						width: 100px;
-						float: left;
-						
+						.sans-serif;
+						margin: 20px 0 0;
+						font-size: .8em;
+						font-weight: bold;
+						font-style: normal;
+						color: @dkbeige;
 					}
 					
-					input{
-			
-						display: inline;
-						clear: none;
-						float:left;
-						height: 3em;
+					
+					input,input[type='text'], textarea{
+						display: block;
+						clear: both;
+						width: 240px;
+						height: auto;
+						color: @dkbrown;
 						border-radius: 5px;
 						border: 1px solid @medbeige;
-						padding: 0 20px;
-						
-					}
-					input[type="submit"]{
-			
-						background: @babyblue;
-						border: none;
-						height:30px;
-						color: @beige;
-						border-radius: 5px;
-						float:left;
-						
+						margin: 0 0 5px;
+						padding: 7px 15px;
+						font-size: 14px;	
 					}
 					
-					input[type="submit"]:hover{
-						
-						background: @blue;
-						
+					input[type='submit'], input[type='button'] {
+						float: none;
+						clear: both;
+						color: @dkbrown;
+						width: auto;
+						display: block;
+						margin: 15px 15px 20px 0;
+						padding: 7px 35px;
+					}
+					
+					input[type="submit"]:hover, input[type="button"]:hover{
+						color: @dkbrown;
+						background: @medbeige;
+						cursor: pointer;
 					}
 								
 					
@@ -2579,7 +2659,11 @@ section#main.forum{
 							width: 300px;
 							float: left;
 						}
-						input{ height: 0; }
+						input{
+							float: left;
+							width: auto;
+							margin: 3px 10px 0 0;
+						}
 						
 					}
 			

@@ -66,10 +66,14 @@ jQuery(document).ready(function($) {
 	);
 	
 	$('form#journal_entry').submit(function(e){
-		
 		e.preventDefault();
 		$('#activity_upload').hide();
 		$('form#journal_input').show();
+	});
+	
+	$('.cancel_journal_input').click(function() {
+		$('#activity_upload').show();
+		$('form#journal_input').hide();
 		
 	});
 	
