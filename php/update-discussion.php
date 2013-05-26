@@ -102,7 +102,7 @@
 					<p class="author">Posted <?php echo time_ago_comment( $insert_args['comment_date']); ?> by </p>
 					<?php $user_info = get_userdata($userID);?>
 					<br/>
-					<p> <a class="<?php echo $class; ?>" href=""><?php echo $user_info-> display_name; ?></a>, <strong><?php echo $user_info->user_level; ?></strong></p>
+					<p> <a class="<?php echo $class; ?>" href=""><?php echo $user_info-> display_name; ?></a>, <strong><?php $user_role = $user_info->roles; echo ucwords(str_replace("_", " ", $user_role[0])); ?></p>
 				</section>		
 				<ul>
 				<li data-id="<?php echo $newID; ?>" data-post="<?php echo $thePost; ?>" data-user="<?php echo $userID; ?>" data-theme="<?php echo $_GET['theme']; ?>" class="flag">
