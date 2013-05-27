@@ -57,7 +57,8 @@
 							<input type="submit" value="Post Question">
 						</form>
 						<?php else: ?>
-						<p><a href='/sign-in'>You Must Log in to post a question</a></p>						
+						
+						<p><a href='/sign-in?redirect=<?php echo $_SERVER['REQUEST_URI']; ?>'>You Must Log in to post a question</a></p>						
 						<?php endif;?>
 					</section>
 					<header></header>

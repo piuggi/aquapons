@@ -5,7 +5,25 @@
 		
 		<?php the_post(); ?>
 		<?php the_content(); ?>
-		<?php wp_login_form(); ?>
+		
+		<?php 
+		
+			if(isset($_GET['redirect'])){
+				
+				$args = array(	
+								'redirect'=>site_url($_GET['redirect']) 
+								
+							  );
+							  
+				wp_login_form($args);
+				
+			}else{
+				
+				wp_login_form();	
+				
+			}
+		 
+		?>
 			
 	</section><!-- #main -->
 
