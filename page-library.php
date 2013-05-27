@@ -31,7 +31,7 @@
 						$query->the_post();
 					?>
 						<article class="resource">
-							<a href="<?php echo get_permalink(); ?>"><?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?></a>
+							<?php resourceThumb($post->ID); ?>
 							<div class="info">
 								<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
 								<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
@@ -60,7 +60,7 @@
 						$query->the_post();
 					?>
 						<article class="resource">
-							<a href="<?php echo get_permalink(); ?>"><?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?></a>
+							<?php resourceThumb($post->ID); ?>
 							<div class="info">
 								<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
 								<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
@@ -89,7 +89,7 @@
 						$query->the_post();
 					?>
 						<article class="resource">
-							<a href="<?php echo get_permalink(); ?>"><?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?></a>
+							<?php resourceThumb($post->ID); ?>
 							<div class="info">
 								<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
 								<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
@@ -118,7 +118,7 @@
 						$query->the_post();
 					?>
 						<article class="resource">
-							<a href="<?php echo get_permalink(); ?>"><?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?></a>
+							<?php resourceThumb($post->ID); ?>
 							<div class="info">
 								<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
 								<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
@@ -147,7 +147,7 @@
 						$query->the_post();
 					?>
 						<article class="resource">
-							<a href="<?php echo get_permalink(); ?>"><?php echo wp_get_attachment_image(get_field('resource_image'), 'tutorial-thumb'); ?></a>
+							<?php resourceThumb($post->ID); ?>
 							<div class="info">
 								<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
 								<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>

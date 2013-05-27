@@ -48,6 +48,22 @@ function showBadge($badge_id) {
 <?php
 }
 
+function resourceThumb($id) {
+?>
+	<a href="<?php echo get_permalink($id); ?>">
+		<?php if(get_field('resource_image')) { ?>
+			<?php echo wp_get_attachment_image(get_field('resource_image', $id), 'tutorial-thumb'); ?>
+		<?php } else if(get_field('link_url')) { 
+			$clean_url = substr(get_field('link_url', $id), strpos(get_field('link_url', $id), '//')+2);
+			?>
+			<img src="http://s.wordpress.com/mshots/v1/http%3A%2F%2F<?php echo $clean_url; ?>?w=140" /> 
+		<?php } else { ?>
+			<img src="<?php echo get_template_directory_uri() ?>/imgs/placeholder-search.png" alt="<?php echo get_the_title($id); ?>">
+		<?php } ?>
+	</a>
+						
+<?php
+}
 
 
 function breadcrumb($curr_post) {

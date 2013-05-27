@@ -178,7 +178,12 @@ if($self_eval[0]) {
 }
 
 ?>
+
+
+
 <section class="main <?php if($self_eval[0]) echo 'self_eval'; ?>">
+
+
 
 
 	<section id="activity-nav">
@@ -196,6 +201,46 @@ if($self_eval[0]) {
 		<div class="estimated_time">Estimated Time: <?php echo get_post_meta($post->ID, 'estimated_timeframe', true); ?></div>
 	</section>
 	
+	
+	<section id="activity-pagination">
+	
+		<?php
+		$args = array(
+				'posts_per_page'  => -1,
+				'post_type' => 'badge',
+				'orderby' => 'menu_order',
+				'order' => 'ASC',
+				'post_parent' => $post->post_parent
+			);
+		$siblings = get_posts($args);
+	
+		foreach ($siblings as $key=>$sibling){
+	        if ($post->ID == $sibling->ID){
+	            $ID = $key;
+	        }
+	    }
+		?>
+	
+		<div class="previous_activity">
+			<?php if($siblings[$ID-1]) { ?>
+				<a href="<?php echo get_permalink($siblings[$ID-1]->ID) ?>">‹ <?php echo $siblings[$ID-1]->post_title; ?></a>
+			<?php } ?>
+		</div>
+		<div class="next_activity">
+			<?php if($siblings[$ID+1]) { ?>
+				<a href="<?php echo get_permalink($siblings[$ID+1]->ID) ?>"><?php echo $siblings[$ID+1]->post_title; ?> ›</a>
+			<?php } ?>
+		</div>
+		<div class="activity_siblings">
+			<?php 
+			foreach ($siblings as $key=>$sibling){ ?>
+		        <?php if($ID != $key) { ?>
+		       		<a href="<?php echo get_permalink($siblings[$key]->ID) ?>"><?php echo $key+1; ?></a>
+		        <?php } 
+		        else echo $key+1;
+		    } ?>
+		</div>
+	</section>
 	
 
 		
@@ -452,6 +497,5 @@ if($self_eval[0]) {
 			<?php endif;?>
 		</section>
 	</section><!--#ask-->
-
 
 </section><!-- #main -->
