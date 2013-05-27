@@ -16,6 +16,8 @@ include('functions_includes/badge-ajax.php');
 
 include('functions_includes/misc-functions.php');
 
+include('function_include/custom-admin-pages.php');
+
 
 //$_SESSION['user_id'] = "";
 if($_GET['user']) {
