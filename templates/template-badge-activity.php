@@ -203,8 +203,18 @@ if($self_eval[0]) {
 		<?php echo get_field('activity_description'); ?>
 		<hr>
 		<div class="badge-objectives">
-			<h3>Instructions</h3>
-			<?php echo get_field('activity_instructions'); echo $self_eval[0]; ?>
+			<?php if(get_field('activity_instructions')!= '' ){ ?>
+				<h3>Instructions</h3>
+				<?php echo get_field('activity_instructions'); echo $self_eval[0]; ?>
+			<?php } ?>
+			<div class="info">
+				<?php if(get_field('activity_learn')!= '' ){ ?>
+					<div class="half learn"> <h3>Learn</h3> <?php echo get_field('activity_learn');?></div>
+				<?php } ?>
+				<?php if(get_field('activity_do')!= '' ){ ?>
+					<div class="half do"><h3>Do</h3><?php echo get_field('activity_do');?></div>
+				<?php } ?>
+			</div>
 		</div>
 	</section>
 	
