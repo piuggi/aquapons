@@ -77,13 +77,7 @@ if($_GET['post_type']=='institution') $section = 'community';
 				<?php } else if(get_post_type() == 'resource') { ?>
 				
 					<article class="search_result resource">						
-						<a href="<?php echo get_permalink(); ?>">
-							<?php if(get_field('badge_image')) { ?>
-								<img src="<?php echo get_field('resource_image'); ?>" alt="<?php echo get_the_title(); ?>">
-							<?php } else { ?>
-								<img src="<?php echo get_template_directory_uri() ?>/imgs/placeholder-search.png" alt="<?php echo get_the_title(); ?>">
-							<?php } ?>
-						</a>
+						<?php resourceThumb($post->ID); ?>
 						<div class="info">
 							<h4 class="meta-info">Posted <?php echo get_the_date(); ?> by <a><?php echo get_the_author(); ?></a> | <?php comments_number(); ?></h4>
 							<h3><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
