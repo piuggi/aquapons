@@ -106,7 +106,7 @@ function review_discussions_function(){
 		
 					  
 				?>
-					<tr id="discussion-<?php echo $comment->ID; ?>" class="discussion-<?php echo $comment->ID; ?>">
+					<tr id="discussion-<?php echo $comment->ID; ?>" class="discussion-<?php echo $comment->ID; ?>" <?php if($flagged) echo 'style="background-color:#ff6060;"';?>>
 					
 						<th scope="row" class="check-column">
 							<?php $row_val = $comment->ID."_".$comment->comment_discussion."_".$flagged; ?>
@@ -122,7 +122,7 @@ function review_discussions_function(){
 							<?php the_author_meta('display_name', $comment->comment_author); ?>
 						</td>
 
-						<td class="status column-status question-status " <?php if($flagged) echo 'style="background-color:red;"' ?>>
+						<td class="status column-status question-status ">
 							<form method="post" action="<?php $_SERVER['REQUEST_URI'] ?>" >
 								<select onchange="this.form.submit()" name="comment_status">
 									<option <?php if(!$flagged) echo 'selected="selected"'; ?> value="publish" >Published</option>
