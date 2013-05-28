@@ -4,7 +4,7 @@
 		<h2 class="title"> <?php the_title(); ?> </h2>
 		<p class="description"><?php echo get_post_meta($post->ID, 'description', true); ?></p>
 	</section>
-	<section class="resource_label">
+	<section class="resource_label <?php print_aquapon_cat(); ?>">
 	<ul>
 		<li data-id="<?php echo $comment->ID; ?>" data-user="<?php echo $user->ID; ?>" class="comment">
 			<img title="Comment on this post" src="<?php echo get_bloginfo('stylesheet_directory'); ?>/imgs/discussion_comment.png"/>
