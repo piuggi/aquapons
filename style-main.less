@@ -1186,6 +1186,39 @@ header#pagination{
 		}
 }
 
+.moderate-ul{
+	
+	.header-ul;
+
+	ul{
+		
+		float: right;
+		
+		margin: 10px 0 0;
+		
+		li{
+			margin: 0 10px;
+		}
+		
+	}
+	
+	ul.rank{
+		
+		display: inline;
+		float: none;
+		width: 8%;
+		margin: 0 2% 0 0;
+		position: relative;
+		text-align: center;
+		li{ width: 100%; display: inline; clear: both; position: absolute; text-align: center; width: 37px; height: 20px;}
+		li.up{ text-indent: -999px; background: url('imgs/up.png') no-repeat; }
+		li.current{top: 25px;}
+		li.down{ text-indent: -999px; background: url('imgs/down.png') no-repeat; top: 50px; }
+		
+	}
+	
+}
+
 /*
 .hr{
 	border: 0;
@@ -1241,33 +1274,7 @@ section.answer{
 		}
 		
 	}
-	.header-ul;
-	ul{
-		
-		float: right;
-		
-		margin: 10px 0 0;
-		
-		li{
-			margin: 0 10px;
-		}
-		
-	}
-	
-	ul.rank{
-		
-		display: inline;
-		float: none;
-		width: 8%;
-		margin: 0 2% 0 0;
-		position: relative;
-		text-align: center;
-		li{ width: 100%; display: inline; clear: both; position: absolute; text-align: center; width: 37px; height: 20px;}
-		li.up{ text-indent: -999px; background: url('imgs/up.png') no-repeat; }
-		li.current{top: 25px;}
-		li.down{ text-indent: -999px; background: url('imgs/down.png') no-repeat; top: 50px; }
-		
-	}
+	.moderate-ul;
 	
 }
 
@@ -2070,7 +2077,7 @@ section#main.forum{
 
 
 
-.single-discussion{
+.single-discussion, .single-resource{
 	#main{
 		
 		background: @beige;
@@ -2097,7 +2104,7 @@ section#main.forum{
 	header#original{
 		
 		background: @lined-pattern;
-		padding: 45px;
+		padding: 45px 45px 0;
 		position: relative;
 		
 	}
@@ -2119,11 +2126,16 @@ section#main.forum{
 	}
 	section.original_post{
 		
-		display: block;
 		margin: 0 0 0 100px;
 		figure.user_photo{ width: 100px; height: 100px; overflow: hidden;
 			img{width: 100%; height: 100%; }
 		}
+	
+	}
+	
+	section.original_post, section.resource_title{
+		
+		display: block;
 		p.author{ .sans-serif; font-size: .8em; color: @medbrown; margin: 0;
 		 		  
 		 		  a{font-weight: bold; color: @teal;}
@@ -2132,19 +2144,48 @@ section#main.forum{
 		h2{ .serif;  font-weight: 100; padding: 10px 0 20px;}		
 	}
 	
-	section#responses{
+	section.resource_title{ 
+			p.description{
+				font-size: 1.5em;
+				line-height: 1.2em;
+				color: @dkbrown;
+				font-weight: 100;
+				width: 60%;	
+				margin-bottom: 30px;		
+			}
+
+	}
+	.resource_label{
+		width: 22%;
+		height: 100px;
+		background: @orange;
+		float:right;
+		top: -110px;
+		right: 11%;
+		margin-bottom: -110px;
+		position: relative;
+		padding: 10px 10px 0px 10px;
 		
+		p{	.sans-serif; 
+			color: @offwhite; 
+			margin: 5px 0 0 10px; 
+			opacity: 0.8; filter: alpha(opacity=80);
+			em{font-weight: 100;}
+		}
+		.moderate-ul;
+		ul{float:none;}
+		li{opacity:0.4;
+			filter:alpha(opacity=40); /* For IE8 and earlier */ }
+		img{height: 28px;width: auto;}
+	}
+	
+	section#responses, section#instructions{
+	
 		width: 100%;
 		min-height: 600px;
 		background: @beige;
 		display: block;
 		padding: 30px 0;
-		h2 {margin-left: 4%;}
-		
-		section{vertical-align: top;
-			p.unregistered{ margin: 10px 4%;}
-		}
-		hr{margin: 0 4%; background: @medbeige; border-color: @medbeige; height: 2px; display: block; clear: all;}
 		form{ margin: 20px 4%;}
 		textarea{ color: @dkbrown; display: block; border: none; background: transparent; outline: none; .serif; resize: none;  font-size: 1em; width: 100%; height: 150px;}
 		textarea::-webkit-input-placeholder { color: @dkbrown; .serif;  }
@@ -2153,8 +2194,7 @@ section#main.forum{
 		textarea:-moz-placeholder { color:@dkbrown; .serif;  }
 		input[type="submit"]{ border-radius: 0; background: @dkbrown !important; color: @offwhite; text-transform: uppercase;} 
 		aside{vertical-align:top;}
-		
-		
+				
 		section.answer.child{
 			
 			article.desc{ min-height: 50px; width: 80%;}
@@ -2162,8 +2202,71 @@ section#main.forum{
 			
 		}
 		
+
 	}
 	
+	section#responses{
+		
+		h2 {margin-left: 4%;}
+
+		section{vertical-align: top;
+			p.unregistered{ margin: 10px 4%;}
+		}
+		hr{margin: 0 4%; background: @medbeige; border-color: @medbeige; height: 2px; display: block; clear: all;}
+		
+
+	}
+	
+	section#instructions{
+		
+		margin: 0 4%;
+		h2{ font-size: 1.8em;}
+		p strong{.sans-serif; font-size:1.6em; line-height: 3px;}
+		li,p{font-size: .9em; }
+		
+
+		.main-col{width:65%;}
+		
+		hr{margin: 0; background: @dkbrown; border-color: @dkbrown; height: 1px; display: block; clear: all;}
+
+		#post-content{ width: 65%; display:inline-table;
+			
+			ol, ul{ margin: 30px 0 50px 10px;}
+			ol li {list-style: decimal; margin: 5px 0px 5px 50px;}
+			ul li{list-style: disc; margin: 5px 0px 5px 50px;}
+			p a img{
+				
+				width: 100%;
+				margin: 10px 0 40px;
+				
+			}
+			
+			.reflect{
+				.moderate-ul;
+				vertical-align: center;
+				height: 90px;
+				padding: 20px 0 0;
+				p{margin-left: 65px; font-size: 1.6em; font-weight: 100;}
+			}
+			.main-col{
+				
+				ul li img { width: 20px;}
+				
+			}
+			
+		}
+		
+		h1,h2,h3,h4,p,li,ul,ul li,ol,ol li{
+			
+			//display: block;;
+		}
+		
+		
+		
+	}
+	
+	
+
 	
 	section#similar{
 		

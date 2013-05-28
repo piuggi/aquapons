@@ -1,4 +1,6 @@
 <?php $section = 'resources'; ?>
+<?php $view = 'single';?>
+
 <?php if($_GET['json']) { 
 	header('Cache-Control: no-cache, must-revalidate');
 	header('Content-type: application/json');
@@ -6,23 +8,25 @@
 	include('php/badges-json.php'); 
 } else { ?>
 
-
 <?php get_header(); ?>
 
-
-	<section id="main" class="text-content">
-
-	<?php if ( have_posts() ) : the_post(); ?>
+<?php if ( have_posts() ) : the_post(); ?>
 	
-		<?php the_content(); ?>
-	
-	<?php else : ?>
+	<?php $category = get_the_category(); ?>
+	<section id="main" class="resource <?php echo $category[0]->slug ?>">
+
+		<?php	$resource_type = get_post_meta($post->ID, 'resource_type', true);
+				include(get_template_directory() . "/templates/template-resource-".$resource_type.".php");
+		?>
+			
+<?php else : ?>
 
 		No content found
 		
-	<?php endif; ?>
+	</section>
+<?php endif; ?>
 
-	</div><!-- #main .wrapper -->
+	</div><!-- #container -->
 	
 <?php get_footer(); ?>
 

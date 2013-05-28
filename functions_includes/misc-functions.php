@@ -1,5 +1,6 @@
 <?php
-
+//global vars
+//for passing between theme
 
 function excerpt($text, $length = 300) {
 	
@@ -227,5 +228,121 @@ function getUserToken($user_id) {
 
 }
 
+function print_aquapon_cat(){		  
+		  $cats = get_the_category();	  
+		  if($cats) $class = $cats[0]->slug;
+		  else $class = 'plant';
+		  echo $class;
+}
+
+function get_aquapon_cat(){
+		  $cats = get_the_category();	  
+		  if($cats) $class = $cats[0]->slug;
+		  else $class = 'plant';
+		  return $class;
+}
+
+
+
+
+function check_postComments(){
+	
+		$post_id = get_the_ID();
+		$user = wp_get_current_user();
+		/* Check for various for types */
+		if(isset($_POST["content"]) && is_user_logged_in() ){
+	
+		//we've gotten an anwser
+		$answers = get_post_meta(get_the_ID(), 'answers', true);
+		$answers++; update_post_meta(get_the_ID(), 'answers', $answers);
+		
+		global $wpdb;
+		
+		
+		$insert_args = array(
+		
+			'comment_discussion'=> $post_id,
+			'comment_author'=> $user->ID,
+			'comment_date'=> date("Y-m-d H:i:s"),
+			'comment_content'=> $_POST['content'],
+			'comment_status'=> 'publish',
+			'comment_rank'=> 0,
+			'comment_flags'=> 0,
+			'comment_has_children'=> false,
+			'comment_is_child'=> false
+		);
+		
+		$wpdb->insert('aq_discussion_comments', $insert_args);
+		
+	}elseif(isset($_POST["comment"])){
+		
+		global $wpdb;
+		
+		$insert_args = array(
+		
+			'comment_discussion'=> $post_id,
+			'comment_author'=> $user->ID,
+			'comment_date'=> date("Y-m-d H:i:s"),
+			'comment_content'=> $_POST['comment'],
+			'comment_status'=> 'publish',
+			'comment_rank'=> 0,
+			'comment_flags'=> 0,
+			'comment_has_children'=> false,
+			'comment_is_child'=> true,
+			'comment_parent'=> $_POST['comment-id']
+			
+		);
+		
+		$wpdb->insert('aq_discussion_comments', $insert_args);
+		
+		$data = array('comment_has_children'=> true);
+		$where = array('id'=> $_POST['comment-id'] );
+		
+		$wpdb->update('aq_discussion_comments', $data, $where );
+
+		
+	}elseif(isset($_POST["vote"])){
+		
+		$votes = get_post_meta(get_the_ID(), 'votes', true);
+		$votes++; update_post_meta(get_the_ID(), 'votes', $votes);
+		
+		$vote = $_POST['vote'];
+		$theID = $_POST['comment-id'];
+		global $wpdb;
+		
+		
+		$query = "UPDATE aq_discussion_comments SET comment_rank= comment_rank + $vote WHERE id='$theID'";
+
+		$wpdb->query($query);
+		
+	}elseif(isset($_POST["flag"])){
+		
+		$flag = $_POST['flag'];
+		$theID = $_POST['comment-id'];
+		global $wpdb;
+		$query = "UPDATE aq_discussion_comments SET comment_flags= comment_flags + $flag WHERE id ='$theID'";
+		$wpdb->query($query);
+		$result = $wpdb->get_row("SELECT comment_flags FROM aq_discussion_comments WHERE id = $theID", ARRAY_A);
+		
+		if($result['comment_flags']>=2){
+			
+			$answers = get_post_meta(get_the_ID(), 'answers', true);
+			$answers--; if($answers>=0) update_post_meta(get_the_ID(), 'answers', $answers);
+			
+			$data = array('comment_status'=>'flagged');
+			$where = array('id'=> $theID );
+			
+			$wpdb->update('aq_discussion_comments', $data, $where );
+			
+			//send notification to admins that comment has been flagged for review
+			
+		}
+		
+	} 
+	
+
+	
+	
+}
 
 ?>
