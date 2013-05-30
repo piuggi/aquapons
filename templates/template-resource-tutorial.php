@@ -36,11 +36,11 @@
 		<hr>
 			<section class="reflect">	
 				<ul class="rank">
-					<li data-id="<?php echo $comment->ID; ?>" data-user="<?php echo $user->ID; ?>" class="up"></li>
-					<li class="current"><?php echo $comment->comment_rank; ?></li>
-					<li data-id="<?php echo $comment->ID; ?>" data-user="<?php echo $user->ID; ?>" class="down"></li>
+					<li <?php/* data-id="<?php echo $comment->ID; ?>" data-user="<?php echo $user->ID; ?>" */?>class="up"></li>
+					<li class="current"><?php echo $votes ?></li>
+					<li <?php/*data-id="<?php echo $comment->ID; ?>" data-user="<?php echo $user->ID; ?>" */?>class="down"></li>
 				</ul>
-				<p>Was this tutorial helpful?</p>
+				<p>Was this <?php echo get_post_meta($post->ID, 'resource_type', true) ?> helpful?</p>
 			</section>
 		<hr>
 	</article>

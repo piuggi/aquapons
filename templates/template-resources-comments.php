@@ -1,5 +1,7 @@
+<?php	$resource_type = get_post_meta($post->ID, 'resource_type', true);?>
+
 <section class="main-col">
-		<h2><?php echo get_post_meta(get_the_ID(), 'answers', true) ?> Answers</h2>
+		<h2><?php echo get_post_meta(get_the_ID(), 'answers', true); if(!$resource_type): echo ' Answers'; else: echo ' Comments'; endif; ?> </h2>
 		
 		
 		<?php
