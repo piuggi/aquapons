@@ -52,7 +52,7 @@
 				<section class="steps">
 					<ul >
 						<li id="start">
-							<a href="/resources/tutorials/">
+							<a href="/badges/aquapons-badges/">
 							<figure><img src="<?php echo bloginfo('template_url') ?>/imgs/book.png"></figure>
 							<h3>Start Learning</h3>
 							<hr>
