@@ -1278,9 +1278,67 @@ section.answer{
 	
 }
 
+.institution-format{	
 
+	#new-institutions{
+			height: 240px;
+			.institution{
+				
+				width: 216px;
+				//height: 128px;
+				display: inline-block;
+				background:@beige;
+				border: 1px solid @dkbeige;
+				margin: 0 2% 0 0;
+				padding: 0;
+				text-align: center;
+				vertical-align: top;
+				
+				figure{ height: 78px; padding-bottom: 18px; }
+				
+				img{
+					
+					padding: 20px 0 5px;
+					width: auto;
+					margin: 0;
+					float: none;
+				}
+							
+				h4{
+					
+					.sans-serif;
+					font-weight: 100;
+					font-size: .9em;
+					white-space:pre-line;
+					width: 80%;
+					margin: 0 auto;
+					color: @dkbrown;
+					
+				}
+				
+				p{
+					.serif;
+					font-size: .75em;
+					font-style: italic;
+					vertical-align: baseline;
+					background: @tan;
+					padding: 10px 0;
+					position: relative;
+					color: @dkbrown;
+					margin: 10px 0 0 !important;
+					//margin: 20px 0 0;
+					
+				}
+				
+			}	
+			.institution.first{
+				
+				margin: 0 2% 0 0;
+			}
 
+	}//.new-inst
 
+}
 
 //CUSTOM HEADERS
 
@@ -1433,6 +1491,26 @@ header.badges{
 	
 }// .badges
 
+#main.community{
+	.institution-format;
+	.institution{margin: 10px 2% 20px 0 !important;}
+	#new-institutions{height: auto !important;}	
+	p{ min-height: auto; }
+	figure.showcase{	width: 150px; height: auto; margin: 20px 0; padding: 0 20px; display: inline-table;
+		
+		h4,p{display: block; width: 100%; text-align: center;}
+		p{margin: 0 !important; padding: 0; }
+		.meta{font-size: .6em; .sans-serif;}
+		img{border: 1px solid @dkbrown;}
+		
+	}
+	figure.showcase#first{
+		padding-left: 0;
+		
+	}
+
+
+}
 
 .resources {
 	#main {background: @lined-pattern;}
@@ -1667,67 +1745,7 @@ header.badges{
 	
 	}//#callout
 	
-	#new-institutions{
-		height: 240px;
-		.institution{
-			
-			width: 216px;
-			//height: 128px;
-			display: inline-block;
-			background:@beige;
-			border: 1px solid @dkbeige;
-			margin: 0 2% 0 0;
-			text-align: center;
-			vertical-align: top;
-			
-			figure{
-				height: 78px;
-				padding-bottom: 18px;
-				
-			}
-			
-			img{
-				
-				padding: 20px 0 5px;
-				width: auto;
-				margin: 0;
-				float: none;
-			}
-						
-			h4{
-				
-				.sans-serif;
-				font-weight: 100;
-				font-size: .9em;
-				white-space:pre-line;
-				width: 80%;
-				margin: 0 auto;
-				color: @dkbrown;
-				
-			}
-			
-			p{
-				.serif;
-				font-size: .75em;
-				font-style: italic;
-				vertical-align: baseline;
-				background: @tan;
-				padding: 10px 0;
-				position: relative;
-				color: @dkbrown;
-				//margin: 20px 0 0;
-				
-			}
-			
-		}	
-		.institution.first{
-			
-			//background: @dkbrown;
-			margin: 0 2% 0 0;
-		}
-
-	}//.new
-	
+	.institution-format;	
 }//section#main.home
 
 

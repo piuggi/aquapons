@@ -18,38 +18,38 @@
 						
 					<section class="main-col">
 						<h2>Featured Aquapons</h2>
-						
-						<?php 
-				
-						$args = array('post_type' => 'featured_aquapon', 'posts_per_page'=> 10, 'orderby'=>'date','order'=>'DESC'); 
-						$loop = new WP_Query($args);
-						
-						while( $loop->have_posts()): $loop->the_post();
-						
-						
-						?>
-						<figure class="showcase" <?php if(!$g++) echo 'id="first"'; ?>>
-							<figcaption>
-								<h4 class="name"><a href="<?php the_permalink(); ?>"><?php echo get_the_title();?></a></h4>
-								<p class="institution"><?php echo  get_post_meta(get_the_ID(), 'instution', true);  ?></p>
-								
-								<?php $loc = get_post_meta(get_the_ID(), 'location', true); 
-									if($loc != ''){
-								?>
-								<p class="location"><?php echo $loc; ?></p>
-								<?php } ?>
-								
-							</figcaption>
-							<?php $imgId = get_post_meta(get_the_ID(), 'image', true);  ?>
-							<?php $imgArray = wp_get_attachment_image_src( $imgId);?>
+						<section class="feat_aquapon">
+							<?php 
+					
+							$args = array('post_type' => 'featured_aquapon', 'posts_per_page'=> 10, 'orderby'=>'date','order'=>'DESC'); 
+							$loop = new WP_Query($args);
 							
-							<img class="aquapon_ledgend" src="<?php echo $imgArray[0];  ?>" alt="One of our featured Aquapons <?php echo get_the_title();?>">
-						</figure><!--showcase -->
-	
-	
-						<?php endwhile; wp_reset_query(); ?>
-						
+							while( $loop->have_posts()): $loop->the_post();
 							
+							?>
+							<figure class="showcase" <?php if(!$g++) echo 'id="first"'; ?>>
+								<?php $imgId = get_post_meta(get_the_ID(), 'image', true);  ?>
+								<?php $imgArray = wp_get_attachment_image_src( $imgId);?>
+								
+								<img class="aquapon_ledgend" src="<?php echo $imgArray[0];  ?>" alt="One of our featured Aquapons <?php echo get_the_title();?>">
+								<figcaption>
+									<h4 class="name"><a href="<?php the_permalink(); ?>"><?php echo get_the_title();?></a></h4>
+									<p class="institution meta"><?php echo  get_post_meta(get_the_ID(), 'instution', true);  ?></p>
+									
+									<?php $loc = get_post_meta(get_the_ID(), 'location', true); 
+										if($loc != ''){
+									?>
+									<p class="location meta"><?php echo $loc; ?></p>
+									<?php } ?>
+									
+								</figcaption>
+							</figure><!--showcase -->
+		
+		
+							<?php endwhile; wp_reset_query(); ?>
+						</section><!-- feat_aquapon -->
+						<section id="new-institutions" >
+
 						<h2>Featured Institutions <a>All institutions ›</a></h2>
 							
 						<?php  
@@ -64,7 +64,9 @@
 									?>
 									<article class="institution <?php if(!$g++) echo ' first'; ?>">
 										<figure>
-										<div class="icon"><img src="<?php echo bloginfo('template_url') ?>/imgs/<?php echo get_post_meta($post->ID, 'institution_icon', true); ?>.png"></div>
+										<div class="icon">
+											<img src="<?php echo bloginfo('template_url') ?>/imgs/<?php echo get_post_meta($post->ID, 'institution_icon', true); ?>.png">
+										</div>
 										<h4><?php echo get_post_meta($post->ID, 'institution_name', true); ?></h4>
 										</figure>
 										<?php $rawdate = get_post_meta($post->ID, 'established_date', true); 
@@ -76,6 +78,7 @@
 						
 						
 						<?php } wp_reset_query(); ?>
+						</section><!-- #new-institutions -->
 						
 					</section>
 
