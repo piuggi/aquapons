@@ -2,6 +2,7 @@
 	<section class="resource_title">
 		<p class="author">Posted <?php echo time_ago(); ?> by <a class="<?php print_aquapon_cat(); ?>" href=""><?php echo get_the_author(); ?></a></p>
 		<h2 class="title"> <?php the_title(); ?> </h2>
+		<p class="link"><a href="<?php echo get_post_meta($post->ID, 'link_url', true); ?>"><?php echo get_post_meta($post->ID, 'link_url', true); ?></a></p>
 		<p class="description"><?php echo get_post_meta($post->ID, 'description', true); ?></p>
 	</section>
 	<section class="resource_label <?php print_aquapon_cat(); ?>">
