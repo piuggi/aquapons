@@ -30,8 +30,9 @@
 							<figure class="showcase" <?php if(!$g++) echo 'id="first"'; ?>>
 								<?php $imgId = get_post_meta(get_the_ID(), 'image', true);  ?>
 								<?php $imgArray = wp_get_attachment_image_src( $imgId);?>
-								
-								<img class="aquapon_ledgend" src="<?php echo $imgArray[0];  ?>" alt="One of our featured Aquapons <?php echo get_the_title();?>">
+								<a href="<?php the_permalink(); ?>">
+									<img class="aquapon_ledgend" src="<?php echo $imgArray[0];  ?>" alt="One of our featured Aquapons <?php echo get_the_title();?>">
+								</a>
 								<figcaption>
 									<h4 class="name"><a href="<?php the_permalink(); ?>"><?php echo get_the_title();?></a></h4>
 									<p class="institution meta"><?php echo  get_post_meta(get_the_ID(), 'instution', true);  ?></p>
