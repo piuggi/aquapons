@@ -127,6 +127,16 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
   &:after { content: ''; display: table; clear: both; }
 }
 
+.help_button {
+	display: inline-block;
+	background: url(imgs/skills_info.png);
+	width: 17px;
+	height: 18px;
+	text-indent: 9999px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
 .avatar {
 	float: left;
 	width: 100px;
@@ -481,7 +491,14 @@ header{
 		.about .sub-nav {background: @fushia;}
 		.profile .sub-nav {background: @purple;}
 
-
+		.submission_count { 
+			background: @offwhite; 
+			color: @dkbrown; 
+			margin: 0px 3px;
+			padding: 0px 4px; 
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+		}
 	}
 	
 
@@ -1547,9 +1564,12 @@ header.badges{
 		margin-bottom: 10px;
 	}
 	p {
+		height: 163px;
 		font-size: 18px;
 		font-weight: normal;
 		color: @medbrown;
+		min-width: 300px;
+		overflow: hidden;
 	}
 	footer {
 		position: absolute;
@@ -2089,6 +2109,9 @@ section#main.forum{
 		position: absolute;
 		top: 20px;
 		left: 310px;
+		font-size: 26px;
+		font-weight: 100;
+		color: @dkbeige;
 		cursor: pointer;
 	}
 }
@@ -2639,6 +2662,7 @@ section#main.forum{
 .page-sign-up{
 	
 	.main{ padding: 20px 5%;}
+	footer.main {padding: 0;}
 	h2{  }
 	h3{ color: @dkbrown; display: block; font-size: 1.4em;}
 	
@@ -2787,6 +2811,7 @@ section#main.forum{
 .page-sign-in{
 	
 		.main{ padding: 20px 5%;}
+		footer.main {padding: 0;}
 
 		#loginform{
 

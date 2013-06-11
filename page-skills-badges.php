@@ -27,7 +27,7 @@
 		<?php if ( $query->have_posts() ) : ?>
 		<?php foreach($cats as $cat) { ?>
 		<?php rewind_posts(); ?>
-		<h2><?php echo $cat; ?> Badges <span class="show_category_descriptions">?</span></h2>
+		<h2><?php echo $cat; ?> Badges <span class="show_category_descriptions help_button">?</span></h2>
 		<section class="skills-row side-scroller">
 			<?php
 			/* Start the Loop */

@@ -1,3 +1,4 @@
+<?php $section = 'about'; ?>
 <?php get_header(); ?>
 
 	<section class="main">
@@ -9,7 +10,6 @@
 			while ( have_posts() ) : the_post(); ?>
 
 				<section class="main-col text-content">
-					<h2><?php echo get_the_title(); ?></h2>
 					<?php the_content(); ?>
 				</section>
 			

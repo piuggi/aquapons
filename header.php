@@ -61,12 +61,14 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 					
 					<li class="community <?php if($section=='community') echo 'selected'; ?>">
 						<a href="http://aquapons.info/community/">Community</a>						
+<!--
 						<div class="sub-nav">
 							<ul>
 								<li><a href="http://aquapons.info/community/institutions/">Groups/Institutions</a></li>
 								
 							</ul>
 						</div>
+-->
 					</li>
 					<li class="resources <?php if($section=='resources') echo 'selected'; ?>">
 						<a href="http://aquapons.info/resources/">Resources</a>						
@@ -82,6 +84,20 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 					<li class="about <?php if($section=='about') echo 'selected'; ?>">
 						<a href="http://aquapons.info/about/">About</a>
 					</li>
+					<?php
+					global $user_level, $wpdb;
+					if($user_level > 8) {
+					$pending_reviews = $wpdb->query("SELECT id FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp"); 
+					?>
+						<li class="submissions <?php if($section=='submissions') echo 'selected'; ?>">
+							<a href="http://aquapons.info/review/">
+								Submissions
+								<?php if($pending_reviews) { ?>
+									<span class="submission_count"><?php echo $pending_reviews ?></span>
+								<?php } ?>	
+							</a>
+						</li>
+					<?php } ?>
 				</ul>
 				<ul id="profile">
 					<?php if ( is_user_logged_in() ) { ?>
