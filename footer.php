@@ -33,9 +33,33 @@
 				<li id="feat-aquapon">
 					<h4>Featured Aquapon</h4>
 					<hr>
+					
+					<?php 
+						//will have to add query to stop from finding COPPA Users
+						
+					$args = array('post_type' => 'featured_aquapon', 'posts_per_page'=> 1, 'orderby'=>'rand'); 
+					$feat_grower = new WP_Query($args);
+						 while($feat_grower->have_posts()) {
+							$feat_grower->the_post();
+					?>	 
+					
+					<div class="avatar">
+						<?php 
+						$imgId = get_field('image');
+						$imgArray = wp_get_attachment_image_src( $imgId, 'thumbnail');
+						?>
+						<img class="aquapon_ledgend" src="<?php echo $imgArray[0];  ?>" alt="Featured Grower, <?php echo get_the_title(); ?>">
+					</div>
+					<h3><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+					<p><a href="<?php the_permalink(); ?>">Meet this grower ›</a></p>
+						  
+					<?php } ?>
+					
+<!--
 					<div class="avatar"><img src="<?php bloginfo( 'template_url' ); ?>/imgs/feat_grower4.png" alt="Featured Grower"></div>
 					<h3><a>John Smith</a></h3>
 					<p><a>Meet this grower ›</a></p>
+-->
 				</li>
 				<li id="contact-us">
 					<h4>Contact Us</h4>

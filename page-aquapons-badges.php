@@ -108,7 +108,7 @@
 		
 		
 		<?php 
-		$cats = array('Water', 'Fish', 'Plant', 'Design + Build');
+		$cats = array('Water', 'Fish', 'Plant', 'Design + Build', 'Impact');
 
 
 		for($x = 1; $x <= $aquaponBadgeNum; $x++) {

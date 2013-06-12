@@ -46,6 +46,10 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 @lt-green: #acb200;
 @teal: #078c78;
 
+@gray: #838383;
+@lt-gray: #a9a9a9;
+@dk-gray: #595959;
+
 @babyblue: #82bcf1;
 @yellow: #dbad35;
 @purple:#8d3b92;
@@ -850,7 +854,7 @@ header#pagination{
 
 /* BADGES */
 
-.badge.water,.badge.fish,.badge.plant,.badge.design-build{
+.badge.water,.badge.fish,.badge.plant,.badge.design-build,.badge.impact{
 	margin: 0;
 	padding: 20px 1.5% 0;
 }
@@ -975,6 +979,12 @@ header#pagination{
 .design-build:nth-of-type(3n-1) .skill.badge{ .skill-badge-background(@fushia); }
 .design-build:nth-of-type(3n-2) .skill.badge{ .skill-badge-background(@medbrown); }	
 .design-build .badge_level { color: @purple; }
+
+
+.impact .skill.badge{ .skill-badge-background(@gray); }
+.impact:nth-of-type(3n-1) .skill.badge{ .skill-badge-background(@dk-gray); }
+.impact:nth-of-type(3n-2) .skill.badge{ .skill-badge-background(@lt-gray); }	
+.impact .badge_level { color: @gray; }
 
 
 .badge.incomplete {
@@ -1112,6 +1122,7 @@ header#pagination{
 		div.plant{ background-color: @green;}
 		div.design-build{ background-color: @purple;}
 		div.fish{ background-color:@orange;}
+		div.impact{ background-color:@gray;}
 
 		h3{ margin: 10px 0 0; padding: 0; font-size: 1.2em; .serif;}
 		p{ margin: 0; padding: 2px 0 0; font-size: .8em; .sans-serif; }
@@ -1120,6 +1131,7 @@ header#pagination{
 		div.plant{ background-color: @green;}
 		div.design-build{ background-color: @purple;}
 		div.fish{ background-color:@orange;}
+		div.impact{background-color: @gray;}
 		div.economic{background-color:@yellow;}
 		div.environmental{background-color: @lt-green;}
 		div.community{background-color: @blue-purple;}
@@ -1153,6 +1165,7 @@ header#pagination{
 				p.plant{ background-color: @green;}
 				p.design-build{ background-color: @purple;}
 				p.fish{ background-color:@orange;}
+				p.impact{background-color: @gray;}
 				p.economic{background-color:@yellow;}
 				p.environmental{background-color: @lt-green;}
 				p.community{background-color: @blue-purple;}
@@ -1180,6 +1193,7 @@ header#pagination{
 	.responses.plant{border-top: 3px solid @green; border-bottom: 3px solid @green;}
 	.responses.design-build{border-top: 4px solid @purple; border-bottom: 4px solid @purple;}
 	.responses.fish{ border-top: 4px solid @orange; border-bottom: 4px solid @orange;}
+	.responses.impact{border-top: 4px solid @gray; border-bottom: 4px solid @gray;}
 	.responses.economic{border-top: 4px solid @yellow; border-bottom: 4px solid @yellow;}
 	.responses.environmental{border-top: 4px solid @lt-green; border-bottom: 4px solid @lt-green;}
 	.responses.community{border-top: 4px solid @blue-purple; border-bottom: 4px solid @blue-purple;}
@@ -1419,7 +1433,7 @@ header.badges{
 		width: 100%;
 		display: block;
 
-		.water,.fish,.plant,.design-build{
+		.water,.fish,.plant,.design-build,.impact{
 
 			display: inline-block;
 			width: 20%;
@@ -1504,6 +1518,7 @@ header.badges{
 	.fish #badge-nav, .fish .skill-activity { background: @orange; }
 	.plant #badge-nav, .plant .skill-activity { background: @lt-green; }
 	.design-build #badge-nav, .design-build .skill-activity { background: @purple; }
+	.impact #badge-nav, .impact .skill-activity { background: @gray; }
 	
 	
 }// .badges
@@ -1822,6 +1837,9 @@ section#main.forum{
 	.design-build .content-badges{
 		background: url('imgs/design_badge.png') no-repeat center;
 	}
+	.impact .content-badges{
+		background: url('imgs/impact_badge.png') no-repeat center;
+	}
 
 	.skills-badges article {
 		height: 64px;
@@ -2114,6 +2132,7 @@ section#main.forum{
 		color: @dkbeige;
 		cursor: pointer;
 	}
+	.close_category_descriptions:hover{color: @dkbrown;}
 }
 
 
@@ -2154,6 +2173,7 @@ section#main.forum{
 	section#responses.plant, header#original.plant{ border-bottom: solid 4px @green;}
 	section#responses.design-build, header#original.design-build{ border-bottom: solid 4px @purple;}
 	section#responses.fish, header#original.fish{ border-bottom: solid 4px @orange;}
+	section#responses.impact, header#original.impact{ border-bottom: solid 4px @gray;}
 	section#responses.economic, header#original.economic{ border-bottom: solid 4px @yellow;}
 	section#responses.environmental, header#original.environmental{ border-bottom: solid 4px @lt-green;}
 	section#responses.community, header#original.community{ border-bottom: solid 4px @blue-purple;}
@@ -2223,6 +2243,7 @@ section#main.forum{
 	.resource_label.plant{ background: @green;}
 	.resource_label.design-build{ background: @purple;}
 	.resource_label.fish{ background: @orange;}
+	.resource_label.impact{ background: @gray;}
 	.resource_label.economic{ background: @yellow;}
 	.resource_label.environmental{ background: @lt-green;}
 	.resource_label.community{ background: @blue-purple;}
@@ -2460,6 +2481,7 @@ section#main.forum{
 	.fish #activity-nav { background: @orange; }
 	.plant #activity-nav { background: @lt-green; }
 	.design-build #activity-nav { background: @purple; }
+	.impact #activity-nav { background: @gray; }
 	
 	
 	.submission{ position: relative; display: inline-table; width: 45%; margin: 0 2.5%; height: auto; vertical-align: top; }

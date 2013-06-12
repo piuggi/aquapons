@@ -5,7 +5,7 @@
 	<section id="main" class="text-content">
 
 		<?php 
-		$cats = array('Water', 'Fish', 'Plant', 'Design + Build');
+		$cats = array('Water', 'Fish', 'Plant', 'Design + Build', 'Impact');
 		
 		$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."'"); 
 		
@@ -34,11 +34,10 @@
 			while ( $query->have_posts() ) : 
 			$query->the_post(); 
 			$wp_cats = wp_get_post_categories($query->post->ID);
-			if(get_cat_name($wp_cats[0]) == $cat) {
+			if(get_cat_name($wp_cats[0]) == $cat || get_cat_name($wp_cats[1]) == $cat) {
 				$cat_descriptions[$cat] = category_description($wp_cats[0]);
 
 				showBadge($query->post->ID);
-
 			} ?>
 
 			<?php endwhile; ?>

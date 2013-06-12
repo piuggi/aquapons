@@ -80,6 +80,7 @@ jQuery(document).ready(function($) {
 	$('.show_category_descriptions').click(function() {
 		$('.category_descriptions_mask').fadeIn(200);
 		$('.category_descriptions').animate({left: '0px'}, 200);
+		$('.close_category_descriptions').delay(100).fadeIn('fast');
         if($(document).scrollTop() > 222) {
 	        $('.close_category_descriptions').css('position', 'fixed');
         } else {
@@ -89,6 +90,7 @@ jQuery(document).ready(function($) {
 	
 	
 	$('.close_category_descriptions, .category_descriptions_mask').click(function() {
+		$('.close_category_descriptions').fadeOut(10);
 		$('.category_descriptions_mask').fadeOut(200);
 		$('.category_descriptions').animate({left: '-345px'}, 200);
 	});
