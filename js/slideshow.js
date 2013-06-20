@@ -6,7 +6,7 @@ jQuery(window).load(function($){
 
 	var h = jQuery('#first').children('img').height(); //get height of first element to apply
 	//console.log("Height: "+ h);	
-	
+
 	jQuery('#mantle').cycle({
 	
 	  after: function(el, next_el) {
@@ -27,7 +27,8 @@ jQuery(window).load(function($){
 	  slideResize: false
 	});
 
-
+	
+	
 	
 });
 
@@ -35,11 +36,17 @@ jQuery(document).ready(function($){
 	// a little buggy still needs some work
 	$(window).resize(function() {
 	  //console.log('Handler for .resize() called.');
-	  var h = $('#first').children('img').height();
+	  var h = $('.showcase.active').children('img').height();
 	  $('#mantle').height(h);
 	  $('.showcase').height(h);
 	  
+	  //if($(".steps").postion().top>);
+	  //console.log("Img Height: "+ h);
+	  //console.log("Steps:" +jQuery(".steps").position() );
+
+	  
 	});
+	
 
 	
 	
