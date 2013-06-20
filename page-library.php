@@ -16,7 +16,6 @@
 			 	<section class="main-col">
 			 	
 			 	
-					<h2>Books <a href="http://aquapons.info/resources/books/">View all ›</a></h2>
 					<?php
 					$args = array(
 						'post_type' => 'resource',
@@ -27,6 +26,13 @@
 						'posts_per_page' => 3
 					);
 					$query = new WP_Query( $args );
+					
+					if($query->have_posts()):?>
+					
+					<h2>Books <a href="http://aquapons.info/resources/books/">View all ›</a></h2>
+
+					
+					<?php 
 					while($query->have_posts()) {
 						$query->the_post();
 					?>
@@ -43,9 +49,8 @@
 								</footer>
 							</div>
 						</article>
-					<?php } ?>	
+					<?php } endif;?>	
 			 	
-					<h2>Articles <a href="http://aquapons.info/resources/articles/">View all ›</a></h2>
 					<?php
 					$args = array(
 						'post_type' => 'resource',
@@ -56,6 +61,13 @@
 						'posts_per_page' => 3
 					);
 					$query = new WP_Query( $args );
+					if($query->have_posts()):?>
+					
+					
+					<h2>Articles <a href="http://aquapons.info/resources/articles/">View all ›</a></h2>
+					
+					<?php
+					
 					while($query->have_posts()) {
 						$query->the_post();
 					?>
@@ -72,9 +84,8 @@
 								</footer>
 							</div>
 						</article>
-					<?php } ?>	
+					<?php } endif; ?>	
 			 	
-					<h2>Presentations <a href="http://aquapons.info/resources/presentations/">View all ›</a></h2>
 					<?php
 					$args = array(
 						'post_type' => 'resource',
@@ -85,6 +96,11 @@
 						'posts_per_page' => 3
 					);
 					$query = new WP_Query( $args );
+					if($query->have_posts()):?>
+					
+					<h2>Presentations <a href="http://aquapons.info/resources/presentations/">View all ›</a></h2>
+
+					<?php 
 					while($query->have_posts()) {
 						$query->the_post();
 					?>
@@ -101,9 +117,8 @@
 								</footer>
 							</div>
 						</article>
-					<?php } ?>	
+					<?php }endif; ?>	
 			 	
-					<h2>Recent Links <a href="http://aquapons.info/resources/links/">View all ›</a></h2>
 					<?php
 					$args = array(
 						'post_type' => 'resource',
@@ -114,6 +129,12 @@
 						'posts_per_page' => 3
 					);
 					$query = new WP_Query( $args );
+					if($query->have_posts()):
+					?>
+					
+					<h2>Recent Links <a href="http://aquapons.info/resources/links/">View all ›</a></h2>
+
+					<?php 
 					while($query->have_posts()) {
 						$query->the_post();
 					?>
@@ -130,9 +151,8 @@
 								</footer>
 							</div>
 						</article>
-					<?php } ?>	
+					<?php } endif; ?>	
 			 	
-					<h2>Products <a href="http://aquapons.info/resources/products/">View all ›</a></h2>
 					<?php
 					$args = array(
 						'post_type' => 'resource',
@@ -143,6 +163,11 @@
 						'posts_per_page' => 3
 					);
 					$query = new WP_Query( $args );
+					if($query->have_posts()):?>
+					
+					<h2>Products <a href="http://aquapons.info/resources/products/">View all ›</a></h2>
+					
+					<?php 
 					while($query->have_posts()) {
 						$query->the_post();
 					?>
@@ -159,7 +184,7 @@
 								</footer>
 							</div>
 						</article>
-					<?php } ?>	
+					<?php } endif; ?>	
 								
 					</section>
 			
