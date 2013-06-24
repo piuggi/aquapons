@@ -19,7 +19,7 @@ function reviewBadgeAjax() {
 			CONNECT ANY COMMENTS TO SUBMISSION
 	
 		IF APPROVE 
-			SET BADGE_SUBMISSION TO APPROVAL
+			SET BADGE_SUBMISSION TO APPROVED
 			CONNECT ANY COMMENTS TO SUBMISSION
 				
 			IF ACTIVITY LEADS TO BADGE(S)
@@ -31,6 +31,7 @@ function reviewBadgeAjax() {
 	global $wpdb, $user_info;
 	
 	if($_POST['badge_denied']) {
+		$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE user_token_id = '".$_POST['user_token']."'");
 		$wpdb->update( 
 			'aq_badge_submissions', 
 			array( 
@@ -41,6 +42,7 @@ function reviewBadgeAjax() {
 			), 
 			array( 'id' => $_POST['submission_id'] )
 		);
+		updateBadgeStatus($user_info->wp_user_id, $_POST['badge_id']);
 	}
 
 	if($_POST['badge_approved']) {
@@ -56,6 +58,17 @@ function reviewBadgeAjax() {
 			), 
 			array( 'id' => $_POST['submission_id'] )
 		);
+		
+		
+		$wpdb->update( 
+			'aq_badge_status', 
+			array( 
+				'status' => 'complete'
+			), 
+			array( 'user_id' => $user_info->wp_user_id, 'badge_id' => $_POST['badge_id'] )
+		);
+
+		
 		
 		$badgeId             = $_POST['badge_id'];
 		$badgeRecipientEmail = $_POST['recipient'];
@@ -76,7 +89,8 @@ function reviewBadgeAjax() {
 		// updateBadgeStatus($user_info->wp_user_id, $badgeId);
 		
 		
-		
+	/*
+	
 		// check requirements for badge
 		$parent_badge_type = get_post_meta($badgeId, 'badge_type', true);
 		$my_wp_query = new WP_Query();
@@ -106,12 +120,14 @@ function reviewBadgeAjax() {
 			echo "percent complete: ".round($percentage_complete);
 			
 		}
+*/
 		
 		
 		// IF BADGE IS COMPLETE, CHECK TO SEE IF IT COMPLETES PARENT BADGES
 		
 		
 		
+/*
 		$badge_status = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_info->wp_user_id." AND badge_id = ".$_POST['badge_id']);
 		print_r($badge_status);
 		if($badge_status) {
@@ -132,6 +148,7 @@ function reviewBadgeAjax() {
 				)
 			);
 		}
+*/
 		
 		
 
