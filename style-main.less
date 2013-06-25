@@ -784,6 +784,7 @@ footer.main{
 
 .sidebar {
 	display: inline-table;
+	overflow: hidden;
 	min-height: 600px;
 	width: 20%;	
 	padding: 0 2%;
@@ -2523,7 +2524,7 @@ section#main.forum{
 	
 	input[type='submit'] {margin-top: 15px;}
 	
-	nav#activity_upload{ width: 100%; display: block; text-align: center;}
+	nav#activity_upload{ width: 100%; display: block; text-align: center; overflow: hidden;}
 	.submission_nav{ display: inline-table; width: 28%; margin: 10px 1%;  background: @beige; height: 162px; vertical-align: top; 
 				h4 { margin: 0; }
 				hr{ width: 80%; border: 0; height: 1px; color: @medbrown; background: @medbrown; display: block; padding: 0; margin: 10px auto; }
@@ -2556,12 +2557,10 @@ section#main.forum{
 
 
 .sidebar{ 
-
-	.submission_nav{ width: 85%; padding: 0 7.5%;
+	.submission_nav{ width: 75%; padding: 0 7.5%;
 					
 		hr{ position: relative;  padding: 0 12.5%; border: 0; height: 1px; color: @medbrown;  background: none; }
-		p{width: 100%;}
-		
+		form{width: 200px;}		
 	}
 
  }
