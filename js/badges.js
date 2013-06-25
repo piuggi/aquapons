@@ -5,6 +5,7 @@ jQuery(document).ready(function($) {
 
 	$('.reject_badge').click(function() {
 		var badge_div = $(this).prev();
+		$(this).attr('value', 'Saving...');
 		
 		
 		jQuery.ajax({
@@ -13,16 +14,19 @@ jQuery(document).ready(function($) {
 			data: {
 				action: 'reviewBadgeAjax',
 				badge_denied: true,
+				user_token: badge_div.attr('user_token'),
 				submission_id: badge_div.attr('submission_id'),
 				reviewer_id: badge_div.attr('reviewer_id'),
-				reviewer_comment: $('.approval_comments').val(),
+				reviewer_comment: badge_div.parent().find('.approval_comments').val(),
 				theme: theme_branch
 			},
 			success: function(data, textStatus, XMLHttpRequest){
 				if(window.console) console.debug(data);
+				$(this).attr('value', 'Changes saved');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(errorThrown);
+				alert("There was an error with your request. Please refresh the page and try again.");
 			}
 		});
 
@@ -36,6 +40,7 @@ jQuery(document).ready(function($) {
 
 	$('.approve_badge').click(function() {
 		var badge_div = $(this);
+		badge_div.attr('value', 'Saving...');
 		var assertion_url;
 		if(window.console) console.debug('.approve_badge');
 		jQuery.ajax({
@@ -59,14 +64,16 @@ jQuery(document).ready(function($) {
 				criteria: badge_div.attr('criteria'),
 				expires: badge_div.attr('expires'),
 				reviewer_id: badge_div.attr('reviewer_id'),
-				reviewer_comment: $('.approval_comments').val(),
+				reviewer_comment: badge_div.parent().find('.approval_comments').val(),
 				theme: theme_branch
 			},
 			success: function(data, textStatus, XMLHttpRequest){
 				console.debug(data);
+				badge_div.attr('value', 'Changes saved');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(errorThrown);
+				alert("There was an error with your request. Please refresh the page and try again.");
 			}
 		});
 	}); // $('.approve_badge').click
@@ -96,6 +103,7 @@ jQuery(document).ready(function($) {
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(errorThrown);
+				alert("There was an error with your request. Please refresh the page and try again.");
 			}
 		});
 	

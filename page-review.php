@@ -53,9 +53,9 @@
 					</a></p>
 					<h4>Badge</h4>
 					<p><a href="<?php echo get_permalink($badge_id); ?>?user=<?php echo $user_token; ?>"><?php echo $badge_name ?></a></p>
+					<p><a class="button" href="<?php echo get_permalink($badge_id); ?>?user=<?php echo $user_token; ?>">View User's Submissions</a></p>
 				</div>
 				<div class="review_inputs">
-					<!-- <p>Badge Description: <?php echo $description ?></p> -->
 					<label for="reviewer_comments"><h4>Reviewer Comments</h4></label>
 					<textarea class="approval_comments" id="reviewer_comments" placeholder="All rejected badge submissions must include a written explanation of decision."></textarea>
 					<input type="button" class="approve_badge" submission_id="<?php echo $submission_id ?>" badge_id="<?php echo $badge_id ?>" activity_id="<?php echo $activity_id ?>" user_id="<?php echo $user_email ?>" user_token="<?php echo $user_token ?>" evidence="<?php echo $evidence ?>" version="<?php echo $version ?>" badgename="<?php echo $badge_name ?>" badgeimage="<?php echo $badge_image ?>" <?php /*description="< ?php echo $description ? >" criteria="< ?php echo $criteria ? >" */?> expires="<?php echo $expires ?>" reviewer_id="<?php echo get_current_user_id(); ?>" value="Approve">
