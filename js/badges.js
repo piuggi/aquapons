@@ -5,7 +5,9 @@ jQuery(document).ready(function($) {
 
 	$('.reject_badge').click(function() {
 		var badge_div = $(this).prev();
-		$(this).attr('value', 'Saving...');
+		var deny_button = $(this);
+		badge_div.attr('value', 'Approve');
+		deny_button.attr('value', 'Saving...');
 		
 		
 		jQuery.ajax({
@@ -22,7 +24,8 @@ jQuery(document).ready(function($) {
 			},
 			success: function(data, textStatus, XMLHttpRequest){
 				if(window.console) console.debug(data);
-				$(this).attr('value', 'Changes saved');
+				deny_button.attr('value', 'Reject');
+				deny_button.parent().parent().find('.current_status').html('denied').removeClass('approved').addClass('denied');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(errorThrown);
@@ -41,6 +44,7 @@ jQuery(document).ready(function($) {
 	$('.approve_badge').click(function() {
 		var badge_div = $(this);
 		badge_div.attr('value', 'Saving...');
+		badge_div.next().attr('value', 'Reject');
 		var assertion_url;
 		if(window.console) console.debug('.approve_badge');
 		jQuery.ajax({
@@ -69,7 +73,8 @@ jQuery(document).ready(function($) {
 			},
 			success: function(data, textStatus, XMLHttpRequest){
 				console.debug(data);
-				badge_div.attr('value', 'Changes saved');
+				badge_div.attr('value', 'Approve');
+				badge_div.parent().parent().find('.current_status').html('approved').addClass('approved').removeClass('denied');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(errorThrown);

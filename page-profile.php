@@ -5,16 +5,19 @@
 if($_SESSION['user_id']) $userid = $_SESSION['user_id'];
 else $userid = get_current_user_id();
 
-//print_r($_POST);
 
-if(isset($_POST)) {
+if(sizeof($_POST)) {
+
+//print_r($_POST);
 	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
 	if($current_user->ID == $userid){
 		// UPDATE PROFILE INFO
 		$wpdb->update( 
 			'aq_usermeta', 
 			array( 
-				'location' => $_POST['location']
+				'city' => $_POST['city'],
+				'state' => $_POST['state'],
+				'country' => $_POST['country'],
 			), 
 			array( 'wp_user_id' => $current_user->ID) 
 		);
@@ -145,8 +148,10 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 				<h4>Member Since</h4>
 				<p><?php echo date("F, Y", strtotime(get_userdata($userid)->user_registered)); ?></p>
 				
-				<h4>Current City</h4>
-				<p class="location"><?php echo $background_info->location; ?></p>
+				<h4>Location</h4>
+				<p class="city"><?php echo $background_info->city; ?><br>
+				<?php echo $background_info->state; ?><br>
+				<?php echo $background_info->country; ?></p>
 				
 				<h4>Education</h4>
 				<div class="schools">
@@ -184,7 +189,11 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 			<div class="background_admin">
 			<form id="profile_background_form" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
 				<h4>Current City</h4>
-				<input name="location" class='edit_location' original_value='<?php echo $background_info->location; ?>' value='<?php echo $background_info->location; ?>'>
+				<input name="city" class='edit_city' original_value='<?php echo $background_info->city; ?>' value='<?php echo $background_info->city; ?>'>
+				<h4>State</h4>
+				<input name="state" class='edit_state' original_value='<?php echo $background_info->state; ?>' value='<?php echo $background_info->state; ?>'>
+				<h4>Country</h4>
+				<input name="country" class='edit_country' original_value='<?php echo $background_info->country; ?>' value='<?php echo $background_info->country; ?>'>
 				
 				<h4>Education</h4>
 				<?

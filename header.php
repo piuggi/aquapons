@@ -30,6 +30,7 @@ var theme_branch = "<?php echo $_GET['theme']; ?>";
 
 
 <?php
+global $pending_reviews;
 global $current_user; get_currentuserinfo();
 global $section;
 global $view;

@@ -3,10 +3,17 @@
 
 	<section class="main">
 	
-	
-
-		<?php 
-		$reviews = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp");
+		<?php
+		if($_GET['result']) $current_result = $_GET['result'];
+		else $current_result = 0;
+		
+		// PREVIOUS REVIEWS
+		if($_GET['previous']) {
+			$reviews = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE current_status = 'approved' OR current_status = 'denied' ORDER BY submission_timestamp LIMIT $current_result, 20");
+			$pending_reviews = $wpdb->query("SELECT id FROM aq_badge_submissions WHERE current_status = 'approved' OR current_status = 'denied' ORDER BY submission_timestamp"); 
+		} 
+		// PENDING REVIEWS
+		else $reviews = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp LIMIT $current_result, 20");
 		
 		foreach($reviews as $review) { ?>
 
@@ -45,6 +52,8 @@
 			
 			<div class="pending_review">
 				<div class="submission_info">
+					<h4>Status</h4>
+					<p class="current_status <?php echo $review->current_status; ?>"><?php echo $review->current_status; ?></a></p>
 					<h4>User</h4>
 					<p><a href="/profile/?user=<?php echo $user_token; ?>"><?php echo $user_info->display_name; ?><br>
 						<?php
@@ -57,7 +66,7 @@
 				</div>
 				<div class="review_inputs">
 					<label for="reviewer_comments"><h4>Reviewer Comments</h4></label>
-					<textarea class="approval_comments" id="reviewer_comments" placeholder="All rejected badge submissions must include a written explanation of decision."></textarea>
+					<textarea class="approval_comments" id="reviewer_comments" placeholder="All rejected badge submissions must include a written explanation of decision."><?php echo stripslashes($review->reviewer_comment); ?></textarea>
 					<input type="button" class="approve_badge" submission_id="<?php echo $submission_id ?>" badge_id="<?php echo $badge_id ?>" activity_id="<?php echo $activity_id ?>" user_id="<?php echo $user_email ?>" user_token="<?php echo $user_token ?>" evidence="<?php echo $evidence ?>" version="<?php echo $version ?>" badgename="<?php echo $badge_name ?>" badgeimage="<?php echo $badge_image ?>" <?php /*description="< ?php echo $description ? >" criteria="< ?php echo $criteria ? >" */?> expires="<?php echo $expires ?>" reviewer_id="<?php echo get_current_user_id(); ?>" value="Approve">
 					<input type="button" class="reject_badge" value="Reject">
 
@@ -65,7 +74,32 @@
 			</div>
 			
 
+		<?php 
+		} 
+		
+		
+		// PAGINATION
+		if($pending_reviews > 20) { ?>
+			<header id="pagination"><ul>
+			<?php 
+			if($_GET['previous']) $previous = "&previous=true";
+			if($current_result != 0 && $current_result) {
+				echo "<li><a href='review/?result=".($current_result - 20)."$previous'>Older Reviews</a></li>";	
+			}
+			if($current_result+20 < $pending_reviews) {
+				echo "<li><a href='review/?result=".($current_result + 20)."$previous'>Newer Reviews</a><li>";	
+			}
+			?>
+			</ul></header>
+			
 		<?php } ?>
+		
+		
+		
+		
+		
+		
+		
 			
 	</section><!-- #main -->
 
