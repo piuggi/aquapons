@@ -340,9 +340,14 @@ function check_postComments(){
 		
 	} 
 	
+}
+function updateSubmissionText(){
+		$wpdb->update( 
+			'aq_badge_submissions', 
+			array( 'data'=>$_POST['activity_submission']), 
+			array( 'id' => $_POST['submission_id'] )
+		);
 
-	
-	
 }
 
 ?>

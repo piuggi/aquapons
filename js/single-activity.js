@@ -3,7 +3,6 @@
 jQuery(document).ready(function($) {
 
 
-
 	
 	//get all our data for the user
 	$('.single-activity article.question section.qright h3 a').click(function(e){
@@ -207,6 +206,14 @@ jQuery(document).ready(function($) {
 				
 		});
 
+		
+	});
+	
+	$('button.edit').click( function(){
+		//$(this).html('Submit');
+		$(this).parent().find('p').hide();
+		$(this).parent().find('form.edit').show().append('<button type="submit" name="update">Submit</button>');;
+		$(this).hide();
 		
 	});
 	

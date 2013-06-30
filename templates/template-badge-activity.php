@@ -151,6 +151,22 @@ if(is_user_logged_in()){
 		$error = array("Could not complete request. You must log in to submit content.");
 	}
 
+}elseif(isset($_POST['delete'])){
+
+	$id = $_POST['submission_id'];
+	$query = "DELETE FROM `aq_badge_submissions` WHERE `id`=".$id;
+	$wpdb->query($query);
+
+}elseif(isset($_POST['update'])){
+	
+		$wpdb->update( 
+			'aq_badge_submissions', 
+			array( 'data'=>$_POST['activity_submission']), 
+			array( 'id' => $_POST['submission_id'] )
+		);
+	//exit;	
+	//updateSubmissionText();
+	//$id = $_POST['submission_id'];
 }
 
 
@@ -291,15 +307,25 @@ if($self_eval[0]) {
 				switch($type){
 					
 					case "image":
-					
-						echo '<img src="'.$activity_info->data.'">';
-					
+					?>
+						<figure>
+							<img src="<?php echo $activity_info->data; ?>">
+							<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
+								<button type="submit" name="delete">Delete</button>
+							<input type="hidden" name="submission_id" value="<?php echo $activity_info->id ?>">
+							</form>
+						</figure>
+					<?php
 					break;
 					case "video":
 						//echo $activity_info->data;	
 						$embed_code = wp_oembed_get( $activity_info->data, array('width'=> 800) );
 						?>
 						<div class="h_iframe">
+						<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
+							<button type="submit" name="delete">Delete</button>
+							<input type="hidden" name="submission_id" value="<?php echo $activity_info->id ?>">
+						</form>
 						<?php echo $embed_code; ?> 
 						</div>
 						<?php
@@ -309,7 +335,11 @@ if($self_eval[0]) {
 						<article class="text">
 						
 							<h3>Journal Entry</h3>
-							
+							<button type="button" class="edit">Edit</button>
+							<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
+								<button type="submit" name="delete">Delete</button>
+								<input type="hidden" name="submission_id" value="<?php echo $activity_info->id ?>">
+							</form>
 							<?php $submission_time = explode( " ", $activity_info->submission_timestamp); 
 							 $dbDate = explode("-",$submission_time[0]);
 							 $date = $dbDate[1]."-".$dbDate[2]."-".$dbDate[0];
@@ -317,7 +347,20 @@ if($self_eval[0]) {
 							 ?>
 							<h5><?php  echo $date; ?> </h5>
 							<hr>
+							<form class="edit" id="journal_edit-<?php echo $activity_info->id ?>" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8" style="display:none;">
+								<?php wp_editor($activity_info->data, 'wysiwyg_activity_submission', array(
+									'media_buttons' => false,
+									'textarea_name' => 'activity_submission',
+									//'textarea_rows' => 25,
+									'teeny' => true, 
+									'quicktags' => false
+									)
+								); ?>
+								<input type="hidden" name="submission_id" value="<?php echo $activity_info->id ?>">
+							</form>
 							<p><?php echo stripslashes($activity_info->data); ?></p>
+							
+							
 						
 						</article>
 						
@@ -327,6 +370,10 @@ if($self_eval[0]) {
 					?>
 						<article class="text">
 						<h3>File Upload</h3>
+						<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
+							<button type="submit" name="delete">Delete</button>
+							<input type="hidden" name="submission_id" value="<?php echo $activity_info->id ?>">
+						</form>
 						<?php $submission_time = explode( " ", $activity_info->submission_timestamp); 
 							 $dbDate = explode("-",$submission_time[0]);
 							 $date = $dbDate[1]."-".$dbDate[2]."-".$dbDate[0];
