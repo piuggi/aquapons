@@ -3055,6 +3055,18 @@ section#main.forum{
 		margin: 20px;
 		padding: 0px 20px 20px;
 		border-bottom: 1px solid @dkbeige;
+		.clearfix;
+	}
+	.current_status {
+		text-transform: uppercase;
+		.sans-serif;
+		font-weight: bold;
+	}
+	.current_status.approved {
+		color: @green;
+	}
+	.current_status.denied {
+		color: @red;
 	}
 	.submission_info {
 		float: left;
