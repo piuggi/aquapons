@@ -30,8 +30,12 @@ function reviewBadgeAjax() {
 
 	global $wpdb, $user_info;
 	
+	$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE user_token_id = '".$_POST['user_token']."'");
+	$user_data = get_userdata( $user_info->wp_user_id );
+	$badge_info = $wpdb->get_row("SELECT post_title FROM aq_badge_submissions, wp_posts WHERE aq_badge_submissions.id = '".$_POST['submission_id']."' AND aq_badge_submissions.badge_id = wp_posts.ID");
+
+	
 	if($_POST['badge_denied']) {
-		$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE user_token_id = '".$_POST['user_token']."'");
 		$wpdb->update( 
 			'aq_badge_submissions', 
 			array( 
@@ -43,10 +47,20 @@ function reviewBadgeAjax() {
 			array( 'id' => $_POST['submission_id'] )
 		);
 		updateBadgeStatus($user_info->wp_user_id, $_POST['badge_id']);
+		
+		
+		$message = 
+"<p>We're sorry, but your submission was not approved for the <b>".$badge_info->post_title."</b> badge.</p>	
+<p>Your badge reviewer had these things to say about your submission:</p>
+<h4>".$_POST['reviewer_comment']."</h4>
+<p>If you would like to re-submit, make whatever changes are necessary to your badge submission and try again.</p>";
+		
+		wp_mail($user_data->user_email, "AQUAPONS: Badge Submission Denied", $message);
+		
+		
 	}
 
 	if($_POST['badge_approved']) {
-		$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE user_token_id = '".$_POST['user_token']."'");
 		
 		$wpdb->update( 
 			'aq_badge_submissions', 
@@ -83,10 +97,16 @@ function reviewBadgeAjax() {
 		$err = '';
 		$msg = '';
 		
+		updateBadgeStatus($user_info->wp_user_id, $badgeId);
+		echo $user_data->user_email;
+		$message = 
+"<h2>Congratulations!</h2>
+<p>Your submission for the <b>".$badge_info->post_title."</b> badge has been approved.</p>	
+<p>Your badge reviewer had these things to say about your submission:</p>
+<h4>".$_POST['reviewer_comment']."</h4>
+<p>You can see your new badge by visiting your <a href='http://aquapons.info/profile/'>profile</a> page, or visit the <a href='http://aquapons.info/badges/aquapons-badges/'>Badges</a> section of the site to start working on the next one!</p>";
 		
-		
-		
-		// updateBadgeStatus($user_info->wp_user_id, $badgeId);
+		wp_mail($user_data->user_email, "AQUAPONS: Badge Submission Accepted", $message);
 		
 		
 	/*
