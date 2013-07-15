@@ -287,7 +287,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 			while ( $query->have_posts() ) {
 				$query->the_post();
 				$aquapons_levels[$x++] = $query->post->post_title; ?>
-				<div class="aquapons badge <?php if(getBadgeStatus($query->post->ID, $badge_info) == 100) echo "complete"; ?>">			
+				<div class="aquapons badge <?php if(getBadgeStatus($query->post->ID, $badge_info) === 'complete') echo "complete"; ?>">			
 					<a href='<?php echo get_permalink($query->post->ID); ?>'>
 						<span class="vertical_align">
 						<?php echo $query->post->post_title; ?>
@@ -307,7 +307,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 					AND t1.meta_key = 'badge_type' AND t1.meta_value = 'content' AND t2.meta_key = 'badge_level' AND t1.post_id = t2.post_id AND t1.post_id = t3.ID and t3.post_status = 'publish' ORDER BY t3.menu_order");
 				$has_badges = false;
 				foreach($content_badge_ids as $badge_id) {
-					if(getBadgeStatus($badge_id->post_id, $badge_info) == 100) {
+					if(getBadgeStatus($badge_id->post_id, $badge_info) === 'complete') {
 						$badge = get_post($badge_id);
 						?>
 						<?php if($has_badges == false) { $has_badges = true; ?><h3><?php echo $aquapons_levels[$x]; ?></h3><?php } ?>
@@ -326,7 +326,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 			<h2>My Skills Badges <a href="http://aquapons.info/badges/skills-badges">View all ›</a></h2>
 
 			<?php
-			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."' AND `badge_type`='skill' AND `status` = 'complete' ORDER BY `updated` ASC LIMIT 3");
+			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."' AND `badge_type`='skill' AND `status` = 'complete' ORDER BY `updated` DESC LIMIT 3");
 			
 			if(count($badge_info)) { ?>
 			<h3>Recently Completed</h3>
@@ -336,7 +336,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 			<?php } ?>
 	
 			<?php
-			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."' AND `badge_type`='skill' AND `status` != 'complete' ORDER BY `updated` ASC LIMIT 3"); 
+			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."' AND `badge_type`='skill' AND `status` != 'complete' ORDER BY `updated` DESC LIMIT 3"); 
 			
 			if(count($badge_info)) { ?>
 			<h3>Recently Started</h3>
@@ -347,7 +347,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 	
 			<?php 
 			// get most recent activity submissions
-			$activity_info = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE user_id = '".$userid."' AND `current_status`='complete' ORDER BY `submission_timestamp` ASC LIMIT 15"); 
+			$activity_info = $wpdb->get_results("SELECT badge_id, submission_timestamp FROM aq_badge_submissions WHERE user_id = '".$userid."' AND `current_status`='submission' ORDER BY `submission_timestamp` DESC LIMIT 15"); 
 
 			if(count($activity_info)) { ?>
 			<h3>Recent Activity</h3>
@@ -358,11 +358,12 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 				$badge_id_array[] = $activity->badge_id;
 			}
 			$badge_id_array = array_unique($badge_id_array);
+			$badge_id_array = array_slice($badge_id_array, 0, 3);
 			foreach($badge_id_array as $badge_id) {
 				$badge_ids .= ' OR badge_id = '. $badge_id;
 			}
 			$badge_ids = substr($badge_ids, 3);
-			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."' AND `badge_type`='skill' AND ($badge_ids) ORDER BY `updated` ASC LIMIT 3"); 
+			$badge_info = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$userid."' AND `badge_type`='skill' AND ($badge_ids) ORDER BY `updated` DESC LIMIT 3"); 
 			
 			foreach($badge_info as $badge) { ?>
 				<?php showBadge($badge->badge_id); ?>

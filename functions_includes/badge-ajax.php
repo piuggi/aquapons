@@ -13,29 +13,18 @@ add_action('wp_ajax_submittedToOBI', 'submittedToOBI');
 
 
 function reviewBadgeAjax() {
-/*
-		IF DENY
-			SET BADGE_SUBMISSION TO DENIED
-			CONNECT ANY COMMENTS TO SUBMISSION
-	
-		IF APPROVE 
-			SET BADGE_SUBMISSION TO APPROVED
-			CONNECT ANY COMMENTS TO SUBMISSION
-				
-			IF ACTIVITY LEADS TO BADGE(S)
-				GRANT BADGES
-				IF OBI IS SET UP
-					GO THROUGH OPENBADGES PROCESS
-*/
 
 	global $wpdb, $user_info;
-	
 	$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE user_token_id = '".$_POST['user_token']."'");
 	$user_data = get_userdata( $user_info->wp_user_id );
 	$badge_info = $wpdb->get_row("SELECT post_title FROM aq_badge_submissions, wp_posts WHERE aq_badge_submissions.id = '".$_POST['submission_id']."' AND aq_badge_submissions.badge_id = wp_posts.ID");
 
 	
+	$badgeId             = $_POST['badge_id'];
+	
+	/* BADGE DEINED */
 	if($_POST['badge_denied']) {
+		// SET SUBMISSION TO DENIED
 		$wpdb->update( 
 			'aq_badge_submissions', 
 			array( 
@@ -46,9 +35,12 @@ function reviewBadgeAjax() {
 			), 
 			array( 'id' => $_POST['submission_id'] )
 		);
+		
+		// UPDATE BADGE SUBMISSION
 		updateBadgeStatus($user_info->wp_user_id, $_POST['badge_id']);
 		
 		
+		// SEND EMAIL TO USER
 		$message = 
 "<p>We're sorry, but your submission was not approved for the <b>".$badge_info->post_title."</b> badge.</p>	
 <p>Your badge reviewer had these things to say about your submission:</p>
@@ -56,23 +48,23 @@ function reviewBadgeAjax() {
 <p>If you would like to re-submit, make whatever changes are necessary to your badge submission and try again.</p>";
 		
 		wp_mail($user_data->user_email, "AQUAPONS: Badge Submission Denied", $message);
-		
-		
 	}
 
+
+
+	/* BADGE APPROVED */
 	if($_POST['badge_approved']) {
-		
+		// UPDATE SUBMISSION TO APPROVED
 		$wpdb->update( 
 			'aq_badge_submissions', 
 			array( 
-				'current_status' => 'approved',
+				'current_status' => 'complete',
 				'reviewer_id' => $_POST['reviewer_id'],
 				'reviewer_comment' => $_POST['reviewer_comment'],
 				'review_timestamp' => date('Y-m-d H:i:s')
 			), 
 			array( 'id' => $_POST['submission_id'] )
 		);
-		
 		
 		$wpdb->update( 
 			'aq_badge_status', 
@@ -81,10 +73,22 @@ function reviewBadgeAjax() {
 			), 
 			array( 'user_id' => $user_info->wp_user_id, 'badge_id' => $_POST['badge_id'] )
 		);
+		updateBadgeStatus($user_info->wp_user_id, $badgeId);
 
+
+		// SEND EMAIL TO USER
+		$user_data->user_email;
+		$message = 
+"<h2>Congratulations!</h2>
+<p>Your submission for the <b>".$badge_info->post_title."</b> badge has been approved.</p>	
+<p>Your badge reviewer had these things to say about your submission:</p>
+<h4>".$_POST['reviewer_comment']."</h4>
+<p>You can see your new badge by visiting your <a href='http://aquapons.info/profile/'>profile</a> page, or visit the <a href='http://aquapons.info/badges/aquapons-badges/'>Badges</a> section of the site to start working on the next one!</p>";
+		
+		wp_mail($user_data->user_email, "AQUAPONS: Badge Submission Accepted", $message);
 		
 		
-		$badgeId             = $_POST['badge_id'];
+		
 		$badgeRecipientEmail = $_POST['recipient'];
 		$badgeExperienceURL  = $_POST['evidence'];
 		$badgeName           = $_POST['name'];
@@ -97,16 +101,6 @@ function reviewBadgeAjax() {
 		$err = '';
 		$msg = '';
 		
-		updateBadgeStatus($user_info->wp_user_id, $badgeId);
-		echo $user_data->user_email;
-		$message = 
-"<h2>Congratulations!</h2>
-<p>Your submission for the <b>".$badge_info->post_title."</b> badge has been approved.</p>	
-<p>Your badge reviewer had these things to say about your submission:</p>
-<h4>".$_POST['reviewer_comment']."</h4>
-<p>You can see your new badge by visiting your <a href='http://aquapons.info/profile/'>profile</a> page, or visit the <a href='http://aquapons.info/badges/aquapons-badges/'>Badges</a> section of the site to start working on the next one!</p>";
-		
-		wp_mail($user_data->user_email, "AQUAPONS: Badge Submission Accepted", $message);
 		
 		
 	/*
@@ -284,33 +278,42 @@ function updateBadgeStatus($user_id, $parent_badge_id) {
 	); 
 	$siblings = get_posts($args); 
 		
+		
+		
 	// if skills badge, check all related activities
 	$percentage_complete = 0;
+	$reviewing = false;
+	
 	$indiv_percent = 100/sizeof($siblings);
 	$parent_badge_type = get_field('badge_type', $parent_badge_id);
 	if($parent_badge_type == "skill") {
-		$grantBadge = true;
+		$complete = true;
 		foreach($siblings as $sibling) {
 			$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE `user_id` = '$user_id' AND `activity_id` = '".$sibling->ID."' AND `type` = ''");
-			//echo $sibling->ID ." activity status:".$activity_info->current_status;
 			if($activity_info->current_status == "complete" || $activity_info->current_status == "reviewing") $percentage_complete += $indiv_percent;
+			if($activity_info->current_status == "reviewing") $reviewing = true;
+			if($activity_info->current_status != "complete") $complete = false;
 		}
-	}
+	}	
 	// else check all sibling badges
 	else {
 		foreach($siblings as $sibling) {
-			$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_info->wp_user_id." AND badge_id = ".$sibling->ID);
-			//echo " activity status: ".$activity_info->current_status;
-			if($activity_info->status == 100) $percentage_complete += $indiv_percent;
+			$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = $user_id AND badge_id = ".$sibling->ID);
+			if($activity_info->status == 'complete') $percentage_complete += $indiv_percent;
 		}
-		
 	}
 	
 	$percentage_complete = round($percentage_complete);
+	if($parent_badge_type != "skill" && $percentage_complete == 100) $percentage_complete = 'complete';
+	if($complete) $percentage_complete = 'complete';
+	if($reviewing) $percentage_complete = 'reviewing'; 
+	
+	//echo "perc: ".$percentage_complete."<br>";
 	
 	// UPDATE BADGE STATUS IN DB
 	$badge_status = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_id." AND badge_id = ".$parent_badge_id);
 	if($badge_status) {
+		"update badge_status";
 		$wpdb->update( 
 			'aq_badge_status', 
 			array( 
@@ -331,12 +334,11 @@ function updateBadgeStatus($user_id, $parent_badge_id) {
 	}
 	
 	
-	
 	// IF BADGE IS COMPLETE, CHECK TO SEE IF IT COMPLETES PARENT BADGES
-	if($percentage_complete == 100) {
-		writeBadgeJSON($badge_id);
-		$ancestors = get_ancestors($badge_id);
-		if($ancestors[0]) updateBadgeStatus($ancestors[0]);	
+	if($percentage_complete === 'complete') {
+		writeBadgeJSON($parent_badge_id);
+		$ancestors = get_ancestors($parent_badge_id, 'badge');
+		if($ancestors[0]) updateBadgeStatus($user_id, $ancestors[0]);	
 	} 
 
 		

@@ -7,14 +7,23 @@ else $userid = get_current_user_id();
 
 $badgeid = $post->ID;
 $badge_status = $wpdb->get_row("SELECT * FROM `aq_badge_status` WHERE user_id = '$userid' AND badge_id = '$badgeid' LIMIT 1");
-if($badge_status->status == 100) $badge_complete = true;
+if($badge_status->status === 'complete') $badge_complete = true;
 ?>
 
 	<section id="badge-nav">	
 		<?php breadcrumb($post); ?>
+		
+		<?php if($badge_complete) { ?>
+		<div class="badge_status_container">
+			<h3 class="this_badge_status">
+				COMPLETE
+			</h3>
+			<!-- <div class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'><img src="<?php echo get_template_directory_uri() ?>/imgs/mozilla_obi.png" alt="Mozilla OBI Backpack"> Send to Backpack</div> -->
+		</div>
+		<?php } ?>
+		
 		<h2>
 			<?php the_title(); ?>
-			<?php if($badge_complete) echo "<span class='badge-complete'>BADGE COMPLETE</span> <span class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</span>"; ?>
 		</h2>
 		<hr/>
 		<ul id="skill-badge-subnav">
@@ -68,12 +77,8 @@ if($badge_status->status == 100) $badge_complete = true;
 			} 
 			?>
 			
-			<article class="badge skill">
-				
-				<a href='<?php echo get_permalink() ?>'><?php echo get_the_title() ?></a> 
-				<hr/>
-				<?php echo $activity_status ?>
-			</article>
+			<?php showBadge($children->post->ID); ?>
+
 
 		<?php endwhile; ?> 
 	</section>

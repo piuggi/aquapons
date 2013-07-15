@@ -35,12 +35,7 @@ if(isset($_POST['ask'])){
 	
 }else if(isset($_POST['post'])) {
 
-			
-//print_r($_POST);
 
-//$wpdb->query("INSERT INTO `aq_badge_submissions` (`id`, `user_id`, `badge_id`, `activity_id`, `current_status`, `data`) VALUES (NULL, '$userid', '$badgeid', '$activityid', 'reviewing', '".$_POST['activity_submission']."')");
-//print_r($_POST);
-//print_r($_FILES["activity_submission"]);
 
 if(is_user_logged_in()){
 		
@@ -79,6 +74,7 @@ if(is_user_logged_in()){
 	);
 	//does wpdb query with info	
 	insertSubmission($info);
+	updateBadgeStatus($userid, $badgeid);
 
 }else{
 	$error = array("Could not complete request. You must log in to post content.");
@@ -119,7 +115,6 @@ if(is_user_logged_in()){
 	}
 } elseif(isset($_POST['submit'])){
 	
-	//echo 'Submit!';
 	if(is_user_logged_in()){
 		//will have to query for all submissions by user and update them
 		$info = array( 
@@ -133,8 +128,8 @@ if(is_user_logged_in()){
 		'submission_timestamp' => date('Y-m-d H:i:s')
 		
 		);
-		//does wpdb query with info	
-		insertSubmission($info);
+		
+		insertSubmission($info); //does wpdb query with info	
 		updateBadgeStatus($userid, $badgeid);
 		
 		
@@ -188,8 +183,8 @@ if($self_eval[0]) {
 	while($children->have_posts()) { $children->the_post();
 		$activity_id = get_the_ID();
 		// LOAD CURRENT STATUS
-		$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activity_id' ORDER BY submission_timestamp DESC LIMIT 1");
-		if($activity_info->current_status != 'complete' && $activityid != $activity_id) $badge_complete = false;
+		$activity_status = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activity_id' ORDER BY submission_timestamp DESC LIMIT 1");
+		if($activity_status->current_status != 'complete' && $activityid != $activity_id) $badge_complete = false;
 	}
 }
 
@@ -205,12 +200,21 @@ if($self_eval[0]) {
 	<section id="activity-nav">
 		<?php breadcrumb($post); ?>
 
-		<?php 				
-		$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activityid' ORDER BY submission_timestamp DESC LIMIT 1");
-		if($activity_info->current_status == 'complete') { ?>
-			<h3 class="badge_status">COMPLETE</h3>			
-		<?php } elseif($activity_info->current_status == 'reviewing') { ?>
-			<h3 class="badge_status">REVIEWING</h3>			
+		<?php
+		
+		$ancestors = get_ancestors($activityid, 'badge');
+		$badge_info = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = '$userid' AND badge_id = '".$ancestors[0]."'");
+
+		$activity_status = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activityid' ORDER BY submission_timestamp DESC LIMIT 1");
+		if($badge_info->status == 'complete' || $activity_status->current_status == 'complete') { ?>
+		
+			<div class="badge_status_container">
+				<h3 class="this_badge_status">COMPLETE</h3>			
+			</div>
+		<?php } elseif($activity_status->current_status == 'reviewing') { ?>
+			<div class="badge_status_container">
+				<h3 class="this_badge_status">REVIEWING</h3>			
+			</div>
 		<?php } ?>
 
 		<h2><?php the_title(); ?></h2>
@@ -266,7 +270,7 @@ if($self_eval[0]) {
 		<div class="badge-objectives">
 			<?php if(get_field('activity_instructions')!= '' ){ ?>
 				<h3>Instructions</h3>
-				<?php echo get_field('activity_instructions'); echo $self_eval[0]; ?>
+				<?php echo get_field('activity_instructions'); ?>
 			<?php } ?>
 			<div class="info">
 				<?php if(get_field('activity_learn')!= '' ){ ?>
@@ -388,7 +392,6 @@ if($self_eval[0]) {
 					
 				}
 				?>
-				<?php// print_r($activity_info); ?>
 				<?php// echo stripslashes($activity_info->data); ?>
 				</div>
 			
@@ -437,8 +440,10 @@ if($self_eval[0]) {
 		</section> <!--main col -->
 		
 		<div class="sidebar">
-			<?php if($userSubmissions && $current_user->ID == $userid) activityUploadNav(); ?>
-			<?php
+			<?php 
+			if($activity_status->current_status === 'reviewing') echo "<h2>Your badge has been submitted for review.</h2>";
+			elseif($userSubmissions && $current_user->ID == $userid && $activity_status->current_status !== 'complete') activityUploadNav();
+			
 			$first_resource = 0;
 			$resources = get_field('related_resources');
 			foreach($resources as $resource) { ?>
@@ -480,12 +485,9 @@ if($self_eval[0]) {
 				 										)
 				 									)
 				 					);
-			//print_r($discussion_args);
 		}
 		
 		$discussions = new WP_Query($discussion_args);
-		
-		//print_r($discussions);
 		
 		if(is_user_logged_in() && $discussions->found_posts==0){
 				//if the user is signed in but hasn't asked any questions 
@@ -507,7 +509,6 @@ if($self_eval[0]) {
 		}
 		while( $discussions->have_posts()): $discussions->the_post(); 
 					$cats = get_the_category();
-					//print_r($cats);
 					
 					if($cats) $class = $cats[0]->slug;
 					else $class = 'plant';

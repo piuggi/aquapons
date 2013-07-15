@@ -9,11 +9,14 @@
 		
 		// PREVIOUS REVIEWS
 		if($_GET['previous']) {
-			$reviews = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE current_status = 'approved' OR current_status = 'denied' ORDER BY submission_timestamp LIMIT $current_result, 20");
+			$reviews = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE current_status = 'approved' OR current_status = 'denied' ORDER BY submission_timestamp DESC LIMIT $current_result, 20");
 			$pending_reviews = $wpdb->query("SELECT id FROM aq_badge_submissions WHERE current_status = 'approved' OR current_status = 'denied' ORDER BY submission_timestamp"); 
 		} 
 		// PENDING REVIEWS
-		else $reviews = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp LIMIT $current_result, 20");
+		else {
+			$reviews = $wpdb->get_results("SELECT * FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp LIMIT $current_result, 20");
+			$pending_reviews = $wpdb->query("SELECT * FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp"); 
+		}
 		
 		foreach($reviews as $review) { ?>
 

@@ -264,6 +264,28 @@ a.button, a.button:visited {
 	
 }
 
+
+.send_to_backpack {
+	margin: 5px 20px;
+	width: 70px;
+	padding: 5px 10px 3px;
+	.sans-serif;
+	text-transform: uppercase;
+	font-size: 9px;
+	line-height: 1em;
+	border-radius: 5px;
+	background: @medbeige;
+	color: @dkbrown;
+	cursor: pointer;
+}
+.send_to_backpack:hover {
+	background: @beige;
+}
+.send_to_backpack img {
+	display: block;
+	float: left;
+}
+
 /*-------------------------------------------------------------------------------------	
 	Standard Elements
 -------------------------------------------------------------------------------------*/
@@ -2393,6 +2415,21 @@ section#main.forum{
 			font-weight: bold;
 		}
 	}
+	
+	.badge_status_container {
+		position: absolute;
+		top: 20px;
+		right: 0px;
+	}
+	.this_badge_status {
+		border-radius: 5px;
+		background: @offwhite;
+		color: @dkbrown;
+		margin: 0 20px;
+		padding: 7px 15px;
+		font-size: 14px;
+		font-weight: 600;	
+	}
 	.badge-objectives {
 		margin: 25px 0;
 		p {
@@ -2480,16 +2517,6 @@ section#main.forum{
 			font-weight: 100;
 			color: @offwhite;
 			border-bottom: 1px solid white;
-		}
-		h3 {
-			float: right;
-			margin: 0 20px;
-			border-radius: 5px;
-			background: @offwhite;
-			color: @dkbrown;
-			padding: 7px 15px;
-			font-size: 14px;
-			font-weight: 600;	
 		}
 		.estimated_time {
 			margin: -10px 20px 0;

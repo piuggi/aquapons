@@ -12,9 +12,18 @@ if($badge_status->status == 'complete') $badge_complete = true;
 
 	<section id="badge-nav">
 		<?php breadcrumb($post); ?>
+		
+		<?php if($badge_complete) { ?>
+		<div class="badge_status_container">
+			<h3 class="this_badge_status">
+				COMPLETE
+			</h3>
+			<!-- <div class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'><img src="<?php echo get_template_directory_uri() ?>/imgs/mozilla_obi.png" alt="Mozilla OBI Backpack"> Send to Backpack</div> -->
+		</div>
+		<?php } ?>
+		
 		<h2>
 			<?php the_title(); ?>
-			<?php if($badge_complete) echo "<span class='badge-complete'>BADGE COMPLETE</span> <span class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'>Send to Backpack</span>"; ?>
 		</h2>
 		<hr/>
 		<ul id="skill-badge-subnav">

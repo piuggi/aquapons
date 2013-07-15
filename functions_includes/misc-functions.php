@@ -32,13 +32,14 @@ function showBadge($badge_id) {
 		<div class="badge_level"><?php echo get_field('badge_level', $badge_id); ?></div>
 		<?php if($current_badge_status = getBadgeStatus($badge_id, $badge_info)) { ?>
 			<div class="status_container">
-				<?php if($current_badge_status != 'complete') { ?>
+				<?php if($current_badge_status != 'complete' && $current_badge_status != 'reviewing') { ?>
 					<div class="completion_container">
 						<div class="badge_completion" style="width: <?php echo $current_badge_status/4; ?>px"><?php echo $current_badge_status; ?>%</div>
 					</div>
 				<?php } ?>
 				<div class="badge_completion_label">
 					<?php if($current_badge_status == 'complete') echo "COMPLETE";
+					elseif($current_badge_status == 'reviewing') echo "REVIEWING";
 					else echo $current_badge_status . "%"; ?>
 					</div>
 			</div>
