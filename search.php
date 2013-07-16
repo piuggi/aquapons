@@ -16,6 +16,7 @@ if($_GET['post_type']=='institution') $section = 'community';
 		<?php if($_GET['post_type']=='institution') { ?>
 				
 			<?php
+				global $wpdb;
 			    $user_search = new WP_User_Query( 
 					array(
 						'search' => '*' . $_GET['s'] . '*' 
@@ -23,7 +24,9 @@ if($_GET['post_type']=='institution') $section = 'community';
 					
 				$users = $user_search->get_results();
 				foreach($users as $user){
-					$user_info = get_userdata($user->ID); ?>
+					$user_info = get_userdata($user->ID); 
+					if(get_user_meta($user->ID, 'private', 1)) continue;
+					?>
 					<article class="search_result user">
 						
 						<div class="info">

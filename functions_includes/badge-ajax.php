@@ -101,72 +101,7 @@ function reviewBadgeAjax() {
 		$err = '';
 		$msg = '';
 		
-		
-		
-	/*
-	
-		// check requirements for badge
-		$parent_badge_type = get_post_meta($badgeId, 'badge_type', true);
-		$my_wp_query = new WP_Query();
-		$all_wp_badges = $my_wp_query->query(array('post_type' => 'badge'));
-		$siblings = get_page_children($badgeId, $all_wp_badges);
-		// if skills badge, check all related activities
-		// if all activities are complete, grant badge
-		$percentage_complete = 0;
-		$indiv_percent = 100/sizeof($siblings);
-		if($parent_badge_type == "skill") {
-			$grantBadge = true;
-			
-			foreach($siblings as $sibling) {
-				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = ".$user_info->wp_user_id." AND activity_id = ".$sibling->ID);
-				//echo " activity status: ".$activity_info->current_status;
-				if($activity_info->current_status == "approved") $percentage_complete += $indiv_percent;
-			}
-			echo "percent complete: ".round($percentage_complete);
-		}
-		// else check all sibling badges
-		else {
-			foreach($siblings as $sibling) {
-				$activity_info = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_info->wp_user_id." AND badge_id = ".$sibling->ID);
-				//echo " activity status: ".$activity_info->current_status;
-				if($activity_info->status == 100) $percentage_complete += $indiv_percent;
-			}
-			echo "percent complete: ".round($percentage_complete);
-			
-		}
-*/
-		
-		
-		// IF BADGE IS COMPLETE, CHECK TO SEE IF IT COMPLETES PARENT BADGES
-		
-		
-		
-/*
-		$badge_status = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = ".$user_info->wp_user_id." AND badge_id = ".$_POST['badge_id']);
-		print_r($badge_status);
-		if($badge_status) {
-			$wpdb->update( 
-				'aq_badge_status', 
-				array( 
-					'status' => round($percentage_complete)
-				), 
-				array( 'user_id' => $user_info->wp_user_id, 'badge_id' => $_POST['badge_id'] )
-			);
-		} else {
-			$wpdb->insert( 
-				'aq_badge_status', 
-				array( 
-					'user_id' => $user_info->wp_user_id,
-					'badge_id' => $_POST['badge_id'],
-					'status' => round($percentage_complete)
-				)
-			);
-		}
-*/
-		
-		
-
-		
+					
 		// if badge requirements are set, grant badge
 		if($percentage_complete == 100) {
 		
@@ -261,15 +196,11 @@ add_action('wp_ajax_reviewBadgeAjax', 'reviewBadgeAjax');
 
 
 
-
+// UPDATES BADGE COMPLETION STATUS, ALONG WITH ALL PARENT BADGES
 function updateBadgeStatus($user_id, $parent_badge_id) {
 	
 	global $wpdb;
 	
-	// check requirements for badge
-		//$my_wp_query = new WP_Query();
-		//$all_wp_badges = $my_wp_query->query(array('post_type' => 'badge'));
-		//$siblings = get_page_children($parent_badge_id, $all_wp_badges);
 		
 	$args = array(
 		'post_parent' => $parent_badge_id,
@@ -340,7 +271,18 @@ function updateBadgeStatus($user_id, $parent_badge_id) {
 		$ancestors = get_ancestors($parent_badge_id, 'badge');
 		if($ancestors[0]) updateBadgeStatus($user_id, $ancestors[0]);	
 	} 
-
+	
+	// IF AQUAPONS BADGE IS COMPLETED, UPGRADE USER'S ROLE
+	if($percentage_complete === 'complete' && $parent_badge_type == "aquapons") {
+		$current_userdata = get_userdata($user_id);
+		$user_role = $current_userdata->roles;
+		if($user_role[0] == 'novice') $new_role = 'junior_apprentice';
+		if($user_role[0] == 'junior_apprentice') $new_role = 'senior_apprentice';
+		if($user_role[0] == 'senior_apprentice') $new_role = 'journeymon';
+		if($user_role[0] == 'journeymon') $new_role = 'master';
+		if($new_role) echo $new_role;
+		wp_update_user( array ( 'ID' => $user_id, 'role' => $new_role ) ) ;
+	}
 		
 }
 

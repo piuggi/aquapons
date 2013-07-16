@@ -93,6 +93,8 @@
 							    'orderby'       => 'registered', 
 							    'order'         => 'DESC', 
 							    'number'        => 15,
+							    'meta_key' 		=> 'private',
+							    'meta_value' 	=> 0
 							));
 							
 						$users = $user_search->get_results();

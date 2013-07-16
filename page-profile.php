@@ -5,19 +5,25 @@
 if($_SESSION['user_id']) $userid = $_SESSION['user_id'];
 else $userid = get_current_user_id();
 
-
 if(sizeof($_POST)) {
 
 //print_r($_POST);
+	
+
 	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
 	if($current_user->ID == $userid){
+	
+		
+		if(isset($_POST['private'])) update_user_meta($userid, 'private', 1);
+		else update_user_meta($userid, 'private', 0);
+	
 		// UPDATE PROFILE INFO
 		$wpdb->update( 
 			'aq_usermeta', 
 			array( 
 				'city' => $_POST['city'],
 				'state' => $_POST['state'],
-				'country' => $_POST['country'],
+				'country' => $_POST['country']
 			), 
 			array( 'wp_user_id' => $current_user->ID) 
 		);
@@ -213,7 +219,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 				} ?>
 				<input type="hidden" name="school_ids" original_value="<?php echo implode(',', $school_ids); ?>" value="<?php echo implode(',', $school_ids); ?>">
 				<div class="new school">
-					<label>Add new school</label>
+					<h4>Add new school</h4>
 					<input name="new_school_name" class='edit_school_name' placeholder="School Name">
 					<input name="new_school_url" class='edit_school_url' placeholder="School Website">
 					<input name="new_school_accredidation" class='edit_school_accreditation' placeholder="Degree/Certificate earned">
@@ -237,11 +243,14 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 				} ?>
 				<input type="hidden" name="company_ids" original_value="<?php echo implode(',', $company_ids); ?>" value="<?php echo implode(',', $company_ids); ?>">
 				<div class="new company">
-					<label>Add New:</label>
+					<h4>Add New:</h4>
 					<input name="new_company_name" class='edit_company_name' placeholder="Company/Institution Name">
 					<input name="new_company_url" class='edit_company_name' placeholder="Company/Institution Website">
 					<input name="new_job_title" class='edit_job_title' placeholder="Job Title">
 				</div>
+				
+				<input type="checkbox" name="private" id="private" <?php if(get_user_meta($userid, 'private', 1)) echo 'checked="checked"'; ?>> <h4 for="private">Make my account private</h4>
+				<p class="smalltext">Enabling this will keep your account from appearing the Community Directory. All forum posts and messages you send will still be visible to others.</p>
 				
 				<input type="submit" class="save_background_info" value="Save Changes">
 				<a class="cancel_background_info">Cancel</a>

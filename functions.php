@@ -72,9 +72,34 @@ function new_user_add_metainfo($user_id) {
 			'user_token_id' => $random_string 
 		)
 	);
-
+	
+	update_user_meta($user_id, 'private', 0);
 }
 
 add_action('user_register', 'new_user_add_metainfo');
+
+
+
+
+// REMOVE ADMIN BAR FOR NON-ADMIN USERS
+global $user_level;
+if($user_level < 10) {
+	add_action('after_setup_theme', 'remove_admin_bar');
+	
+	function remove_admin_bar() {
+		if (!current_user_can('administrator') && !is_admin()) {
+			show_admin_bar(false);
+		}
+	}
+}
+
+
+
+// ADD PRIVACY META TAG FOR NEW USERS. CAN REMOVE AFTER SEPTEMBER ------------
+if(get_user_meta(get_current_user_id(), 'private', 1) == null) {
+	add_user_meta(get_current_user_id(), 'private', 0);
+}
+// ----------- REMOVE TIL HERE
+
 
 ?>
