@@ -55,7 +55,7 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 							<ul>
 								<li><a href="http://aquapons.info/badges/aquapons-badges/">Aquapons</a></li>
 								<li><a href="http://aquapons.info/badges/skills-badges/">Skills</a></li>
-								<li><a href="http://aquapons.info/badges/my-badges/">Mine</a></li>
+								<!-- <li><a href="http://aquapons.info/badges/my-badges/">Mine</a></li> -->
 							</ul>
 						</div>	
 					</li>

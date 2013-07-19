@@ -4,7 +4,24 @@ $current_userdata = get_userdata($userid);
 ?>
 <div id="secondary-nav">
 	<section id="main-links">
-
+		
+		<div class="profile_pic">
+			<?php if($profile_pic_id = get_user_meta($userid, 'profile_pic', 1)) { 
+				echo wp_get_attachment_image( $profile_pic_id, 'profile-pic');
+			} else {
+				echo wp_get_attachment_image(2977, 'profile-pic'); // placeholder pic
+			} ?>
+			
+			<?php if($current_user->ID == $userid) { ?>
+			<div class="upload_profile_pic">
+				<form id="profile_pic_form" action="#" method="post" enctype="multipart/form-data">
+					<input type="file" name="profile_pic_picker" id="profile_pic_picker" />
+					<label for="profile_pic_picker">UPLOAD</label>
+				</form>
+			</div>
+			<?php } ?>
+		</div>
+		
 		<h3><?php
 		$user_role = $current_userdata->roles; 
 		echo ucwords(str_replace("_", " ", $user_role[0])); ?>

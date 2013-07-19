@@ -51,6 +51,7 @@ add_action( 'wp_enqueue_scripts', 'load_scripts_styles' );
 
 if (function_exists( 'add_image_size' ) ) { 
 	add_image_size( 'tutorial-thumb', 400, 300, true ); //300 pixels wide (and unlimited height)
+	add_image_size( 'profile-pic', 90, 90, true); 
 }
 
 

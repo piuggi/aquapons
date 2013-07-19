@@ -128,6 +128,19 @@ if($_FILES['resume_upload']) {
 	}
 }
 
+if($_FILES['profile_pic_picker']) {
+	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
+	if($current_user->ID == $userid){
+	
+		require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+		require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+		require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+	
+		$attach_id = media_handle_upload('profile_pic_picker', $userid, array('post_title' => $current_user->display_name." Profile Pic"));
+		update_user_meta($userid, 'profile_pic', $attach_id);
+
+	}
+}
 
 $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id = '".$userid."'"); 
 

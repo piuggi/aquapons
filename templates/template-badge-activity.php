@@ -284,6 +284,7 @@ if($self_eval[0]) {
 			</div>
 		</div>
 	</section>
+	<div class="toggle-outline">Badge Outline ↕</div>
 	
 	<section class="text-content">
 	
