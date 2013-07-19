@@ -2,7 +2,7 @@
 
 <?php
 
-if($_SESSION['user_id']) $userid = $_SESSION['user_id'];
+if($_SESSION['user_id'] && isset($_GET['user'])) $userid = $_SESSION['user_id'];
 else $userid = get_current_user_id();
 
 if(sizeof($_POST)) {

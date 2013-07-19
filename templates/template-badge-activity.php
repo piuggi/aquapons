@@ -192,9 +192,7 @@ if($self_eval[0]) {
 
 
 
-<section class="main <?php if($self_eval[0]) echo 'self_eval'; ?>">
-
-
+<section class="main <?php if($self_eval[0]) echo ' self_eval'; if(isset($_SESSION['reviewing'])) echo ' reviewing'; ?>">
 
 
 	<section id="activity-nav">
@@ -204,10 +202,14 @@ if($self_eval[0]) {
 		
 		$ancestors = get_ancestors($activityid, 'badge');
 		$badge_info = $wpdb->get_row("SELECT * FROM aq_badge_status WHERE user_id = '$userid' AND badge_id = '".$ancestors[0]."'");
-
+		$current_userdata = get_userdata($userid);
 		$activity_status = $wpdb->get_row("SELECT * FROM aq_badge_submissions WHERE user_id = '$userid' AND activity_id = '$activityid' ORDER BY submission_timestamp DESC LIMIT 1");
-		if($badge_info->status == 'complete' || $activity_status->current_status == 'complete') { ?>
 		
+		if(isset($_SESSION['reviewing'])) { ?>
+			<div class="badge_status_container">
+				<h3 class="this_badge_status">CURRENTLY REVIEWING <?php echo $current_userdata->user_nicename; ?>'S WORK </h3>			
+			</div>
+		<?php } elseif($badge_info->status == 'complete' || $activity_status->current_status == 'complete') { ?>
 			<div class="badge_status_container">
 				<h3 class="this_badge_status">COMPLETE</h3>			
 			</div>

@@ -27,6 +27,7 @@ if($badge_status->status === 'complete') $badge_complete = true;
 		</h2>
 		<hr/>
 		<ul id="skill-badge-subnav">
+<!--
 			<li><a>Activities Overview</a></li>
 			<li>•</li>
 			<li><a>Completed Activities</a></li>
@@ -34,6 +35,7 @@ if($badge_status->status === 'complete') $badge_complete = true;
 			<li><a>Activities in Progress</a></li>
 			<li>•</li>
 			<li><a>Related Resources</a></li>
+-->
 		</ul>
 	</section>
 	

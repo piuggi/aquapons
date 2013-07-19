@@ -217,5 +217,7 @@ jQuery(document).ready(function($) {
 		
 	});
 	
+	$('.reviewing form, .reviewing button').remove();
+	
 	
 });
