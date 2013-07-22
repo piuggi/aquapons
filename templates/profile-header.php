@@ -2,6 +2,11 @@
 global $userid; 
 $current_userdata = get_userdata($userid);
 ?>
+
+<!-- SLIMBOX -->
+<script src="<?php echo get_template_directory_uri(); ?>/js/slimbox2.js"></script>
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/slimbox2.css" type="text/css" media="screen" />
+
 <div id="secondary-nav">
 	<section id="main-links">
 		

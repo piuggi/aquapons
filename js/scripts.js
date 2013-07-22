@@ -106,8 +106,12 @@ jQuery(document).ready(function($) {
 	
 	
 	$('#profile_pic_picker').change(function() {
-		if(window.console) console.debug('submit form');
 		$('#profile_pic_form').submit();
+	});
+	
+	
+	$('.image_picker').change(function() {
+		$(this).parent().submit();
 	});
 	
 	

@@ -7,7 +7,7 @@ else $userid = get_current_user_id();
 
 if(sizeof($_POST)) {
 
-//print_r($_POST);
+	//print_r($_POST);
 	
 
 	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
@@ -107,40 +107,91 @@ if(sizeof($_POST)) {
 				)
 			);
 		}
+		
+		// DELETE IMAGES
+		if($_POST['remove_image1']) {
+			$attachmentid = get_user_meta($userid, 'user_image1', 1);
+			delete_user_meta($userid, 'user_image1');
+			wp_delete_attachment($attachmentid, 1, 1);
+		}
+		if($_POST['remove_image2']) {
+			$attachmentid = get_user_meta($userid, 'user_image2', 1);
+			delete_user_meta($userid, 'user_image2');
+			wp_delete_attachment($attachmentid, 1);
+		}
+		if($_POST['remove_image3']) {
+			$attachmentid = get_user_meta($userid, 'user_image2', 1);
+			delete_user_meta($userid, 'user_image2');
+			wp_delete_attachment($attachmentid, 1);
+		}
+		
+		// MOVE ALL IMAGES TO THE LEFT MOST LOCATION
+		if(!get_user_meta($userid, 'user_image2', 1)) {
+			update_user_meta($userid, 'user_image2', get_user_meta($userid, 'user_image3', 1));
+			delete_user_meta($userid, 'user_image3');
+		}
+		if(!get_user_meta($userid, 'user_image1', 1)) {
+			update_user_meta($userid, 'user_image1', get_user_meta($userid, 'user_image2', 1));
+			delete_user_meta($userid, 'user_image2');
+		}
+		
 	}
 }
 
-// HANDLE RESUME UPLOAD
-if($_FILES['resume_upload']) {
-	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
-	if($current_user->ID == $userid){
+// HANDLE FILE UPLOAD
 
-		if ( ! function_exists( 'wp_handle_upload' ) ) require_once( ABSPATH . 'wp-admin/includes/file.php' );
-		$uploadedfile = $_FILES["resume_upload"];
-		$wpfile = wp_handle_upload($uploadedfile,array('test_form'=>false));
-		$wpdb->update( 
-			'aq_usermeta', 
-			array( 
-				'resume' => $wpfile['url']
-			), 
-			array( 'wp_user_id' => $current_user->ID) 
-		);
-	}
-}
-
-if($_FILES['profile_pic_picker']) {
+if($_FILES) {
 	// CHECK TO MAKE SURE LOGGED IN USER IS SAME AS PROFILE USER
 	if($current_user->ID == $userid){
 	
-		require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-		require_once(ABSPATH . "wp-admin" . '/includes/file.php');
-		require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+		require_once(ABSPATH . "wp-admin/includes/image.php");
+		require_once(ABSPATH . "wp-admin/includes/file.php");
+		require_once(ABSPATH . "wp-admin/includes/media.php");
 	
-		$attach_id = media_handle_upload('profile_pic_picker', $userid, array('post_title' => $current_user->display_name." Profile Pic"));
-		update_user_meta($userid, 'profile_pic', $attach_id);
-
+		if($_FILES['resume_upload']) {
+			if ( ! function_exists( 'wp_handle_upload' ) ) require_once( ABSPATH . 'wp-admin/includes/file.php' );
+			$uploadedfile = $_FILES["resume_upload"];
+			$wpfile = wp_handle_upload($uploadedfile,array('test_form'=>false));
+			$wpdb->update( 
+				'aq_usermeta', 
+				array( 
+					'resume' => $wpfile['url']
+				), 
+				array( 'wp_user_id' => $current_user->ID) 
+			);
+		}
+		
+		// HANDLE PROFILE PIC UPLOAD
+		if($_FILES['profile_pic_picker']) {
+			$attach_id = media_handle_upload('profile_pic_picker', null, array('post_title' => $current_user->display_name." Profile Pic"));
+			update_user_meta($userid, 'profile_pic', $attach_id);
+		}
+		
+		// HANDLE USER IMAGE UPLOAD FOR ALL THREE IMAGES
+		for($x = 1; $x <= 3; $x++) {
+			if($_FILES['user_image'.$x]) {
+				$attach_id = media_handle_upload('user_image'.$x, null, array('post_title' => $current_user->display_name." Image"));
+				update_user_meta($userid, 'user_image'.$x, $attach_id);
+			}
+		}
+		
+		// MOVE ALL IMAGES TO THE LEFT MOST LOCATION
+		if(!get_user_meta($userid, 'user_image2', 1)) {
+			update_user_meta($userid, 'user_image2', get_user_meta($userid, 'user_image3', 1));
+			delete_user_meta($userid, 'user_image3');
+		}
+		if(!get_user_meta($userid, 'user_image1', 1)) {
+			update_user_meta($userid, 'user_image1', get_user_meta($userid, 'user_image2', 1));
+			delete_user_meta($userid, 'user_image2');
+		}
 	}
 }
+
+
+
+
+
+
 
 $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id = '".$userid."'"); 
 
@@ -286,7 +337,43 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 				<p>Click the button to the left to update your resume</p>
 			<?php } ?>
 			
+			<?php if($memberships) { ?>
 			<h2>Memberships</h2>
+			<?php } ?>
+			
+			
+			<?php if($current_user->ID == $userid || get_user_meta($userid, 'user_image1', 1)) { ?>
+				<h2>Images</h2>
+			
+				<div class="user_images">
+				<?php for($x = 1; $x <= 3; $x++) { ?>
+					<?php if($current_user->ID == $userid || get_user_meta($userid, 'user_image'.$x, 1)) { ?>
+						<div class="user_image">
+							<?php if($user_image_id = get_user_meta($userid, 'user_image'.$x, 1)) { ?>
+								<a href="<?php echo wp_get_attachment_url($user_image_id); ?>" rel="lightbox">
+									<?php echo wp_get_attachment_image( $user_image_id, 'profile-pic'); ?>
+								</a>
+							<?php } else { ?>
+							
+							<?php } ?>
+							
+							<?php if($current_user->ID == $userid) { ?>
+								<form id="user_image_form" action="#" method="post" enctype="multipart/form-data">
+									<input type="file" name="user_image<?php echo $x; ?>" id="user_image<?php echo $x; ?>" class="image_picker" />
+									<label for="user_image<?php echo $x; ?>">UPLOAD IMAGE</label>
+								</form>
+								
+								<?php if($user_image_id = get_user_meta($userid, 'user_image'.$x, 1)) { ?>
+									<form id="remove_image_form" action="#" method="post" onsubmit="return confirm('Are you sure you want to delete this image?');">
+										<input type="submit" name="remove_image<?php echo $x; ?>" class="remove_image" value="delete">
+									</form>
+								<?php } ?>
+							<?php } ?>
+						</div>
+					<?php } ?>
+				<?php } ?>
+			<?php } ?>
+		
 			
 			
 		</section>
