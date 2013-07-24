@@ -141,7 +141,9 @@
 					$wp_cats = wp_get_post_categories($query->post->ID);
 					if(get_field('badge_type')=='content' && get_cat_name($wp_cats[0]) == $cat) { ?>
 						<div class="content badge <?php echo ' level-'.$x; ?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>) center center no-repeat;">
-							<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
+							<a href='<?php echo get_permalink($page->ID); ?>'>
+								<div class="content_badge_title"><?php the_title(); ?></div>
+							</a>
 							<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
 						</div>
 					<?php }
