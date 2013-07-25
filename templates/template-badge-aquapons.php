@@ -73,7 +73,9 @@ if($badge_status->status == 'complete') $badge_complete = true;
 		while($children->have_posts()) : $children->the_post(); ?>
 		
 			<div class="content badge <?php echo sanitize_title(get_the_title()); echo ' level-'.$x; ?>" style="vertical-align: top; background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>) no-repeat center;">
-				<a href='<?php echo get_permalink($page->ID); ?>'><?php the_title(); ?></a>
+				<a href='<?php echo get_permalink($page->ID); ?>'>
+					<div class="content_badge_title"><?php the_title(); ?></div>
+				</a>
 				<!--(l.<?php echo get_field('badge_level', $query->post->ID); ?>)-->
 			</div>
 			

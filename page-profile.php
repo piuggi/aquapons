@@ -421,8 +421,8 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 						?>
 						<?php if($has_badges == false) { $has_badges = true; ?><h3><?php echo $aquapons_levels[$x]; ?></h3><?php } ?>
 						<div class="content badge <?php  echo "complete"; ?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>) no-repeat center;">
-							<a href='<?php echo get_permalink($badge->ID); ?>'>
-								<?php echo $badge->post_title; ?>
+							<a href='<?php echo get_permalink($page->ID); ?>'>
+								<div class="content_badge_title"><?php echo $badge->post_title; ?></div>
 							</a>
 						</div>
 				<?php }

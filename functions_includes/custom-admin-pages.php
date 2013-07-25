@@ -153,3 +153,29 @@ function review_discussions_function(){
 	</div>
 	<?php 
 }
+
+
+
+/* ADD IMAGE COLUMN TO ADMIN PAGE FOR BADGES */
+function set_custom_edit_badge_columns($columns) {
+    $columns['badge_image'] = 'Image';
+    return $columns;
+}
+
+function custom_badge_column( $column, $post_id ) {
+    switch ( $column ) {
+        case 'badge_image':
+        	echo '<img class="skills_badge_image" src="'.get_field('badge_image', $post_id).'">';
+            break;
+
+    }
+}
+add_filter( 'manage_edit-badge_columns', 'set_custom_edit_badge_columns' );
+add_action( 'manage_badge_posts_custom_column' , 'custom_badge_column', 10, 2 );
+
+
+function customAdmin() {
+    $url = get_bloginfo('template_directory').'/css/admin.css';
+    echo '<link rel="stylesheet" type="text/css" href="' . $url . '" />';
+}
+add_action('admin_head', 'customAdmin');

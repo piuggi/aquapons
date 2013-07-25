@@ -43,6 +43,9 @@ function showBadge($badge_id) {
 					else echo $current_badge_status . "%"; ?>
 					</div>
 			</div>
+			<?php if($current_badge_status == 'complete') { ?>
+				<img class="skills_badge_image" src="<?php echo get_field('badge_image', $badge_id); ?>" alt="<?php echo get_the_title($badge_id); ?>">
+			<?php } ?>
 		<?php } ?>
 	</div>
 	</a>

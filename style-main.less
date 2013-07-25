@@ -961,6 +961,13 @@ header#pagination{
 		color: @beige;
 		text-transform: uppercase;
 	}
+	.skills_badge_image {
+		display: block;
+		position: absolute;
+		bottom: 25px;
+		left: 10px;
+		height: 30px;
+	}
 }
 
 .skill-activity.disabled {
@@ -1053,13 +1060,23 @@ header#pagination{
 	text-transform: uppercase;
 	font-weight: 300;
 	font-size: .75em;
+	line-height: 1.2em;
 }
 
 .badge.content {
+	position: relative;
 	display: inline-block;
 	height: 90px;
 	width: 118px;
-	text-indent: 9999px;
+	margin: 10px auto 45px;
+	/* text-indent: 9999px; */
+}
+
+.badge.content .content_badge_title {
+	position: absolute;
+	top: 110%;
+	left: 0;
+	right: 0;
 }
 
 .badge.content.water {
@@ -1546,7 +1563,7 @@ header.badges{
 			padding: 20px 12%;
 			text-align: center;
 		
-			h3{ .sans-serif; font-color: @dkbrown; text-transform: uppercase; font-weight: bold;}
+			h3{ margin-bottom: 15px; .sans-serif; font-color: @dkbrown; text-transform: uppercase; font-weight: bold;}
 			article.skill-activity{
 				
 				display: inline-block;
@@ -2095,7 +2112,6 @@ section#main.forum{
 	}
 	
 	.content.badge {
-		margin: 10px auto;
 		background-position: center center;
 		background-repeat: no-repeat;
 		-webkit-background-size: contain;
@@ -3220,5 +3236,3 @@ section#main.forum{
 		}
 	}
 }
-
-
