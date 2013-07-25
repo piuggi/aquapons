@@ -175,6 +175,17 @@ jQuery(document).ready(function($) {
 		
 		//alert('Join');
 	});
+	
+	$('em.minify').click(function(){
+		if($(this).html() == 'hide'){
+			$(this).html('show');
+		}else if($(this).html() =='show'){
+			$(this).html('hide');
+		}
+		//console.log($(this).siblings('.content'));
+		$(this).parent().siblings('.content').toggle();
+		
+	});
 		
 }); // jQuery
 

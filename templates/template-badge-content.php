@@ -47,6 +47,8 @@ if($badge_status->status === 'complete') $badge_complete = true;
 			<?php echo get_field('badge_objectives'); ?>
 		</div>
 	</section>
+	<div class="toggle-outline">Badge Outline ↕</div>
+
 	
 	
 
