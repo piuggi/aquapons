@@ -170,6 +170,11 @@ jQuery(document).ready(function($) {
 		
 		
 	});
+	
+	$('.members button').click(function(){
+		
+		//alert('Join');
+	});
 		
 }); // jQuery
 
