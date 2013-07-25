@@ -68,7 +68,7 @@
 										<div class="icon">
 											<img src="<?php echo bloginfo('template_url') ?>/imgs/<?php echo get_post_meta($post->ID, 'institution_icon', true); ?>.png">
 										</div>
-										<h4><?php echo get_post_meta($post->ID, 'institution_name', true); ?></h4>
+										<h4><a href="<?php the_permalink(); ?>"><?php echo get_post_meta($post->ID, 'institution_name', true); ?></a></h4>
 										</figure>
 										<?php $rawdate = get_post_meta($post->ID, 'established_date', true); 
 											
