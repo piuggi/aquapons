@@ -85,10 +85,20 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 					<li class="about <?php if($section=='about') echo 'selected'; ?>">
 						<a href="http://aquapons.info/about/">About</a>
 					</li>
+
+				</ul>
+				
+				<ul id="profile">
+					<?php if ( is_user_logged_in() ) { ?>
+					
 					<?php
 					global $user_level, $wpdb;
-					if($user_level > 8) {
-					$pending_reviews = $wpdb->query("SELECT id FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp"); 
+	
+						if($current_user->roles[0]=='instructor'){
+						?>	
+						<li class="class"><a href="http://aquapons.info/class?new">Your Classes</a></li>
+					<?php }elseif($user_level > 8) {
+						$pending_reviews = $wpdb->query("SELECT id FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp"); 
 					?>
 						<li class="submissions <?php if($section=='submissions') echo 'selected'; ?>">
 							<a href="http://aquapons.info/review/">
@@ -99,9 +109,7 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 							</a>
 						</li>
 					<?php } ?>
-				</ul>
-				<ul id="profile">
-					<?php if ( is_user_logged_in() ) { ?>
+					
 					<li><a href="/profile/">My Profile</a></li>
 					<li>or</li>
 					<li><a href="<?php echo wp_logout_url( home_url() ); ?>">Log Out</a></li>
@@ -113,7 +121,7 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 				</ul>
 		</div><!--#main-nav-->
 		
-		
+
 		<?php
 		if($view!=null) $headerPath = "/templates/".$section."-".$view."-header.php"; 
 		else if($section) $headerPath = "/templates/".$section."-header.php";
