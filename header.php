@@ -19,7 +19,7 @@
 <script type="text/javascript">
 var theme_dir = "<?php echo get_theme_root(); ?>";
 var theme_url = "<?php echo get_template_directory_uri() ?>";
-var theme_branch = "<?php echo $_GET['theme']; ?>";
+var theme_branch = "<?php if($_GET['theme']) echo $_GET['theme']; else echo "dev"; ?>";
 </script>
 <!-- <script src="http://beta.openbadges.org/issuer.js"></script> -->
 <!--[if lt IE 9]>
