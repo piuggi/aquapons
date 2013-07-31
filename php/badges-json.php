@@ -1,6 +1,8 @@
 <?php 
 header('Cache-Control: no-cache, must-revalidate');
 header('Content-type: application/json');
+$theme = $_GET['theme'];
+if(!$theme) $theme = 'dev';
 	
 the_post(); 
 $post_tags = wp_get_post_tags($post->ID);
@@ -49,10 +51,10 @@ if($_GET['user_token']) {
   "image": "<?php echo get_field('badge_image', $badge_id); ?>",
   "evidence": "<?php echo get_permalink(); ?>?user_token=<?php echo $user_token; ?>",
   "issuedOn": "<?php echo $date_awarded; ?>",
-  "badge": "<?php echo get_permalink(); ?>?json=true",
+  "badge": "<?php echo get_permalink(); ?>?json=true&theme=<?php echo $theme; ?>",
   "verify": {
     "type": "hosted",
-    "url": "<?php echo get_permalink(); ?>?json=true&user_token=<?php echo $user_token; ?>"
+    "url": "<?php echo get_permalink(); ?>?json=true&user_token=<?php echo $user_token; ?>&theme=<?php echo $theme; ?>"
   }
 }
 <?php 
