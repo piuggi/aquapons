@@ -114,7 +114,7 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 					<li>or</li>
 					<li><a href="<?php echo wp_logout_url( home_url() ); ?>">Log Out</a></li>
 					<?php } else { ?> 
-					<li><a href="/sign-in/">Sign In</a></li> 
+					<li><a href="/sign-in/?theme=<?php if($_GET['theme']) echo $_GET['theme']; else echo 'dev'; ?>">Sign In</a></li> 
 					<li>or</li>
 					<li><a href="/sign-up/">Sign Up</a></li>
 					<?php } ?>
