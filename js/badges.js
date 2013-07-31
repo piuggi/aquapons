@@ -86,7 +86,8 @@ jQuery(document).ready(function($) {
 	
 	
 	$('.send_to_backpack').click(function() {
-		
+		backpack_button = $(this);
+		var this_badge_id = $(this).data('badge-id');
 		// CHECK TO VERIFY BADGE HAS BEEN EARNED BEFORE SUBMITTING AND GET ASSERTION URL
 		var assertion_url;
 		
@@ -96,15 +97,14 @@ jQuery(document).ready(function($) {
 			data: {
 				action: 'reviewBadgeAjax',
 				get_assertion_url: true,
-				badge_id: $(this).attr('badge_id'),
-				user_id: $(this).attr('user_id')
+				badge_id: this_badge_id,
+				/* user_id: $(this).data('user-id'), */
+				theme: theme_branch
 			},
-			success: function(data, textStatus, XMLHttpRequest){
-				if(window.console) console.debug(data);
-				
+			success: function(data, textStatus, XMLHttpRequest){				
 				assertion_url = data.substring(0, data.length - 1);
 				console.log(assertion_url);
-				if(data.substring(0, 4) == 'http') sendToBackpack(assertion_url);
+				if(data.substring(0, 4) == 'http') sendToBackpack(assertion_url, this_badge_id, backpack_button);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(errorThrown);
@@ -113,7 +113,7 @@ jQuery(document).ready(function($) {
 		});
 	
 	
-	})
+	});
 	
 		
 }); // jQuery
@@ -124,34 +124,55 @@ jQuery(document).ready(function($) {
 
 
 
-function sendToBackpack(assertion_url) {
+function sendToBackpack(assertion_url, current_badge_id, backpack_button) {
+	console.log(current_badge_id);
 
 
 	OpenBadges.issue(['' + assertion_url + ''], function(errors, successes) {
 
-	if (errors.length > 0) {
-		console.log(errors);
-	}
-	if (successes.length > 0) {
-		// set submitted_to_obi in badge_submissions to 1
-		console.log('obi success');
-/*
-		jQuery.ajax({
+		if (errors.length > 0) {
+			console.log(errors);
+		}
+		if (successes.length > 0) {
+			// MARK AS SUBMITTED TO OBI
+			jQuery.ajax({
 			type: 'POST',
 			url: 'http://aquapons.info/wp-admin/admin-ajax.php',
 			data: {
 				action: 'submittedToOBI',
-				submission_id: badge_div.attr('submission_id')
+				badge_id: current_badge_id,
+				/* user_id: $(this).data('user-id'), */
+				theme: theme_branch
 			},
-			success: function(data, textStatus, XMLHttpRequest){
+			success: function(data, textStatus, XMLHttpRequest){				
 				if(window.console) console.debug(data);
+				backpack_button.find('span').html('sent!');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(errorThrown);
 			}
-		});	
+		});
+			
+			
+			
+			/*
+jQuery.ajax({
+				type: 'POST',
+				url: 'http://aquapons.info/wp-admin/admin-ajax.php',
+				data: {
+					action: 'submittedToOBI',
+					badge_id: current_badge_id
+				},
+				success: function(data, textStatus, XMLHttpRequest){
+					if(window.console) console.debug(data);
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown){
+					console.log(errorThrown);
+				}
+			});	
 */
-	}
-}); //OpenBadges.issue
+	
+		}
+	}); //OpenBadges.issue
 	
 }

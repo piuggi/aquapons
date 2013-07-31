@@ -1,12 +1,19 @@
 <?php
 
 function submittedToOBI() {
+	global $wpdb, $current_user;	
+	echo $current_user->ID;
+	echo $_POST['badge_id'];
+
 	$wpdb->update( 
-			'aq_badge_submissions', 
+			'aq_badge_status', 
 			array( 
 				'submitted_to_obi' => '1'
 			), 
-			array( 'id' => $_POST['submission_id'] )
+			array( 
+				'user_id' => $current_user->ID,
+				'badge_id' => $_POST['badge_id']
+			)
 		);
 }
 add_action('wp_ajax_submittedToOBI', 'submittedToOBI');
@@ -174,11 +181,18 @@ function reviewBadgeAjax() {
 	
 	
 	if($_POST['get_assertion_url']) {
-		// check to see that status of badge is set to 100;
-		if($badge_status->status == 100) {
+		global $current_user;
+		
+		// get user token id
+		$usermeta = $wpdb->get_row("SELECT user_token_id FROM aq_usermeta WHERE wp_user_id = '".$current_user->ID."'");
+		
+		// check to see that status of badge is set to COMPLETE;
+		$badge_status = $wpdb->get_row("SELECT status FROM aq_badge_status WHERE user_id = '".$current_user->ID."' AND badge_id = '".$_POST['badge_id']."' AND status = 'complete' LIMIT 1");
+		if($badge_status->status == 'complete') {
 			// if so, get user token and return assertion url
 			$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE wp_user_id = ".$_POST['user_id']);
-			echo "http://aquapons.info/wp-content/json/assertion-".$_POST['badge_id']."-".$user_info->user_token_id.".json";
+			echo get_permalink($_POST['badge_id'])."?json=true&user_token=".$usermeta->user_token_id;
+			//echo "http://aquapons.info/wp-content/json/assertion-".$_POST['badge_id']."-".$user_info->user_token_id.".json";
 			
 		} else {
 			echo "You haven't completed this badge! Finish the objectives and try again.";
@@ -285,70 +299,6 @@ function updateBadgeStatus($user_id, $parent_badge_id) {
 	}
 		
 }
-
-
-
-function writeBadgeJSON($badge_id) {
-	
-	//salt email 
-	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $salt = '';
-    for ($i = 0; $i < 20; $i++) {
-        $salt .= $characters[rand(0, strlen($characters) - 1)];
-    }
-    $hashed_email = hash('sha256', $badgeRecipientEmail  . $salt);
-
-	$jsonFilePath = get_theme_root()."/../json/";
-	$filename = "assertion-".$badgeId.'-'.$_POST['user_token'].'.json';
-
-	$json_file = $jsonFilePath . $filename;
-	$handle = fopen($json_file, 'w');
-	$fileData = array( 
-		'uid' => $badgeId.'-'.$_POST['user_token'],
-		'recipient' => array(
-			'type' => 'email',
-			'hashed' => true,
-			'salt' => $salt,
-			'id' => "sha256$".$hashed_email
-			),
-		//'image' => $userImage,
-		'evidence' => $badgeExperienceURL,
-		'issuedOn' => time(),
-		'badge' => $badgeCriteria."?json=true",
-		'verify' => array(
-			'type' => 'hosted',
-			'url' => 'http://aquapons.info/wp-content/json/'.$filename
-			)
-		);
-/*
-	$fileData = array(
-		'recipient' => "sha256$".$hashed_email,
-		'salt' => $salt,
-		'evidence' => $badgeExperienceURL,
-		'issued_on'=> $date,
-		'badge' => array(
-			'version' => $badgeVersion,
-			'name' => $badgeName,
-			'image' => $badgeImage,
-			'description' => $badgeDescription,
-			'criteria' => $badgeCriteria,
-			'expires' => $badgeExpires,
-			'issuer' => array(
-				'origin' => 'http://aquapons.info',
-				'name' => 'AQUAPONS',
-				'org' => 'Sweet Water Foundation',
-				'contact' => 'info@sweetwaterfoundation.com',
-			)
-		)
-	);
-*/
-	
-	//Writes JSON file		
-	if (fwrite($handle, json_encode($fileData)) === FALSE) {
-	    echo $err = '<div class="badge-error">Cannot write to file.</div>';
-	}
-}
-
 
 
 ?>

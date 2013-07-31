@@ -1,10 +1,9 @@
 <?php $section = 'badges'; ?>
 <?php $view = 'single'; ?>
 <?php if($_GET['json']) { 
-	header('Cache-Control: no-cache, must-revalidate');
-	header('Content-type: application/json');
-	
+
 	include('php/badges-json.php'); 
+
 } else { ?>
 
 <?php if ( have_posts() ) : the_post(); ?>

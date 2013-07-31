@@ -278,9 +278,10 @@ a.button, a.button:visited {
 
 
 .send_to_backpack {
-	margin: 5px 20px;
-	width: 70px;
-	padding: 5px 10px 3px;
+	display: inline-block;
+	margin: 10px 0 0;
+	width: 110px;
+	padding: 3px 10px;
 	.sans-serif;
 	text-transform: uppercase;
 	font-size: 9px;
@@ -296,6 +297,22 @@ a.button, a.button:visited {
 .send_to_backpack img {
 	display: block;
 	float: left;
+}
+.send_to_backpack span {
+	display: inline-block;
+	margin: 6px 0 0;
+}
+.send_to_backpack.small {
+	position: absolute;
+	bottom: -30px;
+	left: 0px;
+	right: 0;
+	display: block;
+	width: 120px;
+	margin: 0 auto;
+	padding: 2px;
+	text-indent: 0;
+	text-align: center;
 }
 
 /*-------------------------------------------------------------------------------------	
@@ -913,7 +930,7 @@ header#pagination{
 	position: relative;
 	width: 105px;
 	height: 140px;
-	margin: 0 10px 20px 10px;
+	margin: 0 10px 40px 10px;
 	display: inline-table;
 	padding: 10px;
 	text-align: left;
@@ -978,6 +995,8 @@ header#pagination{
 .skill.badge:hover h4, .skill.badge:hover hr, .skill-activity:hover h4, .skill-activity:hover hr {
 	opacity: 1;
 }
+
+
 /*
 .water{
 	.skill.badge{ .skill-badge-background(@blue); }
@@ -986,10 +1005,10 @@ header#pagination{
 	.badge_level { color: @blue; }
 }
 */
-.water .skill.badge{ .skill-badge-background(@blue); }
-.water:nth-of-type(3n-1) .skill.badge{ .skill-badge-background(@blue-purple); }
-.water:nth-of-type(3n-2) .skill.badge{ .skill-badge-background(@lt-blue); }	
-.water .badge_level { color: @blue; }
+.skill.badge.water{ .skill-badge-background(@blue); }
+.skill.badge.water:nth-of-type(3n-1){ .skill-badge-background(@blue-purple); }
+.skill.badge.water:nth-of-type(3n-2){ .skill-badge-background(@lt-blue); }	
+.skill.badge.water .badge_level { color: @blue; }
 /*
 .fish{
 	.skill.badge{ .skill-badge-background(@red); }
@@ -998,10 +1017,10 @@ header#pagination{
 	.badge_level { color: @red; }
 }
 */
-.fish .skill.badge{ .skill-badge-background(@red); }
-.fish:nth-of-type(3n-1) .skill.badge{ .skill-badge-background(@yellow); }
-.fish:nth-of-type(3n-2) .skill.badge{ .skill-badge-background(@orange); }	
-.fish .badge_level { color: @red; }
+.skill.badge.fish{ .skill-badge-background(@red); }
+.skill.badge.fish:nth-of-type(3n-1){ .skill-badge-background(@yellow); }
+.skill.badge.fish:nth-of-type(3n-2){ .skill-badge-background(@orange); }	
+.skill.badge.fish .badge_level { color: @red; }
 /*
 .plant{
 	.skill.badge{ .skill-badge-background(@green); }
@@ -1010,10 +1029,10 @@ header#pagination{
 	.badge_level { color: @green; }
 }
 */
-.plant .skill.badge{ .skill-badge-background(@green); }
-.plant:nth-of-type(3n-1) .skill.badge{ .skill-badge-background(@teal); }
-.plant:nth-of-type(3n-1) .skill.badge{ .skill-badge-background(@lt-green); }	
-.plant .badge_level { color: @green; }
+.skill.badge.plant{ .skill-badge-background(@green); }
+.skill.badge.plant:nth-of-type(3n-1){ .skill-badge-background(@teal); }
+.skill.badge.plant:nth-of-type(3n-1){ .skill-badge-background(@lt-green); }	
+.skill.badge.plant .badge_level { color: @green; }
 /*
 .design-build{
 	.skill.badge{ .skill-badge-background(@purple); }
@@ -1022,16 +1041,16 @@ header#pagination{
 	.badge_level { color: @purple; }
 }
 */
-.design-build .skill.badge{ .skill-badge-background(@purple); }
-.design-build:nth-of-type(3n-1) .skill.badge{ .skill-badge-background(@fushia); }
-.design-build:nth-of-type(3n-2) .skill.badge{ .skill-badge-background(@medbrown); }	
-.design-build .badge_level { color: @purple; }
+.skill.badge.design-build{ .skill-badge-background(@purple); }
+.skill.badge.design-build:nth-of-type(3n-1){ .skill-badge-background(@fushia); }
+.skill.badge.design-build:nth-of-type(3n-2){ .skill-badge-background(@medbrown); }	
+.skill.badge.design-build .badge_level { color: @purple; }
 
 
-.impact .skill.badge{ .skill-badge-background(@gray); }
-.impact:nth-of-type(3n-1) .skill.badge{ .skill-badge-background(@dk-gray); }
-.impact:nth-of-type(3n-2) .skill.badge{ .skill-badge-background(@lt-gray); }	
-.impact .badge_level { color: @gray; }
+.skill.badge.impact{ .skill-badge-background(@gray); }
+.skill.badge.impact:nth-of-type(3n-1){ .skill-badge-background(@dk-gray); }
+.skill.badge.impact:nth-of-type(3n-2){ .skill-badge-background(@lt-gray); }	
+.skill.badge.impact .badge_level { color: @gray; }
 
 
 .badge.incomplete {
@@ -1064,9 +1083,11 @@ header#pagination{
 }
 
 .badge.content {
+	position: relative;
 	display: inline-block;
 	height: 90px;
 	width: 118px;
+	margin-bottom: 40px;
 	text-indent: 9999px;
 }
 

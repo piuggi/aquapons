@@ -416,14 +416,20 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 					AND t1.meta_key = 'badge_type' AND t1.meta_value = 'content' AND t2.meta_key = 'badge_level' AND t1.post_id = t2.post_id AND t1.post_id = t3.ID and t3.post_status = 'publish' ORDER BY t3.menu_order");
 				$has_badges = false;
 				foreach($content_badge_ids as $badge_id) {
-					if(getBadgeStatus($badge_id->post_id, $badge_info) === 'complete') {
+					$current_badge = getBadgeStatus($badge_id->post_id, $badge_info);
+					if($current_badge->status === 'complete') {
 						$badge = get_post($badge_id);
 						?>
 						<?php if($has_badges == false) { $has_badges = true; ?><h3><?php echo $aquapons_levels[$x]; ?></h3><?php } ?>
 						<div class="content badge <?php  echo "complete"; ?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>) no-repeat center;">
-							<a href='<?php echo get_permalink($page->ID); ?>'>
+							<a href='<?php echo get_permalink($badge_id->post_id); ?>'>
 								<div class="content_badge_title"><?php echo $badge->post_title; ?></div>
 							</a>
+							<?php if(!$current_badge->submitted_to_obi) { ?>
+								<?php if(!$userid || $current_user->ID == $userid){ ?>
+								<div class="small send_to_backpack" data-badge-id="<?php echo $badge_id->post_id; ?>" data-user-id="<?php echo $current_user->ID; ?>"><img src="http://aquapons.info/wp-content/uploads/2013/07/obi-icon.png" alt="Send to Mozilla Backpack"> <span>Send to Backpack</span></div>
+								<?php } ?>
+							<?php } ?>
 						</div>
 				<?php }
 				} 

@@ -16,40 +16,44 @@ function getBadgeStatus($badge_id, $dbresults = null) {
 		$dbresults = $wpdb->get_results("SELECT * FROM aq_badge_status WHERE user_id = '".$current_user->ID."'"); 
 	}
 	foreach($dbresults as $badge_status) {
-		if($badge_status->badge_id == $badge_id) return $badge_status->status;
+		if($badge_status->badge_id == $badge_id) return $badge_status;
 	}
 	return 0;
 }
 
 
 function showBadge($badge_id) { 
-	global $badge_info;
+	global $badge_info, $current_user, $userid;
 	?>
-	<a href='<?php echo get_permalink($badge_id); ?>' class="<?php $cat = get_the_category($badge_id); echo $cat[0]->slug; ?>">
 	<div class="skill badge <?php $cat = get_the_category($badge_id); echo $cat[0]->slug; ?> <?php echo sanitize_title(get_the_title($badge_id)); echo ' level-'.$x; ?>">
+	<a href='<?php echo get_permalink($badge_id); ?>'>
 		<h4><?php echo get_the_title($badge_id); ?></h4>
 		<hr>
 		<div class="badge_level"><?php echo get_field('badge_level', $badge_id); ?></div>
-		<?php if($current_badge_status = getBadgeStatus($badge_id, $badge_info)) { ?>
+		<?php if($current_badge = getBadgeStatus($badge_id, $badge_info)) { ?>
 			<div class="status_container">
-				<?php if($current_badge_status != 'complete' && $current_badge_status != 'reviewing') { ?>
+				<?php if($current_badge->status != 'complete' && $current_badge->status != 'reviewing') { ?>
 					<div class="completion_container">
-						<div class="badge_completion" style="width: <?php echo $current_badge_status/4; ?>px"><?php echo $current_badge_status; ?>%</div>
+						<div class="badge_completion" style="width: <?php echo $current_badge->status/4; ?>px"><?php echo $current_badge->status; ?>%</div>
 					</div>
 				<?php } ?>
 				<div class="badge_completion_label">
-					<?php if($current_badge_status == 'complete') echo "COMPLETE";
-					elseif($current_badge_status == 'reviewing') echo "REVIEWING";
-					else echo $current_badge_status . "%"; ?>
-					</div>
+					<?php if($current_badge->status == 'complete') echo "COMPLETE";
+					elseif($current_badge->status == 'reviewing') echo "REVIEWING";
+					else echo $current_badge->status . "%"; ?>
+				</div>
 			</div>
-			<?php if($current_badge_status == 'complete') { ?>
+			<?php if($current_badge->status == 'complete') { ?>
 				<img class="skills_badge_image" src="<?php echo get_field('badge_image', $badge_id); ?>" alt="<?php echo get_the_title($badge_id); ?>">
 			<?php } ?>
 		<?php } ?>
-	</div>
 	</a>
-
+	<?php if($current_badge->status === 'complete' && !$current_badge->submitted_to_obi) { ?>
+		<?php if(!$userid || $current_user->ID == $userid){ ?>
+		<div class="small send_to_backpack" data-badge-id="<?php echo $badge_id; ?>" data-user-id="<?php echo $current_user->ID; ?>"><img src="http://aquapons.info/wp-content/uploads/2013/07/obi-icon.png" alt="Send to Mozilla Backpack"> <span>Send to Backpack</span></div>
+		<?php } ?>
+	<?php } ?>
+	</div>
 <?php
 }
 

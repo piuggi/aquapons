@@ -26,6 +26,11 @@ if($_GET['user']) {
 	$_SESSION['reviewing'] = true;
 }
 
+if($_GET['stop_reviewing']) {
+	$_SESSION['user_id'] = null;
+	$_SESSION['reviewing'] = null;
+}
+
 
 include(get_stylesheet_directory() . '/php/less.inc.php');
 $less = new lessc;

@@ -207,7 +207,7 @@ if($self_eval[0]) {
 		
 		if(isset($_SESSION['reviewing'])) { ?>
 			<div class="badge_status_container">
-				<h3 class="this_badge_status">CURRENTLY REVIEWING <?php echo $current_userdata->user_nicename; ?>'S WORK </h3>			
+				<h3 class="this_badge_status"><a href="?stop_reviewing=true">X </a> CURRENTLY REVIEWING <?php echo $current_userdata->user_nicename; ?>'S WORK</h3>
 			</div>
 		<?php } elseif($badge_info->status == 'complete' || $activity_status->current_status == 'complete') { ?>
 			<div class="badge_status_container">
