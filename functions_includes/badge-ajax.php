@@ -181,6 +181,7 @@ function reviewBadgeAjax() {
 	
 	
 	if($_POST['get_assertion_url']) {
+		$theme = $_POST['theme'];
 		global $current_user;
 		
 		// get user token id
@@ -191,7 +192,7 @@ function reviewBadgeAjax() {
 		if($badge_status->status == 'complete') {
 			// if so, get user token and return assertion url
 			$user_info = $wpdb->get_row("SELECT * FROM aq_usermeta WHERE wp_user_id = ".$_POST['user_id']);
-			echo get_permalink($_POST['badge_id'])."?json=true&user_token=".$usermeta->user_token_id;
+			echo get_permalink($_POST['badge_id'])."?json=true&user_token=".$usermeta->user_token_id."&theme=".$theme;
 			//echo "http://aquapons.info/wp-content/json/assertion-".$_POST['badge_id']."-".$user_info->user_token_id.".json";
 			
 		} else {
@@ -299,6 +300,7 @@ function updateBadgeStatus($user_id, $parent_badge_id) {
 	}
 		
 }
+
 
 
 ?>
