@@ -141,7 +141,7 @@ if(sizeof($_POST)) {
 				// http://www.youtube.com/watch?v=WcFv9eElzeg
 				parse_str(parse_url($_POST['user_video'], PHP_URL_QUERY));
 				update_user_meta($userid, 'video', 'http://www.youtube.com/embed/'.$v.'?autoplay=1');
-				update_user_meta($userid, 'video_thumbnail', 'http://img.youtube.com/vi/'.$v.'/1.jpg');
+				update_user_meta($userid, 'video_thumbnail', 'http://img.youtube.com/vi/'.$v.'/0.jpg');
 			} elseif (strpos($_POST['user_video'], 'vimeo') !== false) {
 				// http://vimeo.com/49042489
 				// get everything from last slash, unless last slash is at the end
@@ -410,6 +410,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 				<?php if($user_video_url = get_user_meta($userid, 'video', 1)) { ?>
 				<a href="<?php echo $user_video_url ?>">
 					<img src="<?php echo get_user_meta($userid, 'video_thumbnail', 1) ?>" alt="Video">
+					<div class="play_button">Play Video</div>
 				</a>
 				<?php } ?>
 								
