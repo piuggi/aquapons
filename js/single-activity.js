@@ -217,8 +217,6 @@ jQuery(document).ready(function($) {
 		
 	});
 	
-	$('.reviewing form, .reviewing button').remove();
-	
 	$('.toggle-outline').click(function() {
 		$('.badge-outline').slideToggle('fast');
 	})

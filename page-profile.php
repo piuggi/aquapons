@@ -135,8 +135,34 @@ if(sizeof($_POST)) {
 			delete_user_meta($userid, 'user_image2');
 		}
 		
-	}
-}
+		// HANDLE VIDEO UPDATE
+		if($_POST['user_video']) {
+			if(strpos($_POST['user_video'], 'youtube') !== false) {
+				// http://www.youtube.com/watch?v=WcFv9eElzeg
+				parse_str(parse_url($_POST['user_video'], PHP_URL_QUERY));
+				update_user_meta($userid, 'video', 'http://www.youtube.com/embed/'.$v.'?autoplay=1');
+				update_user_meta($userid, 'video_thumbnail', 'http://img.youtube.com/vi/'.$v.'/1.jpg');
+			} elseif (strpos($_POST['user_video'], 'vimeo') !== false) {
+				// http://vimeo.com/49042489
+				// get everything from last slash, unless last slash is at the end
+				$video_id = explode('/', $_POST['user_video']);
+				$v = $video_id[sizeof($video_id)-1];
+				update_user_meta($userid, 'video', 'http://player.vimeo.com/video/'.$v.'?title=0&amp;byline=0&amp;portrait=0');
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$v.php"));
+				$thumbnail = $hash[0]['thumbnail_medium'];  
+				update_user_meta($userid, 'video_thumbnail', $thumbnail);
+			}
+		}
+		
+		// REMOVE VIDEO META DATA ON DELETE
+		if($_POST['remove_video']) {
+			delete_user_meta($userid, 'video');
+			delete_user_meta($userid, 'video_thumbnail');		
+		}
+		
+		
+	} // if($current_user->ID == $userid)
+} // if(sizeof($_POST))
 
 // HANDLE FILE UPLOAD
 
@@ -350,7 +376,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 					<?php if($current_user->ID == $userid || get_user_meta($userid, 'user_image'.$x, 1)) { ?>
 						<div class="user_image">
 							<?php if($user_image_id = get_user_meta($userid, 'user_image'.$x, 1)) { ?>
-								<a href="<?php echo wp_get_attachment_url($user_image_id); ?>" rel="lightbox">
+								<a href="<?php echo wp_get_attachment_url($user_image_id); ?>">
 									<?php echo wp_get_attachment_image( $user_image_id, 'profile-pic'); ?>
 								</a>
 							<?php } else { ?>
@@ -372,11 +398,41 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 						</div>
 					<?php } ?>
 				<?php } ?>
+				</div>
+			<?php } ?>	
+			
+			
+			<?php //update_user_meta($userid, 'video', 'http://www.youtube.com/embed/WcFv9eElzeg?autoplay=1'); ?>
+			<?php if($current_user->ID == $userid || get_user_meta($userid, 'video', 1)) { ?>
+			<div class="user_video">
+				<h2>Video</h2>
+			
+				<?php if($user_video_url = get_user_meta($userid, 'video', 1)) { ?>
+				<a href="<?php echo $user_video_url ?>">
+					<img src="<?php echo get_user_meta($userid, 'video_thumbnail', 1) ?>" alt="Video">
+				</a>
+				<?php } ?>
+								
+				<?php if($current_user->ID == $userid && get_user_meta($userid, 'video', 1)) { ?>
+					<form id="remove_video_form" action="#" method="post" onsubmit="return confirm('Are you sure you want to delete this video?');">
+						<input type="submit" name="remove_video" class="remove_video" value="delete">
+					</form>
+				<?php } ?>
+								
+				<?php if($current_user->ID == $userid) { ?>
+					<form id="user_image_form" action="#" method="post">
+						<label for="user_video">Paste the URL of your video (youtube or vimeo):</label>
+						<input type="text" name="user_video" id="user_video" placeholder="http://www.youtube.com/watch?v=WcFv9eElzeg">
+						<input type="submit" value="<?php if($user_video_url) echo 'Replace Video'; else echo 'Save'; ?>">
+					</label>				<?php } ?>
+			</div>
 			<?php } ?>
+
+		</section>
+		
 		
 			
-			
-		</section>
+		
 		
 		<section class="my_badges text-content">
 			
