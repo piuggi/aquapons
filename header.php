@@ -93,11 +93,30 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 					
 					<?php
 					global $user_level, $wpdb;
-	
 						if($current_user->roles[0]=='instructor'){
-						?>	
+						
+						$all_students = $wpdb->get_results("SELECT aq_student_id FROM aq_class_roster WHERE aq_instructor='".$current_user->ID."'");
+						//print_r($all_students);
+						
+						$studentArray = array();
+						foreach($all_students as $student)
+							if(!in_array($student->aq_student_id, $studentArray)) 
+								array_push($studentArray, $student->aq_student_id);
+						
+						$ids = join(',',$studentArray);
+						$pending_reviews = $wpdb->get_var( "SELECT COUNT(*) FROM aq_badge_submissions WHERE current_status = 'reviewing' AND user_id IN ($ids)" );
+						//$pending_reviews = $wpdb->query("SELECT id FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp"); 
+						?>
+							<li class="submissions <?php if($section=='submissions') echo 'selected'; ?>">
+							<a href="http://aquapons.info/review/">
+								Submissions
+								<?php if($pending_reviews) { ?>
+									<span class="submission_count"><?php echo $pending_reviews ?></span>
+								<?php } ?>	
+							</a>
+						</li>	
 						<li class="class"><a href="http://aquapons.info/class?new">Your Classes</a></li>
-					<?php }elseif($user_level > 8) {
+					<?php }elseif($user_level > 8 ) {
 						$pending_reviews = $wpdb->query("SELECT id FROM aq_badge_submissions WHERE current_status = 'reviewing' ORDER BY submission_timestamp"); 
 					?>
 						<li class="submissions <?php if($section=='submissions') echo 'selected'; ?>">
@@ -108,6 +127,8 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 								<?php } ?>	
 							</a>
 						</li>
+						<li class="class"><a href="http://aquapons.info/class?new">Your Classes</a></li>
+
 					<?php } ?>
 					
 					<li><a href="/profile/">My Profile</a></li>

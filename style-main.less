@@ -190,8 +190,18 @@ a.button, a.button:visited {
 }
 
 .ask-form(@color){
-	
 	section{ background: @color; margin: 0; padding: 20px 40px; 
+			
+			aside{
+				
+				width: 25%;
+				float: right;
+				padding: 20px;
+				vertical-align: top;
+				select{ margin: 2px 0 10px;}
+				
+				
+			}
 			
 			input{ 
 				
@@ -271,10 +281,30 @@ a.button, a.button:visited {
 				display: block;
 			}
 			
+			article{
+				overflow: hidden;
+			}
+			
 			
 		}
+		section#text-holder{ width: 60%; display: inline-block;
+			
+			input[type="text"]{
+				
+				width: 100%;
+			}
+			input[type="text"].half-input{
+				width: 46%;
+			
+				
+			}
+			
+		}
+
 	
 }
+
+
 
 
 .send_to_backpack {
@@ -380,7 +410,7 @@ input, textarea{
 	color: @dkbrown;
 	border: 1px solid @medbeige;
 	margin: 0 0 5px;
-	padding: 7px 15px;
+	padding: 7px 1.8%;
 	font-size: 14px;	
 }
 
@@ -2162,6 +2192,7 @@ section#main.forum, section#main.class{
 
 
 
+
 .page-skills-badges {
 	.skills-row {
 		padding: 0 10px 10px 0;
@@ -2419,6 +2450,47 @@ section#main.forum, section#main.class{
 	
 	
 }
+
+.page-class{
+	
+	article.single-class{
+		
+		background: @beige;
+		width: 80%;
+		margin: 10px;
+		padding: 15px;
+		.header-ul;
+		ul li {
+			h2{padding: 0 0 20px 0}
+			vertical-align: top;
+			padding: 0 10px;
+			max-width: 70%;
+			ul li{ padding: 5px;}
+		}		
+		.right{
+			float: right;
+		}
+		section{ 
+			padding: 10px;
+			h3{ font-size: 1.2em; margin-bottom: 10px;}
+			div.student-info{
+				margin: 5px 0;
+				padding: 5px 0; 
+				ul{ padding: 5px 0; }
+				ul li{ width: 220px;}
+			}
+			div.student-info:nth-child(even){
+				background: @medbeige;
+			}
+			
+
+		}
+		
+	}
+	
+	
+}
+
 
 .single-featured_aquapon{
 	

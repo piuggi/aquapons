@@ -171,6 +171,15 @@ jQuery(document).ready(function($) {
 		
 	});
 	
+	$('p#register').click(function(){
+		$('#form').slideToggle('slow');
+		if($(this).html() == 'Register') $(this).html('Close');	
+		else $(this).html('Register');	
+			
+		
+		
+	});
+	
 	$('.members button').click(function(){
 		
 		//alert('Join');
@@ -186,6 +195,38 @@ jQuery(document).ready(function($) {
 		$(this).parent().siblings('.content').toggle();
 		
 	});
+	
+	
+	$('.delete-class').submit(function(e){
+		
+		if( !confirm('You can\'t undo this action. Are you sure you want to delete this classes data?') ) e.preventDefault();
+		
+	});
+	$('.add-student,.cancel-student').click(function(e){
+		$(this).toggle();
+		$(this).siblings().toggle();
+	});
+	
+	$('button.submit-student').click(function(e){
+		e.preventDefault();
+		var userEmail = $(this).parent().children('.student-email').val();
+		//console.log(userEmail);
+		var $form = $(this).parent();
+		
+		var data = { action: 'userEmailExists',user_email: userEmail };
+		var ajaxURL = 'http://aquapons.info/wp-admin/admin-ajax.php';
+		
+		$.post(ajaxURL, data, function(response){
+			console.log(response);
+			if(response=='false') alert('Oops, that user doesn\'t exist, please enter a valid aquapons email');
+			else if(response=='true') $form.submit();
+				
+			
+			
+		});
+			
+	});
+	
 		
 }); // jQuery
 

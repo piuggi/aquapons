@@ -9,6 +9,7 @@ if($_GET['logout']) {
 	wp_logout();
 	header("Refresh: 0; url=http://aquapons.info");
 }
+include('functions_includes/class-ajax.php');
 
 include('functions_includes/custom-post-types.php');
 
