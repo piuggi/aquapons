@@ -8,17 +8,26 @@ else $userid = get_current_user_id();
 $badgeid = $post->ID;
 $badge_status = $wpdb->get_row("SELECT * FROM `aq_badge_status` WHERE user_id = '$userid' AND badge_id = '$badgeid' LIMIT 1");
 if($badge_status->status == 'complete') $badge_complete = true;
+$current_userdata = get_userdata($userid);
 ?>
 
 	<section id="badge-nav">
 		<?php breadcrumb($post); ?>
-		
-		<?php if($badge_complete) { ?>
+
+		<?php if(isset($_SESSION['reviewing'])) { ?>
+			<div class="badge_status_container">
+				<h3 class="this_badge_status"><a href="?stop_reviewing=true">X </a> CURRENTLY REVIEWING <?php echo $current_userdata->user_nicename; ?>'S WORK</h3>
+			</div>
+		<?php } elseif($badge_complete) { ?>
 		<div class="badge_status_container">
 			<h3 class="this_badge_status">
-				COMPLETE
+				COMPLETE			
 			</h3>
-			<!-- <div class='send_to_backpack' badge_id='".$badgeid."' user_id='".$userid."'><img src="<?php echo get_template_directory_uri() ?>/imgs/mozilla_obi.png" alt="Mozilla OBI Backpack"> Send to Backpack</div> -->
+			<?php if($badge_complete && !$badge_status->submitted_to_obi) { ?>
+				<?php if(!$userid || $current_user->ID == $userid){ ?>
+					<div class="send_to_backpack" data-badge-id="<?php echo get_the_ID(); ?>" data-user-id="<?php echo $current_user->ID; ?>"><img src="http://aquapons.info/wp-content/uploads/2013/07/obi-icon.png" alt="Send to Mozilla Backpack"> <span>Send to Backpack</span></div>
+				<?php } ?>
+			<?php } ?>
 		</div>
 		<?php } ?>
 		

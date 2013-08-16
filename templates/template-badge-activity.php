@@ -207,7 +207,7 @@ if($self_eval[0]) {
 		
 		if(isset($_SESSION['reviewing'])) { ?>
 			<div class="badge_status_container">
-				<h3 class="this_badge_status">CURRENTLY REVIEWING <?php echo $current_userdata->user_nicename; ?>'S WORK </h3>			
+				<h3 class="this_badge_status"><a href="?stop_reviewing=true">X </a> CURRENTLY REVIEWING <?php echo $current_userdata->user_nicename; ?>'S WORK</h3>
 			</div>
 		<?php } elseif($badge_info->status == 'complete' || $activity_status->current_status == 'complete') { ?>
 			<div class="badge_status_container">
@@ -317,10 +317,12 @@ if($self_eval[0]) {
 					?>
 						<figure>
 							<img src="<?php echo $activity_info->data; ?>">
+							<?php if($current_user->ID == $userid || $current_user->user_level >= 9) { ?>
 							<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
 								<button type="submit" name="delete">Delete</button>
 							<input type="hidden" name="submission_id" value="<?php echo $activity_info->id ?>">
 							</form>
+							<?php } ?>
 						</figure>
 					<?php
 					break;
@@ -329,10 +331,12 @@ if($self_eval[0]) {
 						$embed_code = wp_oembed_get( $activity_info->data, array('width'=> 800) );
 						?>
 						<div class="h_iframe">
+						<?php if($current_user->ID == $userid || $current_user->user_level >= 9) { ?>
 						<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
 							<button type="submit" name="delete">Delete</button>
 							<input type="hidden" name="submission_id" value="<?php echo $activity_info->id ?>">
 						</form>
+						<?php } ?>
 						<?php echo $embed_code; ?> 
 						</div>
 						<?php
@@ -342,11 +346,13 @@ if($self_eval[0]) {
 						<article class="text">
 						
 							<h3>Journal Entry</h3>
+							<?php if($current_user->ID == $userid || $current_user->user_level >= 9) { ?>
 							<button type="button" class="edit">Edit</button>
 							<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
 								<button type="submit" name="delete">Delete</button>
 								<input type="hidden" name="submission_id" value="<?php echo $activity_info->id ?>">
 							</form>
+							<?php } ?>
 							<?php $submission_time = explode( " ", $activity_info->submission_timestamp); 
 							 $dbDate = explode("-",$submission_time[0]);
 							 $date = $dbDate[1]."-".$dbDate[2]."-".$dbDate[0];

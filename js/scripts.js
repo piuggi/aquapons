@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 	// add theme name to all URLs in <a> tags
 	$('#container a').each(function() {
 		var url = $(this).attr('href');
-		if(url && theme_branch != "") {
+		if(url && theme_branch != "dev") {
 			if(url.indexOf('?') == -1) {
 				url = url + "?theme="+theme_branch;
 				$(this).attr('href', url);
@@ -104,6 +104,9 @@ jQuery(document).ready(function($) {
     });
 	
 	
+	$('.user_image a').fancybox();
+	$('.user_video a').fancybox({ 'type': 'iframe'});
+
 	
 	$('#profile_pic_picker').change(function() {
 		$('#profile_pic_form').submit();

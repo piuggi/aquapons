@@ -135,8 +135,34 @@ if(sizeof($_POST)) {
 			delete_user_meta($userid, 'user_image2');
 		}
 		
-	}
-}
+		// HANDLE VIDEO UPDATE
+		if($_POST['user_video']) {
+			if(strpos($_POST['user_video'], 'youtube') !== false) {
+				// http://www.youtube.com/watch?v=WcFv9eElzeg
+				parse_str(parse_url($_POST['user_video'], PHP_URL_QUERY));
+				update_user_meta($userid, 'video', 'http://www.youtube.com/embed/'.$v.'?autoplay=1');
+				update_user_meta($userid, 'video_thumbnail', 'http://img.youtube.com/vi/'.$v.'/0.jpg');
+			} elseif (strpos($_POST['user_video'], 'vimeo') !== false) {
+				// http://vimeo.com/49042489
+				// get everything from last slash, unless last slash is at the end
+				$video_id = explode('/', $_POST['user_video']);
+				$v = $video_id[sizeof($video_id)-1];
+				update_user_meta($userid, 'video', 'http://player.vimeo.com/video/'.$v.'?title=0&amp;byline=0&amp;portrait=0');
+				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$v.php"));
+				$thumbnail = $hash[0]['thumbnail_medium'];  
+				update_user_meta($userid, 'video_thumbnail', $thumbnail);
+			}
+		}
+		
+		// REMOVE VIDEO META DATA ON DELETE
+		if($_POST['remove_video']) {
+			delete_user_meta($userid, 'video');
+			delete_user_meta($userid, 'video_thumbnail');		
+		}
+		
+		
+	} // if($current_user->ID == $userid)
+} // if(sizeof($_POST))
 
 // HANDLE FILE UPLOAD
 
@@ -350,7 +376,7 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 					<?php if($current_user->ID == $userid || get_user_meta($userid, 'user_image'.$x, 1)) { ?>
 						<div class="user_image">
 							<?php if($user_image_id = get_user_meta($userid, 'user_image'.$x, 1)) { ?>
-								<a href="<?php echo wp_get_attachment_url($user_image_id); ?>" rel="lightbox">
+								<a href="<?php echo wp_get_attachment_url($user_image_id); ?>">
 									<?php echo wp_get_attachment_image( $user_image_id, 'profile-pic'); ?>
 								</a>
 							<?php } else { ?>
@@ -372,11 +398,42 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 						</div>
 					<?php } ?>
 				<?php } ?>
+				</div>
+			<?php } ?>	
+			
+			
+			<?php //update_user_meta($userid, 'video', 'http://www.youtube.com/embed/WcFv9eElzeg?autoplay=1'); ?>
+			<?php if($current_user->ID == $userid || get_user_meta($userid, 'video', 1)) { ?>
+			<div class="user_video">
+				<h2>Video</h2>
+			
+				<?php if($user_video_url = get_user_meta($userid, 'video', 1)) { ?>
+				<a href="<?php echo $user_video_url ?>">
+					<img src="<?php echo get_user_meta($userid, 'video_thumbnail', 1) ?>" alt="Video">
+					<div class="play_button">Play Video</div>
+				</a>
+				<?php } ?>
+								
+				<?php if($current_user->ID == $userid && get_user_meta($userid, 'video', 1)) { ?>
+					<form id="remove_video_form" action="#" method="post" onsubmit="return confirm('Are you sure you want to delete this video?');">
+						<input type="submit" name="remove_video" class="remove_video" value="delete">
+					</form>
+				<?php } ?>
+								
+				<?php if($current_user->ID == $userid) { ?>
+					<form id="user_image_form" action="#" method="post">
+						<label for="user_video">Paste the URL of your video (youtube or vimeo):</label>
+						<input type="text" name="user_video" id="user_video" placeholder="http://www.youtube.com/watch?v=WcFv9eElzeg">
+						<input type="submit" value="<?php if($user_video_url) echo 'Replace Video'; else echo 'Save'; ?>">
+					</label>				<?php } ?>
+			</div>
 			<?php } ?>
+
+		</section>
+		
 		
 			
-			
-		</section>
+		
 		
 		<section class="my_badges text-content">
 			
@@ -416,14 +473,20 @@ $affiliations = $wpdb->get_results("SELECT * FROM aq_affiliations WHERE user_id 
 					AND t1.meta_key = 'badge_type' AND t1.meta_value = 'content' AND t2.meta_key = 'badge_level' AND t1.post_id = t2.post_id AND t1.post_id = t3.ID and t3.post_status = 'publish' ORDER BY t3.menu_order");
 				$has_badges = false;
 				foreach($content_badge_ids as $badge_id) {
-					if(getBadgeStatus($badge_id->post_id, $badge_info) === 'complete') {
+					$current_badge = getBadgeStatus($badge_id->post_id, $badge_info);
+					if($current_badge->status === 'complete') {
 						$badge = get_post($badge_id);
 						?>
 						<?php if($has_badges == false) { $has_badges = true; ?><h3><?php echo $aquapons_levels[$x]; ?></h3><?php } ?>
 						<div class="content badge <?php  echo "complete"; ?>" style="background: url(<?php echo get_field('badge_image', $badge_id->post_id); ?>) no-repeat center;">
-							<a href='<?php echo get_permalink($page->ID); ?>'>
+							<a href='<?php echo get_permalink($badge_id->post_id); ?>'>
 								<div class="content_badge_title"><?php echo $badge->post_title; ?></div>
 							</a>
+							<?php if(!$current_badge->submitted_to_obi) { ?>
+								<?php if(!$userid || $current_user->ID == $userid){ ?>
+								<div class="small send_to_backpack" data-badge-id="<?php echo $badge_id->post_id; ?>" data-user-id="<?php echo $current_user->ID; ?>"><img src="http://aquapons.info/wp-content/uploads/2013/07/obi-icon.png" alt="Send to Mozilla Backpack"> <span>Send to Backpack</span></div>
+								<?php } ?>
+							<?php } ?>
 						</div>
 				<?php }
 				} 

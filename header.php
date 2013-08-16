@@ -19,9 +19,9 @@
 <script type="text/javascript">
 var theme_dir = "<?php echo get_theme_root(); ?>";
 var theme_url = "<?php echo get_template_directory_uri() ?>";
-var theme_branch = "<?php echo $_GET['theme']; ?>";
+var theme_branch = "<?php if($_GET['theme']) echo $_GET['theme']; else echo "dev"; ?>";
 </script>
-<!-- <script src="http://beta.openbadges.org/issuer.js"></script> -->
+<script src="http://beta.openbadges.org/issuer.js"></script>
 <!--[if lt IE 9]>
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5shiv.js" type="text/javascript"></script>
 <![endif]-->
@@ -135,7 +135,7 @@ elseif(get_post_meta($post->ID, 'badge_type', true)) $section .= " single-".get_
 					<li>or</li>
 					<li><a href="<?php echo wp_logout_url( home_url() ); ?>">Log Out</a></li>
 					<?php } else { ?> 
-					<li><a href="/sign-in/?redirect=<?php echo $_SERVER['REQUEST_URI']; ?>">Sign In</a></li> 
+					<li><a href="/sign-in/?theme=<?php if($_GET['theme']) echo $_GET['theme']; else echo 'dev'; ?>">Sign In</a></li> 
 					<li>or</li>
 					<li><a href="/sign-up/">Sign Up</a></li>
 					<?php } ?>
