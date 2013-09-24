@@ -195,7 +195,7 @@
 							</section><!--#resources-->	
 					</section><!--recent-discussions-->
 					<section id="new-institutions" class="side-scroller">
-						<h2>New Institutions <a>All institutions ›</a></h2>
+						<h2>New Institutions <a href="/community/institutions/">All institutions ›</a></h2>
 						
 						<?php  
 							$institution_args = array(

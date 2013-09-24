@@ -185,8 +185,8 @@
 												
 												<li><a href="/profile/?user=<?php echo $user_token; ?>">View work</a></li>
 												<li>
-													<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" accept-charset="utf-8">
-														<button type="submit" name="remove-student">Remove Student</button>
+													<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" class="remove-student" method="post" accept-charset="utf-8">
+														<button type="submit"  name="remove-student">Remove Student</button>
 														<input type="hidden" name="class-id" value="<?php echo $student->aq_class_id;?> ">
 														<input type="hidden" name="student-id" value="<?php echo $student->aq_student_id;?> ">
 

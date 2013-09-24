@@ -104,8 +104,8 @@ jQuery(document).ready(function($) {
     });
 	
 	
-	$('.user_image a').fancybox();
-	$('.user_video a').fancybox({ 'type': 'iframe'});
+	//$('.user_image a').fancybox();
+	//$('.user_video a').fancybox({ 'type': 'iframe'});
 
 	
 	$('#profile_pic_picker').change(function() {
@@ -205,12 +205,21 @@ jQuery(document).ready(function($) {
 		if( !confirm('You can\'t undo this action. Are you sure you want to delete this classes data?') ) e.preventDefault();
 		
 	});
-	$('.add-student,.cancel-student').click(function(e){
+	
+	$('form.remove-student').submit(function(e){
+		
+		if( !confirm('You can\'t undo this action. Are you sure you want to delete this students data?') ) e.preventDefault();
+		
+	});
+	
+	$('button.add-student, .cancel-student').click(function(e){
+		//alert();
 		$(this).toggle();
 		$(this).siblings().toggle();
 	});
 	
 	$('button.submit-student').click(function(e){
+		//alert();
 		e.preventDefault();
 		var userEmail = $(this).parent().children('.student-email').val();
 		//console.log(userEmail);

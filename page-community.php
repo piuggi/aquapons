@@ -30,6 +30,7 @@
 							<figure class="showcase" <?php if(!$g++) echo 'id="first"'; ?>>
 								<?php $imgId = get_post_meta(get_the_ID(), 'image', true);  ?>
 								<?php $imgArray = wp_get_attachment_image_src( $imgId);?>
+								
 								<a href="<?php the_permalink(); ?>">
 									<img class="aquapon_ledgend" src="<?php echo $imgArray[0];  ?>" alt="One of our featured Aquapons <?php echo get_the_title();?>">
 								</a>
@@ -51,7 +52,7 @@
 						</section><!-- feat_aquapon -->
 						<section id="new-institutions" >
 
-						<h2>Featured Institutions <a>All institutions ›</a></h2>
+						<h2>Featured Institutions <a href="/community/institutions/">All institutions ›</a></h2>
 							
 						<?php  
 							$institution_args = array(

@@ -3,7 +3,7 @@
 
 	function userEmailExists() {
 			//echo 'hello!';
-			if(email_exists( $_POST['user_email'] )){ echo 'true';}
+			if( email_exists( $_POST['user_email'] )){ echo 'true';}
 			else{ echo 'false';}
 			
 			die();	
