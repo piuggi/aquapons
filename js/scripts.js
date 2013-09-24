@@ -108,7 +108,8 @@ jQuery(document).ready(function($) {
 	if(jQuery().fancybox) { 
 		$('.user_image a').fancybox();
 		$('.user_video a').fancybox({ 'type': 'iframe'});
-	}	
+	}
+		
 	$('#profile_pic_picker').change(function() {
 		$('#profile_pic_form').submit();
 	});
