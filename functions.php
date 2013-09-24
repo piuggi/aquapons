@@ -101,12 +101,4 @@ if($user_level < 10) {
 }
 
 
-
-// ADD PRIVACY META TAG FOR NEW USERS. CAN REMOVE AFTER SEPTEMBER ------------
-if(get_user_meta(get_current_user_id(), 'private', 1) == null) {
-	add_user_meta(get_current_user_id(), 'private', 0);
-}
-// ----------- REMOVE TIL HERE
-
-
 ?>
